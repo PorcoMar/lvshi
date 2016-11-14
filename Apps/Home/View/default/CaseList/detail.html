@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+<meta name="description" content="『俺的律师』是由国家权威媒体光明日报、光明网、法制日报、法制文萃报倾力打造法律服务平台为百姓享受律师服务提供解决方案，聚合国内海量实名认证律师，为您提供离婚纠纷、侵权赔偿、债权债务、房产纠纷、劳动仲裁、知识产权、交通事故、遗产继承、医患纠纷、民事刑事、公司事务等各类案件的免费咨询和法律服务。"/>
+    <!--此处填案例标题_案例分类-->
+<title>{$detailList.result.title}_{$title}法律案例-俺的律师网</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg">
+	<div class="wrap rela"> 
+    	<include file="Public/header"/>
+    </div>
+</div>
+<!--头部结束-->
+<!--内容开始-->
+<div class="wrap">
+    <div class="zidong clearfix">
+    	<div class="bread">首页 - 精编案例 - 正文</div>
+        <div class="zidong_left">
+            <div class="anli_nr">
+                <p class="anli_title01">{$detailList.result.title}</p>
+                <p class="time01 clearfix"><span class="time_left">{$detailList.result.create_time|date="Y-m-d H:i:s",###}　<empty name="detailList.result.source">
+                    <else/>
+                    来源：{$detailList.result.source}开讲
+                </empty></span><span class="fenxiang01"><a href="javascript:void(0)" onfocus="this.blur()"><img id="switcher-small" title="缩小" src="__ROOT__/Public/web/images/fenxiang01.jpg"/></a>&nbsp;&nbsp;<a href="javascript:void(0)" onfocus="this.blur()"><img id="switcher-bigger" title="放大" src="__ROOT__/Public/web/images/fenxiang02.jpg"/></a></span>
+                </p>
+               <!-- <p class="img01"><img width="588px" height="374px" src="{$detailList.result.thumb}"/></p>-->
+                <div class="text01">{$detailList.result.content}</div>
+            </div>
+            
+            
+            <div class="share01 clearfix">
+            	<a class="return" href="{:U('Index/index')}">返回首页</a>
+                <div class="share_nr">分享到：<a href="#"><img src="__ROOT__/Public/web/images/share_icon01.png" /></a><a href="#"><img src="__ROOT__/Public/web/images/share_icon03.png" /></a><a href="#"><img src="__ROOT__/Public/web/images/share_icon04.png" /></a><a href="#"><img src="__ROOT__/Public/web/images/share_icon05.png" /></a></div>
+            </div>
+
+            <div class="pinglun">
+                <p class="t01">评论</p>
+                <div class="count01"><span>{$num}</span>&nbsp;条评论&nbsp;&nbsp;<a href="{:U('Passport/index')}">登录</a>&nbsp;|&nbsp;<a href="{:U('Passport/enroll')}">注册</a></div>
+                <empty name="session">
+                    <else />
+                    <div class="part02 clearfix">
+                        <div class="pinglun_left rela yuan01"><span></span><img width="58px" height="58px" src="{$avatar}" /></div><div class="pinglun_right"><input type="hidden" id="article_id" value="{$detailList.result.id}"/><textarea id="comment"></textarea></div>
+                    </div>
+                    <div class="btn01"><a href="#"><img onclick="saveComment()" src="__ROOT__/Public/web/images/fabu.jpg" /></a></div>
+                </empty>
+                <volist name="commList.result" id="content">
+                    <div class="part03 clearfix">
+                        <div class="pinglun_left rela yuan01"><span></span><img width="58px" height="58px" src="{$content.avatar}" /></div>
+                        <div class="pinglun_right clearfix">
+                            <div class="t02 clearfix"><p class="user_name">{$content.member_name}<br />{$content.create_time|date="Y-m-d H:i:s",###}</p><a href="#" class="zan"><img src="__ROOT__/Public/web/images/zan.png" />&nbsp;<span>{$content.up}</span></a></div>
+                            <div class="t03">{$content.content}</div>
+                        </div>
+                    </div>
+                </volist>
+                <div class="jiazai">
+                    <a href="{:U('CaseList/detail/id/'.$detailList['result']['id'])}" class="btn01">加载更多评论</a>
+                </div>
+
+            </div>
+            
+            
+        </div>
+        
+        <div class="zidong_right">
+        	<!--热点热评-->
+        	<div class="title03 clearfix"><span>热点热评</span></div>
+        	<div class="qiuzhu">
+            	<ul>
+                    <volist name="caseHot.result" id="hot">
+                        <li><a href="{:U('CaseHot/detail/id/'.$hot['id'])}">{$hot.title}</a></li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="erweima">
+                <img src="__ROOT__/Public/web/images/erweima.jpg"/>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+<!--内容结束-->
+
+<!--底部开始-->
+<include file="Public/footer"/>
+
+<!--底部结束-->
+
+</body>
+</html>
+<script type="text/javascript">
+    function saveComment(){
+        var comment = $('#comment').val();
+        var article_id = $('#article_id').val();
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: "{:U('CaseList/comment')}", //目标地址
+            data:{"comment":comment,'article_id':article_id},
+            success: function(json){
+                if(json.status=='1'){
+                    window.location.href= "{:U('CaseList/detail')}" + '?id=' + article_id;
+                }else{
+                    $("#msg").remove();
+                    $('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub').fadeOut(2000);
+                    window.location.href= "{:U('CaseList/detail')}" + '?id=' + article_id;
+                }
+            }
+        });
+    }
+    $(function () {
+        var $biger = $('.anli_nr div.text01');
+        var num = parseFloat($biger.css('fontSize'));
+        $('#switcher-bigger').click(function () {
+            num = num * 1.5;
+            $biger.css('fontSize', num + 'px');
+            $biger.css('line-height', (num + 8) + 'px');
+            //alert("dd")
+        });
+        $('#switcher-small').click(function () {
+            num = num / 1.5;
+            $biger.css('fontSize', num + 'px');
+            $biger.css('line-height', num + 'px');
+        });
+    })
+</script>

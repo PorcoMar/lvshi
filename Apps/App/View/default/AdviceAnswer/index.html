@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>俺的律师</title>
+
+</head>
+<!--头部开始-->
+<include file="Public/header" />
+<body>
+
+<div class="home" id="mhome" >  
+     <div class="lawyer">
+                        <img src="__ROOT__/Public/APP/images/law-1.png">
+     </div>
+     <div class="law-bg">
+         <input type="hidden" id="from" value="{$from}"/>
+                      <input onclick="Advice('0')" type="button" value="俺要找律师">
+                      <input  onclick="Advice('1')" type="button" value="俺是法律人" class="law-to">
+                      <span>选择身份不可更改</span>
+                      <div class="law-ov"><img src="__ROOT__/Public/APP/images/law-ov.png"></div>
+     </div>
+     
+
+
+
+<script>
+      /*滑屏控件--移动端*/
+	$('#owl-demo').owlCarousel({
+        singleItem: true,
+		autoPlay:true,
+    });
+	/*滑屏控件--PC端*/
+	$('#owl-demo2').owlCarousel({
+        singleItem: true,
+		autoPlay:true,
+    });
+</script>
+
+<script>
+!function(win) {
+ function resize() {
+  var domWidth = domEle.getBoundingClientRect().width;
+  if(domWidth / v > 540){
+   domWidth = 540 * v;
+  }
+  win.rem = domWidth / 16;
+  domEle.style.fontSize = win.rem + "px";
+ }
+ var v, initial_scale, timeCode, dom = win.document, domEle = dom.documentElement, viewport = dom.querySelector('meta[name="viewport"]'), flexible = dom.querySelector('meta[name="flexible"]');
+ if (viewport) {
+  //viewport：<meta name="viewport"content="initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5,user-scalable=no,minimal-ui"/>
+  var o = viewport.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/);
+  if(o){
+   initial_scale = parseFloat(o[2]);
+   v = parseInt(1 / initial_scale);
+  }
+ } else {
+  if (flexible) {
+   var o = flexible.getAttribute("content").match(/initial\-dpr=(["']?)([\d\.]+)\1?/);
+   if(o){
+    v = parseFloat(o[2]);
+    initial_scale = parseFloat((1 / v).toFixed(2))
+   }
+  }
+ }
+ if (!v && !initial_scale) {
+  var n = (win.navigator.appVersion.match(/android/gi), win.navigator.appVersion.match(/iphone/gi));
+  v = win.devicePixelRatio;
+  v = n ? v >= 3 ? 3 : v >= 2 ? 2 : 1 : 1, initial_scale = 1 / v
+ }
+ //没有viewport标签的情况下
+ if (domEle.setAttribute("data-dpr", v), !viewport) {
+  if (viewport = dom.createElement("meta"), viewport.setAttribute("name", "viewport"), viewport.setAttribute("content", "initial-scale=" + initial_scale + ", maximum-scale=" + initial_scale + ", minimum-scale=" + initial_scale + ", user-scalable=no"), domEle.firstElementChild) {
+   domEle.firstElementChild.appendChild(viewport)
+  } else {
+   var m = dom.createElement("div");
+   m.appendChild(viewport), dom.write(m.innerHTML)
+  }
+ }
+ win.dpr = v;
+ win.addEventListener("resize", function() {
+  clearTimeout(timeCode), timeCode = setTimeout(resize, 300)
+ }, false);
+ win.addEventListener("pageshow", function(b) {
+  b.persisted && (clearTimeout(timeCode), timeCode = setTimeout(resize, 300))
+ }, false);
+ 
+ resize();
+}(window);
+
+window.onload=function () {
+  $('.hrde-bg').css('height',$('.home').height());
+}
+
+function Advice(type){
+    var ua = navigator.userAgent.toLowerCase();
+    var from=$('#from').val();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+//        preg_match('/.*?(MicroMessenger\/([0-9.]+))\s*/', $user_agent, $matches);
+
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: "{:U('AdviceAnswer/character')}", //目标地址
+            data:{"type":type},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","red").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                    case 1:
+                        window.location.href="{:U('Guide/guide')}"+'/from/'+from;
+                        break;
+                    case 2:
+                        window.location.href="{:U('Index/index')}";
+                        break;
+                }
+            }
+        });
+    } else {
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: "{:U('AdviceAnswer/character')}", //目标地址
+            data:{"type":type},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","red").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                    case 1:
+                        window.location.href="{:U('Guide/index')}"+'/from/'+from;
+                        break;
+                    case 2:
+                        window.location.href="{:U('Index/index')}";
+                        break;
+                }
+            }
+        });
+    }
+}
+
+</script>
+
+</div>
+</body>
+</html>

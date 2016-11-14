@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>俺的律师</title>
+</head>
+<!--头部开始-->
+<include file="Public/header" />
+<body scroll="no">
+<div class="home">
+    <!--正文模块-->
+    <div class="guide">
+                 <div class="guide-top"><img src="__ROOT__/Public/APP/images/guide-1.png"></div>
+                 <div class="guide-top2"><img src="__ROOT__/Public/APP/images/guide-3_03.png"></div>
+    </div>
+    <div class="guide-text">
+                  <p>『俺的律师』是由国家权威媒体光明日报、光明网、法制日报、法制文萃报倾力打造法律服务平台。为百姓享受律师服务提供解决方案，聚合国内海量实名认证律师，借助大型律师真人秀节目推广，为您提供离婚纠纷、侵权赔偿、债权债务、房产纠纷、劳动仲裁、知识产权、交通事故、遗产继承、医患纠纷、民事刑事、公司事务等各类案件的免费咨询和法律服务。</p>
+                 
+    </div>
+  <div class="guide-but">
+      <input type="button" onclick="download()" value="下载俺的律师App">
+    </div>
+<script type="text/javascript">
+
+      /*滑屏控件--移动端*/
+	$('#owl-demo').owlCarousel({
+        singleItem: true,
+		autoPlay:true,
+    });
+	/*滑屏控件--PC端*/
+	$('#owl-demo2').owlCarousel({
+        singleItem: true,
+		autoPlay:true,
+    });
+
+    function download(){
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+//        alert('是否是Android：'+isAndroid);
+//        alert('是否是iOS：'+isiOS);
+//        die;
+        var dn='{$dn}';
+        var url='{$url}';
+        var ios='{$ios}';
+        if(isAndroid==true){
+            if(dn!=''){
+                window.location.href=dn;
+            }else{
+                window.location.href=url;
+            }
+        }
+        if(isiOS==true){
+            window.location.href=ios;
+        }
+    }
+</script>
+
+<script>
+!function(win) {
+ function resize() {
+  var domWidth = domEle.getBoundingClientRect().width;
+  if(domWidth / v > 540){
+   domWidth = 540 * v;
+  }
+  win.rem = domWidth / 16;
+  domEle.style.fontSize = win.rem + "px";
+ }
+ var v, initial_scale, timeCode, dom = win.document, domEle = dom.documentElement, viewport = dom.querySelector('meta[name="viewport"]'), flexible = dom.querySelector('meta[name="flexible"]');
+ if (viewport) {
+  //viewport：<meta name="viewport"content="initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5,user-scalable=no,minimal-ui"/>
+  var o = viewport.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/);
+  if(o){
+   initial_scale = parseFloat(o[2]);
+   v = parseInt(1 / initial_scale);
+  }
+ } else {
+  if (flexible) {
+   var o = flexible.getAttribute("content").match(/initial\-dpr=(["']?)([\d\.]+)\1?/);
+   if(o){
+    v = parseFloat(o[2]);
+    initial_scale = parseFloat((1 / v).toFixed(2))
+   }
+  }
+ }
+ if (!v && !initial_scale) {
+  var n = (win.navigator.appVersion.match(/android/gi), win.navigator.appVersion.match(/iphone/gi));
+  v = win.devicePixelRatio;
+  v = n ? v >= 3 ? 3 : v >= 2 ? 2 : 1 : 1, initial_scale = 1 / v
+ }
+ //没有viewport标签的情况下
+ if (domEle.setAttribute("data-dpr", v), !viewport) {
+  if (viewport = dom.createElement("meta"), viewport.setAttribute("name", "viewport"), viewport.setAttribute("content", "initial-scale=" + initial_scale + ", maximum-scale=" + initial_scale + ", minimum-scale=" + initial_scale + ", user-scalable=no"), domEle.firstElementChild) {
+   domEle.firstElementChild.appendChild(viewport)
+  } else {
+   var m = dom.createElement("div");
+   m.appendChild(viewport), dom.write(m.innerHTML)
+  }
+ }
+ win.dpr = v;
+ win.addEventListener("resize", function() {
+  clearTimeout(timeCode), timeCode = setTimeout(resize, 300)
+ }, false);
+ win.addEventListener("pageshow", function(b) {
+  b.persisted && (clearTimeout(timeCode), timeCode = setTimeout(resize, 300))
+ }, false);
+ 
+ resize();
+}(window);
+/*
+var ua = navigator.userAgent.toLowerCase();
+var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+
+if(ua.match(/MicroMessenger/i)!="micromessenger") {
+
+    if(isiOS==true){
+            location.href="https://itunes.apple.com/cn/app/lu-shi-quan-wei-mei-ti-guang/id1111211579?mt=8";
+    }
+    if(isAndroid==true){
+        location.href="http://www.andlvshi.com/Uploads/andlvshi.apk";
+    }
+}*/
+</script>
+</div>
+</body>
+</html>

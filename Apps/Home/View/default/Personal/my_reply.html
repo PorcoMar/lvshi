@@ -1,0 +1,39 @@
+<include file="Public/personalHeader" />
+		<div class="mess_right">
+            <div class="mess_tag"><span>我的回答</span></div>   
+            <div class="hf_box">
+                <div class="wenda_list01">
+                <php>$code = $myreply['code'];</php>
+                <eq name="code" value="999">
+                    <p style="text-align: center;">{$myreply.msg}</p>
+                <else/>
+                    <volist name="myreply.result" id="vo">
+                        <dl class="question-item">
+                            <dt style="display: flex;">
+                                <em></em>
+                                <span class="text-ellipsis">{$vo.description}</span>
+                            </dt>
+                            <dd style="display: flex;"><em></em>
+                                <span>
+                                    <b>我：</b>{$vo.content}&nbsp&nbsp&nbsp&nbsp<a href="<php>echo U('/Consult/askdetail','id='.$vo['question_id']);</php>" class="blue">查看详情>></a>
+                                </span>
+                            </dd>
+                        </dl>
+                    </volist>
+                    <assign name="current_page" value="$myreply.page_Index" />
+                    <php>$total_page = ceil($myreply['page_sum']/$myreply['page_size']);</php>
+                    <assign name="page_size" value="$myreply.page_size" />
+                    <assign name="page_show" value="10" />
+                    <include file="Public/pagination" />
+                </eq>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public/footer" />
+
+
+
+
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/service.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/iconfont.css" />
+		<script src="__ROOT__/Public/mobile/js/jquery_min_1.9.js"></script>
+		<script src="__ROOT__/Public/mobile/js/bootstrap.min.js"></script>
+		<title>注册界面</title>
+		<style type="text/css">
+			body{
+				background-color:white;
+			}
+
+			input{
+				border:1px solid #999;
+			}
+			
+			dd{
+				display: block;
+				width :100%;
+				margin-top: 3%;
+			}
+			.details-cont{
+				background: #ffffff;
+				margin-bottom: 3% !important;
+				border-bottom: solid 1px #dddddd;
+			}
+			.cont-title{
+				font-size: 18px;
+				font-weight: bolder;
+				margin-top: 5%;
+				margin-bottom: 3%;
+			}
+			.col-xs-12{
+				width: 100%;
+			}
+			#btnSendCode {
+			    width: 120px;
+			    height: 36px;
+			    line-height:28px;
+			    color:white;
+			    background-image: url("__ROOT__/Public/web/images/btn_bg01.png"); 
+			}
+			#verify {
+				width: 90px;
+			}
+			
+			main{
+				margin-top: 20%;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class='container padding'>
+				<div class="row details-title">
+					<div class='col-xs-1'>
+						<a href="__APP__/Mobile/Goods/index">
+							<span class='iconfont icon-zuojiantou'></span>
+						</a>
+					</div>
+					<div class='col-xs-10 padding' style="text-align:center;">
+						用户注册
+					</div>
+					<div class='col-xs-1'>
+						<span class="iconfont icon-fenxiang "></span> 
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class='container padding'>
+				<div class='row details-cont'>
+					<div class='col-xs-12'>
+						<div class="cont-title">
+						<dl>
+						<form action="{:U('index/registers')}" method="post">
+							<dd style="text-align:center;">
+								<lable>手机号码</lable>
+								<input type="text" name="mobile" id="mobile" >
+								<input type="hidden" name="code" id= "code" value="{$code}" >
+							</dd>
+							<dd style="text-align:center;">
+								<lable>验证码&nbsp&nbsp</lable>
+								<input type="text" name="verify" id="verify">
+								<span id="btnSendCode" href="javascript:void(0)" onclick="sendMessage()">获取验证码</span>
+							</dd>
+							<dd style="text-align:center;">
+								<lable>登录密码</lable>
+								<input type="password" name="password" id="password">
+							</dd>
+							<dd style="text-align:center;">
+								<lable>确认密码</lable>
+								<input type="password" name="repassword" id="repassword" >
+							</dd>
+							<dd style="text-align:center;">
+								<input name="confirm"  type="checkbox" onclick="agree();" id="cb"/>同意<a
+								href="{:U('Common/register')}">《俺的律师用户协议》</a>
+							</dd>
+							<dd style="text-align:center;">
+								  <input type="submit"  value="注册" disabled="disabled" id="tj"/>
+							</dd>
+							</form>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+		</main>
+		<script type="text/javascript">
+			 function agree(){
+			    if(document.getElementById('cb').checked)
+			              document.getElementById('tj').disabled=false;
+			    else
+			        document.getElementById('tj').disabled='disabled';  
+			 }   
+
+			 function sendMessage(){
+			 	var mobile = $("#mobile").val();
+				if(mobile.length!=11){  
+		            alert("请输入有效手机号！");
+		            $("#mobile").focus();
+		            return false;
+		        }
+		        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+		        if(!myreg.test(mobile))
+		        {
+		            alert("请输入有效手机号！");
+		            $("#mobile").focus();
+		            return false;
+		        }
+			 	$.ajax({
+	                 type: "POST",
+	                 url: "{:U('Index/getCode')}",
+	                 dataType: "json",
+	                 data: {"mobile":mobile},
+	                 success: function(json){
+	                    alert(json.msg)
+	                 }
+             	})
+			 }
+		</script>
+	</body>
+</html>

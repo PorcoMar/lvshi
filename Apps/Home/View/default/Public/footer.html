@@ -1,0 +1,40 @@
+<div class="foot">
+	<p><a href="{:U('Index/content/code/about_mysite')}">关于俺的律师</a>|<a href="{:U('Index/other/code/lianxius')}">联系我们</a>|<a href="{:U('Index/other/code/falvshengming')}">法律声明</a>|<a href="{:U('Index/other/code/huanyinghezuo')}">欢迎合作</a>|<a href="{:U('Index/other/code/youqinglianjie')}">友情链接</a>|<a href="{:U('Index/agree')}">反馈留言</a></p>
+	<p>Copyright ©2015-2017 andlvshi.com 版权所有|京ICP备16015322号|京公网安备11010802013176号</p>
+</div>
+<script type="text/javascript" src="__ROOT__/Public/web/js/jquery_min_1.9.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$(".displayPart").each(function () {
+			var displayLength = 100;
+			displayLength = $(this).attr("displayLength") || displayLength;
+			var result = SetString($(this).text(), displayLength);
+			$(this).text(result);
+		});
+	});
+	function SetString(str, len) {
+		var strlen = 0;
+		var s = "";
+		if(str.length>0){
+			for (var i = 0; i < str.length; i++) {
+				if (str.charCodeAt(i) > 128) {
+					strlen += 2;
+				} else {
+					strlen++;
+				}
+				s += str.charAt(i);
+				if (strlen >= len) {
+					return s + "...";
+				}
+			}
+		}else{
+			s ="";
+		}
+		return s;
+	}
+	$('.news_list li').hover(function(){
+		$(this).find('.count01').show();
+	},function(){
+		$(this).find('.count01').hide();
+	})
+</script>

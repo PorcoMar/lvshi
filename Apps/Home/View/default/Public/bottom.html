@@ -1,0 +1,35 @@
+<div class="main_bottom">
+    <dl>
+        <dt class="b1"></dt>
+        <dd><a href="{:U('Public/boutiqueLawFirm')}">律所合作入口</a></dd>
+        <!--<dd><a href="javascript:void(0)">律所合作入口</a></dd>-->
+    </dl>
+    <dl>
+        <dt class="b2"></dt>
+        <dd><a onclick="hospital({$through_department_id})" href="javascript:void(0)">医院直达号</a></dd>
+        <!--	<if condition="$through_department_id gt 1">
+                <dd><a href="{:U('Direct/index')}">医院直达号</a></dd>
+                <else/>
+                <dd><a id="hint" href="javascript:void(0)">医院直达号</a></dd>
+            </if>-->
+
+    </dl>
+    <dl>
+        <dt class="b3"></dt>
+        <dd><a href="{:U('Public/WhoIsTheAns')}">看看俺们都是谁</a></dd>
+    </dl>
+</div>
+<script type="text/javascript">
+    function hospital(through_department_id){
+    //alert(through_department_id);die;
+    if(through_department_id==undefined){
+    alert('请先登入');
+    window.location.href = "{:U('Passport/index')}";
+    }else if(through_department_id > 1){
+    window.location.href = "{:U('Direct/index')}";
+    }else{
+    alert('您不是直达号用户,无法访问 医院直达号');
+    }
+    }
+
+</script>

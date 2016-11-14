@@ -1,0 +1,873 @@
+.head-login{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background-color:#f0f0f0;
+}
+.head-login div.phone{
+	color: #d8ae88;
+}
+/*顶部结束*/
+.nav{
+	width: 100%;
+	height: 75px;
+	line-height: 70px;
+	font-size:16px;
+	background: url(../img/nav_bg.png);
+}
+.nav ul li{
+	float: left;
+	width: 108px;
+	line-height: 75px;
+	text-align: center;
+}
+.nav ul li a{
+	display: block;
+}
+.index-active{
+	height: 75px;
+	line-height: 75px;
+	border-bottom: solid 5px #eb5050;
+}
+.nav div.col-xs-1{
+	width: 100px;
+}
+.nav div.col-xs-1 div{
+	float: left;
+	width: 50px;
+	text-align: right;
+}
+.load-code-hide{
+	position: absolute;
+	top: 92px;
+	right: 60px;;
+	width: 300px;
+	height: 170px;
+	line-height: 50px;
+	text-align: center;
+	background: #ffffff;
+	border: solid 1px #c0c0c0;
+	z-index: 400;
+	cursor: pointer;
+	display: none;
+}
+.load-code-hide span.frists{
+	position: absolute;
+	top: -29px;
+	right: 145px;
+	display: none;
+}
+.load-code-hide span.lasts{
+	position: absolute;
+	top: -28px;
+	right: 145px;
+	color: #ffffff;
+	display: none;
+}
+.load-code-hide span{
+	font-size: 14px;
+	color: #8a8f95;
+}
+.load-code-hide span.frist{
+	font-size: 24px;
+}
+.load-code-hide img{
+	width: 100px;
+	height: 100px;
+	margin-top: 20px;
+}
+/*导航结束*/
+.banner{
+	width: 100%;
+	height:300px;
+	line-height: 300px;
+	background-image:url(../img/banner_bg.png);
+	background-repeat:no-repeat;
+}
+.banner div.explain{
+	position: absolute;
+	top: -20px;
+	right: 50px;
+}
+.banner div.explain img{
+	width: 449px;
+	height: 152px;
+}
+.banner div.lawyer,.banner div.custome{
+	float: left;
+}
+.banner div.lawyer{
+	position: absolute;
+	left: 0;
+	top: 13px;
+	z-index: 100;
+}
+.banner div.custome{
+	position: absolute;
+	left: 160px;
+	top: -5px;
+}
+/*banner结束*/
+.hot-city,
+.host-city{
+	height: 80px;
+	line-height: 80px;
+}
+
+.hot-citys,
+.host-citys{
+	height: 50px;
+	line-height: 50px;
+}
+.hot-city span,
+.hot-citys span{
+	display: inline-block;
+	width: 80px;
+	float: left;
+}
+.hot-city ul li,
+.hot-citys ul li{
+	float: left;
+}
+.hot-city ul li a,
+.hot-citys ul li a{
+	display: inline-block;
+	width: 50px;
+	color: #eb5050;
+}
+.hot-city ul li a:hover,
+.hot-citys ul li a:hover{
+	color: #d80000;
+	text-decoration: underline;
+}
+/*热门城市结束*/
+.host-city div,
+.host-citys div{
+	float: left;
+}
+.host-city div.first,
+.host-citys div.first{
+	margin-left: 95px;
+}
+.host-city div.row,
+.host-citys div.row{
+	border:solid 1px #f3e7db;
+	height:30px;
+	margin-top: 25px;
+	line-height: 30px;
+	cursor: pointer;
+	float: left;
+}
+.host-citys div.row{
+	margin-top: 10px;
+}
+.host-city div.row div.col-xs-3,
+.host-citys div.row div.col-xs-3{
+	background: #e4c6ab;
+	color:#ffffff;
+	width: 25px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	margin:2px 2px 0px 0px;
+}
+.host-city-city,
+.host-city-citys{
+	float: left;
+	margin-left: 30px;
+	width:200px;
+}
+.host-city-city div.row,
+.host-city-citys div.row{
+	width: 200px;
+}
+.host-city-city div.row div.col-xs-9,
+.host-city-citys div.row div.col-xs-9{
+	width: 170px;
+	height:30px;
+	color: #979797;
+}
+.host-city-area,
+.host-city-areas{
+	float: left;
+	margin-left: 30px;
+	width:150px;
+}
+.host-city-area div.row,
+.host-city-areas div.row{
+	width: 150px;
+}
+.host-city-area div.row div.col-xs-9,
+.host-city-areas div.row div.col-xs-9{
+	width: 110px;
+	height:30px;
+	color: #979797;
+}
+.host-city-citys div.row div.col-xs-9,
+.host-city-areas div.row div.col-xs-9{
+	background: #ffffff;
+	height: 26px;
+}
+.host-city-areas div.row div.col-xs-9 {
+	width: 120px;
+}
+/*所在城市结束*/
+.city-select-hide,
+.city-select-hides{
+	width: 200px;
+	height:auto;
+	border: solid 1px #aaaaaa;
+	position: absolute;
+	top: 55px;
+	left: 195px;
+	background: #f6f6f6;
+	display: none;
+	z-index:100;
+}
+.city-select-hides{
+	top: 40px;
+}
+.city-select-hide ul,
+.city-select-hides ul{
+	padding: 0;
+	margin: 0;
+}
+
+.city-select-hide ul li,
+.city-select-hides ul li{
+	height: 35px;
+	line-height: 25px;
+	padding: 5px 0px 5px 15px;
+	cursor: pointer;
+}
+.city-select-hide ul li:hover,
+.city-select-hides ul li:hover{
+	background: #aaaaaa;
+	color: #ffffff;
+}
+.area-select-hide,
+.area-select-hides{
+	width: 150px;
+	height:auto;
+	border: solid 1px #aaaaaa;
+	background: #f6f6f6;
+	position: absolute;
+	top: 55px;
+	right: 25px;
+	display: none;
+	z-index:100;
+}
+.area-select-hides{
+	top:40px
+}
+.area-select-hide ul,
+.area-select-hides ul{
+	padding: 0;
+	margin: 0;
+}
+
+.area-select-hide ul li,
+.area-select-hides ul li{
+	height: 35px;
+	line-height: 25px;
+	padding: 5px 0px 5px 15px;
+	cursor: pointer;
+}
+.area-select-hide ul li:hover,
+.area-select-hides ul li:hover{
+	background: #aaaaaa;
+	color: #ffffff;
+}
+/*城市选择框结束*/
+.lawyer-service{
+	height: 70px;
+	line-height: 70px;
+	color: #333333;
+}
+.lawyer-service div{
+	float: left;
+}
+.lawyer-service div.title{
+	height: 70px;
+}
+.lawyer-service ul.cont{
+	margin: 0;
+	padding: 0;
+}
+.lawyer-service ul.cont li{
+	float: left;
+}
+.lawyer-service ul.cont li a{
+	display: inline-block;
+	width: 90px;
+	margin: 0px 10px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+}
+.lawyer-service ul.cont li a:hover{
+	color: #ffffff;
+	background: #eb5050;
+	line-height: 35px;
+	border-radius: 2px;
+}
+/*服务项目结束*/
+div.lawyer-list{
+	margin-top: 30px;
+}
+.lawyer-list div.title{
+	background: #8d9db9;
+	height:36px;
+	line-height: 36px;
+	color: #ffffff;
+	font-size: 16px;
+}
+.lawyer-list div.title div.col-xs-8{
+	padding-left:75px;
+}
+.lawyer-list div.title div.col-xs-2{
+	padding-left:5px;
+}
+.evaluate{
+	width:100px;
+	height: 25px;
+	line-height: 23px;
+	margin-left: 30px;
+	margin-top: 5px;
+	background: #ffffff;
+	cursor: pointer;
+}
+.evaluate div.row div.col-xs-9{
+	width: 70px;
+	height:25px;
+	font-size: 14px;
+	line-height: 26px;
+	color: #979797;
+}
+.evaluate div.row div.col-xs-3 img{
+	position: absolute;
+	top: 2px;
+	left: 2px;
+}
+.evaluate-hide{
+	height: 92px;
+	width: 101px;
+	background: #f6f6f6;
+	position: absolute;
+	top: 25px;
+	left: 0;
+	border: solid 1px #aaaaaa;
+	display: none;
+	z-index: 200;
+}
+.evaluate-hide ul{
+	margin: 0;
+	padding: 0;
+}
+.evaluate-hide ul li{
+	height: 30px;
+	line-height: 20px;
+	padding: 5px 0px 5px 3px;
+	cursor: pointer;
+	color: #979797;
+	font-size: 14px;
+}
+.evaluate-hide ul li:hover{
+	background: #aaaaaa;
+	color: #ffffff;
+}
+/*列表标题结束*/
+.lawyer-list-cont{
+	height: auto;
+	cursor: pointer;
+}
+.lawyer-list-cont:hover{
+	background: #f7fcff;
+}
+.lawyer-list-cont div.col-xs-8{
+	padding-left: 30px;
+}
+.lawyer-list-cont div.list-title{
+	float: left;
+	width: 400px;
+	height: 65px;
+	line-height: 65px;
+	display: inline-block;
+	font-size: 18px;
+	color: #333333;
+	font-weight: bolder;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.lawyer-list-cont div.list-title a{
+	margin-right: 20px;
+}
+.lawyer-list-cont div.list-title a:hover{
+	color: #007de7;
+}
+.lawyer-list-cont div.text{
+	margin-bottom: 15px;
+	clear: both;
+}
+.lawyer-list-cont div.text p{
+	margin-bottom: 5px;
+}
+.lawyer-list-cont div.text p span{
+	color: #5d5d5d;
+}
+.lawyer-list-cont div.offer{
+	height: 65px;
+	line-height: 65px;
+	width: 100px;
+	color:#ff644b;
+	font-weight: bold;
+}
+.lawyer-list-cont div.purchase-service{
+	width: 180px;
+}
+.lawyer-list-cont div.purchase-service-btn{
+	height: 65px;
+	line-height: 35px;
+	margin-left: 80px;
+	text-align: center;
+}
+.lawyer-list-cont div.purchase-service-btn div{
+	background: url(../img/lawyer_evaluate_btn.png);
+	width: 100px;
+	height: 36px;
+	border: solid 1px #ffb14b;
+	border-radius: 2px;
+	cursor: pointer;
+	padding-left: 12px;
+	margin-top: 15px;
+}
+.lawyer-list-cont div.purchase-service div.text{
+	clear: both;
+	margin-top: -15px;
+}
+.lawyer-list-cont div.purchase-service span.num{
+	color: #ff644b;
+	font-weight: bolder;
+}
+.lawyer-list-cont div.purchase-service p.last{
+	padding-right: 17px;
+}
+/*列表信息结束*/
+.list-cont-hide{
+	padding: 0px 15px;
+	margin-bottom: 15px;
+	display: none;
+}
+.list-cont-hide div.cont{
+	min-height: 160px;
+}
+.list-cont-hide div.cont div.bg-white{
+	background:#ffffff;
+	cursor:auto;
+}
+.list-cont-hide div.head img.lawyer-head-mask{
+	position: absolute;
+	top: 0px;
+	left: 5px;
+	z-index: 200;
+}
+.list-cont-hide div.head img.lawyer-head{
+	position: absolute;
+	top:25px;
+	left: 10px;
+	width: 100px;
+	height: 100px;
+}
+.list-cont-hide div.head img.lawyer-head-icon1{
+	position: absolute;
+	top: 70px;
+	right: 25px;
+	z-index: 300;
+}
+.list-cont-hide div.introduce span{
+	display:block;
+	position: absolute;
+	top: 125px;
+	z-index: 400;
+	border: solid 1px #b8c2cf;
+	padding: 0px 5px;
+	font-size: 12px;
+	background: #f7fcff;
+}
+.list-cont-hide div.introduce span.first{
+	left:15px;
+}
+.list-cont-hide div.introduce span.last{
+	left:60px;
+}
+/*头像结束*/
+.list-cont-hide div.details a.title{
+	display: inline-block;
+	width: 100px;
+	height:40px;
+	line-height: 40px;
+	font-size:22px;
+}
+.list-cont-hide div.details a.icon{
+	height: 40px;
+	line-height: 40px;
+}
+.list-cont-hide div.details a.icon img{
+	display:inline-block;
+	margin-left: 10px;
+	margin-top: -7px;
+}
+.list-cont-hide div.details p.first{
+	display: block;
+	float: left;
+	width: 270px;
+}
+.list-cont-hide div.details p{
+	margin-bottom:5px; 
+}
+.list-cont-hide div.details div.introduces{
+	margin:16px 0px;
+}
+.list-cont-hide div.details div.introduces span{
+	display: inline-block;
+	padding: 1px 10px;
+	border-radius: 2px;	
+	border: solid 1px #e26500;
+	background: #ffed9b;
+	color: #e26500;
+}
+/*详细信息结束*/
+.list-cont-hide div.cont div.offers{
+	height:145px;
+	line-height: 145px;
+	color: #ff644b;
+	padding-left:5px;
+	font-weight: bolder;
+	
+}
+/*价格结束*/
+.list-cont-hide div.cont div.select-btn div{
+	width: 80px;
+	height: 30px;
+	line-height:30px;
+	color:#ffffff;
+	background: url(../img/login-btn.png) no-repeat;
+	position: absolute;
+	top:60px;
+	right: 20px;
+	cursor: pointer;
+	text-align: center;
+}
+.list-cont-hide div.cont div.select-btn span.first{
+	display: inline-block;
+	position: absolute;
+	top: 110px;
+	right: 20px;
+}
+.list-cont-hide div.cont div.select-btn span.num{
+	color: #ff644b;
+}
+/*按钮结束*/
+.list-cont-hide div.more{
+	height: 60px;
+	background: #ffffff;
+	margin: 0px 15px 20px 15px;
+}
+.list-cont-hide div.more div.col-xs-12{
+	margin-top: 25px;
+}
+.list-cont-hide div.more span.num{
+	color: #ff644b;
+	font-weight: bolder;
+}
+.list-cont-hide div.more button{
+	background:#ffffff;
+	color: #eb5050;
+	padding: 5px 7px;
+	border-radius: 2px;
+	border: solid 1px #edc2b1;
+	margin-top: -15px;
+}
+.list-cont-hide div.list-stop{
+	position: absolute;
+	bottom: -18px;
+	left: 396px;
+	z-index: 100;
+}
+/*列表结束*/
+.guide div.tree{
+	height: 350px;
+	background:url(../img/tree.png) center center no-repeat;
+	background-size:100% 100%;
+	position: relative;
+	top: 0px;left:0px;
+	z-index: 100;
+}
+.guide  img{
+	width: 55%;
+	margin-top:10px;	
+}
+.guide div.left{
+	position: absolute;
+	top:130px;
+	left:25px;
+	z-index: 50;
+}
+.guide div.left span.left1,.guide div.left span.left2,.guide div.left span.left3,.guide div.left span.left4{
+	display:inline-block;
+	position: absolute;
+	left:40px;
+	color: #fff;
+}
+.guide div.left span.left1{
+	top: 15px;
+}
+.guide div.left span.left2{
+	top: 57px;
+}
+.guide div.left span.left3{
+	top: 98px;
+}
+.guide div.left span.left4{
+	top: 139px;
+}
+.guide a.left1,.guide a.left2,.guide a.left3,.guide a.left4{
+	position: absolute;
+	left:20px;
+	display: block;
+	z-index: 150;
+	width: 120px;
+	height: 35px;
+}
+.guide a.left1{
+	top:138px;
+}
+.guide a.left2{
+	top:179px;
+}
+.guide a.left3{
+	top:220px;
+}
+.guide a.left4{
+	top:261px;
+}
+
+.guide div.right{
+	position: absolute;
+	top:140px;
+	right: -53px;
+	z-index: 50;
+}
+.guide div.right span.right1,.guide div.right span.right2,.guide div.right span.right3,.guide div.right span.right4{
+	display:inline-block;
+	position: absolute;
+	left: 10px;
+	color: #fff;
+}
+.guide div.right span.right1{
+	top: 15px;
+	left: 38px;
+}
+.guide div.right span.right2{
+	top: 56px;
+}
+.guide div.right span.right3{
+	top: 97px;
+}
+.guide div.right span.right4{
+	top: 138px;
+}
+
+.guide a.right1,.guide a.right2,.guide a.right3,.guide a.right4{
+	position: absolute;
+	right:25px;
+	display: block;
+	z-index: 150;
+	width: 110px;
+	height: 35px;
+}
+.guide a.right1{
+	top:148px;
+}
+.guide a.right2{
+	top:189px;
+}
+.guide a.right3{
+	top:230px;
+}
+.guide a.right4{
+	top:271px;
+}
+/*tree结束*/
+footer div.containers{
+	background: #f7f7f7;
+}
+footer div.gold-lawyer-title{
+	width: 100px;
+	height: 50px;
+	line-height: 48px;
+	font-size: 20px;
+	float: left;
+}
+footer div.gold-lawyer-cont{
+	width: 500px;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+}
+footer div.gold-lawyer-cont ul{
+	margin: 0;
+	padding: 0;
+}
+footer div.gold-lawyer-cont ul li{
+	float: left;
+	width: 70px;
+	text-align: center;
+}
+footer div.gold-lawyer-cont ul li a{
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	padding: 0px 10px;
+	color: #eb4f50;
+	border-radius: 2px;
+}
+footer div.gold-lawyer-cont ul li a:hover{
+	background: #eb4f50;
+	color: #ffffff;
+}
+/*金牌律师结束*/
+footer div.gold-lawyer{
+	background: #ffffff;
+	border-top: solid 2px #e5c5ac;
+	border-bottom: solid 1px #dddddd;
+	margin-bottom: 15px;
+}
+footer div.gold-lawyer div.col-xs-6{
+	padding: 0px 20px;
+}
+footer div.gold-lawyer div.lawyer-head{
+	border-bottom: dashed  1px #dddddd;
+	padding: 15px 15px;
+}
+footer div.gold-lawyer div.lawyer-head img.lawyer-head-mask{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 200px;
+}
+footer div.gold-lawyer div.lawyer-head img.lawyer-head{
+	width: 90px;
+	height: 80px;
+	z-index: 100;
+}
+footer div.gold-lawyer div.info{
+	width: 190px;
+	margin-top: 10px;
+	float: left;
+}
+footer div.gold-lawyer div.start{
+	width: 140px;
+	height: 37px;
+	line-height: 37px;
+	margin-top: 10px;
+	float: left;
+}
+footer div.gold-lawyer p{
+	padding: 0px 10px;
+	display: inline-block;
+	width: 350px;
+	height: 35px;
+	line-height: 35px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+footer div.gold-lawyer div.info a{
+	display:inline-block;
+	height: 35px;
+	line-height: 35px;
+	font-size: 18px;
+	font-weight: bolder;
+	padding: 0px 10px;
+}
+footer div.gold-lawyer div.info span{
+	border: solid 1px #b6c2ce;
+	border-radius: 2px;
+	padding: 0px 8px;
+	margin-right: 5px;
+	background: #f6fbfe;
+}
+footer div.gold-lawyer div.select-btn{
+	margin-top: 20px;
+	background: url(../img/login-btn.png);
+	width:80px;
+	height: 30px;
+	line-height:30px;
+	text-align: center;
+	color: #ffffff;
+	border-radius: 2px;
+	cursor: pointer;
+}
+ /*金牌律师列表结束*/
+footer div.nav{
+	background: #ffffff;		
+	height: 50px;
+}
+footer div.nav div.col-xs-4{
+	width: 600px;
+}
+footer div.nav ul{
+	margin-left: 50px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+footer div.nav ul li{
+	float: left;
+	height: 25px;
+	width:140px;
+}
+footer div.nav ul li a{
+	color:#8c8c8c;
+}
+footer div.foot{
+	margin-top: 20px;
+	padding-bottom: 50px;
+}
+footer div.foot div.col-xs-3,footer div.foot div.col-xs-3 span{
+	color: #d8ae88;
+	font-size: 26px;
+}
+footer div.foot div.col-xs-4{
+	color: #666666;
+	font-family: arial;
+	padding-top: 5px;
+}
+footer div.foot div.col-xs-3,footer div.foot div.col-xs-4,footer div.foot div.col-xs-5{
+	height: 110px;
+	line-height: 110px;
+}
+/*底部结束*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

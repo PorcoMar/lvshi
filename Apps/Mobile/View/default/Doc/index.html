@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/service.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/iconfont.css" />
+		<script src="__ROOT__/Public/mobile/js/jquery_min_1.9.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<title>文书列表</title>
+	</head>
+	<body>
+		<if condition="$from eq app">
+		<else/>
+			<header>
+				<div class='container padding'>
+					<div class="row details-title">
+						<div class='col-xs-1'>
+							<span class='iconfont icon-zuojiantou'></span>
+						</div>
+						<div class='col-xs-10 padding'>
+							文书列表
+						</div>
+						<div class='col-xs-1'>
+							<span class="iconfont icon-gengduo"></span>
+							<div class="menu-hide">
+								<ul>
+									<li><a href="__APP__/Mobile/Case/index">案例列表</a></li>
+									<li><a href="__APP__/Mobile/Goods/index">服务列表</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+		</if>
+		<main>
+			<div class='container padding'>
+				<div class='row service'>
+					<div class='service-title'>
+						<div class='padding service-class icon-xiasanjiao' val="show">
+							<span>{$categoryName|default="全部合同类型"}</span>
+							<span class='iconfont icon-sanjiaoxia icon-xiasanjiao-copy'></span>
+						</div>
+						<div style="clear: both;"></div>
+
+					</div>
+					<!--<div class="gy_search">
+						<div class="in"><input name="docs_key" type="text" class="sinput" value="<php>if($key) echo $key; else echo '输入您想要的文书';</php>" onfocus='if(this.value=="输入您想要的文书"){this.value="";}' onblur='if(this.value==""){this.value="输入您想要的文书";}' /></div>
+						<div class="btn" ><input type="button" value="搜索" onclick="searchDocs()" /></div>
+					</div>-->
+					<div class='class row'>
+						<div class='col-xs-8 padding' style="width:100%">
+							<ul class="class-hide">
+							<li><a href="#" onclick="doc(0)">全部合同类型</a></li>
+							<volist name="category" id="c">
+								<li><a href="#" onclick="doc({$c.id})">{$c.cat_name}</a></li>
+							</volist>
+							</ul>
+						<input id='catId' type="hidden" name="catId" value="{$catId}"/>
+						</div>
+					</div>
+					<div class='class-mask'></div>
+
+
+				</div>
+				<volist name="docsList" id="doc">
+				<div class='row cont'>
+					<div class='col-xs-12'>
+						<div class="cont-title">
+							<a href='{:U("Mobile/Doc/demoDetail/id/$doc[id]")}'style="display:block;width：100%">{$doc.title}</a>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-cont">
+							<span><a href='{:U("Mobile/Doc/demoDetail/id/$doc[id]")}'>{$doc.description|html_entity_decode|htmlspecialchars_decode}</a></span>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-order">
+							<div class='pull-left'>
+								<span class='num'>{$doc.views}</span>浏览，<span class='num'>{$doc.uses}</span>使用
+							</div>
+							<div class='pull-right'>
+								<span class='num'>{$doc.dowland_num}</span>下载
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+				</div>
+				</volist>
+			</div>
+			<div>
+			<input type="hidden" id= "pageCount"   name="page_count" value="{$pageCount}"}>
+			<input type="hidden" id= "page"   name="page_index" value="{$page}"}>
+			<if condition ="$pageCount eq 1">    
+            <elseif condition = "$page eq $pageCount" />
+                <a id="up" onclick="up()" href="javascript:void(0);" style="color:red;display:block; font-size:20px; text-align:center;" >上一页</a>
+             <elseif condition = "($page eq 1) AND ($pageCount gt 1) " />
+             	<a id="up" onclick="down()" href="javascript:void(0);" style="color:red;display:block; font-size:20px; text-align:center;" >下一页</a>
+            <else />
+		        <a  id="down" onclick="down()" href="javascript:void(0);" style="width:70px;color:red;display:block; font-size:20px;margin-right:25%;float:right;">下一页</a>
+		        <a  id="up" onclick="up()" href="javascript:void(0);" style="width:70px; color:red;display:block; font-size:20px;margin-left:25%; float:left;">上一页</a>
+	        </if>
+		</div>
+		</main>
+		<script type="text/javascript">
+			$(function(){
+				$('.class .col-xs-4 ul li a').click(function(){
+					$('.class .col-xs-4 ul li a').eq($(this).parent().index()).addClass('class-active').parent().siblings().find('a').removeClass('class-active');
+					$('.class-hide').hide().eq($(this).parent().index()).show();
+				})
+				$('.service-class').click(function(){
+					if($(this).attr('val') == 'show'){
+						$(this).attr('val','hide');
+						$('.sort').attr('val','show');
+						$(this).find('span:last-child').addClass('.iconfont icon-shangsanjiao').removeClass('.iconfont icon-xiasanjiao-copy').removeClass('icon-sanjiaoxia');
+						$(this).css('color','red');
+						$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao').addClass('.iconfont icon-sanjiaoxia')
+						$('.sort').css('color','#333333');
+						$('.class').show();
+						$('.class-mask').show();
+						$(document).on('touchmove',function(e){
+						    e.preventDefault();
+						})
+						$('.sort-hide').hide();
+					}else if($(this).attr('val') == 'hide'){
+						$(this).attr('val','show');
+						$(this).find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao').addClass('.iconfont icon-sanjiaoxia')
+						$(this).css('color','#333333');
+						$('.class').hide();
+						$('.class-mask').hide();
+						$(document).unbind('touchmove');
+						$('.sort-hide').hide();
+					}
+				})
+				
+				$('.class-hide a').click(function(){
+					var cont = $(this).html();
+					$('.service-class span:first-child').html(cont)
+					$('.service-class').attr('val','show');
+					$('.class').hide();
+					$('.class-mask').hide();
+					$('.service-class').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.service-class').css('color','#333333');
+					$(document).unbind('touchmove');
+				})
+				$('.class-mask').click(function(){
+					$('.service-class').attr('val','show');
+					$('.sort').attr('val','show');
+					$('.class').hide();
+					$('.sort-hide').hide();
+					$('.class-mask').hide();
+					$('.service-class').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.service-class').css('color','#333333');
+					$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.sort').css('color','#333333');
+					$(document).unbind('touchmove');
+				})
+				$('header div.details-title div.col-xs-1:last-child').click(function(e){
+					$('.menu-hide').show();
+					e.stopPropagation();
+				})
+				$('body').click(function(){
+					$('.menu-hide').hide();
+				})
+			})
+
+			function doc(id){
+				var names=$("#names").val();
+				window.location.href="__APP__/Mobile/doc/index/token/{token}/from/{$from}/catId/"+id;
+				//alert(names);
+			}
+
+			function down(){
+				var token = "{$token}"
+				var from  = "{$from}"
+				var catId = $("#catId").val();
+				var page  = $("#page").val();
+					var type = 1;
+					var url = "{:U('Doc/index')}";
+					url += '/page/'  + page ;
+					url += '/type/'  + type;
+					url += '/catId/' + catId;
+					url += '/token/' + token;
+					url += '/from/'	 + from ;
+					location.href = url;				
+			}
+			function up(){
+				var token = "{$token}"
+				var from  = "{$from}"
+				var catId = $("#catId").val();
+				var page  = $("#page").val();
+				var type = 2;
+				var url = "{:U('Doc/index')}";
+				url += '/page/'  + page ;
+				url += '/type/'  + type ;
+				url += '/catId/' + catId;
+				url += '/token/' + token;
+				url += '/from/'	 + from ;
+				location.href = url;
+
+				
+			}
+
+		</script>
+	</body>
+</html>

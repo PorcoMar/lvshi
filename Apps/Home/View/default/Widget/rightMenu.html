@@ -1,0 +1,21 @@
+<div class="con_right">
+    <div class="rightKF"></div>
+    <div class="rightCase_tag" id="RightCase">
+        <ul>
+            <li class="curr">相关案例</li>
+            <li class="none">热门问题</li>
+        </ul>
+    </div>
+    <div class="rightCase_info">
+        <ul>
+            <foreach name="caseList.result" item="v">
+                    <li><a href="{:U('Case/caseDetails/id/'.$v['id'])}"><span>{$v.cat_name}</span>{$v.description|get_string}</a></li>
+            </foreach>
+        </ul>
+        <ul style="display:none">
+            <foreach name="askList.result" item="v">
+                <li><a href="{:U('Consult/askdetail/id/'.$v['id'])}"><span>{$v.cat_name}</span>{$v.description|get_string}</a></li>
+            </foreach>
+    </ul>
+</div>
+</div>

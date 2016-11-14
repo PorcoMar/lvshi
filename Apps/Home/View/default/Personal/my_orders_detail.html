@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+
+<include file="Public/personalHeader" />
+
+<div class="mess_right">
+	<!--订单流程图-->
+	<include file="Public/orderFlowChart" />
+			<div class="order_detail">
+				<h2>订单号：{$order.order_no}</h2>
+				<dl>
+					<dt>
+						<span>联系人：{$order.user_name}<br />
+						联系电话：{$order.mobile}<br />
+						联系地址：{$order.address}</span>
+					</dt>
+					<dd>
+						<span>订单状态：
+								<if condition="$order.order_status eq '3'">
+									订单已取消
+									<else/>
+									<if condition="($order.order_status eq '1') AND ($order.service_status eq '0') AND ($order.pay_status eq '0')">
+										等待律师接单
+										<elseif condition="($order.pay_status eq '0') AND ($order.order_status eq '1')"/>
+										等待支付
+										<elseif condition="($order.service_status eq '1') AND ($order.pay_status eq '1')"/>
+										等待服务
+										<elseif condition="($order.order_status eq '5') AND($order.pay_status eq '1') AND ($order.service_status eq '2')"/>
+										等待评价
+									</if>
+								</if>
+
+								<eq name="order['order_status']" value="4">订单已作废</eq>
+								<eq name="order['order_status']" value="6">订单已退款</eq>
+								<eq name="order['order_status']" value="7">订单部分退款</eq>
+								<eq name="order['order_status']" value="8">律师取消</eq>
+							</span>
+
+							<if condition="$order.order_status eq '3'">
+								<div href="javascript:void(0)"  class="gybtn btn80red">订单已取消</div>
+								<else/>
+								<if condition="($order.order_status eq '1') AND ($order.service_status eq '0') AND ($order.pay_status eq '0')">
+										<a href="javascript:void(0)" onclick="ShowLayerYes({$order['order_id']})" class="red">取消订单</a>
+										<div href="javascript:void(0)"  class="gybtn btn80red">等待确认</div>
+									<elseif condition="($order.pay_status eq '0') AND ($order.order_status eq '1')"/>
+										<em>您可以：</em>
+										<a href="javascript:void(0)" onclick="ShowLayerYes({$order['order_id']})" class="red">取消订单</a>
+										<a href="{:U('pay/index/id/'.$order['order_id'])}" class="gybtn btn80red">立即付款</a>
+									<elseif condition="($order.service_status eq '1') AND ($order.pay_status eq '1')"/>
+										<div href="javascript:void(0)"  class="gybtn btn80red">等待服务</div>
+									<elseif condition="($order.order_status eq '5') AND($order.pay_status eq '1') AND ($order.service_status eq '2')"/>
+										<a href="javascript:void(0)"  class="red">申请售后</a>
+										<a href="<php>echo U('Personal/orderDetail', 'key='.$order['order_id'].'&type='.$order['order_type'].'&list='.'discuss');</php>" class="gybtn btn80red">服务完成</a>
+								</if>
+							</if>
+
+							<eq name="order['order_status']" value="4">
+								<div href="javascript:void(0)"  class="gybtn btn80red">订单已作废</div>
+							</eq>
+							<eq name="order['order_status']" value="6">
+								<div href="javascript:void(0)"  class="gybtn btn80red">订单已退款</div>
+							</eq>
+							<eq name="order['order_status']" value="7">
+								<div href="javascript:void(0)"  class="gybtn btn80red">订单部分退款</div>
+							</eq>
+							<eq name="order['order_status']" value="8">
+								<div href="javascript:void(0)"  class="gybtn btn80red">律师已取消</div>
+							</eq>
+					</dd>
+				</dl>
+			</div>
+			<div class="mess_title" style="border-bottom:0px">
+				<ul>
+					<li class="m1">产品</li>
+					<li class="m2">服务律师<a href="javascript:void(0)"><img src="__ROOT__/Public/web/images/icon_mess.png" alt="" align="middle" />和律师联系</a></li>
+					<li class="m3">价格</li>
+					<li class="m4">优惠</li>
+					<li class="m5">交易状态</li>
+				</ul>
+			</div>
+			<div class="mess_list" style="margin-top:0px; border-top:0px">
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td class="m1" valign="top">
+						<foreach name="order.goods_list" item="v">
+							<div class="mess_zt">
+								<span>{$v['goods_name']}</span>
+								服务方式：{$v.service_way_name}<br />
+								服务时间：{$order.create_time|date=('Y-m-d H:i:s'),###}
+							</div>
+						</foreach>
+					</td>
+					<td class="m2" valign="top">
+						<div class="mess_lvs">
+							<dl>
+								<dt><span></span><img src="{$order.lawyer_avatar}" alt="" /></dt>
+								<dd class="name">
+									<span>{$order.lawyer_name}</span>
+									{$order.bio}<br />{$order.primary_law_office}
+									<img src="__ROOT__/Public/web/images/icon_online.png" alt="" />
+								</dd>
+							</dl>
+						</div>
+					</td>
+					<td class="m3"><span>￥{$order.payable_amount}</span></td>
+					<td class="m4">
+						<if condition="$order.reduce_amout eq ''">
+							暂无优惠劵
+							<else/>
+							代金券<br />￥{$order.reduce_amout}
+						</if>
+
+					</td>
+					<td class="m5">
+						<if condition="($order.order_status eq '1') AND ($order.service_status eq '0') AND ($order.pay_status eq '0')">
+							等待律师接单
+							<elseif condition="($order.pay_status eq '0') AND ($order.order_status eq '1')"/>
+							等待支付
+							<elseif condition="($order.service_status eq '1') AND ($order.pay_status eq '1')"/>
+							等待服务
+							<elseif condition="($order.order_status eq '5') AND($order.pay_status eq '1') AND ($order.service_status eq '2')"/>
+							等待评价
+						</if>
+						<eq name="order['order_status']" value="3">订单已取消</eq>
+						<eq name="order['order_status']" value="4">订单已作废</eq>
+						<eq name="order['order_status']" value="6">订单已退款</eq>
+						<eq name="order['order_status']" value="7">订单部分退款</eq>
+						<eq name="order['order_status']" value="8">律师取消</eq>
+					</td>
+				  </tr>
+				  <tr>
+					<td colspan="5" class="total">
+						实付<span>￥{$order.real_amount}</span>
+					</td>
+				  </tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>
+<script>
+	function ShowLayerYes(id){
+		/*var step="{$step}";
+		alert(step);die;*/
+		$.ajax({
+			type: "POST",
+			url: "{:U('Personal/cancelOrder')}",
+			dataType: "json",
+			data: {"id":id},
+			success: function(json){
+				switch (json.status)
+				{
+					case 1:
+						alert('订单已取消');
+						window.location.href="{:U('Personal/orders')}";
+						break;
+				}
+			}
+		});
+	}
+</script>

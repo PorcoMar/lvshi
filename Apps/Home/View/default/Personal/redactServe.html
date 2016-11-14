@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/personalHeader" />
+<!--头部结束-->
+
+<!--菜单结束-->
+<div class="mess_right">
+	<div class="mainBox">		
+		<div class="detail_left">
+			<div class="detail_left_top"></div>
+			<div class="detail_left_center">
+				
+				<div class="qz_add">
+					<dl>
+						<h2>{$goodsDetail.goods_title}</h2>
+					</dl>
+					<dl>
+						<dt style="width: 168px">指导价：<span style="color: red">￥{$goodsDetail.sell_price}元</span></dt>
+
+					</dl>
+					<dl>
+						<dt style="width: initial">&nbsp;&nbsp;&nbsp;&nbsp;服务方式：{$goodsDetail.service_way_name}&nbsp;&nbsp;|&nbsp;&nbsp;有效期截止&nbsp;&nbsp;{$goodsDetail.servicingTime}</dt>
+					</dl>
+					<dl>
+						<dt>我的服务期限：</dt>
+						<dd class="inbg">
+							<!--service_ex_time-->
+							<input id="start" name="start" type="date" class="sinput" value="{$service_ex_time}" />
+						</dd>
+						<dd><img src="__ROOT__/Public/web/images/icon_data.gif" alt="" /></dd>
+					</dl>
+					<dl>
+						<dt>我的服务报价：</dt>
+						<dd class="inbg"><input value="{$sell_prict}" id="quote"  type="text" class="sinput"/></dd>
+					</dl>
+					<dl>
+						<dt>备注：</dt>
+						<br/>
+						<dd>
+							<textarea id="content"  name="content" rows="10" cols="90">{$remark}</textarea>
+						</dd>
+						
+					</dl>
+					<input type="hidden" id="id" value="{$goodsDetail.id}"/>
+					<dl class="btn">
+						<div class="sub" align="center"></div>
+						<dd><input id="register" type="button" value="修改报价" /></dd>
+					</dl>
+				</div>				
+			</div>
+			<div class="detail_left_bottom">
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+	$('#register').click(function(){
+		var id="{$id}";
+		var start=$("#start").val();
+		var quote=$("#quote").val();
+		var content=$("#content").val();
+		$("#msg").remove();
+		if(quote==''){
+			$('<div id="msg" />').html("报价不能为空！").appendTo('.sub').fadeOut(2000);
+			return false;
+		}
+//		var re = /^[0-9]*[1-9][0-9]*$/ ;
+//		var int=re.test(quote);
+//		if (int !=false) {
+			$.ajax({
+				type: "POST",
+				url: "{:U('Personal/amendQuote')}",
+				dataType: "json",
+				data: {"id":id,"start":start,"quote":quote,"content":content},
+				success: function(json){
+					switch (json.status)
+					{
+						case 0:
+							$("#msg").remove();
+							$('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+									.fadeOut(2000);
+							break;
+						case 1:
+							alert('报价修改成功');
+							window.location.href="{:U('Personal/serve')}";
+							break;
+					}
+				}
+			});
+		/*}
+		else {
+			alert('您输入的价格不合法')
+		}*/
+
+	});
+
+</script>

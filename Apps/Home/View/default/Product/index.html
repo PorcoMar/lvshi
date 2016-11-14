@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--KV开始-->
+<div class="kv kv023">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">	
+		<div class="prod_select">
+			<div class="main_rmcity">
+				<dl>
+					<dt>所在城市：</dt>
+					<dd>
+						<foreach name="openCitys" item="city">
+						<a href="{:U('Product/index/cid/'.$city['id'])}" class="<php>if($city['id']==$cid) echo 'curr';</php>">{$city.name}</a>
+						</foreach>
+					</dd>
+				</dl>
+			</div>
+			<div class="main_szcity">
+				<dl>
+					<dt>所在省份：</dt>
+					<dd>
+						<div class="selectbg wt200">
+						  <input type="hidden" name="CITY" id="CITY" value="{$pid}" />
+						  <div class="options_curr" id="CITY_Slected">{$provinceName|default="请选择省份"}</div>
+							 <ul class="options" id="CITY_Sel">
+								<foreach name="provinces" item="province">
+									<li onClick="search_show({$province.id})">{$province.name}</li>
+								</foreach>
+							</ul>
+						</div>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="ws_sort">
+			<div class="ws_sortlist">
+				<dl>
+					<dt>服务项目：</dt>
+					<dd>
+						<foreach name="navCates" item="nav">
+							<a href="{:U('Product/index/type/member/member_cat_id/'.$nav['id'])}" class="<php>if($nav['id']==$member_cat_id) echo 'curr';</php>" >{$nav.cat_name}</a>
+						</foreach>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="con_left">
+			<div class="prod_title">
+				<dl>
+					<dd class="p1">服务</dd>
+					<dd class="p2">指导价</dd>
+					<dd style="margin-left:50px">操作</dd>
+
+					<!--<dd>
+						<div class="selectbg wt100">
+						  <input type="hidden" name="PINGJIA" id="PINGJIA" value="" />
+						  <div class="options_curr" id="PINGJIA_Slected">评价</div>
+							 <ul class="options" id="PINGJIA_Sel">
+								<li onClick="search_show('PINGJIA','1',this)">评价1</li>
+								<li onClick="search_show('PINGJIA','2',this)">评价2</li>
+							</ul>
+						</div>
+					</dd>-->
+				</dl>
+			</div>
+
+			<!--列表循环-->
+			<foreach name="goods.result" item="v">
+				<div class="prod_list_box">
+					<div class="prod_list" id="ProductList{$v.id}" onclick='ShowProductMore("{$v.id}")'>
+						<dl>
+							<dt>
+								<span class="name">
+									<em>{$v.goods_title}</em>
+									<if condition="$v['is_hot'] eq 1">
+									<img src="__ROOT__/Public/web/images/icon_de01.png" alt="" />
+									</if>
+									<if condition="$v['is_reputation'] eq 1">
+										<img src="__ROOT__/Public/web/images/icon_de02.png" alt="" />
+									</if>
+									<if condition="$v['is_overflow'] eq 1">
+										<img src="__ROOT__/Public/web/images/icon_de03.png" alt="" />
+									</if>
+									<if condition="$v['is_new'] eq 1">
+										<img src="__ROOT__/Public/web/images/icon_de04.png" alt="" />
+									</if>
+
+								</span>
+								<span class="text">
+									<p><b>服务方式：</b>{$v.service_way_name}</p>
+							<!-- 		<p><b>服务标准：</b>{$v.description}</p> -->
+									<p><b>安安点评：</b>{$v.remark}</p>
+								</span>
+							</dt>
+							<dd class="price">￥{$v.sell_price}</dd>
+							<dd class="btn">
+
+								<div class="selectbg wt100_A">
+								  <input type="hidden" name="GOUMAI" id="GOUMAI" value="" />
+								  <div class="options_curr" onclick='ShowProductMore("{$v.id}",this)'>选律师</div>
+								</div>
+
+								<label class="first"><span>{$v.lawyer_num}</span>位律师</label>
+
+								<label>接单量<span>{$v.turnover}</span></label>
+								<label>评价数<span>{$v.comments}</span></label>
+							</dd>
+						</dl>
+					</div>
+					<div class="prod_list_more" id="ProductListMore{$v.id}" style="display:none">
+
+					<foreach name="v.lawyer" item="vv">
+							<dl>
+								<dt>
+								<span></span><em class="a1"></em><img src="{$vv['avatar']}" alt="" />
+								<div class="aa">
+						{$vv.tag_name}
+								<foreach name="vv.tag_name" item="tag">
+									<label>{$tag}</label>
+								</foreach>
+
+								</div>
+								<dd class="jiben">
+									<div class="name"><em>{$vv.real_name}</em><a href="javascript:void(0)" class="tel" title="打电话"></a><a href="javascript:void(0)" class="mess" title="发消息"></a></div>
+									<div class="jian" style="text-align: left">执业{$vv.operation_year}年</div>
+									<div class="suo"><em>{$vv.law_office_name}</em>
+										<span class="star{$vv.style}">
+										</span></div>
+									<div class="jian">{$vv.bio}</div>
+
+									<div class="bq">
+										<label>热情</label>
+										<label>很务实</label>
+										<label>打赢了</label>
+									</div>
+
+								</dd>
+								<dd class="price">￥{$vv.sell_price}</dd>
+								<dd class="btn">
+									<a href="{:U('buy/index/id/'.$vv['lawyer_id'].'/goods_id/'.$v['id'])}" class="gybtn btn80red">就选俺</a>
+									<label>接单量<span>{$vv.order_num}</span></label>
+								</dd>
+							</dl>
+					</foreach>
+						<div class="xc_total">
+							<span class="total">为您筛选出<b>{$v.total}</b>位符合条件的律师</span>
+							<a href="{:U('Product/detail/id/'.$v['id'])}" >查看更多</a>
+						</div>
+
+					</div>
+					<div class="xc_show" id="xcshow{$v.id}" style="display:none"><span onclick="HideProductMore({$v.id})"></span></div>
+				</div>
+			</foreach>
+			<if condition = "$goods neq 0">
+				<assign name="current_page" value="$goods.page_Index" />
+				<php>$total_page = ceil($goods['page_sum']/$goods['page_size']);</php>
+				<assign name="page_size" value="$goods.page_size" />
+				<assign name="page_show" value="10" />
+				<include file="Public/pagination" />
+			</if>
+
+		</div>
+		<!--右侧路牌-->
+		{:W('Web/guideBoardMenu')}
+	</div>
+</div>
+<!--金牌律师-->
+{:W('Web/lawyerMenu')}
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+	function search_show(searchType){
+		var categoryId = searchType;
+		if(categoryId != ''){
+			var url = "{:U('Product/index')}";
+			var signsId='{$signsId}';
+			if(signsId != ''){
+				url += '/signsId/{$signsId}'+'/pid/'+categoryId;
+			}else{
+				url += '/pid/' + categoryId;
+			}
+			location.href = url;
+		}
+	}
+
+
+</script>

@@ -1,0 +1,176 @@
+<include file="Public/personalHeader" />
+		<div class="mess_right">
+			<div class="mess_tag">
+				<ul>
+					<li class="curr"><a href="javascript:void(0)"><if condition="$mobile neq ''">修改手机号<else/>添加手机号</if></a></li>
+				</ul>
+			</div>
+			<div class="modify_password">
+				<div class="pop_trip"><if condition="$mobile neq ''">请确认你的{$mobile|hidtel}手机正在使用。<else/>请添加手机号</if></div>
+				<dl>
+					<dt>手机号：</dt>
+					<if condition="$mobile neq ''">
+						<dd><input id="mobile" name="" type="hidden" value="{$mobile}"/></dd>
+						<dd class="text">{$mobile|hidtel}</dd>
+						<else/>
+						<dd><input id="mobile" name="" type="text" placeholder="请输入手机号"/></dd>
+					</if>
+
+				</dl>
+				<dl>
+					<dt>验证码：</dt>
+					<dd><input id="code" name="" type="text" placeholder="请输入验证码"/></dd>
+					<dd class="none"><button  id="btnSendCode" onclick="sendMessage()" href="javascript:void(0)" class="gybtn btn90gray">发送验证码</button></dd>
+				</dl>
+				<if condition="$mobile neq ''">
+					<dl>
+						<dt>新手机号：</dt>
+						<dd><input id="newMobile" name="" type="text" placeholder="请输入新手机号"/></dd>
+					</dl>
+				</if>
+				<div class="sub" align="center" style="width: 500px"></div>
+				<if condition="$mobile neq ''">
+					<dl>
+						<dt>&#12288;</dt>
+						<dd><a id="changeThePhone" href="javascript:void(0)" class="gybtn btn90red">确定修改</a></dd>
+					</dl>
+					<else/>
+					<dl>
+						<dt>&#12288;</dt>
+						<dd><a id="changeThePhone" href="javascript:void(0)" class="gybtn btn90red">确定绑定</a></dd>
+					</dl>
+				</if>
+			</div>
+		</div>
+	</div>
+</div>
+<!--底部开始-->
+<include file="Public/footer" />
+<script type="text/javascript">
+	//验证码倒计时
+	var InterValObj; //timer变量，控制时间
+	var count = 60; //间隔函数，1秒执行
+	var curCount;//当前剩余秒数
+	function sendMessage() {
+		var mobile = $("#mobile").val();
+		if(mobile.length!=11)
+		{
+			$('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub')
+					.css({"color":"red","font-size":"14px"})
+					.fadeOut(2000);
+			$("#mobile").focus();
+			return false;
+		}
+		var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+		if(!myreg.test(mobile))
+		{
+			$('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub')
+					.css({"color":"red","font-size":"14px"})
+					.fadeOut(2000);
+			$("#mobile").focus();
+			return false;
+		}
+		curCount = count;
+		//设置button效果，开始计时
+		$("#btnSendCode").attr("disabled", "true");
+		$("#btnSendCode").text('(' + curCount + ')' + "秒内输入");
+		InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+		//向后台发送处理数据
+		$.ajax({
+			type: "POST", //用POST方式传输
+			dataType: "json", //数据格式:JSON
+			url: "{:U('Passport/code')}", //目标地址
+			data:{"mobile":mobile},
+			success: function(json){
+				switch (json.status)
+				{
+					case 0:
+						$("#msg").remove();
+						$('<div id="errmsg" />').html(json.msg).css({"color":"red","font-size":"14px"}).appendTo('.sub')
+								.fadeOut(2000);
+						break;
+					case 1:
+						$("#msg").remove();
+						$('<div id="errmsg" />').html(json.msg).css({"color":"red","font-size":"14px"}).appendTo('.sub')
+								.fadeOut(2000);
+						break;
+				}
+			}
+		});
+	}
+	//timer处理函数
+	function SetRemainTime() {
+		if (curCount == 0) {
+			window.clearInterval(InterValObj);//停止计时器
+			$("#btnSendCode").removeAttr("disabled");//启用按钮
+			$("#btnSendCode").text("重新发送验证码");
+		}
+		else {
+			curCount--;
+			$("#btnSendCode").text('(' + curCount + ')' + "秒内输入");
+		}
+	}
+
+	//修改验证
+	$('#changeThePhone').click(function(){
+		var rawMobile="{$mobile}";
+		//alert(rawMobile);
+		if(rawMobile ==''){
+			var mobile = $("#mobile").val();
+		}else{
+			var mobile = $("#newMobile").val();
+		}
+		var code = $("#code").val();
+		$("#msg").remove();
+		if(code==""){
+			$('<div id="msg" />').html("验证码不能为空！").css({"color":"red","font-size":"15px"}).appendTo('.sub').fadeOut(2000);
+			$("#code").focus();
+			return false;
+			die;
+		}
+		if(mobile==""){
+			$('<div id="msg" />').html("手机号不能为空！").appendTo('.sub')
+					.css({"color":"red","font-size":"14px"}).fadeOut(2000);
+			$("#newMobile").focus();
+			return false;
+		}
+		if(mobile.length!=11)
+		{
+			$('<div id="msg" />').html("请输入有效手机号！").css({"color":"red","font-size":"15px"}).appendTo('.sub').fadeOut(2000);
+			$("#newMobile").focus();
+			return false;
+		}
+		var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+		if(!myreg.test(mobile))
+		{
+			$('<div id="msg" />').html("请输入有效手机号！").css({"color":"red","font-size":"15px"}).appendTo('.sub').fadeOut(2000);
+			$("#newMobile").focus();
+			return false;
+		}
+			$.ajax({
+				type: "POST",
+				url: "{:U('Personal/alterMobile')}",
+				dataType: "json",
+				data: {"mobile":mobile,"code":code,"rawMobile":rawMobile},
+				success: function(json){
+					switch (json.status)
+					{
+						case 0:
+							$("#msg").remove();
+							$('<div id="errmsg" />').html(json.msg).css({"color":"red","font-size":"15px"}).appendTo('.sub')
+									.fadeOut(2000);
+							break;
+						case 1:
+							alert(json.msg);
+							window.location.href="{:U('Personal/ChangeThePhone')}";
+							break;
+					}
+				}
+			});
+	});
+</script>
+
+
+
+
+

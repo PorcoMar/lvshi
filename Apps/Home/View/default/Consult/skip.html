@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+
+<!--KV开始-->
+<div class="kv kv021">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">		
+		<div class="con_left">
+			<div class="zx_select">
+				<div class="gy_search">
+					<dl>
+						<dt>我要搜索：</dt>
+						<dd class="in"><input name="answer" type="text" class="sinput" value="<php>if($key) echo $key; else echo '输入您想要找的问题';</php>" onfocus='if(this.value=="输入您想要找的问题"){this.value="";}' onblur='if(this.value==""){this.value="输入您想要找的问题";}' /></dd>
+						<dd class="btn"><input type="button" value="搜索" onclick="searchAnswer()"/></dd>
+						<a href="{:U('Consult/ask')}" style="float:right;font-size:18px;margin-top:10px;">我要提问</a>
+						<dd class="rc">
+							<a href="javascript:void(0)">工伤赔偿</a>
+							<a href="javascript:void(0)">车祸</a>
+							<a href="javascript:void(0)" class="red">搜热词</a>
+							<a href="javascript:void(0)">离婚协议</a>
+							<a href="javascript:void(0)">劳务合同</a>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ask">
+				<span style = "display: inline-block;font-size: 18px;font-weight: 400;line-height: 32px;overflow: hidden;"><em style ="float:left; width:24px; height:24px; background:url(__ROOT__/Public/web/images/icon_wen.gif) no-repeat left top" ></em>&nbsp&nbsp心情不好怎么办</span>
+			</div>
+			<div class="qzc_list">
+			<span style="float:left">醉逍遥</span>|<span>浏览次数</span>
+			</div>
+			<div class="qzc_list">
+			<span style="float:left">标签</span>|<span>婚姻家庭</span>
+			</div>
+			<div class="qzc_list">
+				<span style = "display: inline-block;font-size: 18px;font-weight: 400;line-height: 32px;overflow: hidden;">你的问题已经推送给多少名律师，请耐心等待</span>
+			</div>
+		</div>
+		<!--右侧菜单-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--金牌律师-->
+{:W('Web/lawyerMenu')}
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+<script type="application/javascript">
+	function searchAnswer(){
+		var search_key = $("input[name='answer']").val();
+		if(search_key != ''){
+			var type = '{$type}';
+			var url = "{:U('Consult/index')}";
+				url += '/key/' + search_key;
+			}
+			location.href = url;
+		}
+	
+</script>
+</body>
+</html>

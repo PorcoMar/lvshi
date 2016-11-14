@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+<title>意见反馈-俺的律师网</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg">
+	<div class="wrap rela">
+    	<include file="Public/header" />
+    </div>
+
+</div>
+<!--头部结束-->
+<!--二级菜单开始-->
+<div class="sub_navbg">
+	<div class="wrap">
+        <div class="sub_nav" id="CastSort">
+            <a <if condition="$code eq 'about_mysite'">class="select"</if> href="{:U('Index/content/code/about_mysite')}">关于我们</a><a <if condition="$code eq 'lianxius'">class="select"</if>  href="{:U('Index/other/code/lianxius')}">联系我们</a><a <if condition="$code eq 'falvshengming'">class="select"</if> href="{:U('Index/other/code/falvshengming')}">法律声明</a><a <if condition="$code eq 'huanyinghezuo'">class="select"</if> href="{:U('Index/other/code/huanyinghezuo')}">欢迎合作</a><a <if condition="$code eq 'youqinglianjie'">class="select"</if> href="{:U('Index/other/code/youqinglianjie')}">友情链接</a><a <if condition="$code eq 'agree'">class="select"</if> href="{:U('Index/agree')}">反馈留言</a>
+        </div>
+    </div>
+</div>
+<!--二级菜单结束-->
+
+<!--内容开始-->
+<div class="wrap">
+    <div class="aboutus">
+        <div class="bread">首页 - 意见反馈</div>
+        <div class="zidong_left">
+            <div class="title01 clearfix"><span class="t01">意见反馈</span></div>
+            <div class="fankui">
+                <div class="b01">
+                    <textarea id="agree" style="overflow:auto"></textarea>
+                </div>
+                <div class="contact rela">
+                    <p class="t01"><input id="mobile" type="text" value="请输入您的联系方式" onfocus='if(this.value=="请输入您的联系方式"){this.value="";}' onblur='if(this.value==""){this.value="请输入您的联系方式";}'  /></p>
+                    <a id="send" href="#" class="btn01"></a>
+                </div>
+            </div>
+        </div>
+        <div class="zidong_right">
+            <div class="erweima">
+                <img src="__ROOT__/Public/web/images/erweima.jpg" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--内容结束-->
+<!--底部开始-->
+<include file="Public/footer"/>
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+    //登录
+    $('#send').click(function(){
+        var mobile = $("#mobile").val();
+        var agree = $("#agree").val();
+        if(mobile==""){
+            alert('联系方式不能为空');
+            $("#mobile").focus();
+            return false;
+        }
+        if(agree==""){
+            alert('您反馈意见不能为空');
+            $("#agree").focus();
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "{:U('Index/send')}",
+            dataType: "json",
+            data: {"mobile":mobile,"content":agree},
+            beforeSend: function(){
+                alert("正在提交...");
+            },
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        alert(json.msg);
+                        break;
+                    case 1:
+                        alert(json.msg);
+                        window.location.href="{:U('Index/index')}";
+                        break;
+                    case 2:
+                        alert(json.msg);
+                        break;
+                }
+            }
+        });
+    });
+    $(function(){
+        $("#CastSort a").width(parseInt($("#CastSort").width()/$("#CastSort a").length) - $("#CastSort a").length);
+    })
+</script>

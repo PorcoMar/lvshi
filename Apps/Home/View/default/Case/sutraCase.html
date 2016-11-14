@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--KV开始-->
+<div class="kv casebg">
+	<div class="mainBox">
+		<!--<div class="jd_select">
+			<div class="selectbg wt200">
+			<input type="hidden" name="CASESORT" id="CASESORT" value="{$goodsCategoryId}" />
+			<div  class="options_curr" id="CASESORT_Slected">{$cat_name|default="案例类型"}</div>
+			<ul class="options" id="CASESORT_Sel">
+				<foreach name="nameplate" item="v">
+					<li onClick="search_show('CASESORT',{$v.id},this)">{$v.cat_name}</li>
+				</foreach>
+			</ul>
+		</div>
+			<div class="selectbg wt160">
+				<input type="hidden" name="CITY" id="CITY" value="{$cId}" />
+				<div class="options_curr" id="CITY_Slected">{$city_name|default="地区"}</div>
+				<ul class="options" id="CITY_Sel">
+					<foreach name="getcity" item="v">
+						&lt;!&ndash;search_show1({$v.id})&ndash;&gt;
+						<li onClick="search_show('CITY',{$v.id},this)">{$v.name}</li>
+					</foreach>
+				</ul>
+			</div>
+		</div>-->
+
+		<div class="prod_select2">
+			<div style="margin-top:14px" class="main_rmcity">
+				<dl>
+					<dt>所在城市：</dt>
+					<dd>
+						<foreach name="getcity" item="v">
+							<a  href="{:U('Case/index/cId/'.$v['id'])}" class="<php>if($v['id']==$cId) echo 'curr';</php>">{$v.name}</a>
+						</foreach>
+					</dd>
+				</dl>
+			</div>
+			<div class="gy_search1">
+				<dl>
+					<dt>案例搜索：</dt>
+					<dd class="in"><input name="case_key"  type="text" class="sinput" value="<php>if($keywords) echo $keywords; else echo '输入您想找的案例';</php>" onfocus='if(this.value=="输入您想找的案例"){this.value="";}' onblur='if(this.value==""){this.value="输入您想找的案例";}' /></dd>
+					<dd class="btn"><input  onclick="seek()" type="button" value="搜索" /></dd>
+					<dd class="rc">
+
+						<foreach name="category" item="v">
+							<a id="vlue" onclick="Category('{$v.keywords}')" href="javascript:void(0)" value="{$v.keywords}">{$v.keywords}</a>
+						</foreach>
+
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="ws_sort2">
+			<div class="ws_sortlist">
+				<dl>
+					<dt>案例类型：</dt>
+					<dd>
+						<foreach name="nameplate" item="v">
+							<a onclick="search_show({$v['id']})" href="javascript:void(0)" class="<php>if($v['id']==$goodsCategoryId) echo 'curr';</php>" >{$v.cat_name}</a>
+						</foreach>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">
+		<div class="con_left">
+			<div class="case_list">
+				<foreach name="sutracase.result" key="k" item="v">
+					<dl>
+						<dt><em <if condition="$v.is_hot eq 1 ">class="s1"
+							<elseif condition="$v.is_new eq 1 "/>
+							class="s2"
+							<else/>
+							class="s3"
+						</if>></em>
+							<span><a href="{:U('Case/caseDetails/id/'.$v['id'])}">{$v.title}</a></span><label>{$v.create_time|date='Y-m-d H:s:i',###}</label></dt>
+						<dd><span>案情描述：</span><!--<a href="{:U('Case/caseDetails/id/'.$v['id'])}">-->{$v.description}<!--</a>--></dd>
+						<dd class="aadd"><span></span><!--<a href="{:U('Case/caseDetails/id/'.$v['id'])}">-->{$v.remark}<!--</a>--></dd>
+					</dl>
+				</foreach>
+			</div>
+			<!--分页-->
+			<assign name="current_page" value="$sutracase.page_Index" />
+			<php>$total_page = ceil($sutracase['page_sum']/$sutracase['page_size']);</php>
+			<assign name="page_size" value="$sutracase.page_size" />
+			<assign name="page_show" value="10" />
+			<include file="Public/pagination" />
+		</div>
+		<!--右边-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--优选服务开始-->
+{:W('Web/serveMenu')}
+<!--优选服务结束-->
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>
+
+<script type="text/javascript">
+	function search_show(searchType){
+		var signsId = searchType;
+		if(signsId != ''){
+			var url = "{:U('Case/index')}";
+			var city='{$cId}';
+			if(city != ''){
+				url += '/cId/{$cId}'+'/goodsCategoryId/'+signsId;
+			}else{
+				url += '/goodsCategoryId/' + signsId;
+			}
+			location.href = url;
+		}
+	}
+	/*搜索*/
+	function seek(){
+		var search_key = $("input[name='case_key']").val();
+		if(search_key!=''){
+			var url = '{:U("Case/sutraCase")}';
+			url += '/keywords/' + search_key;
+			location.href = url;
+		}
+	}
+
+	/*
+	* 关键字
+	* */
+	function Category(searchType){
+		var search_key = searchType;
+		if(search_key!=''){
+			var url = '{:U("Case/sutraCase")}';
+			url += '/keywords/' + search_key;
+			location.href = url;
+		}
+	}
+
+</script>
+

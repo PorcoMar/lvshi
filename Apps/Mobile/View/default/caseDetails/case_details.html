@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/case.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/iconfont.css" />
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<title>案例详情</title>
+	</head>
+	<body>
+		<header>
+			<div class='container padding'>
+				<div class="row details-title">
+					<div class='col-xs-1'>
+						<a href="__APP__/Mobile/Case/index">
+							<span class='iconfont icon-zuojiantou'></span>
+						</a>
+					</div>
+					<div class='col-xs-10 padding'>
+						案例详情
+					</div>
+					<div class='col-xs-1'>
+						<span class="iconfont icon-gengduo"></span>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class='container padding'>
+				<div class='row'>
+					<div class='col-xs-12 case-details'>
+						<div class='top'>
+							<div class='case-title'>
+								<a href="__APP__/Mobile/CaseDetails/index/id/{$id}">
+								<if condition="$one['result']['is_hot']==1">
+									<img src="__ROOT__/Public/web/img/case_title_icon.png" />
+								</if>
+									<span>{$one.result.title}</span>
+								</a>
+							</div>
+							<div class='case-foot'>
+								<img src="__ROOT__/Public/web/img/case_foot_icon.png" />
+								<span>{$one.result.remark}</span>
+							</div>
+							<div class='case-lable'>
+							<volist name="one.result.tag" id="v">
+								<span>{$v}</span>
+							</volist>
+							</div>
+							<br /><br /><br /><br />
+							<div class='cont' id="all-content">
+							{$one.result.content}
+							</div>	
+			</div>
+		</main>
+		<script type="text/javascript">
+		//点赞
+			function caseUp(id){
+				$.ajax({
+				    url: "__APP__/Mobile/CaseDetails/caseUp",//请求的url地址
+				    dataType: "json",//返回格式为json
+				    async: true, 
+				    data: "id="+id,//参数值
+				    type: "post",//请求方式
+				    success: function(req){ //请求成功时处理
+
+				    }
+				});
+			}
+			
+			$(document).ready(function(){
+	  				$("#hai").val(1);
+	  				$("#addRevie").hide();
+	  		}); 
+
+		 	function revies(caseId,pageSize,pageIndex){
+		 		var pageIndex = $("#hai").val();
+
+				$.ajax({
+					type: "POST",
+					url: "__APP__/Mobile/CaseDetails/revies",//请求的url地址
+					dataType: "json",
+					async: true,
+					data: "caseId="+caseId+"&pageSize="+pageSize+"&pageIndex="+pageIndex,//参数值
+					success: function(reg){
+						if(reg.index == reg.page){
+		 					$("#addRevies").hide();
+		 					$("#addRevie").show();
+		 				}
+		 				$("#hai").val(reg.index);
+
+					  var html = '';
+						$.each(reg.result,function(index,content){
+					  html +='<div class="row">'
+									+'<div class="col-xs-6">'
+										+'<img src="'+content.avatar+'"/>'
+										+'<span>'+content.nick_name+'</span>'
+									+'</div>'
+									+'<div class="col-xs-6 last">'
+										+'<span>'+content.time+'分钟前</span>'
+									+'</div>'
+									+'<div class="col-xs-12 cont">'
+										+'<span>'+content.content+'</span>'
+									+'</div>'
+								+'</div>'
+								})
+								/*+'<div class="row">'
+									+'<div class="col-xs-6">'
+										+'<img src="img/head.jpg"  />'
+										+'<span>关璐阳想吃药 </span>'
+									+'</div>'
+									+'<div class="col-xs-6 last">'
+										+'<span>24分钟前</span>'
+									+'</div>'
+									+'<div class="col-xs-12 cont">'
+										+'正好，我周末从国贸去望京，可以捎上你们，楼主考虑下吧'
+									+'</div>'
+								+'</div>';*/
+								
+					$('.more-cont').append(html)
+
+					}
+					
+				});
+			}
+
+			
+
+			function  cases(){/*查看全文*/
+				$('#sub-content').hide();
+				$('#view-all').hide();
+				$('#all-content').show();
+				
+			}
+		</script>
+	</body>
+</html>

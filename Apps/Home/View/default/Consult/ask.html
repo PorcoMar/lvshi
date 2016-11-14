@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+
+<!--KV开始-->
+<div class="kv kv021">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">		
+		<div class="con_left">
+			<div class="zx_add">
+				<dl>
+					<dt><em></em><span>您好，我是安律师，请问有什么可以帮您？</span></dt>
+					<dd>
+						<textarea name="description" cols="" id="myarea" rows="" onKeyUp="keypress1()" onfocus="if (value=='例如：我与我的妻子协议离婚，现在想把婚后买的房子协议归儿子所有。但是我儿子现在还不到18岁，请问可以把房子过户给未成年的子女吗？需要什么手续呢？'){value=''}"
+								  onblur="if (value ==''){value='例如：我与我的妻子协议离婚，现在想把婚后买的房子协议归儿子所有。但是我儿子现在还不到18岁，请问可以把房子过户给未成年的子女吗？需要什么手续呢？'}">例如：我与我的妻子协议离婚，现在想把婚后买的房子协议归儿子所有。但是我儿子现在还不到18岁，请问可以把房子过户给未成年的子女吗？需要什么手续呢？</textarea>
+						<span>
+							<label>问题类型</label>	
+							<select name="cat_id" id="cate">
+								<option value="">请选择问题类型</option>
+								<volist name="nameplate" id="vo">
+									<option value="{$vo.id}">{$vo.cat_name}</option>
+								</volist>
+							</select>
+						</span>
+						<span><div><em>还可以输入<b id="zhishu">255</b>字</em>
+						<if condition="$session neq ''">
+						<a href="javascript:void(0)" onclick="commitAnswer()" >提交问题</a>
+						<else/>
+						<a href="{:U('Passport/index')}">提交问题</a>
+						</if></div></span>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<!--右侧菜单-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--金牌律师-->
+{:W('Web/lawyerMenu')}
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+<script type="application/javascript">
+	function commitAnswer(){
+		var commit_key = $("#myarea").val();
+		var catId = $("#cate").val();
+		if(catId !=''){
+			$.ajax({
+				type: "POST",
+				url: "{:U('Consult/ask')}",
+				dataType: "json",
+				data: {"description":commit_key,"catId":catId},
+				success: function(json){
+					switch (json.status)
+					{
+						case 0:
+							alert('发送失败，请重新填写');
+							break;
+						case 1:
+							alert('发送成功');
+							var url = "{:U('Consult/askdetail')}";
+							url += '/id/' + json.msg ;
+							window.location.href=url;
+							break;
+					}
+				}
+			});
+		}else{
+			alert("请选择问题类型")
+		}
+
+	}
+
+		
+		
+	
+</script>
+</body>
+</html>

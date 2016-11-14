@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/service.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/iconfont.css" />
+		<script src="__ROOT__/Public/mobile/js/jquery_min_1.9.js"></script>
+		<script src="__ROOT__/Public/mobile/js/bootstrap.min.js"></script>
+		<title>{$title}</title>
+	</head>
+	<body>
+		<!-- <header>
+			<div class='container padding'>
+				<div class="row details-title">
+					<div class='col-xs-1'>
+						<a href="__APP__/Mobile/Goods/index">
+							<span class='iconfont icon-zuojiantou'></span>
+						</a>
+					</div>
+					<div class='col-xs-10 padding' style="text-align:center;">
+						{$title}
+					</div>
+					<div class='col-xs-1'>
+						<span class="iconfont icon-fenxiang "></span> 
+					</div>
+				</div>
+			</div>
+		</header> -->
+		<main>
+			<div class='container padding'>
+				<div class='row details-cont'>
+					<div class='col-xs-12'>
+						
+						<div class="">
+							{$content|html_entity_decode}
+						</div>
+
+					</div>
+				</div>
+				
+				
+
+			</div>
+		</main>
+
+		
+
+<style>
+    .star-vote{
+        width:60px;
+        height:10px;
+        position:relative;
+        overflow:hidden;
+    }
+    .star-vote>span{
+        position:absolute;
+        width:60px;
+        height:10px;
+    	background-size:cover;
+        background-repeat:no-repeat;
+        left:0px;
+        top:0px;
+    }
+    .star-vote>.add-star{
+        background-image:url("__ROOT__/Public/mobile/img/star2.png");
+    }
+    .star-vote>.del-star{
+        background-image:url("__ROOT__/Public/mobile/img/star1.png");
+        background-color:white;
+    }
+</style>		
+	</body>
+</html>

@@ -1,0 +1,115 @@
+.rules-top{ width:100%; height:80px; background:#f9390f}
+.rules-bg{ background:#fff;}
+.rules-text{  width:90%; margin:0 auto;padding-top:30px; padding-bottom:20px;}
+.rules-text span{ font-size:1rem;color:#e65600; font-weight:600}
+.rules-text p{ font-size:0.7rem; margin:0;line-height:1.8em}
+.rules-border{ padding-top:5px; margin-top:10px !important; border-top:1px solid #cccccc;}
+/*用户等级*/
+.rules-level{ width:90%; margin:0 auto; margin-top:20px}
+.rules-level span{ font-size:1rem;color:#e65600; font-weight:600; padding-top:10px; display:inline-block; margin-bottom:20px}
+.rules-level ul{ overflow:hidden; border-top:1px solid #cccccc; width:100%;}
+.rules-level .rul-lev{ font-size:0.8rem; font-weight:600; padding:10px 0; width:100% !important; text-align:left;  border:none !important;}
+.rules-level li{ float:left; width:18%; text-align:center; padding:0 1%;}
+.rules-level li img{ width:80%; margin-bottom:20px}
+.rules-level li .rules-jf{ font-size:0.5rem}
+.rules-level .rules-tow{ border:none; margin-top:20px;}
+.rules-level .rules-tow li .rules-yuan{ font-size:0.7rem; border-radius:50%; border:1px solid #f53c1d; padding:2px 0}
+.rules-level .rules-tow li{ width:19%; padding:0 0.5%;}
+.rules-level .rules-tow li .rul-right{ width:20%}
+.rules-level .rules-tow li img{ width:70%;}
+.rules-level .rules-tow .rules-jf{ font-size:0.6rem}
+.rules-inte{ margin:0 auto; margin-top:20px; width:90%;}
+.rules-inte .inte{font-size:1rem;color:#e65600; font-weight:600; padding-top:10px; display:inline-block; margin-bottom:20px}
+.rul-box{padding-bottom:60px}
+.rul-inte{ width:100%; font-size:0.7rem; overflow:hidden; background:url(../images/rules-jf.png) no-repeat; background-size:100% 100%;}
+.rul-inte .rul-inte1{ width:50%; text-align:center; float:left; padding:5px 0}
+.rul-inte .rul-inte2{ width:50%; text-align:center; float:left; padding:5px 0}
+.inte-bg{ background:none; padding:10px 0px; border-bottom:1px solid #cccccc; border-top:none; }
+.inte-bg .rul-inte1,.inte-bg .rul-inte2{ padding:0;}
+/*使用说明*/
+.use{ width:90%; margin:0 auto; padding-top:60px; font-size:0.8rem; padding-bottom:30px;}
+.use span{ color:#f53c1d; width:100%; float:left; margin-bottom:20px}
+.use i{ float:left; font-style: normal}
+.use p{ width:90%; margin:0 auto; line-height:1.8em; margin-bottom:20px}
+.use-copy{ width:90%; margin:0 auto; font-size:0.7rem; color:#999999; line-height:1.8em; padding-bottom:30px;}
+/*引导页*/
+.guide-top{ width:18%; margin:0 auto; padding-top:3%; padding-bottom:5%}
+.guide-top img{ width:100%}
+.guide{ text-align:center;}
+.guide-top2{ width:25%; margin:0 auto; /*padding-bottom:5%;*/}
+.guide-top2 img{ width:100%}
+.guide-text{ width:77%; margin:0 auto;}
+.guide-text p{ color:#fff; font-size:0.7rem; margin:0; line-height:1.5rem; padding-bottom:5%;}
+.guide-but{ padding-bottom:4%; text-align:center}
+.guide-but input{ margin:0 auto;width:80%;text-align:center; background:none; 
+border:1px solid #ff671b; border-radius:10px; font-size:1rem; text-align:center; color:#fff; padding:2% 0}
+/*引导页-遮罩*/
+.here-top{ width:75%; margin:0 auto; overflow:hidden; padding-top:3%; z-index:10}
+.here-top p{ width:100%; margin:0; text-align:center; color:#fff; font-size:0.6rem; float:left; margin-top:5%; margin-bottom:15%}
+.here-right{ width:18%; float:right;}
+.here-right img{ width:100%;}
+.here{ width:35%; margin:0 auto; padding-bottom:10%; padding-top:60%;}
+.here img{ width:100%}
+.here-but{ width:70%; margin:0 auto; padding-bottom:27%;}
+.here-but img{ width:100%}
+.hrde-bg{ background:rgba(0,0,0,0.6); height:100%; position:absolute; width:100%;}
+.guide1-top{ background: rgba(225,225,225,0.4); background: url(../images/guide-4.png) no-repeat; background-size:100% 100%;
+              margin-top:5.5%; font-size:0.8rem; color:#fff; overflow:hidden;}
+.guide1-top span{ display:block; float:left; padding:3% 0 ; margin-left:4%;}
+.guide1-top .guide1-but1{ width:9%; float:left; height:30px; margin-left:2%; border:none; outline:none; background:none; margin-top:2%;}
+.guide1-top .guide2-but2{ float:right; margin-right:2%; margin-top:2%; height:35px; width:4%; border:none; outline:none; background:none;}
+
+/*登陆*/
+.singn{ width:100%; margin:0 auto; overflow:hidden;}
+.singn-top{ width:6%;  padding-top:10%;}
+.singn-top img{ width:100%;}
+.singn-cet{ width:30%; text-align:center; margin:0 auto; margin-top:25%;}
+.singn-cet img{ width:100%;}
+.singn-inp{ width:100%; text-align:center; margin-top:15%; position:relative}
+.singn-inp input{ background: url(../images/singn-input.png) no-repeat 5%; background-size:100% ; border-radius:30px; color:#fff;
+                   border:none; width:70%; font-size:0.7rem;  padding:4% 0; padding-left:25%;}
+.singn-inp .singn-2{ background: url(../images/singn-inp1.png) no-repeat 5%; background-size:100% ; border-radius:30px; color:#fff;
+                   border:none; width:70%; font-size:0.7rem;  padding:4% 0; padding-left:25%; margin-top:10%}
+.singn-none{ text-align:center; margin-top:7%; color:#fff; font-size:0.6rem; padding-bottom:15%;}
+.singn-none span a{ color:#fff; text-decoration: underline;}
+.singn-come{ text-align:center; font-size:0.9rem;  background-size:100%;}
+.singn-come button{color:#fff; display:inline-block; padding:2% 30%; border-radius:20px; background:#fb8754; font-size:0.8rem; outline:none; border:none;}
+.singn-over input{ width:15px; height:15px; background:none;}
+.singn-over{ margin-top:6%; overflow:hidden; padding-bottom:6%}
+.singn-over span{ font-size:0.6rem; color:#febc9c; margin-top:2%;}
+.singn-over a{ float:right; font-size:0.6rem; color:#fff;}
+.singn-inp .singn-but{ display:none; background:none; width:24%; padding:0; border-radius:30px;
+                       border:none; height:15.5%; position:absolute; right:6.5%; bottom:10%}
+.singn-inp .singn-but3{ background:none; width:24%; padding:0; border-radius:30px; border:none; height:15.5%; position:absolute; right:6.5%; bottom:10%}
+.singn-inp .singn-but2{ background:none ; width:7%; padding:0; position:absolute; right:9%; top:11%}
+.lawyer{ width:100%;}
+.lawyer img{ width:100%;}
+.law-bg{ width:100%; background:#eeeeee; padding-top:25%; text-align:center;}
+.law-bg input{ width:90%; margin:0 auto; font-size:0.9rem; padding:3% 0; background:#e65600; margin-bottom:7%;
+                border:none; color:#fff; border-radius:30px;}
+.law-bg .law-to{ background:none; border:2px solid #e65600; color:#e65600}
+.law-bg span{ width:100%; text-align:center; display:inline-block; font-size:0.6rem; color:#999999;}
+.law-ov{ width:60%; margin:0 auto; margin-top:10%; padding-bottom:20%;}
+.law-ov img{ width:100%}
+
+/*系统消息*/
+.mess-top{ height:50px; background:#ff5021; margin-bottom:10%;}
+.mess-yes{ width:80%; margin:0 auto; font-size:0.8rem; border:1px solid #cccccc; border-radius:10px;}
+.mess-yes p{ margin:0; padding:5% 0 30% 5%; color:#000}
+.mess-but{ width:80%; margin:0 auto; margin-top:5%}
+.mess-but button{ font-size:0.8rem; float:right; font-family:"微软雅黑"; background:none; border-radius:40px; 
+                  border:1px solid #cccccc; outline:none; padding:1% 10%;}
+
+input::-webkit-input-placeholder{color: white;}
+::-webkit-input-placeholder{color: #999;}
+input[type='text'],input[type='password']{
+    -webkit-appearance: none;
+    appearance:none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    border-radius:0;
+}
+html{
+    background-color:#e93801 ;
+}
+.law-bg input{-webkit-appearance: none;}

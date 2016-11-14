@@ -1,0 +1,20 @@
+<div class="con_right">
+    <div class="rightMap">
+        <dl>
+            <dt><img src="__ROOT__/Public/web/images/002.gif" alt="" /></dt>
+            <dd><a href="javascript:void(0)">查看完整地图</a></dd>
+        </dl>
+    </div>
+    <div class="prod_tree">
+        <ul class="left">
+            <volist name="leftSign" id="v2">
+                <li><a href="{:U('Product/index/signsId/'.$v2['id'])}">{$v2.cat_name}</a></li>
+            </volist>
+        </ul>
+        <ul class="right">
+            <volist name="rigntSign" id='one'>
+                <li><a href="{:U('Product/index/signsId/'.$one['id'])}">{$one.cat_name}</a></li>
+            </volist>
+        </ul>
+    </div>
+</div>

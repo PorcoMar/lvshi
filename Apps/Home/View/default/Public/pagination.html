@@ -1,0 +1,29 @@
+<!--<div class="page" align="center">-->
+    <php>$params = isset($params) ? $params : '';</php>
+    <gt name="current_page" value="1">
+        <a class="first" href="{:U(CONTROLLER_NAME.'/'.ACTION_NAME,$params.'&page=1')}">&lt;&lt;</a>
+        <a href="{:U(CONTROLLER_NAME.'/'.ACTION_NAME,$params.'&page='.($current_page-1))}" class="pagepre">上一页</a>
+    </gt>
+    <php>if(preg_match('/^[0-9]*[1-9][0-9]*$/',$current_page/$page_show)){</php>
+    <php>$head = ($current_page/$page_show - 1)*$page_show + 1;</php>
+    <php> }else{</php>
+    <php>$head = (floor($current_page/$page_show))*$page_show + 1;</php>
+    <php> }</php>
+    <php> if($total_page - $head < $page_show){</php>
+    <php> $foot = $total_page + 1;</php>
+    <php> }else{</php>
+    <php> $foot = $head + $page_show;</php>
+    <php> }</php>
+    <php> for($i=$head;$i<$foot;$i++){</php>
+    <php> if($i == $current_page){</php>
+    <a href="{:U(CONTROLLER_NAME.'/'.ACTION_NAME,$params.'&page='.$current_page)}" class="current">{$current_page}</a>
+    <php> } else {</php>
+    <a href="{:U(CONTROLLER_NAME.'/'.ACTION_NAME,$params.'&page='.$i)}" class="pagenum">{$i}</a>
+    <php> }</php>
+    <php> }</php>
+    <neq name="current_page" value="$total_page">
+        <a href="{:U(CONTROLLER_NAME.'/'.ACTION_NAME,$params.'&page='.($current_page+1))}" class="pagenext">下一页</a>
+        <a class="end" href="{:U(CONTROLLER_NAME.'/'.ACTION_NAME,$params.'&page='.($total_page))}">&gt;&gt;</a>
+    </neq>
+<!--
+</div>-->

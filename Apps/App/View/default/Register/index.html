@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>俺的律师</title>
+</head>
+<!--头部开始-->
+<include file="Public/header" />
+<body>
+
+<div class="home" style=" background: url(__ROOT__/Public/APP/images/singn-bg.png) no-repeat; background-size:100% 100%">
+    <div class="singn">
+        <div class="singn-cet"><a href=""><img src="__ROOT__/Public/APP/images/singn-2.png"></a></div>
+        <div class="singn-inp">
+            <input maxlength='11' name="mobile" id="mobile" type="text" type="text" placeholder="请输入手机号" >
+            <input class="singn-but2"  onClick="" type="button">
+            <input type="text" maxlength='4' type="button" placeholder="请输验证码" class="singn-2" id="code" name="code">
+            <button class="singn-but"></button>
+            <button id="btnSendCode"  href="javascript:void(0)" onclick="sendMessage()" style="color: white" class="singn-but3">获取验证码</button>
+
+
+        </div>
+        <div class="sub" align="center"></div>
+        <div class="singn-none">
+            <span>长时间收不到验证码，可尝试 <a href="javascript:void(0)">语音接听验证码</a></span>
+        </div>
+
+    </div>
+    <!--<div class="singn-come">
+        <a href="javascript:void(0)" id="register"  class="white">进 入</a>
+    </div>-->
+    <div class="singn-come">
+        <button id="register">进入</button>
+    </div>
+      <div class="singn">
+          <div class="singn-over">
+
+              <input id="cr" value="" type="checkbox" checked>
+              <span onclick="br()">用户协议</span>
+          </div>
+      </div>
+    <script type="text/javascript">
+        function br(){
+            var COMMON='{$COMMON}';
+            window.location.href=COMMON;
+            die;
+        }
+        $(document).ready(function(){
+            $(function(){
+                $('input:button').click(function(){
+                    $('#mobile').val("");
+                });
+            });
+        });
+            /*
+             * 用户协议复选框
+             * */
+        if ($('#cr').attr('checked')) {
+            $("#cr").val("0")
+        }
+        $(function(){
+            $("div.singn-over").each(function(i){
+                $(this).click(function(){
+                    if($(this).find("input").val()=="0"){
+                        $(this).find("input").addClass("curr");
+                        $(this).find("input").val('1');
+                    }else{
+                        $(this).find("input").removeClass("curr");
+                        $(this).find("input").val('0');
+                    }
+                })
+            });
+        });
+        /*
+         * 获取验证码
+         * InterValObj   timer变量，控制时间
+         * count         间隔函数，1秒执行
+         * curCount      当前剩余秒数
+         * */
+        //验证码倒计时
+        var InterValObj;
+        var count = 60;
+        var curCount;
+        function sendMessage() {
+            var mobile = $("#mobile").val();
+
+            if(mobile.length!=11)
+            {
+                $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').css("color","red").fadeOut(2000);
+                $("#mobile").focus();
+                return false;
+            }
+            var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+            if(!myreg.test(mobile))
+            {
+                $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').css("color","red").fadeOut(2000);
+                $("#mobile").focus();
+                return false;
+
+            }
+            curCount = count;
+            //设置button效果，开始计时
+            $("#btnSendCode").attr("disabled", "true");
+            $("#btnSendCode").text( curCount  + "秒");
+            InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+//            die;
+            //向后台发送处理数据
+            $.ajax({
+                type: "POST", //用POST方式传输
+                dataType: "json", //数据格式:JSON
+                url: "{:U('register/code')}", //目标地址
+                data:{"mobile":mobile},
+
+            });
+        }
+        //timer处理函数
+        function SetRemainTime() {
+            if (curCount == 0) {
+                window.clearInterval(InterValObj);//停止计时器
+                $("#btnSendCode").removeAttr("disabled");//启用按钮
+                $("#btnSendCode").text("获取验证码").css("color","white");
+            }
+            else {
+                curCount--;
+                $("#btnSendCode").text( curCount  + "秒");
+            }
+        }
+
+
+        /*
+         * 进入判断
+         * mobile    手机号
+         * code      验证码
+         * IsCheck   是否授权
+         *
+         * */
+        $('#register').click(function(){
+            var mobile = $("#mobile").val();
+            var code = $("#code").val();
+            var IsCheck=$("#cr").val();
+//            alert(IsCheck);die;
+            $("#msg").remove();
+            if(mobile==""){
+                $('<div id="msg" />').html("手机不能为空！").appendTo('.sub').css("color","red").fadeOut(2000);
+                $("#mobile").focus();
+                return false;
+                die;
+            }
+            if(mobile.length!=11)
+            {
+                $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').css("color","red").fadeOut(2000);
+                $("#mobile").focus();
+                return false;
+            }
+            var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+            if(!myreg.test(mobile))
+            {
+                $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').css("color","red").fadeOut(2000);
+                $("#mobile").focus();
+                return false;
+            }
+            if(code==""){
+                $('<div id="msg" />').html("验证码不能为空！").appendTo('.sub').css("color","red").fadeOut(2000);
+                $("#code").focus();
+                return false;
+                die;
+            }
+            if(IsCheck=='0'){
+                //alert(code);die;
+                var ua = navigator.userAgent.toLowerCase();
+                var from ='{$from}';
+                $.ajax({
+                    type: "POST",
+                    url: "{:U('register/login')}",
+                    dataType: "json",
+                    data: {"mobile":mobile,"from":from,"code":code},
+                    success: function(json){
+                        switch (json.status)
+                        {
+
+                            case 0:
+                                $("#msg").remove();
+                                $('<div id="errmsg" />').html(json.msg).css("color","red").appendTo('.sub')
+                                        .fadeOut(2000);
+                                break;
+                            case 1:
+                                 if(json.new_user==0){
+                                     if(ua.match(/MicroMessenger/i)=="micromessenger") {
+                                         window.location.href="{:U('Guide/guide')}/from/{$from}";
+                                         break;
+                                     }else{
+                                         window.location.href="{:U('Guide/index')}/from/{$from}";
+                                         break;
+                                     }
+                                 }else{
+                                     window.location.href="{:U('AdviceAnswer/index')}";
+                                     break;
+                                 }
+
+                        }
+                    }
+                });
+            }else{
+                $('<div id="msg" />').html("您还未同意用户协议！").css("color","red").appendTo('.sub').fadeOut(2000);
+                return false;
+                die;
+            }
+        });
+
+
+
+    </script>
+
+<script>
+      /*滑屏控件--移动端*/
+	$('#owl-demo').owlCarousel({
+        singleItem: true,
+		autoPlay:true,
+    });
+	/*滑屏控件--PC端*/
+	$('#owl-demo2').owlCarousel({
+        singleItem: true,
+		autoPlay:true,
+    });
+</script>
+
+<script>
+!function(win) {
+ function resize() {
+  var domWidth = domEle.getBoundingClientRect().width;
+  if(domWidth / v > 540){
+   domWidth = 540 * v;
+  }
+  win.rem = domWidth / 16;
+  domEle.style.fontSize = win.rem + "px";
+ }
+ var v, initial_scale, timeCode, dom = win.document, domEle = dom.documentElement, viewport = dom.querySelector('meta[name="viewport"]'), flexible = dom.querySelector('meta[name="flexible"]');
+ if (viewport) {
+  //viewport：<meta name="viewport"content="initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5,user-scalable=no,minimal-ui"/>
+  var o = viewport.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/);
+  if(o){
+   initial_scale = parseFloat(o[2]);
+   v = parseInt(1 / initial_scale);
+  }
+ } else {
+  if (flexible) {
+   var o = flexible.getAttribute("content").match(/initial\-dpr=(["']?)([\d\.]+)\1?/);
+   if(o){
+    v = parseFloat(o[2]);
+    initial_scale = parseFloat((1 / v).toFixed(2))
+   }
+  }
+ }
+ if (!v && !initial_scale) {
+  var n = (win.navigator.appVersion.match(/android/gi), win.navigator.appVersion.match(/iphone/gi));
+  v = win.devicePixelRatio;
+  v = n ? v >= 3 ? 3 : v >= 2 ? 2 : 1 : 1, initial_scale = 1 / v
+ }
+ //没有viewport标签的情况下
+ if (domEle.setAttribute("data-dpr", v), !viewport) {
+  if (viewport = dom.createElement("meta"), viewport.setAttribute("name", "viewport"), viewport.setAttribute("content", "initial-scale=" + initial_scale + ", maximum-scale=" + initial_scale + ", minimum-scale=" + initial_scale + ", user-scalable=no"), domEle.firstElementChild) {
+   domEle.firstElementChild.appendChild(viewport)
+  } else {
+   var m = dom.createElement("div");
+   m.appendChild(viewport), dom.write(m.innerHTML)
+  }
+ }
+ win.dpr = v;
+ win.addEventListener("resize", function() {
+  clearTimeout(timeCode), timeCode = setTimeout(resize, 300)
+ }, false);
+ win.addEventListener("pageshow", function(b) {
+  b.persisted && (clearTimeout(timeCode), timeCode = setTimeout(resize, 300))
+ }, false);
+ 
+ resize();
+}(window);
+
+
+</script>
+
+</div>
+</body>
+</html>

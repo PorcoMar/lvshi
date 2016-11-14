@@ -1,0 +1,304 @@
+html,body{
+	background: #efeff4;
+}
+.lawyer-list{
+	background: #ffffff;
+	margin-bottom: 3% !important;
+	border-bottom: solid 1px #dddddd;
+}
+.lawyer-list .info{
+	padding-top: 5%;
+}
+.lawyer-list .info .head img:first-child{
+	position: relative;
+	width: 55%;
+	border-radius: 50%;
+	border:solid 1px #e4c6ab;
+}
+.lawyer-list .info .head img:last-child{
+	width: 30%;
+	position: absolute;
+	right: 10%;
+	bottom: 48%;
+}
+@media only screen and (max-width: 320px){
+	.lawyer-list .info{
+		padding-top: 5%;
+	}
+}
+@media only screen and (min-width: 320px) and (max-width:375px){
+	.lawyer-list .info .head img:first-child{
+		position: relative;
+		width: 70%;
+		border-radius: 50%;
+		border:solid 1px #e4c6ab;
+	}
+	.lawyer-list .info .head img:last-child{
+		width: 30%;
+		position: absolute;
+		right: 10%;
+		bottom: 50%;
+	}
+	.lawyer-list .info .lable{
+		padding-top: 0%;
+	}
+	.lawyer-list .info .stars{
+		padding-top: 2%;
+	}
+}
+.lawyer-list .info .lable{
+	margin: 20% 0% 10%;
+}
+.lawyer-list .info .lable span{
+	display: inline-block;
+	border: solid 1px #b8c2cf;
+	border-radius: 2px;
+	background: #f7fcff;
+	min-width: 42%;
+}
+.lawyer-list .info .stars img{
+	width: 90%;	
+}
+.lawyer-list .col-xs-9{
+	padding-bottom: 3%;
+	padding-top: 2%;
+}
+.lawyer-list .title{
+	padding: 2% 0%;
+	line-height: 30px;
+}
+.lawyer-list .col-xs-9 .title img{
+	width: 50%;
+}
+.lawyer-list .col-xs-9 .title .col-xs-4:first-child{
+	font-size: 18px;
+	font-weight: bolder;
+}
+.lawyer-list .col-xs-9 .title .col-xs-4:last-child{
+	color: #f55555;
+}
+.lawyer-list .col-xs-9 .the,
+.lawyer-list .col-xs-9 .cont{
+	padding: 1% 0%;
+}
+/*信息*/
+.lawyer-info .cont span.num{
+	color: #ff644b;
+}
+.lawyer-info div.col-xs-12{
+	padding: 3% 3%;
+	border-bottom: solid 1px #dddddd;
+}
+.lawyer-info div.col-xs-12:last-child{
+	padding: 3% 3% 4%;
+	border: none;
+}
+/*评价标签*/
+.evaluate{
+	border-bottom: solid 1px #dddddd;
+	background: #ffffff;
+	margin-bottom: 3% !important;	
+}
+.evaluate div.col-xs-12{
+	padding: 5% 5%;
+}
+.evaluate span{
+	border-radius: 5px;
+	border: solid 1px #ffba00;
+	background: #ffed9b;
+	color: #e26500;
+	display: inline-block;
+	padding: 1% 3%;
+	margin: 1% 1%;
+}
+.lawyer-list .lawyer-btn div.b{
+	padding: 3% 0% 6%;
+}
+.lawyer-list .lawyer-btn div.b div{
+	float: left;
+	width: 42%;
+	text-align: center;
+	padding: 2% 0%;
+	color: #ffffff;
+	border-radius: 20px;
+}
+.lawyer-list .lawyer-btn div.b div:first-child{
+	border:solid 1px #54aa2a;
+	background: #74be2b;
+}
+.lawyer-list .lawyer-btn div.b div:last-child{
+	border:solid 1px #e83030;
+	background: #f55555;
+	margin-left: 2%;
+}
+/*详情*/
+.lawyer-details{
+	background: #ffffff;
+}
+.lawyer-details{
+	padding: 5% 0% 3%;
+}
+.lawyer-details .cont-cont{
+	padding: 3% 0% 5%;
+}
+.lawyer-details .cont-cont img{
+	width: 15%;
+}
+.lawyer-details .sort{
+	border-bottom: solid 1px #dddddd;
+	padding: 3% 0%;
+	background: #f8f8f8;
+	text-align: center;
+	color: #666666;
+	cursor: pointer;
+}
+.lawyer-details .sort a.active{
+	color: #f55555;
+}
+/*简介*/
+.switch{
+	min-height: 400px;
+	background: #efeff4;
+}
+.introduction-hide{
+	padding: 5% 3%;
+	height: 100%;
+	background: #ffffff;
+}
+.introduction-hide span{
+	display: block;
+}
+/*服务项目*/
+.service-hide{	
+	background: #efeff4;
+}
+.service-hide div.cont{
+	background: #ffffff;
+	margin-bottom: 3% !important;
+}
+.service-hide div.cont:last-child{
+	margin-bottom: 0px !important;
+}
+.service-hide .cont .cont-title a{
+	display: inline-block;
+    font-size: 18px;
+    font-weight: bolder;
+    margin-top: 5%;
+}
+.service-hide .cont .cont-title-icon img{
+	width: 13%;
+	padding-top: 2%;
+}
+.service-hide .cont .cont-money{
+	text-align: right;
+	color: #f55555;
+	font-size: 18px;
+	padding-top: 5%;
+}
+.service-hide .cont .consultation{
+	padding: 5% 0% 3%;
+	border-bottom: solid 1px #eeeeee;
+}
+.service-hide .cont .cont-cont{
+	padding: 3% 0%;
+	border-bottom: solid 1px #eeeeee;
+}
+.service-hide .cont .cont-cont img{
+	width: 15%;
+}
+.service-hide .cont .cont-order{
+	padding: 3% 0%;
+}
+.service-hide .cont .cont-order span.num{
+	color: #f55555;
+}
+/*案例*/
+.case-hide div.case{
+	background: #ffffff;
+	border-bottom: solid 1px #dddddd;
+	margin-bottom: 3% !important;
+}
+.case-hide div.case div.case-title{
+	padding-top: 3%;
+}
+.case-hide div.case-details div.case-title{
+	padding-bottom: 3%;
+}
+.case-hide div.case div.case-title img,
+.case-hide div.case div.case-foot img{
+	width: 10%;
+	display: inline-block;
+	margin-top: -7px;
+}
+.case-hide div.case div.case-title span,
+.case-hide div.case div.case-tfoot span{
+	display: inline-block;
+	font-size: 18px;
+	font-weight: bolder;
+	margin-top: 2%;
+}
+.case-hide div.case div.case-foot span{
+	font-weight: 300;
+}
+.case-hide div.case div.case-lable span{
+	display:block;
+	float: left;
+	padding: 1% 2%;
+	border: solid 1px #e26500;
+	color: #ea8e44;
+	border-radius: 20px;
+	margin: 2% 1% 5% 0%;
+}
+.case-hide div.case div.case-foot{
+	padding: 2% 0%;
+	border-bottom: solid 1px #eeeeee;
+}
+.case-hide div.btm div.icon img{
+	width: 25px;
+	margin-top: -10px;
+}
+.case-hide div.btm div.icon{
+	padding: 3%;
+	display: inline-block;
+	float: right;
+}
+.case-hide div.btm div.icon span{
+	display: inline-block;
+}
+/*评价*/
+.evaluate-hide{
+	background: #ffffff;
+}
+.evaluate-hide .head img{
+	width: 100%;
+	border-radius: 50%;
+}
+.evaluate-hide .head{
+	padding: 3% 0%;
+	line-height: 35px;
+}
+.evaluate-hide .time{
+	color:#e3e3e3;
+	padding: 1% 3%;
+	border-bottom: solid 1px #dddddd;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

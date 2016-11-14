@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--菜单结束-->
+<div class="MainCenter">
+	<div class="mainBox">		
+		<div class="detail_left">
+			<div class="detail_left_top"></div>
+			<div class="detail_left_center">				
+				<div class="qz_add">
+					<dl>
+						<dt>直达号：</dt>
+						<dd id="parentName" class="text">{$direct.parent_name}</dd>
+					</dl>
+					<dl class="line">
+						<dt>科&#12288;室：</dt>
+						<dd class="text">{$direct.name}</dd>
+					</dl>
+					<!--<dl class="line">
+						<dt>医&#12288;生：</dt>
+						<dd class="text">{$session}</dd>
+					</dl>-->
+					<dl >
+						<dt><span>*</span>医&#12288;生</dt>
+						<dd class="inbg"><input id="doctor" type="text" class="sinput" value="{$session}" /></dd>
+					</dl>
+					<dl>
+						<dt><span>*</span>服务时间：</dt>
+						<dd class="inbg"><input id="serviceTime" type="date" classervice times="sinput" value="{$date}" /></dd>
+						<dd><img src="__ROOT__/Public/web/images/icon_data.gif" alt="" /></dd>
+					</dl>
+					<dl>
+						<dt><span>*</span>联系电话：</dt>
+						<dd class="inbg"><input id="phone" type="text" class="sinput" value="{$direct.mobile}" /></dd>
+					</dl>
+					<dl>
+						<dt><span>*</span>位置：</dt>
+						<dd class="inbg"><input id="place" type="text" class="sinput" value="{$direct.address}" /></dd>
+					</dl>
+					<if condition="$direct.through_group_id gt 1">
+						<dl>
+							<dt><span>*</span>律师：</dt>
+							<dd class="inbg">
+								<select id="lawyer" style="width: 190px;height: 30px">
+									<volist name="direct.lawyerList" id='lawyer'>
+										<option  value="{$lawyer.mid}">{$lawyer.real_name}</option>
+									</volist>
+								</select>
+							</dd>
+						</dl>
+					</if>
+					<dl class="btn">
+						<div class="sub" align="center"></div>
+						<dd><input id="register" type="button" value="同意用户协议并提交" /></dd>
+						<dd><a href="javascript:void(0)" class="red">查看协议</a></dd>
+					</dl>
+				</div>				
+			</div>
+			<div class="detail_left_bottom">
+			</div>
+		</div>
+		<!--右侧菜单-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--金牌律师-->
+{:W('Web/lawyerMenu')}
+<!--底部开始-->
+<include file="Public/footer"/>
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+	$('#register').click(function(){
+		var doctor=$('#doctor').val();
+		var serviceTime=$('#serviceTime').val();
+		var phone=$('#phone').val();
+		var place=$('#place').val();
+		var lawyer=$('#lawyer').val();
+		var parentName=$('#parentName').val();
+		//alert(phone);die;
+		var mydate = new Date();
+		var str = "" + mydate.getFullYear();
+			str += '-'+(mydate.getMonth()+1)+'-';
+			str += mydate.getDate();
+		/*服务时间转换成时间戳*/
+		var f = serviceTime.split(' ', 2);
+		var d = (f[0] ? f[0] : '').split('-', 3);
+		var t = (f[1] ? f[1] : '').split(':', 3);
+		var serviceTime= (new Date(
+						parseInt(d[0], 10) || null,
+						(parseInt(d[1], 10) || 1) - 1,
+						parseInt(d[2], 10) || null,
+						parseInt(t[0], 10) || null,
+						parseInt(t[1], 10) || null,
+						parseInt(t[2], 10) || null
+				)).getTime() / 1000;
+		/*当前时间转换成时间戳*/
+		var f = str.split(' ', 2);
+		var d = (f[0] ? f[0] : '').split('-', 3);
+		var t = (f[1] ? f[1] : '').split(':', 3);
+		var date= (new Date(
+						parseInt(d[0], 10) || null,
+						(parseInt(d[1], 10) || 1) - 1,
+						parseInt(d[2], 10) || null,
+						parseInt(t[0], 10) || null,
+						parseInt(t[1], 10) || null,
+						parseInt(t[2], 10) || null
+				)).getTime() / 1000;
+		//alert(serviceTime);die;
+		$("#msg").remove();
+		if(doctor=='')
+		{
+			$('<div id="msg" />').html("医生不能为空！").appendTo('.sub').fadeOut(2000);
+			$("#doctor").focus()
+			return false;
+		}
+		if(serviceTime==''){
+			$('<div id="msg" />').html("请选择服务时间！").appendTo('.sub').fadeOut(2000);
+			$("#serviceTime").focus()
+			return false;
+		}
+
+		if(serviceTime <= date ){
+			$('<div id="msg" />').html("请选择正确的服务时间！").appendTo('.sub').fadeOut(2000);
+			return false;
+		}
+		if(phone.length!=11)
+		{
+			$('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+			$("#phone").focus();
+			return false;
+		}
+		var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+		if(!myreg.test(phone))
+		{
+			$('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+			$("#phone").focus();
+			return false;
+		}
+		if(place=='') {
+			$('<div id="msg" />').html("位置不能为空！").appendTo('.sub').fadeOut(2000);
+			$("#place").focus()
+			return false;
+		}
+		if(lawyer==''){
+			$('<div id="msg" />').html("请选择律师!").appendTo('.sub').fadeOut(2000);
+			$("#lawyer").focus()
+			return false;
+		}
+		$.ajax({
+			type: "POST",
+			url: "{:U('Direct/throughGroup')}",
+			dataType: "json",
+			data: {"doctor":doctor,"serviceTime":serviceTime,"phone":phone,"place":place,"lawyer":lawyer,"parentName":parentName},
+			success: function(json){
+				switch (json.status)
+				{
+					case 0:
+						$("#msg").remove();
+						$('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+								.fadeOut(2000);
+						break;
+					case 1:
+						alert('下单成功');
+						window.location.href="{:U('Direct/index')}";
+						break;
+				}
+			}
+		});
+	});
+</script>

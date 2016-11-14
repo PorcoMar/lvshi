@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>俺的律师</title>
+	</head>
+<body>
+<!--菜单开始-->
+<include file="Public/header" />
+<!--菜单结束-->
+<!--KV开始-->
+<div class="kv kv023">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">
+		<div class="gongyi_lvs">
+
+			<if condition="$type eq 'personal'">
+				<dl>
+					<dt>介绍：</dt>
+					<dd>贴身律师是老百姓的私人法律顾问。法律小白不用怕，无论您有任何法律难题，俺的律师都会速速来到您身边。服务领域：陪签合同、陪谈判、协助起草协议、陪公证、审合同、其他法律需求。
+					</dd>
+				</dl>
+				<dl>
+					<dt>服务领域：</dt>
+					<dd>消费者权益保护，公民的平等权利，环境保护及教育权利，免费法律咨询，权利，环境保护及教育权利，免费法律咨询，普及法律知识，免费支持普及法律知识，免费支持鼓励弱势群体。</dd>
+				</dl>
+				<else/>
+				<dl>
+					<dt>介绍：</dt>
+					<dd>公益律师是指受雇于政府法律援助机构，公益机构、非政府机构、非营利机构，免费为某类人群提供法律服务的律师。</dd>
+				</dl>
+				<dl>
+					<dt>服务领域：</dt>
+					<dd>消费者权益保护，公民的平等权利，环境保护及教育权利，免费法律咨询，权利，环境保护及教育权利，免费法律咨询，普及法律知识，免费支持普及法律知识，免费支持鼓励弱势群体。</dd>
+				</dl>
+			</if>
+		</div>
+		<div class="prod_select">
+			<div class="main_rmcity">
+				<dl>
+					<dt>所在省份：</dt>
+					<dd>
+						<volist name="provinces" id='two'>
+
+							<a class="<php>if($two['id']==$pid) echo 'curr';</php>" href="{:U('Index/plawyer/type/'.$type.'/province/'.$two['id'])}">{$two.name}</a>
+						</volist>
+					</dd>
+				</dl>
+			</div>
+			<div class="main_szcity">
+				<dl>
+					<dt>所在城市：</dt>
+					<!--<dd>
+						<div class="selectbg wt200">
+							<input type="hidden" name="CITY" id="CITY" value="" />
+							<div class="options_curr" id="CITY_Selected"></div>
+							<ul class="options" id="CITY_Sel">
+								<volist name='provinces' id='province'>
+									<li onClick='search_show_city("CITY","{$province.id}",this)'>{$province.name}</li>
+								</volist>
+							</ul>
+						</div>
+					</dd>-->
+					<dd>
+						<div class="selectbg wt160">
+							<input type="hidden" name="ACOUTNY" id="ACOUTNY" value="" />
+							<div class="options_curr" id="ACOUTNY_Selected">{$cityName|default="请选择"}</div>
+							<ul class="options" id="ACOUTNY_Sel">
+								<volist name='city' id='city'>
+									<li onClick='search_show({$city.id})'>{$city.name}</li>
+								</volist>
+							</ul>
+						</div>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="con_left">
+			<div class="prod_title">
+				<dl>
+					<dd class="p1">服务</dd>
+					<!--<dd class="p2">指导价</dd>-->
+					<dd style="margin-left:50px">操作</dd>
+					<!--<dd>
+						<div class="selectbg wt100">
+							<input type="hidden" name="PINGJIA" id="PINGJIA" value="" />
+							<div class="options_curr" id="PINGJIA_Slected">评价</div>
+							<ul class="options" id="PINGJIA_Sel">
+								<li onClick="search_show('PINGJIA','1',this)">评价1</li>
+								<li onClick="search_show('PINGJIA','2',this)">评价2</li>
+							</ul>
+						</div>
+					</dd>-->
+				</dl>
+			</div>
+
+			<div class="prod_list_more" style="background:#fff">
+				<volist name="lawyer.result" id="lawyerList">
+					<dl>
+						<dt>
+							<span></span><em class="a1"></em><img src="{$lawyerList.avatar}" alt="" />
+						<div class="aa"><foreach name="lawyerList.tag_name" item="tag" ><label>{$tag}</label></foreach></div>
+						</dt>
+						<dd class="jiben">
+							<div class="name"><em>{$lawyerList.real_name}</em><a href="javascript:void(0)" onclick="ShowLayerYes('CellTel')" class="tel" title="打电话"></a><a href="javascript:void(0)" class="mess" title="发消息"></a></div>
+							<div class="suo"><em>{$lawyerList.law_office_name}</em><span class="star{$lawyerList.style}"></span></div>
+							<div class="jian">{$lawyerList.bio}</div>
+							<div class="bq">
+								<label>热情</label>
+								<label>很务实</label>
+								<label>打赢了</label>
+							</div>
+						</dd>
+						<!--<if condition="$type eq 'free'">
+							<dd class="price"></dd>
+						<else/>
+							<dd class="price">￥{$List.sell_price}</dd>
+						</if>-->
+						<dd class="btn">
+							<a href="{:U('LawyerDetail/index/member_id/'.$lawyerList['member_id'])}" class="gybtn btn80red">就选TA</a>
+							<label>接单量<span>{$lawyerList.order_num}</span></label>
+						</dd>
+					</dl>
+				</volist>
+				<!--列表循环-->
+				<assign name="current_page" value="$lawyer.page_Index" />
+				<php>$total_page = ceil($lawyer['page_sum']/$lawyer['page_size']);</php>
+				<assign name="page_size" value="$lawyer.page_size" />
+				<assign name="page_show" value="10" />
+				<include file="Public/pagination" />
+			</div>
+			</div>
+		<!--右侧路牌-->
+		{:W('Web/guideBoardMenu')}
+	</div>
+</div>
+<!--底部开始-->
+<include file="Public/footer"/>
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+	function search_show(searchType){
+		var cityId = searchType;
+		if(cityId != ''){
+			var url = "{:U('Index/plawyer/type/'.$type)}";
+			var province='{$pid}';
+			if(province != ''){
+				url +='/province/{$pid}'+'/cityId/'+cityId;
+			}else{
+				url += '/cityId/' + cityId;
+			}
+			location.href = url;
+		}
+	}
+</script>
+
+

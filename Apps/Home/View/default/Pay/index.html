@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/pay.css" rel="external nofollow" />
+    <base target="_self" />
+    <title>在线支付</title>
+    <script type="text/javascript" src="__ROOT__/Public/web/js/jquery-1.5.2.min.js"></script>
+    <style type="text/css">
+        /* Bank Select */
+        .ui-list-icons li { float:left; margin:0px 10px 25px 0px; width:218px; padding-right:10px; display:inline; }
+        .ui-list-icons li input { vertical-align:middle; }
+        .ui-list-icons li .icon-box { cursor:pointer; width:190px; background:#FFF; line-height:36px; border:1px solid #DDD; vertical-align:middle; position:relative; display:inline-block; zoom:1; }
+        .ui-list-icons li .icon-box.hover, .ui-list-icons li .icon-box.current { border:1px solid #FA3; }
+        .ui-list-icons li .icon-box-sparkling { position:absolute; top:-18px; left:0px; height:14px; line-height:14px; }
+        .ui-list-icons li .icon { float:left; width:126px; padding:0px; height:36px; display:block; line-height:30px; color:#07f; font-weight:bold; white-space:nowrap; overflow:hidden; position:relative; z-index:1; }
+        .ui-list-icons li .bank-name { position:absolute; left:5px; z-index:0; height:36px; width:121px; overflow:hidden; }
+        /* Bank Background */
+        .ui-list-icons li .ABC, .ui-list-icons li .ICBC, .ui-list-icons li .CCB, .ui-list-icons li .PSBC,
+        .ui-list-icons li .BOC, .ui-list-icons li .CMB, .ui-list-icons li .COMM, .ui-list-icons li .SPDB,
+        .ui-list-icons li .CEB { background:#FFF url(images/ICBC_bank.gif) no-repeat 5px center; }
+        /* Bank Submit */
+        .paybok { padding:0px 0px 0px 20px; }
+        .paybok .csbtx { border-radius:3px; color:#FFF; font-weight:bold; }
+    </style>
+</head>
+<body>
+<div class="paying">
+    <p class="paytit">
+        <i>需支付：￥{$data.payable_amount}元</i>
+    </p>
+    <br />
+    <form action="{:U('pay/dopay')}" method="post" class="validator" name="f" target="_blank" >
+        <div class="clr"></div>
+        <input type="hidden" name="orderId" id="orderId" value="{$data.order_id}" >
+        <ul class="ui-list-icons clrfix">
+            <li>
+                <input type="radio" name="payway" id="wxpay" value="wxpay">
+                <label class="icon-box" for="wxpay">
+                    <span class="icon-box-sparkling" bbd="false"> </span>
+                    <span class="false icon wxpay" title="微信"></span>
+                    <span class="bank-name">微信</span>
+                </label>
+            </li>
+            <li>
+                <input type="radio" name="payway" id="alipay" value="alipay" checked="checked">
+                <label class="icon-box current" for="alipay">
+                    <span class="icon-box-sparkling" bbd="false"> </span>
+                    <span class="false icon alipay" title="支付宝"></span>
+                    <span class="bank-name">支付宝</span>
+                </label>
+            </li>
+            
+        </ul>
+        <div id="wxpayimg">
+            <img alt="扫码支付" src="http://paysdk.weixin.qq.com/example/qrcode.php?data={$url}" style="width:150px;height:150px;"/>
+        </div>
+        <div id="paybok" class="paybok"><input class="" type="submit" value="确认支付" /></div>
+    </form>
+</div>
+
+    <script type="text/javascript">
+        $(function(){
+            $('.ui-list-icons > li').hover(function(){
+                $(this).children('.icon-box').addClass('hover');
+            }, function(){
+                $(this).children('.icon-box').removeClass('hover');
+            });
+
+            $('.ui-list-icons > li').click(function(){
+                for ( var i=0; i<$('.ui-list-icons > li').length; i++ ){
+                    $('.ui-list-icons > li').eq(i).children('.icon-box').removeClass('current');
+                }
+                $(this).children('.icon-box').addClass('current');
+                showWx();
+            });
+        })
+
+        function showWx(){
+            var payway = $('input:radio[name="payway"]:checked').val();
+            if(payway == 'wxpay'){
+                $('#wxpayimg').show();
+                $('#paybok').hide();
+            }else{
+                $('#wxpayimg').hide();
+                $('#paybok').show();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+html,body{
+	font-size: 14px;
+	font-family: "微软雅黑";
+	color:#333333;
+}
+*{
+	-moz-user-select:none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+/*a*/
+a{
+	color:#333333;
+	text-decoration: none;
+}
+a:hover,a:link,a:visited{
+	text-decoration: none;
+	color: #333333;
+}
+/*ul*/
+ul{
+	margin: 0;
+	list-style: none;
+}
+/*input*/
+input:focus{
+	outline: none;
+	outline-style: none;
+	border: solid 1px #ff644b !important;
+}
+/*size*/
+.size12{
+	font-size: 12px;
+}
+.size14{
+	font-size: 14px;
+}
+/*border*/
+.top-f3e7db{
+	border-top: solid 1px #f3e7db;
+}
+.top-b8c2cf{
+	border-top: solid 1px #b8c2cf;
+}
+.btm-f3e7db{
+	border-bottom: solid 1px #f3e7db;
+}
+.btm-e4c6ab{
+	border-bottom: solid 2px #e4c6ab;
+}
+.btm-8d9db9{
+	border-bottom: solid 1px #8d9db9;
+}
+.btm-dddddd{
+	border-bottom: solid 1px #dddddd;
+}
+/*align*/
+.align{
+	text-align:center;
+}
+.align-left{
+	text-align: left;
+}
+.align-right{
+	text-align: right;
+}
+/*padding*/
+.padding{
+	padding: 0;
+}
+.padding-left{
+	padding-left: 0;
+}
+.padding-right{
+	padding-right: 0;
+}
+/*margin*/
+.margin{
+	margin: 0;
+}
+.margin-top10{
+	margin-top: 10px;
+}
+.margin-top18{
+	margin-top: 18px;
+}
+.top-f15{
+	margin-top: -15px;
+}
+.margin-top60{
+	margin-top: 60px;
+}
+.margin-top80{
+	margin-top: 80px;
+}
+.margin-left45{
+	margin-left: 45px;
+}
+header{
+	width: 100%;
+}
+header div.container{
+	width: 1200px !important;
+}
+main div.container{
+	width: 1200px !important;
+}
+footer div.container{
+	width: 1200px !important;
+}
+div.row{
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+/*分页*/
+.page{
+	height: 80px;
+	line-height: 80px;
+}
+.page span{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	color: #555555;
+	text-align: center;
+	border: solid 1px #aaaaaa;
+	cursor: pointer;
+}
+.page span.num:hover{
+	border:solid 1px #ff644b;
+	color: #ff644b;
+}
+.page span.prev,.page span.next{
+	border: none;
+	color: #666666;
+}
+.page span.prev span:hover,.page span.next span:hover{
+	color: #aaaaaa;
+}
+.page span.ellipsis{
+	border: none;
+}
+.page span.ellipsis:hover{
+	color: #555555;
+}
+.page span.page-active{
+	color: #ffffff;
+	background:#ff644b;
+	border: none;
+	border: solid 1px #ff644b;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

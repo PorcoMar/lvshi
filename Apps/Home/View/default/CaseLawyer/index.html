@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+<meta name="description" content="『俺的律师』是由国家权威媒体光明日报、光明网、法制日报、法制文萃报倾力打造法律服务平台为百姓享受律师服务提供解决方案，聚合国内海量实名认证律师，为您提供离婚纠纷、侵权赔偿、债权债务、房产纠纷、劳动仲裁、知识产权、交通事故、遗产继承、医患纠纷、民事刑事、公司事务等各类案件的免费咨询和法律服务。"/>
+<title>律政新闻-俺的律师网</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg02">
+	<div class="wrap rela">
+        <include file="Public/header" />
+        <!--头部结束-->
+        <!--轮播开始-->
+        <div class="slider">
+            <ul class="slides">
+                <volist  name="lawyerFlag" id="flash">
+                <li class="slide">
+                    <div class="box">
+                        <p class="img01"><a href="{:U('CaseLawyer/detail/id/'.$flash['id'])}"><img width="859px" height="466px" src="{$flash.thumb}" /></a></p>
+                        <div class="text01">
+                            <p class="t01"><a href="{:U('CaseLawyer/detail/id/'.$flash['id'])}">{$flash.title}</a></p>
+                            <p class="t02"><a href="{:U('CaseLawyer/detail/id/'.$flash['id'])}">{$flash.description}</a></p>
+                        </div>
+                    </div>
+                </li>
+                </volist>
+            </ul>
+        </div>        
+        <!--轮播结束 -->
+        <!--内容开始-->
+        <div class="zidong mt40 clearfix">
+            <div class="zidong_left">
+                <div class="title01 clearfix"><span class="t01">律政新闻</span></div>
+                <div class="gonggao_nr">
+                    <volist name="lawyerList.result" id="lawyer">
+            	<div class="article01">
+                	<p class="t01"><a class="displayPart" displayLength="50" href="{:U('CaseLawyer/detail/id/'.$lawyer['id'])}">{$lawyer.title}</a></p>
+                    <div class="p02 clearfix"><a href="#" class="img01"><img width="130px" height="86px" src="{$lawyer.thumb}" /></a><a href="{:U('CaseLawyer/detail/id/'.$lawyer['id'])}" class="t02"><span class="displayPart" displayLength="200">{$lawyer.description}</span>[详细]</a></div>
+                    <div class="p03 clearfix"><p class="time01">{$lawyer.create_time|date="Y-m-d H:i:s",###}</p><p class="guanzhu"><a href="#" class="icon01">{$lawyer.views}</a>&nbsp;&nbsp;<a href="#" class="icon02">{$lawyer.comments}</a></p></div>
+                </div>
+                </volist>
+                    <assign name="current_page" value="$lawyerList.page_Index" />
+                    <php>$total_page = ceil($lawyerList['page_sum']/$lawyerList['page_size']);</php>
+                    <assign name="page_size" value="$lawyerList.page_size" />
+                    <assign name="page_show" value="10" />
+            </div>
+                <div class="page">
+                    <table width="100%" border="0" cellspacing="5" cellpadding="0">
+                        <tr>
+                            <td align="center">
+                                <table border="0" cellspacing="5" cellpadding="0">
+                                    <tr>
+                                        <td>
+                                            <include file="Public/pagination" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="zidong_right">
+                <!--热点热评-->
+                <div class="title03 clearfix"><span>精编案例</span></div>
+                <div class="news_list">
+            	<ul>
+                    <volist name="caseList.result" id="case">
+                	<li class="clearfix">
+                    	<div class="num01"><if condition="$key+1 gt 3">{$key+1}<else /><img src="__ROOT__/Public/web/images/num0{$key+1}.jpg" /></if></div>
+                        <div class="num_right">
+                        	<p class="t01"><a class="displayPart" displayLength="30" href="{:U('CaseList/detail/id/'.$case['id'])}">{$case.title}</a></p>
+                            <p class="count01"><span class="count_nr"><img src="__ROOT__/Public/web/images/icon02.png" />{$case.views}</span></p>
+                        </div>
+                    </li>
+                    </volist>
+                </ul>
+            </div>
+                
+                <div class="erweima">
+                    <img src="__ROOT__/Public/web/images/erweima.jpg" />
+                </div>
+                
+            </div>
+            
+            
+        </div>
+        <!--内容结束-->
+        
+        
+        
+    </div>
+
+</div>
+
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+
+<script type="text/jscript" src="__ROOT__/Public/web/js/jquery_min_1.9.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/web/js/jquery.glide.min.js"></script>
+<script type="text/javascript">
+			var glide = $('.slider').glide({
+					//autoplay:true,//是否自动播放 默认值 true如果不需要就设置此值
+					animationTime:500, //动画过度效果，只有当浏览器支持CSS3的时候生效
+					arrows:false, //是否显示左右导航器
+					arrowsWrapperClass: "arrowsWrapper",//滑块箭头导航器外部DIV类名
+					arrowMainClass: "slider-arrow",//滑块箭头公共类名
+					arrowRightClass:"slider-arrow--right",//滑块右箭头类名
+					arrowLeftClass:"slider-arrow--left",//滑块左箭头类名
+					arrowRightText:">",//定义左右导航器文字或者符号也可以是类
+					arrowLeftText:"<",
+
+					nav:true, //主导航器也就是本例中显示的小方块
+					navCenter:true, //主导航器位置是否居中
+					navClass:"slider-nav",//主导航器外部div类名
+					navItemClass:"slider-nav__item", //本例中小方块的样式
+					navCurrentItemClass:"slider-nav__item--current" //被选中后的样式
+				});	
+		</script>
+
+
+</body>
+</html>

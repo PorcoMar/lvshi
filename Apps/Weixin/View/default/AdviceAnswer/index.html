@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>俺的律师</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="__ROOT__/Public/Weixin/css/login.css" rel="stylesheet">
+    <link href="__ROOT__/Public/Weixin/css/login.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/font-awesome.min.css"><!--字体样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/grid.css"><!--栅格化样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/owl.carousel.css"><!--滑屏控件样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/owl.theme.css"><!--滑屏控件主题样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/layout.css"><!--自定义样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/media.css"><!--媒体查询样式表-->
+    <script type="text/javascript" src="__ROOT__/Public/Weixin/js/jquery-1.8.3.min.js" charset="utf-8"></script>
+    <style type="text/css">
+<!--
+.STYLE1 {
+    text-align:center;
+    padding-top: 100px;
+}
+.STYLE {
+    /*margin: 10px 400px 30px 400px;*/
+    margin: 10px 30px 30px 30px;
+    border: 1px solid #d9291f;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    font-size: 18px;
+    color: #000000;
+    padding: 20px;
+    cursor:pointer;
+}
+
+-->
+    </style>
+</head>
+<body class="keBody">
+    <div class="head">
+        <h1>俺的律师</h1>
+        <span>你身边的法律专家</span>
+    </div>
+    <div  class="STYLE1">
+
+        <!--<a href="{:U('AdviceAnswer/character?type=0')}"><div onclick="Advice('0')" class="STYLE">我要咨询</div></a>-->
+        <!--<a href="{:U('AdviceAnswer/character?type=1')}"><div onclick="Answer('1')" class="STYLE">我要解答</div></a>-->
+        <div onclick="Advice('0')" class="STYLE">我要咨询</div>
+        <div onclick="Answer('1')" class="STYLE">我要解答</div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    function Advice(type){
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: "{:U('AdviceAnswer/character')}", //目标地址
+            data:{"type":type},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","red").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                    case 1:
+                        window.location.href="http://android.myapp.com/myapp/detail.htm?apkName=com.gmw.lawyer";
+                        break;
+                    case 2:
+                        window.location.href="{:U('Index/index')}";
+                        break;
+                }
+            }
+        });
+    }
+    function Answer(type){
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: "{:U('AdviceAnswer/character')}", //目标地址
+            data:{"type":type},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","red").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                    case 1:
+                        window.location.href="http://android.myapp.com/myapp/detail.htm?apkName=com.gmw.lawyer";
+                        break;
+                    case 2:
+                        window.location.href="{:U('Index/index')}";
+                        break;
+                }
+            }
+        });
+    }
+</script>

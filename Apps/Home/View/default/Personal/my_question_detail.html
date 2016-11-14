@@ -1,0 +1,73 @@
+<include file="Public/personalHeader" />
+		<div class="mess_right">
+			<div class="mess_tag"><span>我的问题</span></div>	
+			<div class="hf_box">
+				<div class="my_hf_title">
+					<dl>
+						<dt style="display: flex;"><em></em><span class="text-ellipsis">{$question.description}</span></dt>
+						<dd>提问时间：<php>echo date('Y-m-d H:i:s', $question['time']);</php></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="hf_box">
+				<div class="my_hf_list">
+                    <php>$len = count($question['askAnswer']);</php>
+					<h2><em></em><span>共{$len}条回答</span></h2>
+                    <eq name="len" value="0">
+                        <p style="text-align: center;"></p>
+                    <else/>
+                        <volist name="question.askAnswer" id="vo">
+                            <dl>
+                                <dt>
+                                    <em>{$vo.real_name} 律师</em><span></span><img src="{$vo.avatar}" alt="" />
+                                    <a href="javascript:void(0)">询问TA</a>
+                                </dt>
+                                <dd>
+                                    <span class="text">{$vo.content}</span>
+                                    <span class="time">
+                                        <php>echo date('Y-m-d H：i:s',$vo['create_time']);</php>
+                                        <if condition="$question.adopt eq 0">
+                                            <a href="javascript:void(0)" onclick="adoptQuestion(this)" data-id="{$vo.id}">采纳</a>
+                                        <elseif condition="$vo.adopt eq 1"/>
+                                            <a href="javascript:void(0)" data-id="{$vo.id}">已采纳</a>
+                                        <else />
+                                            <a href="javascript:void(0)" data-id="{$vo.id}"></a>
+                                        </if>
+                                    </span>
+                                </dd>
+                            </dl>
+                        </volist>
+                        <assign name="current_page" value="$question.page_Index" />
+                        <php>$total_page = ceil($questions['answers']/$question['page_size']);</php>
+                        <assign name="page_size" value="$question.page_size" />
+                        <assign name="page_show" value="10" />
+                        <include file="Public/pagination" />
+                    </eq>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--底部开始-->
+<script>
+    //采纳答案
+    function adoptQuestion(t){
+        var val = $(t).attr('data-id');
+        if(val){
+            $.post('{:U("Personal/adoptQuestion")}',{val:{id:parseInt(val)}},function(data,status){
+                if(status == 'success' && data.code == 1000){
+                    alert('采纳成功');
+                    location.reload();
+                }else{
+                    alert('系统繁忙,请重试');
+                }
+            });
+        }
+    }
+</script>
+<include file="Public/footer" />
+
+
+
+
+

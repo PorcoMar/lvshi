@@ -1,0 +1,89 @@
+body, ul, dl, dd, dt, ol, li, p, h1, h2, h3, h4, h5, h6, textarea, form, select, fieldset, table, td, div, input {margin:0;padding:0;-webkit-text-size-adjust: none}
+h1, h2, h3, h4, h5, h6{font-size:12px;font-weight:normal}
+.keBody{ width:100%;}
+.head{
+    width: 100%;
+    height: 300px;
+    background-color: #da4b45;
+}
+h1{
+	padding-top:30%;
+	padding-bottom:10%;
+    text-align:center ;
+    font-size: 36px;
+    color: #fffff3;
+	
+}
+
+/*.head span{
+    position:relative;
+    right:500px;
+    bottom:110px;
+    color: rgba(156,156,156,1);
+    float: right;
+}*/
+.head span {
+    font-size: 26px;
+	width:100%;
+	text-align:center;
+	display:inline-block;
+	height:26px;
+    color: rgba(156,156,156,1);
+    
+}
+.mainBox {
+    text-align: center;
+    padding-top: 2cm;
+}
+
+
+
+div,ul,li,dd,textarea,input{font-family:"microsoft YaHei",Arial, Helvetica, sans-serif; color:#666; font-size:14px; line-height:20px}
+a:link,a:active,a:visited{ text-decoration: none; color: #030b0c;}
+
+a.style:link,a.style:active,a.style:visited{ /*text-decoration: none;*/ color: #39d4e3;}
+a.style:hover {color: #e70012; /*text-decoration: none;*/}
+
+a.red:link,a.red:active,a.red:visited{ text-decoration: none; color: #666;}
+a.red:hover {color: #e70012; text-decoration: none;}
+
+a.white:link,a.white:active,a.white:visited{ text-decoration: none; color: #fff;}
+a.white:hover {color: #000; text-decoration: none;}
+
+.gybtn{float:left; height:30px; line-height:30px; border:0px; text-align:center; font-size:15px; color:#fff}
+.gybtn:hover{text-decoration:none}
+.btn80red{width:80px; background:url(../images/con_bg08.gif) no-repeat left top}
+.btn80red:hover{background:url(../images/con_bg08.gif) no-repeat left -30px}
+.btn180red{width:180px; height:48px; line-height:48px; font-size:18px; background:url(../images/btn_bg11.gif) no-repeat left top}
+.btn180red:hover{background:url(../images/btn_bg11.gif) no-repeat left -48px}
+.btn90red{width:90px; height:36px; line-height:36px; background:url(../images/btn_bg09.gif) no-repeat left top}
+.btn90red:hover{background:url(../images/btn_bg09.gif) no-repeat left -36px}
+.btn90gray{width:90px; height:36px; line-height:36px; background:url(../images/btn_bg061.gif) no-repeat left top}
+.btn90gray:hover{background:url(../images/btn_bg061.gif) no-repeat left -36px}
+
+.inbg{border:1px solid #ddd}
+input.sinput{border:0px; float:left; font-size:16px; padding-left:7px}
+
+.register{ width:370px; overflow:hidden; margin:0 auto;}
+.register dl{float:left; width:100%; margin:24px 0 0 0; display:inline}
+.register dl dt{float:left; width:82px; height:40px; line-height:40px; color:#3f3f3f; font-size:15px; font-weight:bold}
+.register dl dd{float:left; display:inline; margin-right:10px}
+.register dl dd.inbg{height:38px}
+.register dl dd.inbg input{font-size:16px; padding-left:7px; height:38px; line-height:38px; color:#999}
+.register dl dd a.gybtn{margin-top:2px}
+
+.register dl.auto em{float:left; margin-left:80px; width:24px; height:24px; cursor:pointer; text-indent:-9999px; background:url(../images/icon_checkbox01.gif) no-repeat left top}
+.register dl.auto em.curr{background:url(../images/icon_checkbox01.gif) no-repeat -24px top}
+
+.register dl.auto span{float:left; margin-left:5px; height:24px; color:#f55555; line-height:24px; font-size:14px}
+.register dl.btn a{float:left; border:0px; width:100%; height:50px; text-align:center; font-size:22px; line-height:50px; background:url(../images/login_bg04.gif) repeat-x left top}
+.register dl.btn a:hover{background:url(../images/login_bg04.gif) repeat-x left -50px}
+.register dl.btn input{float:left; border:0px; width:320px; margin-left:25px; height:50px; text-align:center; font-size:22px; line-height:50px; background:url(../images/login_bg04.gif) repeat-x left top}
+.register dl.btn input:hover{background:url(../images/login_bg04.gif) repeat-x left -50px}
+
+
+
+
+
+
+

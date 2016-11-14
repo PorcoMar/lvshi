@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+    <title>注册-俺的律师网</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg">
+    <div class="wrap rela">
+        <include file="Public/header"/>
+    </div>
+
+</div>
+<!--结束开始-->
+
+
+<!--注册内容开始-->
+<div class="zhuce">
+    <div class="wrap rela">
+        <div class="zc_title01 clearfix"><span class="t01">欢迎注册</span><a href="{:U('Passport/index')}">已有账号请登录</a></div>
+        <div class="maotouying"><img src="__ROOT__/Public/web/images/zhuce01.jpg"/></div>
+        <div class="zhuce_nr">
+            <table>
+                <tr>
+                    <td align="right">手机号：</td>
+                    <td><input id="mobile" class="inp01" type="text" value="请输入手机号" onfocus="this.value='';" onblur="if(this.value==''){this.value='请输入手机号'}"/></td>
+                </tr>
+                <tr>
+                    <td align="right">短信验证：</td>
+                    <td><input id="code" class="inp02" type="text" value="请输入短信验证码" onfocus="this.value='';" onblur="if(this.value==''){this.value='请输入短信验证码'}"/>&nbsp;&nbsp;&nbsp;<input type="button" onclick="sendMessage(this)" class="duanxin" id="miao60" value="获取短信验证码"></td>
+                </tr>
+                <tr>
+                    <td align="right">设置密码：</td>
+                    <td><input id="pass"  class="inp01" type="password" value="" onfocus="this.value='';" onblur="if(this.value==''){this.value=''}"/></td>
+                </tr>
+                <tr>
+                    <td align="right">确认密码：</td>
+                    <td><input id="password" class="inp01" type="password" value="" onfocus="this.value='';" onblur="if(this.value==''){this.value=''}"/></td>
+                </tr>
+                <tr>
+                    <td align="right">验证码：</td>
+                    <td><input id="vcode" class="inp02" type="text"/>&nbsp;&nbsp;&nbsp;<span class="yanzheng"><img id="vcode_img" src="{:U('Passport/image')}"/>&nbsp;&nbsp;<a onclick="changeImg()" href="javascript:void(0)">看不清换一张</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"></td>
+                    <td></td>
+                </tr>
+                <tr style="display:none">
+                    <td align="right"><span class="check01"></span></td>
+                    <td>
+                        <div class="text01">俺是法律人<span class="red">（此身份表明您为法律工作者，非法律工作者请勿勾选。）</span></div>
+                    </td>
+                </tr>
+                <tr style="display:none">
+                    <td align="right"><span class="check01"></span></td>
+                    <td>
+                        <div class="text01">俺要找律师<span class="red">（此身份表明您为非法律工作者。）</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="60"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="center"><a class="button01" id="register" href="#">立即注册</a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="center"><input type="hidden" id="cr" value="0"><span class="xieyi" id="xieyi">我已阅读并意《俺的律师用户注册协议》</span></td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!--注册内容结束-->
+
+
+<!--底部开始-->
+<include file="Public/footer"/>
+<!--底部结束-->
+<script type="text/javascript">
+    function changeImg() {
+        document.getElementById("vcode_img").src = "{:U('Passport/image/id/')}" + new Date();
+    }
+    //选中项
+    $('#xieyi').click(function () {
+        $(this).toggleClass('xieyi02');
+        if($(this).hasClass("xieyi02")){
+            $('#cr').val('1');
+        }else{
+            $('#cr').val('0');
+        }
+    })
+
+    $('.check01').click(function () {
+        $('.check01').removeClass('check02');
+        $(this).addClass('check02');
+    })
+    //手机验证码倒计时
+    var countdown = 60; //间隔函数，1秒执行
+    function sendMessage(obj) {
+        var mobile = $("#mobile").val();
+        if(mobile.length!=11)
+        {
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+            $("#mobile").focus();
+            return false;
+        }
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if(!myreg.test(mobile))
+        {
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+            $("#mobile").focus();
+            return false;
+        }
+       //60秒倒计时
+        settime(obj);
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: "{:U('Passport/code')}", //目标地址
+            data:{"mobile":mobile},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        alert(json.msg);
+                        break;
+                    case 1:
+                        alert(json.msg);
+                        break;
+                }
+            }
+        });
+    }
+    function settime(obj) {
+        if (countdown == 0) {
+            obj.removeAttribute("disabled");
+            $('#miao60').removeClass('btn02');
+            obj.value = "获取验证码";
+            countdown = 60;
+            return;
+        } else {
+            obj.setAttribute("disabled", true);
+            $('#miao60').addClass('btn02');
+            obj.value = "(" + countdown + ")秒";
+            countdown--;
+        }
+        setTimeout(function () {
+                    settime(obj)
+                }
+                , 1000)
+    }
+    //注册判断
+    $('#register').click(function () {
+        var mobile = $("#mobile").val();
+        var pass = $("#pass").val();
+        var password = $("#password").val();
+        var code = $("#code").val();
+        var vcode = $("#vcode").val();
+        $("#msg").remove();
+        if (mobile == "") {
+            alert("手机不能为空！");
+            $("#mobile").focus();
+            return false;
+        }
+        if (mobile.length != 11) {
+            alert("请输入有效手机号！");
+            $("#mobile").focus();
+            return false;
+        }
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if (!myreg.test(mobile)) {
+            alert("请输入有效手机号！");
+            $("#mobile").focus();
+            return false;
+        }
+        if (code == ""){
+            alert("手机验证码不能为空！");
+            $("#code").focus();
+            return false;
+        }
+        if (vcode == "") {
+            alert("验证码不能为空！");
+            $("#vcode").focus();
+            return false;
+        }
+        if (pass == "") {
+            alert("密码不能为空！");
+            $("#pass").focus();
+            return false;
+        }
+        if (password == "") {
+            alert("确认密码不能为空！");
+            $("#password").focus();
+            return false;
+        }
+        if (pass.length < 6 && pass.length <= 14) {
+            alert("密码长度为6~14个字符！");
+            $("#pass").focus();
+            return false;
+        }
+        if (pass != password) {
+            alert("密码不一致,请重新输入！");
+            $("#password").focus();
+            return false;
+        }
+        //判断是否授权
+        var IsCheck = $("#cr").val();
+        if (IsCheck == 1) {
+            $.ajax({
+                type: "POST",
+                url: "{:U('Passport/register')}",
+                dataType: "json",
+                data: {"mobile": mobile, "password": pass, "code": code,"vcode":vcode},
+                beforeSend: function () {
+                    alert("请稍后，正在注册！");
+                },
+                success: function (json) {
+                    switch (json.status) {
+                        case 0:
+                            alert(json.msg);
+                            break;
+                        case 1:
+                            alert(json.msg);
+                            window.location.href = "{:U('Passport/index')}";
+                            break;
+                        case 2:
+                            alert(json.msg);
+                            break;
+                    }
+                }
+            });
+        } else {
+            alert("您还未同意俺的律师用户协议！");
+            return false;
+        }
+    });
+</script>
+
+
+</body>
+</html>

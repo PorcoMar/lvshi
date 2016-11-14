@@ -1,0 +1,298 @@
+@charset "utf-8";
+.mess_left{float:left; width:208px; padding:10px 0 25px 0; border:1px solid #ddd; background:#f5f5f5; margin:30px 30px 0 0; display:inline}
+.mess_left dl{float:left; width:100%; margin-top:15px}
+.mess_left dl dt{float:left; width:100%}
+.mess_left dl dt em{float:left; width:13px; height:13px; margin:4px 5px 0 19px; display:inline; cursor:pointer;
+background:url(../images/icon_show.gif) no-repeat left center; text-indent:-9999px}
+.mess_left dl dt em.curr{background:url(../images/icon_hide.gif) no-repeat left center}
+.mess_left dl dt span{float:left; color:#ff644b; font-size:18px;}
+.mess_left dl dd{float:left; width:100%; padding:8px 0 15px 0}
+.mess_left dl dd a{float:left; width:100%; height:30px; line-height:30px; text-indent:39px; font-size:14px; color:#333}
+.mess_left dl dd a.curr{ background:#dddddd}
+
+.mess_right{float:left; width:960px; margin-top:30px}
+.mess_right .page_num{margin-right:0px}
+
+/**个人中心认证**/
+.mess_zy{float:left; width:958px; border:1px solid #ddd; padding-bottom:30px}
+.mess_jiben{float:left; width:100%}
+.mess_jiben dl{float:left; width:100%}
+.mess_jiben dl dt{float:left; width:200px; height:262px; margin:38px 0 0 30px; display:inline; overflow:hidden}
+.mess_jiben dl dd{float:left; width:640px; margin:40px 0 0 60px; display:inline;}
+.mess_jiben dl dd label{float:left; width:100%; margin-top:20px; display:inline}
+.mess_jiben dl dd label em{float:left; width:115px; line-height:40px; font-size:18px; color:#333}
+.mess_jiben dl dd label input{float:left; width:406px; padding-left:5px; height:38px; line-height:38px; border:1px solid #ebe5de; font-size:18px}
+.mess_jiben dl dd label span{float:left; line-height:40px; font-size:18px; margin-left:5px; color:#ff644b}
+
+.mess_miaoshu{float:left; width:748px; margin:20px 0 0 60px; display:inline}
+.mess_miaoshu span{float:left; width:100%; height:40px; line-height:40px; font-size:18px; color:#333}
+.mess_miaoshu input{float:left; width:746px; padding-left:10px; height:38px; line-height:38px; color:#999; border:1px solid #ebe5de; font-size:18px}
+
+.mess_box{float:left; border:1px solid #d9c0aa; width:756px; padding-bottom:10px; margin:20px 0 0 60px; display:inline}
+.mess_box h2{float:left; width:100%; height:34px; line-height:34px; background:#d8ae88 url(../images/con_bg17.png) no-repeat left top;
+text-indent:25px; color:#fff; font-size:16px; border-bottom:1px solid #ebe5de}
+
+.mess_rzphoto{float:left; width:100%; padding-bottom:20px;}
+.mess_rzphoto dl{float:left; width:100%; margin-left:30px; display:inline}
+.mess_rzphoto dl dd{float:left; width:100%; height:50px; line-height:50px; font-size:18px}
+.mess_rzphoto dl dt{float:left; width:120px; margin:0 10px; border:1px solid #ebe5de; height:120px; overflow:hidden; position:relative}
+.mess_rzphoto dl dt span{ position:absolute; z-index:1; left:0px; bottom:0px; height:30px; width:100%; background:#000;opacity:0.5;filter:alpha(opacity=50)}
+.mess_rzphoto dl dt a{ position:absolute; z-index:2; left:0px; bottom:0px; width:100%; height:30px; background:url(../images/icon_search_bs.png) no-repeat 92px center; text-align:center; line-height:30px; font-size:14px; color:#fff; font-weight:bold}
+.mess_rzphoto dl dt.nopic{ background:#eee url(../images/gr_bg01.png) no-repeat center center; cursor:pointer}
+.mess_rzphoto dl dt.none{border:1px solid #fff}
+.mess_rzphoto dl dt.none a{float:left; width:120px; height:40px; background:url(../images/con_bg10.gif) repeat-x left top; margin-top:81px;
+text-align:center; font-size:16px; line-height:40px; color:#fff}
+.mess_rzphoto dl dt.none a:hover{background:url(../images/con_bg10.gif) repeat-x left -40px}
+
+.mess_lingyi{float:left; width:100%; padding-bottom:20px;}
+.mess_lingyi dl{float:left; width:92%; margin-left:30px; display:inline}
+.mess_lingyi dl dd{float:left; width:100%; height:50px; line-height:50px; font-size:18px; position:relative}
+.mess_lingyi dl dd a{ position:absolute; right:0px; top:0px; line-height:50px; font-size:14px}
+.mess_lingyi dl dd span{margin:0 5px; color:#ff644b}
+.mess_lingyi dl dt{float:left; width:90%; display:inline}
+.mess_lingyi dl dt label{float:left; width:160px; margin-top:15px;}
+.mess_lingyi dl dt label em{float:left; width:24px; height:24px; cursor:pointer; background:url(../images/icon_checkbox01.gif) no-repeat -24px top; text-indent:-9999px; margin-right:8px; display:inline}
+.mess_lingyi dl dt label em.curr{background:url(../images/icon_checkbox01.gif) no-repeat left top}
+.mess_lingyi dl dt label span{float:left; height:24px; line-height:24px; font-size:16px; color:#858484; font-weight:bold}
+
+.mess_tongyi{float:left; width:100%; margin-top:10px; padding-bottom:20px; overflow:hidden}
+.mess_tongyi ul{float:left; width:100%; display:inline}
+.mess_tongyi ul li{float:left; width:100%; margin-top:15px;}
+.mess_tongyi ul li em{float:left; width:24px; height:24px; cursor:pointer; background:url(../images/icon_checkbox01.gif) no-repeat -24px top; text-indent:-9999px; margin-right:8px; margin-left:91px; display:inline}
+.mess_tongyi ul li em.curr{background:url(../images/icon_checkbox01.gif) no-repeat left top}
+.mess_tongyi ul li span{float:left; height:24px; line-height:24px; font-size:16px; color:#858484; font-weight:bold}
+.mess_tongyi ul li a{float:left; font-size:14px; line-height:24px; margin-left:50px}
+
+.mess_button{float:left; width:100%; margin-top:10px; display:inline}
+.mess_button div{float:left; margin-left:91px; display:inline}
+.mess_button div a{float:left; text-align:center; font-size:16px; margin-right:27px; color:#fff; font-weight:bold; height:50px; line-height:50px}
+.mess_button div a.red1{width:160px; background:url(../images/btn_bg08.png) no-repeat left top}
+.mess_button div a.red1:hover{background:url(../images/btn_bg08.png) no-repeat left -50px}
+.mess_button div a.yellow1{width:270px; background:url(../images/btn_bg07.gif) no-repeat left top}
+.mess_button div a.yellow1:hover{background:url(../images/btn_bg07.gif) no-repeat left -50px}
+.mess_button div a.gray1{width:120px; background:url(../images/btn_bg06.gif) no-repeat left top}
+.mess_button div a.gray1:hover{background:url(../images/btn_bg06.gif) no-repeat left -50px}
+
+/**订单中心**/
+.mess_tag{float:left; width:100%; height:36px; margin-top:5px; border-bottom:2px solid #ddd; position:relative}
+.mess_tag ul{ position:absolute; left:0px; top:0px; width:100%}
+.mess_tag ul li{float:left; background:url(../images/con_line03.gif) no-repeat right center; width:110px; font-size:16px; height:36px; line-height:36px; border-bottom:2px solid #ddd; text-align:center; cursor:pointer; font-weight:bold}
+.mess_tag ul li.none{background:none}
+.mess_tag ul li a{float:left; width:90px; margin:0 10px}
+.mess_tag ul li.curr{border-bottom:2px solid #eb5050; color:#eb5050}
+.mess_tag ul li.curr a{color:#eb5050}
+.mess_tag span{ position:absolute; left:0px; top:0px; width:100px; text-align:center; font-size:18px; height:36px; line-height:30px; border-bottom:2px solid #eb5050; color:#eb5050}
+
+.mess_title{float:left; width:99.8%; margin-top:10px; height:45px; border:1px solid #ebe5de; background:#f2f2f2; display:inline}
+.mess_title ul{float:left; width:100%}
+.mess_title ul li{float:left; height:45px; line-height:45px; font-size:14px; text-align:center}
+.mess_title ul li.m1{width:286px}
+.mess_title ul li.m2{width:216px}
+.mess_title ul li.m2 img{float:none; margin:0 5px 0 25px; display:inline}
+.mess_title ul li.m2 a{font-size:12px}
+.mess_title ul li.m3{width:158px}
+.mess_title ul li.m4{width:148px}
+.mess_title ul li.m5{width:136px}
+
+.mess_list{float:left; width:99.8%; margin-top:10px; border:1px solid #ebe5de; background:#fff; display:inline}
+.mess_list table td{border-right:1px solid #ddd; height:120px; text-align:center}
+.mess_list table td.none{height:45px; background:#f2f2f2; border-right:0px}
+.mess_list table td.total{height:45px; border-top:1px solid #ddd; background:#f2f2f2; border-right:0px; text-align:right; font-size:16px}
+.mess_list table td.total span{color:#E94A2F; margin:0 30px; display:inline}
+.mess_list table td.m1{width:286px; border-right:1px solid #fff}
+.mess_list table td.m1 .mess_zt{float:left; width:246px; margin:25px 0 0 20px; display:inline; color:#999; text-align:left}
+.mess_list table td.m1 .mess_zt span{float:left; width:100%; height:34px; line-height:20px; color:#333; font-size:16px}
+
+.mess_list table td.m2{width:216px}
+.mess_list table td.m3{width:158px; color:#ff5f4c; font-size:18px; font-weight:bold}
+.mess_list table td.m3 span{color:#666; font-weight:normal}
+.mess_list table td.m4{width:148px; font-size:16px; color:#666; line-height:24px}
+.mess_list table td.m5{width:146px; border-right:0px; font-size:16px; color:#666}
+.mess_list table td.m5 a.gybtn{margin-left:33px; display:inline}
+.mess_list table td.m5 a.sq{float:left; width:100%; font-size:16px; margin-top:10px}
+
+.mess_big{float:left; width:100%; position:relative}
+.mess_big em{float:left; width:17px; height:17px; margin:14px 5px 0 20px; background:url(../images/icon_checkbox.png) no-repeat -17px top; cursor:pointer; text-indent:-9999px}
+.mess_big em.curr{background:url(../images/icon_checkbox.png) no-repeat left top}
+.mess_big span{float:left; margin-right:20px; height:45px; line-height:45px; font-size:14px; color:#333}
+.mess_big a.lx{float:left; height:20px; margin:12px 0 0 30px; line-height:22px; font-size:14px; padding-left:25px; background:url(../images/icon_mess.png) no-repeat left top}
+.mess_big a.del{ position: absolute; right:10px; top:14px; height:17px; width:18px; background:url(../images/icon_del.png) no-repeat left top; cursor:pointer}
+
+.mess_lvs{float:left; width:200px; margin-top:18px}
+.mess_lvs dl{float:left; width:200px}
+.mess_lvs dl dt{float:left; width:58px; height:100px; position:relative}
+.mess_lvs dl dt span{ position:absolute; left:0px; top:0px; z-index:2; width:58px; height:46px; background:url(../images/con_bg09.png) no-repeat left top}
+.mess_lvs dl dt img{ position: absolute; left:0px; top:0px; z-index:1; width:46px; height:46px}
+.mess_lvs dl dd{float:left; width:130px; margin-left:10px; text-align:left; position:relative}
+.mess_lvs dl dd img{ position:absolute; right:0px; top:10px}
+.mess_lvs dl dd.name {color:#999; line-height:20px; font-size:12px}
+.mess_lvs dl dd.name span{float:left; width:100%; margin-top:10px; height:30px; color:#333; font-size:14px}
+
+/**修改密码**/
+.modify_password{float:left; width:100%; margin-top:20px}
+.modify_password .pop_trip{margin-bottom:10px}
+.modify_password dl{float:left; width:100%; margin-bottom:20px;}
+.modify_password dl.none{margin:0px}
+.modify_password dl dt{float:left; width:130px; text-align:right; height:40px; color:#333; line-height:40px; margin-right:20px; font-size:16px}
+.modify_password dl dt span{margin-right:3px; font-size:20px; font-weight:bold}
+.modify_password dl dd{float:left; color:#333}
+.modify_password dl dd input{float:left; padding-left:10px; border:1px solid #ddd; height:38px; line-height:38px; font-size:16px}
+.modify_password dl dd a{margin-left:50px}
+.modify_password dl dd.text{height:38px; line-height:38px; font-size:16px}
+.modify_password dl dd.none a{margin:2px 0 0 10px; display:inline}
+.modify_password dl dd label{float:left; font-size:16px; background:url(../images/icon_radiobox.png) no-repeat left top; cursor:pointer; padding-left:30px; height:24px; margin-top:10px; margin-right:15px}
+.modify_password dl dd label.curr{background:url(../images/icon_radiobox.png) no-repeat left -24px}
+
+.modify_password dl dd .photo{float:left; margin:0 20px 0 50px; width:122px; height:122px; border:5px solid #F5F5F5; overflow:hidden}
+.modify_password dl dd .photoBtn{float:left; width:260px; margin-top:70px}
+.modify_password dl dd .photoBtn a{float:left; margin-left:0px}
+.modify_password dl dd .photoBtn span{float:left; width:260px; height:28px; line-height:28px; color:#999}
+
+/**订单详情**/
+.order_state{float:left; width:960px; overflow:hidden; margin-top:-20px; margin-bottom:20px; position:relative}
+.order_state dl{float:left; width:120px; margin:0 20px; display:inline}
+.order_state dl.last{margin-right:0px}
+.order_state dl dd{float:left; width:100%; text-align:center; margin-top:35px;}
+.order_state dl dd.name{height:50px; line-height:50px; font-size:16px}
+.order_state dl dd.time{height:50px; line-height:50px; font-size:12px}
+
+.order_state .state{ position:absolute; width:881px; height:36px; left:50%; margin-left:-440px; top:86px}
+.order_state .sta1{ background:url(../images/mess_st3.gif) no-repeat left top}
+.order_state .sta2{ background:url(../images/mess_st3.gif) no-repeat left -36px}
+.order_state .sta3{ background:url(../images/mess_st3.gif) no-repeat left -72px}
+.order_state .sta4{ background:url(../images/mess_st3.gif) no-repeat left -108px}
+.order_state .sta5{ background:url(../images/mess_st3.gif) no-repeat left -144px}
+.order_state .sta6{ background:url(../images/mess_st3.gif) no-repeat left -180px}
+
+.order_detail{float:left; width:958px; border:1px solid #EDE4DD; margin-bottom:10px;}
+.order_detail h2{float:left; width:100%; border-bottom:1px solid #EDE4DD; background:#F2F2F2; font-size:14px; height:45px; line-height:45px; text-indent:20px}
+.order_detail dl{float:left; width:958px}
+.order_detail dl dt{float:left; width:478px; height:150px; border-right:1px solid #EDE4DD; background:url(../images/con_bg19.gif) repeat-x left bottom}
+.order_detail dl dt span{float:left; width:438px; margin-left:20px; margin-top:20px; line-height:30px; font-size:14px;
+font-weight:bold}
+.order_detail dl dd{float:left; width:429px; margin-left:50px; display:inline}
+.order_detail dl dd span{float:left; width:100%; font-size:18px; padding-bottom:25px; margin-top:30px}
+.order_detail dl dd em{float:left; margin-right:10px; font-size:14px; height:30px; line-height:30px}
+.order_detail dl dd a.red{float:left; font-size:14px; margin-right:10px; margin-top:5px;}
+
+/**消息通知**/
+.notice_list{float:left; width:100%}
+.notice_list dl{float:left; width:99.8%; border:1px solid #eee; padding:15px 0; margin-bottom:15px;
+-webkit-border-radius:2px;
+   -moz-border-radius:2px;
+        border-radius:2px;}
+.notice_list dl dt{float:left; width:72px; height:72px; overflow:hidden; margin:0 30px 0 15px; display:inline}
+.notice_list dl dt span{float:left; width:72px; height:72px; overflow:hidden}
+.notice_list dl dt span.n1{ background:#ffa800 url(../images/mess_icon01.png) no-repeat center center}
+.notice_list dl dt span.n2{ background:#008be6 url(../images/mess_icon02.png) no-repeat center center}
+.notice_list dl dt span.n3{ background:#1acbb9 url(../images/mess_icon03.png) no-repeat center center}
+.notice_list dl dt span.n4{ background:#fa8272 url(../images/mess_icon04.png) no-repeat center center}
+.notice_list dl dt span.n5{ background:#727cd1 url(../images/mess_icon05.png) no-repeat center center}
+.notice_list dl dt span.n6{ background:#91b5e5 url(../images/mess_icon06.png) no-repeat center center}
+.notice_list dl dd{float:left; width:800px; position:relative}
+.notice_list dl dd span{float:left; width:100%; height:54px; line-height:40px; font-size:24px}
+.notice_list dl dd em{ position:absolute; right:0px; top:10px; color:#999}
+
+/**我的回复详情**/
+.hf_box{float:left; width:99.8%; border:1px solid #EDE4DD; margin-top:20px}
+
+.my_hf_title{float:left; width:100%; padding:30px 0}
+.my_hf_title dl{float:left; width:910px; margin-left:30px; display:inline}
+.my_hf_title dl dt{float:left; width:100%}
+.my_hf_title dl dt em{float:left; width:24px; height:24px; background:url(../images/icon_wen.gif) no-repeat left top}
+.my_hf_title dl dt span{float:left; width:850px; margin-left:24px; display:inline; line-height:24px; font-size:16px; color:#333}
+.my_hf_title dl dd{float:left; width:100%; color:#999; padding-top:30px; font-size:13px}
+
+.my_hf_list{float:left; width:100%; padding:30px 0}
+.my_hf_list h2{float:left; width:910px; margin-left:30px; display:inline}
+.my_hf_list h2 em{float:left; width:24px; height:24px; background:url(../images/icon_wen.gif) no-repeat left -24px}
+.my_hf_list h2 span{float:left; width:850px; margin-left:15px; display:inline; line-height:24px; font-size:16px; color:#333}
+.my_hf_list dl{float:left; width:910px; display:inline; margin-top:25px; margin-bottom:25px; display:inline}
+.my_hf_list dl dt{float:left; width:124px; height:138px; margin-left:15px; display:inline; position:relative}
+.my_hf_list dl dt img{ position:absolute; left:32px; top:6px; width:60px; height:60px; z-index:2}
+.my_hf_list dl dt span{ position:absolute; left:32px; top:6px; z-index:3; width:60px; height:60px; background:url(../images/con_bg07.png) no-repeat left top}
+.my_hf_list dl dt em{float:left; width:100%; margin-top:75px; text-align:center; font-size:15px; color:#313131}
+.my_hf_list dl dt a{ position:absolute; left:28px; top:100px; width:68px; height:26px; background:#FFA944; color:#fff; line-height:26px; text-align:center;
+-webkit-border-radius:2px;
+   -moz-border-radius:2px;
+        border-radius:2px;}
+.my_hf_list dl dt a:hover{background:#DF8317}
+.my_hf_list dl dd{float:left; width:720px; padding:20px; background:#F5F5F5;
+-webkit-border-radius:5px;
+   -moz-border-radius:5px;
+        border-radius:5px;}
+.my_hf_list dl dd span{float:left; width:100%}
+.my_hf_list dl dd span.text{ font-size:16px; line-height:30px}
+.my_hf_list dl dd span.time{color:#9A9A9A; margin-top:20px; position:relative}
+.my_hf_list dl dd span.time a{ position:absolute; right:0px; width:67px; height:26px; background:url(../images/btn_bg13.png) no-repeat left top; color:#fff; text-indent:29px; line-height:26px; font-size:14px}
+.my_hf_list dl dd span.time a:hover{color:#000}
+
+.hf_add{float:left; width:100%; margin-top:40px; display:inline}
+.hf_add dl{float:left; width:100%}
+.hf_add dl dd{float:left; width:99.8%; border:1px solid #dddddd; background:#f8f8f8}
+.hf_add dl dd span{float:left; width:100%; height:45px; border-top:1px solid #ddd}
+.hf_add dl dd textarea{width:930px; padding:14px; font-size:15px; line-height:25px; color:#999; height:183px; overflow:auto; border:0px}
+.hf_add dl dd span div{float:right; margin-top:7px; margin-right:10px}
+.hf_add dl dd span div a{float:left; width:100px; height:30px; text-align:center; line-height:30px;
+background:url(../images/con_bg06.gif) no-repeat left top; margin-left:10px; color:#000; font-size:14px}
+.hf_add dl dd span div a:hover{color:red; background:url(../images/con_bg06.gif) no-repeat left -30px}
+.hf_add dl dd span div em{float:left; height:30px; line-height:30px; font-size:14px}
+
+
+/**我的问题**/
+.wenda_list01{float:left; width:918px; margin-left:20px; padding-bottom:30px; display:inline}
+.wenda_list01 dl{float:left; width:100%}
+.wenda_list01 dl dt{float:left; width:100%; padding:35px 0 25px 0; display:inline}
+.wenda_list01 dl dt em{float:left; width:24px; height:24px; margin:0 22px 0 12px; display:inline;
+background:url(../images/icon_wen.gif) no-repeat left top}
+.wenda_list01 dl dt span{float:left; height:24px; line-height:24px; font-size:16px; color:#292929}
+.wenda_list01 dl dd{float:left; width:100%; background:#f6f6f6; padding:10px 0}
+.wenda_list01 dl dd em{float:left; width:24px; height:24px; margin:3px 22px 0 12px; display:inline;
+background:url(../images/icon_wen.gif) no-repeat left -24px}
+.wenda_list01 dl dd span{float:left; width:840px; line-height:30px; font-size:15px; color:#969696}
+.wenda_list01 dl dd span b{color:#5976ff}
+
+/**评价**/
+.order_detail_pingjia{float:left; width:958px; border:1px solid #EDE4DD; margin-bottom:10px;}
+.order_detail_pingjia h2{float:left; width:100%; border-bottom:1px solid #EDE4DD; background:#F2F2F2; font-size:14px; height:45px; line-height:45px; text-indent:20px}
+.order_detail_pingjia .mess_lvs{float:left; width:480px; margin-left:20px; display:inline}
+.order_detail_pingjia .mess_zt{float:left; width:246px; margin:25px 0 0 20px; display:inline; color:#999; text-align:left}
+.order_detail_pingjia .mess_zt span{float:left; width:100%; height:34px; line-height:20px; color:#333; font-size:16px}
+
+.order_detail_pingjia_box{float:left; width:99.8%; border:1px solid #EDE4DD}
+
+.lvs_yinxiang{float:left; width:450px; margin:20px 0 0 30px; padding-bottom:30px; display:inline}
+.lvs_yinxiang dl{float:left; width:100%}
+.lvs_yinxiang dl dt{float:left; width:100%; padding-bottom:20px; font-size:16px; color:#323232}
+.lvs_yinxiang dl dd{float:left; width:100%}
+.lvs_yinxiang dl dd label{float:left; border:1px solid #ddd; height:22px; line-height:22px; padding:0 10px; background:#f5f5f5;
+color:#656565;
+-webkit-border-radius:3px;
+   -moz-border-radius:3px;
+        border-radius:3px; cursor:pointer; font-size:14px; margin-right:10px; margin-bottom:20px}
+.lvs_yinxiang dl dd label:hover{ background:#E7E5E5}
+.lvs_yinxiang dl dd label.curr{border:1px solid #FFB900; background:#FEEE99; color:#E56400}
+
+
+.lvs_shenme{float:left; width:412px; margin:20px 0 0 30px; padding-bottom:30px; display:inline}
+.lvs_shenme dl{float:left; width:100%}
+.lvs_shenme dl dt{float:left; width:100%; padding-bottom:20px; font-size:16px; color:#323232}
+.lvs_shenme dl dd{float:left; width:100%}
+.lvs_shenme dl dd textarea{float:left; width:400px; padding:5px; color:#666; font-size:14px; height:130px; border:1px solid #ddd; overflow:auto}
+
+.gradecon{float:left; width:100%; padding-bottom:30px}
+.rev_pro li{float:left; width:100%; height:24px; margin-top:20px;}
+.rev_pro li .revtit{display:block;float:left;margin-left:30px; width:65px; color:#333; margin-right:15px; height:24px; line-height:24px; font-size:16px;}
+.revinp{float:left;display:inline;}
+.level .level_solid,.level .level_hollow{float:left;background-image:url("../images/star01.gif");background-repeat:no-repeat;display:inline-block;width:24px;height:24px; margin-right:8px; display:inline}
+.level .level_solid{background-position:0px 0px;}
+.level .level_hollow{background-position:-37px 0px;}
+.revgrade{margin-left:10px; height:24px; line-height:24px; font-size:14px; font-weight:bold; color:#ff6600}
+
+.lvs_pfbtn{float:left; width:96%; height:96px; margin-top:40px; margin-left:2%; border-top:1px solid #f1f1f1; position:relative}
+.lvs_pfbtn a{ position:absolute; left:50%; margin-left:-75px; top:20px; width:150px; height:50px; line-height:50px; text-align:center;
+color:#fff; font-size:18px; background:url(../images/btn_bg08.png) no-repeat left top}
+.lvs_pfbtn a:hover{ background:url(../images/btn_bg08.png) no-repeat left -50px}
+
+
+

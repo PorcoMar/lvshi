@@ -1,0 +1,132 @@
+<div class="serviceBox">
+    <div class="mainBox">
+        <div class="service_title">
+            <div class="Twotitle">优选服务</div>
+            <div class="main_rmcity">
+                <dl>
+                    <dd>
+                        <foreach name="prairies.result"  item="v">
+                            <!--serve({$v.id})-->
+                            <a onclick="search_show11('CITY2',{$v.id},this)" href="javascript:void(0)">{$v.name}</a>
+                        </foreach>
+
+                    </dd>
+                </dl>
+            </div>
+            <div class="main_szcity">
+                <dl>
+                    <dt>所在城市：</dt>
+                    <dd>
+                        <div class="selectbg wt200">
+                            <input type="hidden" name="CITY2" id="CITY2" value="" />
+                            <div class="options_curr" id="CITY2_Slected">选择省份</div>
+                            <ul class="options" id="CITY2_Sel">
+                                <foreach name="prairies.result" item="v">
+                                <li onClick='search_show11("CITY2","{$v.id}",this)'>{$v.name}</li>
+                                </foreach>
+                            </ul>
+                        </div>
+                    </dd>
+                    <dd>
+                        <div class="selectbg wt160">
+                            <input type="hidden" name="ACOUTNY" id="ACOUTNY" value="" />
+                            <div class="options_curr" id="ACOUTNY_Slected">选择城市</div>
+                            <ul class="options" id="ACOUTNY_Sel">
+                            </ul>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="service_list">
+            <foreach name="goods.result" item="v">
+                <dl>
+                    <dd class="text"><a href="{:U('Product/detail/id/'.$v['id'])}">{$v.goods_title}</a></dd>
+                    <dd class="star">
+                        <span class="star{$v.grade|(substr=0,1)*2}"></span>
+                    </dd>
+                    <dd class="view"><a href="{:U('Product/detail/id/'.$v['id'])}" class="gybtn btn80red">查看</a></dd>
+                </dl>
+            </foreach>
+        </div>
+    </div>
+</div>
+
+<script>
+    /*省份搜索*/
+    function search_show11(pos,searchType,href){
+        $("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+        $("#"+pos+"_Sel").hide();
+        document.getElementById(pos+"_Slected").innerHTML=href.innerHTML;
+        $("#"+pos).focus();
+        $("#"+pos).blur();
+        $("#ACOUTNY_Sel").children("li").remove();
+        var pId=searchType;
+        $.ajax({
+            type:"post",
+            dataType:"json",
+            url:'{:U("Case/getCity")}',
+            data:'pId='+pId,
+            success:function(result){
+                var city = '';
+                for(var i=0;i<result.openCitys.length;i++){
+                    city += '<li onClick="search(\'ACOUTNY\','+result.openCitys[i].id+',this)">'
+                    city += result.openCitys[i].name;
+                    city +='</li>';
+                }
+                var city1 = '';
+                if(result.goods){
+                    $.each(result.goods,function(k,v){
+                        city1+='<div>';
+                        city1+='<dl>';
+                        city1+='<dd class="text"><a href="{:U('Product/detail')}'+'/id/'+v.id+'">'+v.goods_title+'</a></dd>';
+                        city1+='<dd class="star">';
+                        city1+=' <span class="star'+eval(v.grade*2)+(v.grade.substr(1))+'"></span>';
+                        city1+='</dd>';
+                        city1+='<dd class="view"><a href="{:U('Product/detail')}'+'/id/'+v.id+'" class="gybtn btn80red">查看</a></dd>';
+                        city1+='</dl>';
+                        city1+='</div>';
+                    });
+                }else{
+                    var city1='<li><em>暂无数据</em></li>';
+                }
+                $('.service_list').html(city1);
+                $('#ACOUTNY_Sel').html(city);
+            }
+        })
+    }
+    /*城市搜索*/
+    function search(pos,searchType,href){
+        $("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+        $("#"+pos+"_Sel").hide();
+        document.getElementById(pos+"_Slected").innerHTML=href.innerHTML;
+        $("#"+pos).focus();
+        $("#"+pos).blur();
+        var cId=searchType;
+       $.ajax({
+            type:"post",
+            dataType:"json",
+            url:'{:U("Case/goodsSeek")}',
+            data:'cId='+cId,
+            success:function(res){
+                var city1 = '';
+                if(res.result){
+                    $.each(res.result,function(k,v){
+                        city1+='<div>';
+                        city1+='<dl>';
+                        city1+='<dd class="text"><a href="{:U('Product/detail')}'+'/id/'+v.id+'">'+v.goods_title+'</a></dd>';
+                        city1+='<dd class="star">';
+                        city1+=' <span class="star'+eval(v.grade*2)+(v.grade.substr(1))+'"></span>';
+                        city1+='</dd>';
+                        city1+='<dd class="view"><a href="{:U('Product/detail')}'+'/id/'+v.id+'" class="gybtn btn80red">查看</a></dd>';
+                        city1+='</dl>';
+                        city1+='</div>';
+                    });
+                }else{
+                    var city1='<li><em>暂无数据</em></li>';
+                }
+                $('.service_list').html(city1);
+            }
+       })
+    }
+</script>

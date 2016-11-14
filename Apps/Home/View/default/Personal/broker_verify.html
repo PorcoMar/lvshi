@@ -1,0 +1,345 @@
+<include file="Public/personalHeader" />
+<div class="mess_right">
+	<div class="mess_zy">
+		<div class="mess_jiben">
+			<dl>
+				<dt><img src="__ROOT__/Public/web/images/big_photo.png" alt="" /></dt>
+				<dd>
+					<label><em>真实姓名：</em><input type="text" name="real_name" style="width:180px" /><span>*</span></label>
+					<label><em>身份证号：</em><input type="text" name="identity_card" /><span>*</span></label>
+				</dd>
+			</dl>
+		</div>
+		<div class="mess_miaoshu">
+			<span>我的一句话描述：</span>
+			<input name="bio" type="text" class="sinput" placeholder="请用一句话描述自己" />
+		</div>
+		<div class="mess_box">
+			<h2>认证照片</h2>
+			<div class="mess_rzphoto">
+				<dl>
+					<dd>请手持身份证拍摄半身照片，并上传到平台</dd>
+					<input type="hidden" id="currentimage">
+					<dt><span></span><img src="__ROOT__/Public/web/images/photo01.png" alt="" name="picture"/><a href="javascript:ShowImage()">查看示例</a></dt>
+					<dt><img style="width: 122px;height: 122px" class="nopic" id="identity_card_img_1" title="身份证正面照" /></dt>
+					<dt><img style="width: 122px;height: 122px" class="nopic" id="identity_card_img_2" title="身份证反面照" /></dt>
+
+					<dt class="none"><a href="javascript:void(0)"  onclick="uploadImg()">上传照片</a></dt>
+					<input name="image" onchange="uploadImage(this)" data-photo="identity_card_img_1" type="file" style="display: none;" />
+				</dl>
+			</div>
+		</div>
+		<div class="mess_box">
+			<h2>我擅长的领域</h2>
+			<div class="mess_lingyi">
+				<dl>
+					<dd>请选择自己擅长的领域，最多可勾选<span>4</span>项<a href="javascript:void(0)" class="red">隐私政策</a></dd>
+					<dt id="good_fields">
+						<volist name="nameplate" id="nv">
+							<label><em data-id="{$nv.id}">0</em><span>{$nv.cat_name}</span></label>
+						</volist>
+					</dt>
+				</dl>
+			</div>
+		</div>
+		<div class="mess_tongyi">
+			<ul>
+				<li><em id="agreement">0</em><span>我同意“俺的律师”律师认证协议</span><a href="javascript:void(0)" class="red">查看协议</a></li>
+			</ul>
+		</div>
+		<div class="mess_button">
+			<div>
+				<a href="javascript:void(0)" onclick="lawyerVerify()" class="red1">现在就认证</a>
+<!--
+				<a href="javascript:void(0)" onclick="memberVerify()" class="yellow1">还没想好，先试试普通用户吧</a>
+-->
+				<a href="javascript:void(0)" onclick="cancelOpt()" class="gray1">取消</a>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<!--底部开始-->
+<script type="text/javascript">
+	/*照片上传*/
+	$(function(){
+		$('.nopic').on('click',function(){
+			var img = $('input[name="image"]');
+			img.attr('data-photo',$(this).attr('id'));
+			img.click();
+		});
+	});
+	function uploadImg(){
+		$('input[name="image"]').click();
+	}
+	function uploadImage(t){
+		var formData = new FormData();
+		formData.append('file', $('input[name="image"]')[0].files[0]);
+		formData.append('type', 2);
+		$.ajax({
+			url: '{:U("/Personal/upload")}',
+			type: 'POST',
+			cache: false,
+			data: formData,
+			processData: false,
+			contentType: false
+		}).done(function(res) {
+			if(res){
+				$('#'+$(t).attr('data-photo')).attr('src',res.result);
+			}
+		}).fail(function(res) {
+			alert('上传失败!');
+		});
+	}
+	/*认证加身份证判断*/
+	function lawyerVerify(){
+		var val = {
+			'type':1,
+			'realname':$('input[name="real_name"]').val(),
+			'identity_card':$('input[name="identity_card"]').val(),
+			'good_fields':getGoodFields(),
+			'bio':$('input[name="bio"]').val(),
+			'identity_card_img_1':$('#identity_card_img_1').attr('src'),
+			'identity_card_img_2':$('#identity_card_img_2').attr('src'),
+			'agreement':getAgreement(),
+		};
+		console.log(val);
+		var fb_value=val['identity_card'];
+		if(fb_value === '')
+		{
+			alert('请输入身份证号，身份证号不能为空');
+			return false;
+		}
+		//校验长度，类型
+		if(isCardNo(fb_value) === false)
+		{
+			alert('您输入的身份证号码不正确，请重新输入');
+			return false;
+		}
+		//检查省份
+		if(checkProvince(fb_value) === false)
+		{
+			alert('您输入的身份证号码省份不正确,请重新输入');
+			return false;
+		}
+		//校验生日
+		if(checkBirthday(fb_value) === false)
+		{
+			alert('您输入的身份证号码生日不正确,请重新输入');
+			return false;
+		}
+		//检验位的检测
+		if(checkParity(fb_value) === false)
+		{
+			alert('您的身份证校验位不正确,请重新输入');
+			return false;
+		}
+		if(val['agreement']!=null){
+
+			if(filterFields(val) === true){
+				verify(val);
+			}else{
+				alert('请完善相应信息!');
+			}
+		}else{
+			alert('您还未授权俺的律师用户协议!');
+		}
+
+	}
+	/*擅长领域*/
+	function getGoodFields(){
+		var fields = [];
+		$('#good_fields').find('.curr').each(function(){
+			var id = $(this).attr('data-id');
+			if(!isNaN(id) && id > 0){
+				fields.push(id);
+			}
+		});
+		return fields.length ? fields.join(',') : null;
+	}
+	/*授权*/
+	function getAgreement(){
+		return $('#agreement').hasClass('curr') ? 1 : null;
+	}
+
+	//检测不合格字段
+	function filterFields(obj){
+		for (var i in obj){
+			if(obj[i] === null || obj[i] === undefined || obj[i] === ''){
+				return i;
+			}
+		}
+		return true;
+	}
+
+
+	/*function memberVerify(){
+		var val = {
+			'type':-1,
+			'real_name':$('input[name="real_name"]').val(),
+			'identity_card':$('input[name="identity_card"]').val(),
+			'identity_card_img_1':$('#identity_card_img_1').attr('src'),
+			'identity_card_img_2':$('#identity_card_img_2').attr('src')
+		};
+		console.log(val);
+		if(filterFields(val) === true){
+			verify(val);
+		}else{
+			alert('请完善相应信息!');
+		}
+	}*/
+	/*取消按钮*/
+	function cancelOpt(){
+		location.href = '{:U("/Personal/index")}';
+	}
+
+
+
+	function verify(val){
+		$.post('{:U("/Personal/brokerVerify")}',{'val':val},function(data,status){
+			/*&& data[code] == 1000*/
+			if(status == 'success' ){
+				alert('申请成功!');
+				location.reload();
+			}else{
+				alert(data.msg);
+			}
+		});
+	}
+
+	var vcity={ 11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",
+		21:"辽宁",22:"吉林",23:"黑龙江",31:"上海",32:"江苏",
+		33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",
+		42:"湖北",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",
+		51:"四川",52:"贵州",53:"云南",54:"西藏",61:"陕西",62:"甘肃",
+		63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外"
+	};
+
+	//console.log(vcity);
+	//检查号码是否符合规范，包括长度，类型
+	isCardNo = function(card)
+	{
+		//身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
+		var reg = /(^\d{15}$)|(^\d{17}(\d|X)$)/;
+		if(reg.test(card) === false)
+		{
+			return false;
+		}
+		return true;
+	};
+
+	//取身份证前两位,校验省份
+	checkProvince = function(card)
+	{
+		var province = card.substr(0,2);
+		if(vcity[province] == undefined)
+		{
+			return false;
+		}
+		return true;
+	};
+
+	//检查生日是否正确
+	checkBirthday = function(card)
+	{
+		var len = card.length;
+		//身份证15位时，次序为省（3位）市（3位）年（2位）月（2位）日（2位）校验位（3位），皆为数字
+		if(len == '15')
+		{
+			var re_fifteen = /^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/;
+			var arr_data = card.match(re_fifteen);
+			var year = arr_data[2];
+			var month = arr_data[3];
+			var day = arr_data[4];
+			var birthday = new Date('19'+year+'/'+month+'/'+day);
+			return verifyBirthday('19'+year,month,day,birthday);
+		}
+		//身份证18位时，次序为省（3位）市（3位）年（4位）月（2位）日（2位）校验位（4位），校验位末尾可能为X
+		if(len == '18')
+		{
+			var re_eighteen = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
+			var arr_data = card.match(re_eighteen);
+			var year = arr_data[2];
+			var month = arr_data[3];
+			var day = arr_data[4];
+			var birthday = new Date(year+'/'+month+'/'+day);
+			return verifyBirthday(year,month,day,birthday);
+		}
+		return false;
+	};
+
+	//校验日期
+	verifyBirthday = function(year,month,day,birthday)
+	{
+		var now = new Date();
+		var now_year = now.getFullYear();
+		//年月日是否合理
+		if(birthday.getFullYear() == year && (birthday.getMonth() + 1) == month && birthday.getDate() == day)
+		{
+			//判断年份的范围（3岁到100岁之间)
+			var time = now_year - year;
+			if(time >= 3 && time <= 100)
+			{
+				return true;
+			}
+			return false;
+		}
+		return false;
+	};
+
+	//校验位的检测
+	checkParity = function(card)
+	{
+		//15位转18位
+		card = changeFivteenToEighteen(card);
+		var len = card.length;
+		if(len == '18')
+		{
+			var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+			var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+			var cardTemp = 0, i, valnum;
+			for(i = 0; i < 17; i ++)
+			{
+				cardTemp += card.substr(i, 1) * arrInt[i];
+			}
+			valnum = arrCh[cardTemp % 11];
+			if (valnum == card.substr(17, 1))
+			{
+				return true;
+			}
+			return false;
+		}
+		return false;
+	};
+
+	//15位转18位身份证号
+	changeFivteenToEighteen = function(card)
+	{
+		if(card.length == '15')
+		{
+			var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+			var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+			var cardTemp = 0, i;
+			card = card.substr(0, 6) + '19' + card.substr(6, card.length - 6);
+			for(i = 0; i < 17; i ++)
+			{
+				cardTemp += card.substr(i, 1) * arrInt[i];
+			}
+			card += arrCh[cardTemp % 11];
+			return card;
+		}
+		return card;
+	};
+	function ShowImage()
+	{var imageindex=0,PicNums=0;
+		var Url=document.getElementsByName("picture")[imageindex].getAttribute('src');
+		document.getElementById("currentimage").value=Url;
+		var Width=850;
+		var Height=550;
+		var Left=(window.screen.availWidth-10-Width)/2;
+		var Top=(window.screen.availHeight-30-Height)/2;
+		var v=window.open("__APP__/Public/showimage","imagesview","width="+Width+",height="+Height+",top="+Top+",left="+Left+",toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no,status=no");
+	}
+</script>
+<include file="Public/footer" />

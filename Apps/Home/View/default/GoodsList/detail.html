@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--KV开始-->
+<div class="kv kv023">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">	
+		<div class="prod_detail">
+			<dl>
+				<dt>
+					<em>{$goodsDetail['goods_name']}</em>
+					<if condition="$goodsDetail['is_hot'] eq 1">
+						<img src="__ROOT__/Public/web/images/icon_de01.png" alt="" />
+					<if condition="$goodsDetail['is_reputation'] eq 1">
+						<img src="__ROOT__/Public/web/images/icon_de02.png" alt="" />
+					</if>
+					<if condition="$goodsDetail['is_overflow'] eq 1">
+						<img src="__ROOT__/Public/web/images/icon_de03.png" alt="" />
+					</if>
+					<if condition="$goodsDetail['is_new'] eq 1">
+						<img src="__ROOT__/Public/web/images/icon_de04.png" alt="" />
+					</if>
+					</if>
+					<span>￥{$goodsDetail['sell_price']}</span>
+				</dt>
+				<dd class="tj">
+					<label><b>{$goodsDetail['un_lawyer_num']}</b>位神秘勇士&#12288;<b>{$goodsDetail['lawyer_num']}</b>位律师</label>
+					<label>接单量<b>{$goodsDetail['turnover']}</b></label>
+					<label class="none">评价数<b>{$goodsDetail['comments']}</b></label>
+				</dd>
+				<dd class="neirong">
+					<p><span>服务方式：</span>{$goodsDetail['service_way_name']}</p>
+					<p><span>服务标准：</span>{$goodsDetail['service_effect']}</p>
+					<p><span>需要您配合的：</span>{$goodsDetail['member_supply']}</p>
+				</dd>
+				<dd class="dp">
+					<em></em>
+					<span>{$goodsDetail['remark']}</span>
+				</dd>				
+			</dl>
+		</div>
+		<div class="service_guide"></div>
+		<div class="con_left">
+			<div class="fuwu_tag">
+				<ul>
+					<li class="curr">选律师</li>
+					<li>服务保障条款</li>
+					<li>用户评价(133)</li>
+				</ul>
+			</div>
+			<div class="prod_list_more" style="background:#fff">
+				 <volist name="goodsLawyer.result" id="goodsList">
+					<dl>
+						<dt><span></span><em class="a1"></em><img src="{$goodsList.avatar}" alt="" />
+						<div class="aa"><foreach name="goodsList.tag_name" item="tag" ><label>{$tag}</label></foreach></div>
+						</dt>
+						<dd class="jiben">
+							<div class="name"><em>{$goodsList.real_name}</em><a href="javascript:void(0)" class="tel" title="打电话"></a><a href="javascript:void(0)" class="mess" title="发消息"></a></div>
+							<div class="suo"><em>{$goodsList.law_office_name}</em><span class="star{$goodsList.star|substr=0,1}"></span></div>
+							<div class="jian">{$goodsList.remark}</div>
+
+							<div class="bq">
+								<label>热情</label>
+								<label>很务实</label>
+								<label>打赢了</label>
+							</div>
+
+						</dd>
+						<dd class="price">￥{$goodsList.sell_price}</dd>
+						<dd class="btn">
+							<a href="javascript:void(0)" class="gybtn btn80red">购买</a>
+							<label>接单量<span>{$goodsList.order_num}</span></label>
+						</dd>
+					</dl>
+				</volist>
+				<div class="page_box">
+					<div class="page_num">
+						<if condition="$goodsLawyer['page_Index'] lt 1">
+							<a href="{:U('goodsList/detail/pageIndex/'.$goodsLawyer['page_Index'].'/id/'.$goodsDetail[id])}">首页</a>
+							<a href="{:U('goodsList/detail/pageIndex/'.($goodsLawyer['page_Index']-1).'/id/'.$goodsDetail[id])}" class="prev">前一页</a>
+						</if>
+						<for start="1" end="$pageNum" step="1">
+							<a href="{:U('goodsList/detail/pageIndex/'.$i.'/id/'.$goodsDetail[id])}" <if condition="$goodsLawyer['page_Index'] eq $i"> class="curr"</if>>{$i}</a>
+						</for>
+						<if condition="$goodsLawyer['page_Index'] eq $pageNum">
+							<a href="{:U('goodsList/detail/pageIndex/'.$pageNum.'/id/'.$goodsDetail[id])}">尾页</a>
+							<else/>
+							<a href="{:U('goodsList/detail/pageIndex/'.($goodsLawyer['page_Index']+1).'/id/'.$goodsDetail[id])}" class="next">下一页</a>
+							<a href="{:U('goodsList/detail/pageIndex/'.$pageNum).'/id/'.$goodsDetail[id]}">尾页</a>
+						</if>
+					</div>
+				</div>
+			</div>
+			<div class="case_list" id="lvsXiangQing1" style="display:none">
+
+			</div>
+			<!--用户评价-->
+			<div class="pingjia_list" id="lvsXiangQing3" style="display:none">
+
+			</div>
+		</div>
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>

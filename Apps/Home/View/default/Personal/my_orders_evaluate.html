@@ -1,0 +1,144 @@
+<include file="Public/personalHeader" />
+<script type="text/javascript" src="__ROOT__/Public/web/js/pingfen.js" charset="utf-8"></script><!--评分-->
+<div class="mess_right">
+    <!--订单流程图-->
+    <include file="Public/orderFlowChart" />
+            <!-- 评价订单 -->
+            <div class="order_detail_pingjia">
+                <h2>订单号：{$order.order_no}</h2>
+                <div class="mess_lvs">
+                    <dl>
+                        <dt><span></span><img src="{$order.lawyer_avatar}" alt="" /></dt>
+                        <dd class="name">
+                            <span><if condition="$order.real_name neq ''">{$order.lawyer_name}<else/>{$order.nick_name}</if></span>
+                            {$order.bio}<br />{$order.primary_law_office}
+                            <img src="__ROOT__/Public/web/images/icon_online.png" alt="" />
+                        </dd>
+                    </dl>
+                </div>
+
+				<foreach name="order['goods_list']" item="v">
+                <div class="mess_zt">
+                    <span>{$v['goods_name']}</span>
+                    服务方式：{$v['service_way_name']}<br />
+                    服务时间：<php>echo date('Y-m-d H:i:s', $order['create_time']);</php>
+                </div>
+				</foreach>
+            </div>
+            <div class="order_detail_pingjia_box">
+                <!--评分-->
+                <div class="gradecon" id="Addnewskill_119">
+                    <ul class="rev_pro clearfix">
+                        <li>
+                            <span class="revtit">评&#12288;&#12288;分</span>
+                            <div class="revinp">
+								<span class="level">
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+								</span>
+                                <span class="revgrade"></span>
+                            </div>
+                        </li>
+                       <!-- <li>
+                            <span class="revtit">专&#12288;&#12288;业</span>
+                            <div class="revinp">
+								<span class="level">
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+								</span>
+                                <span class="revgrade"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="revtit">态&#12288;&#12288;度</span>
+                            <div class="revinp">
+								<span class="level">
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+									<i class="level_hollow" cjmark=""></i>
+								</span>
+                                <span class="revgrade"></span>
+                            </div>
+                        </li>-->
+                    </ul>
+                </div>
+                <!--评分-->
+                <div class="lvs_yinxiang">
+                    <dl>
+                        <dt>律师印象</dt>
+                        <dd>
+                            <label tag="0">热情</label>
+                            <label tag="0">务实</label>
+                            <label tag="0">服务态度好</label>
+                            <label tag="0">打赢了</label>
+                            <label tag="0">表达超赞</label>
+                            <label tag="0">犀利</label>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="lvs_shenme">
+                    <dl>
+                        <dt>写点什么</dt>
+                        <dd><textarea  name="content" cols="" rows=""></textarea></dd>
+                    </dl>
+                </div>
+                <div class="lvs_pfbtn">
+                    <a onclick="evaluate1()" href="javascript:void(0)">发布评价</a>
+                </div>
+            </div>
+            <!-- 评价订单结束 -->
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $(".lvs_yinxiang dd label").each(function(){
+            $(this).click(function(){
+                if($(this).attr("tag")==0){
+                    $(this).addClass("curr");
+                    $(this).attr("tag","1");
+                }else{
+                    $(this).removeClass("curr");
+                    $(this).attr("tag","0");
+                }
+            });
+        });
+    })
+
+    function evaluate1(){
+        var content=$("[name='content']").val();
+        var star=$('.revgrade').text();
+        var order_id="{$order_id}";
+        var lawyer_id="{$lawyer_id}";
+        //alert(order_id);die;
+        $.ajax({
+            type: "POST",
+            url: "{:U('Personal/evaluate')}",
+            dataType: "json",
+            data:{"content":content,"star":star,"order_id":order_id,"lawyer_id":lawyer_id},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 1:
+                        alert(json.msg);
+                        window.location.href="{:U('Personal/orders')}";
+                        break;
+                    case 0:
+                        alert(json.msg);
+                        break;
+                }
+            }
+        });
+    }
+
+
+</script>
+<include file="Public/footer" />

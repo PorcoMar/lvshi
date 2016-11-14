@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+    <meta name="description" content="『俺的律师』是由国家权威媒体光明日报、光明网、法制日报、法制文萃报倾力打造法律服务平台为百姓享受律师服务提供解决方案，聚合国内海量实名认证律师，为您提供离婚纠纷、侵权赔偿、债权债务、房产纠纷、劳动仲裁、知识产权、交通事故、遗产继承、医患纠纷、民事刑事、公司事务等各类案件的免费咨询和法律服务。"/>
+<title>律师专访-俺的律师网</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+<script type="text/javascript" src="__ROOT__/Public/web/js/kapian.js" ></script>
+
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg"> 
+	<div class="wrap rela">
+        <include file="Public/header" />
+    </div>
+</div>
+<!--头部结束-->
+
+<!--轮播开始-->
+<div class="box_bg">
+
+        <div id="box">
+            <pre class="prev">left</pre>
+            <pre class="next">next</pre>
+            <ul>
+                <volist name="lawyerFlag" id="lawyer">
+                    <li><a href="{:U('LawyerList/detail/id/'.$lawyer['id'])}"><img width="189px" height="252px" src="{$lawyer.thumb}" /></a><p class="shadow01"><img src="__ROOT__/Public/web/images/shadow.png" /></p></li>
+                </volist>
+            </ul>
+        </div>
+
+</div>
+
+
+<!--轮播结束-->
+
+
+<!--内容开始-->
+<div class="wrap">
+    <div class="zidong mt40 clearfix">
+        
+        <div class="zidong_left">
+        	<!--重复段落-->
+        	<div class="title01 clearfix"><span class="t01">名律专访</span></div>
+            <div class="minglv_list">
+            	<volist name="lawyerList.result" id="lawyer">
+                <div class="minglv01 clearfix">
+                	<div class="img01"><a  href="{:U('LawyerList/detail/id/'.$lawyer['id'])}"><img  width="180px" height="240px" src="{$lawyer.thumb}" /></a></div>
+                    <div class="text01">
+                    	<p class="t01" ><a class="displayPart"  href="{:U('LawyerList/detail/id/'.$lawyer['id'])}">{$lawyer.title}</a></p>
+                        <p class="t02"><a href="{:U('LawyerList/detail/id/'.$lawyer['id'])}">{$lawyer.description}</a></p>
+                        <div class="time01 clearfix">
+                        	<p class="t03">{$lawyer.create_time|date="Y-m-d H:i:s",###}</p><a href="#" class="guanzhu01">{$lawyer.views}</a>
+                        </div>
+                    </div>
+                </div>
+                </volist>
+                <assign name="current_page" value="$lawyerList.page_Index" />
+                <php>$total_page = ceil($lawyerList['page_sum']/$lawyerList['page_size']);</php>
+                <assign name="page_size" value="$lawyerList.page_size" />
+                <assign name="page_show" value="10" />
+            </div>
+             <!--page-->
+            <div class="page">
+                <table width="100%" border="0" cellspacing="5" cellpadding="0">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="5" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <include file="Public/pagination" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--page end-->
+        </div>
+        
+        <div class="zidong_right">
+        	<div class="title03 clearfix"><span>律师排行</span></div>
+        	<div class="minglv_list">
+            	<ul>
+                    <volist name="lawyerTop.result.lawyerList" id="top">
+                	<li class="clearfix">
+                    	<div class="num01"><if condition="$key+1 gt 3"><img style="margin-top: 16px;"  src="__ROOT__/Public/web/images/num0{$key+1}.jpg" /><else /><img  src="__ROOT__/Public/web/images/paihang0{$key+1}.jpg" /></if></div>
+                        <div class="num_mid rela yuan02"><a href="#" class="a01"></a><img width="66px" height="66px" src="{$top.avatar}" /></div>
+                        <div class="num_right">
+                        	<p class="t01"><a href="#">{$top.nick_name}</a></p>
+                            <p class="t02"><a href="#">{$top.law_office_name}</a></p>
+                        </div>
+                    </li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="erweima">
+            	<img src="__ROOT__/Public/web/images/erweima.jpg" />
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+<!--内容结束-->
+
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+.rules-top{ width:100%; height:80px; background:#f9390f}
+.rules-bg{ background:#fff;}
+.rules-text{  width:90%; margin:0 auto;padding-top:30px; padding-bottom:20px;}
+.rules-text span{ font-size:1rem;color:#e65600; font-weight:600}
+.rules-text p{ font-size:0.7rem; margin:0;line-height:1.8em}
+.rules-border{ padding-top:5px; margin-top:10px !important; border-top:1px solid #cccccc;}
+/*用户等级*/
+.rules-level{ width:90%; margin:0 auto; margin-top:20px}
+.rules-level span{ font-size:1rem;color:#e65600; font-weight:600; padding-top:10px; display:inline-block; margin-bottom:20px}
+.rules-level ul{ overflow:hidden; border-top:1px solid #cccccc; width:100%;}
+.rules-level .rul-lev{ font-size:0.8rem; font-weight:600; padding:10px 0; width:100% !important; text-align:left;  border:none !important;}
+.rules-level li{ float:left; width:18%; text-align:center; padding:0 1%;}
+.rules-level li img{ width:80%; margin-bottom:20px}
+.rules-level li .rules-jf{ font-size:0.5rem}
+.rules-level .rules-tow{ border:none; margin-top:20px;}
+.rules-level .rules-tow li .rules-yuan{ font-size:0.7rem; border-radius:50%; border:1px solid #f53c1d; padding:2px 0}
+.rules-level .rules-tow li{ width:19%; padding:0 0.5%;}
+.rules-level .rules-tow li .rul-right{ width:20%}
+.rules-level .rules-tow li img{ width:70%;}
+.rules-level .rules-tow .rules-jf{ font-size:0.6rem}
+.rules-inte{ margin:0 auto; margin-top:20px; width:90%;}
+.rules-inte .inte{font-size:1rem;color:#e65600; font-weight:600; padding-top:10px; display:inline-block; margin-bottom:20px}
+.rul-box{padding-bottom:60px}
+.rul-inte{ width:100%; font-size:0.7rem; overflow:hidden; background:url(../images/rules-jf.png) no-repeat; background-size:100% 100%;}
+.rul-inte .rul-inte1{ width:50%; text-align:center; float:left; padding:5px 0}
+.rul-inte .rul-inte2{ width:50%; text-align:center; float:left; padding:5px 0}
+.inte-bg{ background:none; padding:10px 0px; border-bottom:1px solid #cccccc; border-top:none; }
+.inte-bg .rul-inte1,.inte-bg .rul-inte2{ padding:0;}
+/*使用说明*/
+.use{ width:90%; margin:0 auto; padding-top:60px; font-size:0.8rem; padding-bottom:30px;}
+.use span{ color:#f53c1d; width:100%; float:left; margin-bottom:20px}
+.use i{ float:left; font-style: normal}
+.use p{ width:90%; margin:0 auto; line-height:1.8em; margin-bottom:20px}
+.use-copy{ width:90%; margin:0 auto; font-size:0.7rem; color:#999999; line-height:1.8em; padding-bottom:30px;}
+/*系统消息*/
+/*系统消息*/
+.mess-top{ height:80px; background:#f9390f; margin-bottom:10%;}
+.mess-yes{ width:80%; margin:0 auto; font-size:0.8rem; border:1px solid #cccccc; border-radius:10px;}
+.mess-yes p{ margin:0; width:100%; padding:5% 0 30% 5%; color:#000}
+.mess-but{ width:80%; margin:0 auto; margin-top:5%}
+.mess-but button{ font-size:0.8rem; float:right; font-family:"微软雅黑"; background:none; border-radius:40px; 
+                  border:1px solid #cccccc; outline:none; padding:1% 10%;}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/case.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/iconfont.css" />
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<title>案例列表</title>
+	</head>
+	
+	<body>
+		<header>
+			<div class='container padding'>
+				<div class="row details-title">
+					<div class='col-xs-1'>
+						<span class='iconfont icon-zuojiantou'></span>
+					</div>
+					<div class='col-xs-10 padding'>
+						<!-- <div class='search'>
+							<span class='iconfont icon-sousuo'></span>
+							<input type="text" placeholder="输入关键字" />
+						</div> -->
+						案例列表
+					</div>
+					<div class='col-xs-1'>
+						<span class="iconfont icon-gengduo"></span>
+						<div class="menu-hide" id="title">
+							<ul>
+								<li><a href="{:U('Mobile/Case/index')}">案例列表</a></li>
+								<li><a href="__APP__/Mobile/Goods/index">服务列表</a></li>
+								<!-- <li><a href="__APP__/Mobile/Lawyer/index">律师列表</a></li> -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class='container padding'>
+				<div class='row title'>
+					<div class='col-xs-6 padding service'>
+					
+						<span tid='{$nameplateList.result.0.id}'>
+						
+						{$name|default="维权"}
+						
+						</span>
+						<span class='iconfont icon-xiasanjiao-copy'></span>
+					</div>
+					<div class='col-xs-6 padding city'>
+						<span cid='{$cityList.result.0.id}'>
+						
+						{$city|default='北京市'}
+						
+						</span>
+						<span class='iconfont icon-xiasanjiao-copy'></span>
+					</div>
+					<div class='class'>
+						<ul id="title">
+						<volist name="nameplateList.result" id="v">
+							<li class="current" tid={$v.id}><a onclick="tid({$v.id})" href="#" class="class-active">{$v.cat_name}</a></li>
+						</volist>
+							
+						</ul>
+					</div>
+					<div class='city-hide'>
+						<ul id="area">
+						<volist name="cityList.result" id="v">
+							<li class="current" cid={$v.id}><a onclick="cid({$v.id})" href="#">{$v.name}</a></li>
+						</volist>
+						</ul>
+					</div>
+				</div>
+				<div class='row'>
+
+				<input id="tidName" type="hidden" name="tid" value="{$tid}"/>
+				<input id="cidName" type="hidden" name="cid" value="{$cid}"/>
+				
+				<volist name="list.result" id="v">
+
+					<div class='col-xs-12 case'>
+						<div class='top'>
+							<div class='case-title'>
+								<a href="__APP__/Mobile/CaseDetails/index/id/{$v.id}">
+								<if condition="$v['is_hot']==1">
+									<img src="__ROOT__/Public/web/img/case_title_icon.png" />
+								</if>	
+									<span>{$v.title}</span>
+								</a>
+							</div>
+							<div class='case-cont'>
+								{$v.description}
+							</div>
+							<div class='case-lable'>
+							<volist name="v.tag" id="vv">
+								<span>{$vv}</span>
+							</volist>	
+							</div>
+							<div style="clear: both;"></div>
+							<div class='case-foot'>
+								<img src="__ROOT__/Public/web/img/case_foot_icon.png" />
+								<span>{$v.remark}</span>
+							</div>
+						</div>
+						<div class='btm'>
+							<div class='icon'>
+								<img src="__ROOT__/Public/web/img/good_icon.png" />
+								<span>{$v.up}</span>
+							</div>							
+							<div class='icon'>
+								<img src="__ROOT__/Public/web/img/Message_icon.png" />
+								<span>{$v.comments}</span>
+							</div>
+						</div>
+					</div>
+
+				</volist>
+
+				</div>
+			</div>
+		</main>
+		<script type="text/javascript">
+			$(function(){
+				$('main div.title .city').click(function(e){
+					$('main .city-hide').slideToggle(200)
+					e.stopPropagation();
+					$('main .class').hide();
+				})
+				$('main .city-hide a').click(function(){
+					var city = $(this).html()
+					$('main .city-hide').hide();
+					$('main .city span:first-child').html(city);
+					/*var tid = $('main .service span:first-child').attr('tid');
+					var cid = $(this).parent().attr('cid');
+					//console.log('/index.php/Mobile/Case/index/cid/'+cid+'/tid/'+tid);return ;
+					location.href = '__APP__/Mobile/Case/index/cid/'+cid+'/tid/'+tid;*/
+				})
+				$('body').click(function(){
+					$('main .city-hide').hide();
+				})
+				
+				$('main div.title .service').click(function(e){
+					$('main .class').slideToggle(200)
+					e.stopPropagation();
+					$('main .city-hide').hide();
+				})
+				$('main .class a').click(function(){
+					var name = $(this).html()
+					$('main .class').hide();
+					$('main .service span:first-child').html(name);
+					/*var cid = $('main .city span:first-child').attr('cid');
+					var tid = $(this).parent().attr('tid');
+					location.href = '__APP__/Mobile/Case/index/cid/'+cid+'/tid/'+tid;*/
+				})
+				$('header div.details-title div.col-xs-1:last-child').click(function(e){
+					$('.menu-hide').show();
+					e.stopPropagation();
+				})
+				$('body').click(function(){
+					$('main .class').hide();
+					$('.menu-hide').hide();
+				})
+			})
+
+			function tid(tid){
+				var cid = $('#cidName').val();
+				window.location.href = "__APP__/Mobile/Case/index/tid/"+tid+"/cid/"+cid;
+			}
+			function cid(cid){
+				var tid = $('#tidName').val();
+				window.location.href = "__APP__/Mobile/Case/index/cid/"+cid+"/tid/"+tid;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/service.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/iconfont.css" />
+		<script src="__ROOT__/Public/mobile/js/jquery_min_1.9.js"></script>
+		<script src="__ROOT__/Public/mobile/js/bootstrap.min.js"></script>
+		<title>{$data.title}</title>
+	</head>
+	<body>
+		<if condition="$from eq app">
+		<else/>
+			<header>
+				<div class='container padding'>
+					<div class="row details-title">
+						<div class='col-xs-1'>
+							<a href="__APP__/Mobile/Goods/index">
+								<span class='iconfont icon-zuojiantou'></span>
+							</a>
+						</div>
+						<div class='col-xs-10 padding'>
+							{$data.title}
+						</div>
+						<div class='col-xs-1'>
+							<span class="iconfont icon-fenxiang "></span> 
+						</div>
+					</div>
+				</div>
+			</header>
+		</if>
+		<main>
+			<div class='container padding'>
+				<div class='row details-cont'>
+					<div style="overflow:hidden;" class='col-xs-12'>
+						<div class="cont-title" id="model-title">
+							<!--{$data.title}-->
+						</div>
+						<div class="" id="content">
+							{$data.content|html_entity_decode|htmlspecialchars_decode}
+						</div>
+				
+						<!-- <div class='col-xs-12 padding screen'>
+							<div class='row'>
+								<div class='col-xs-4 padding m'>
+									<span class='num'>{$data.views}</span>浏览
+								</div>
+								<div style="float: right;" class='col-xs-4 padding m' >
+									<span class='num'>{$data.uses}</span>使用
+								</div>
+							</div>
+						</div> -->
+
+					</div>
+				</div>
+				
+				<div class='row service-flow'>
+					<div class='col-xs-12 padding'>
+						<input type="hidden" name="id" id="DocId" value="{$data.id}">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+                        	<if condition="$from eq  app">
+                        	<else/>
+                            <a href="javascript:void(0)" onclick="downloadDoc()" class="btn btn-default" role="button">下载</a>
+                            </if>
+                            <notempty name="token">
+                                <a href="{:U('Mobile/Doc/updateDetail',array('id'=>$data['id'],'token'=>$token,'from'=>$from))}" class="btn btn-default" role="button">编辑</a>
+                            </notempty>
+                        </div>
+					</div>
+				</div>	
+
+			</div>
+		</main>
+
+		<script type="text/javascript">
+			function downloadDoc(){
+				self.location = "http://m.andlvshi.com/App";
+			}
+            /*function downloadDoc(){
+                standardPost('{:U("Mobile/Doc/download")}',{'content':$('#content').html(),'title':$('#model-title').text(),'id':$("#DocId").val()});
+            }*/
+            /*function editDoc(){
+                standardPost('{:U("Mobile/Doc/editDetail")}',{'id':$("#DocId").val()})
+            }*/
+            function standardPost (url,args)
+            {
+                var form = $("<form method='post'></form>");
+                form.attr({"action":url});
+                for (var arg in args)
+                {
+                    var input = $("<input type='hidden'>");
+                    input.attr({"name":arg});
+                    input.val(args[arg]);
+                    form.append(input);
+                }
+                form.submit();
+            }
+		</script>
+	</body>
+</html>

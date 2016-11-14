@@ -1,0 +1,28 @@
+<!--[if lt IE 7]> 
+	<style>
+.appBg01{ width:100%; height:100%; background:url(../images/app_bg01.gif) no-repeat center -30px;background-size:100% auto;position:relative;}
+.appBg02{ width:100%; height:100%; background:url(../images/app_bg02.jpg) no-repeat 0rem bottom;background-size:100%;}
+.appBg03{ width:100%; height:80%; background:url(../images/app_pic01.jpg) no-repeat center bottom;background-size:45%;}
+.appPic{ width:100%; text-align:center}
+
+.app_text{float:left; width:56%; margin-left:4.5rem;margin-top:120px;display:inline;text-align:justify;}
+.app_text dl{float:left; width:100%}
+.app_text dl dt{float:left; width:100%; padding-bottom:30px; font-size:0.2rem; line-height:0.35rem;font-weight:normal;}
+.app_text dl dt span{font-size:0.25rem; }
+.app_text dl dt span.ta1{font-size:0.25rem;font-weight:bold;}
+.app_text dl dt span.ta2{color:#e65600;font-weight:bold;}
+.app_text dl dd{font-weight:normal;float:left; width:100%; font-size:0.2rem; line-height:0.35rem;background:url(../images/app_bg03.gif) no-repeat left center; text-indent:25px}
+.app_text dl dd span{color:#e65600; font-weight:bold}
+
+.app_text01{float:left; width:7rem; margin:3.5rem 0 0 3.5rem; display:inline;}
+.fuckie{float:left; width:7rem; margin:4rem 0 0 4rem; display:inline;}
+.app_text01 dl{float:left; width:100%;text-align: justify}
+.app_text01 dl dt{float:left; width:100%; padding-bottom:10px; font-size:0.24rem; font-weight:bold; line-height:0.4rem}
+.app_text01 dl dd{float:left; width:70%; font-size:0.2rem; line-height:0.35rem}
+.app_text01 dl dd span{color:#e65600; font-weight:bold}
+
+.appLink{ position:absolute; right:4.4rem; top:5.6rem; width:2rem;height:1.5rem;}
+.appLink .a1{float:left; width:100%;height:50%;cursor:pointer;}
+.appLink .a2{float:left; width:100%;height:50%;cursor:pointer;margin-top:0.1rem;}
+</style>
+<![endif]-->

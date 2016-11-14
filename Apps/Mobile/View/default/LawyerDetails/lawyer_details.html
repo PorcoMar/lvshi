@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/mobiles/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/mobiles/css/lawyer.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/mobiles/css/iconfont.css" />
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<title>律师详情</title>
+	</head>
+	<body>
+		<header>
+			<div class='container padding'>
+				<div class="row details-title">
+					<div class='col-xs-1'>
+						<a href="__APP__/Mobile/Lawyer/index/goodsId/{$goodsId}">
+							<span class='iconfont icon-zuojiantou'></span>
+						</a>
+					</div>
+					<div class='col-xs-10 padding'>
+						律师详情
+					</div>
+					<div class='col-xs-1'>
+						<span class="iconfont icon-fenxiang "></span> 
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class='container padding'>
+				<div class='row lawyer-list'>
+					<div class='col-xs-12'>
+						<div class='row'>
+							<div class='col-xs-3 padding info'>
+								<div class='head align'>
+									<img src="__ROOT__/Public/web/img/head.jpg" />
+									<img src="__ROOT__/Public/web/img/lawyer_head_icon1.png"/>
+								</div>
+								<div class='size12 align lable'>
+								<volist name="lawyerDetails.result.lawyer_tag_name" id="v">
+
+									<span>{$v}</span>
+				
+								</volist>	
+								</div>
+								<div class="stars align">
+									<img src="__ROOT__/Public/web/img/lawyer_stars.png" />
+								</div>
+							</div>
+							<div class='col-xs-9 padding-right'>
+								<div class='row title'>
+									<div class="col-xs-4 padding">
+										<a >{$lawyerDetails.result.realname}</a>
+									</div>
+								<if condition="$lawyerDetails['result']['online']==1">
+									<div class="col-xs-4 padding">
+										<img src="__ROOT__/Public/web/img/on-line.png" />
+									</div>
+								</if>
+								</div>
+								<div class='row the'>
+									<div class='col-xs-4 padding'>
+										执业{$lawyerDetails.reseult.working_time}年
+									</div>
+									<div class='col-xs-8 padding'>
+										{$lawyerDetails.result.law_office_name.0}
+									</div>
+									<div class='col-xs-12 padding'>
+										律师证：{$lawyerDetails.result.lawyer_num}
+									</div>
+								</div>
+								<div class='row lawyer-btn'>
+									<div class='col-xs-12 padding b'>
+										<div>
+											<span class='iconfont icon-weixin'></span>
+											<span>在线咨询</span>
+										</div>
+										<div>
+											<span class='iconfont icon-tel'></span>
+											<span>电话俺</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class='row lawyer-info'>
+							<div class='col-xs-12'>
+								<div class='row cont'>
+									<div class='col-xs-4 padding'>
+										接单 <span class='num'>{$lawyerDetails.result.order_num}</span>
+									</div>
+									<div class='col-xs-4 padding'>
+										评价 <span class='num'>{$lawyerDetails.result.comments}</span>
+									</div>
+								</div> 
+							</div>
+							<div class='col-xs-12'>
+								所在地：{$lawyerDetails.result.city}  {$lawyerDetails.result.district}
+							</div>
+							<div class='col-xs-12'>
+								服务时间：{$lawyerDetails.result.working_time}
+							</div>
+							<div class='col-xs-12'>
+								{$lawyerDetails.result.bio}
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row evaluate">
+					<div class='col-xs-12'>
+					<volist name="lawyerDetails.result.member_tag_name" id="v">
+						<span>{$v}</span>
+					</volist>	
+						
+					</div>
+				</div>
+				
+				<div class='row lawyer-details'>
+					<div class="col-xs-12 padding sort">
+						<div class='row'>
+							<div class='col-xs-3 padding border-rdddddd'>
+								<a href="javascript:void(0);" class='active'>律师简介</a>
+							</div>
+							<div class='col-xs-3 padding border-rdddddd'>
+								<a href="javascript:void(0);">服务项目</a>
+							</div>
+							<div class='col-xs-3 padding border-rdddddd'>
+								<a href="javascript:void(0);">案例({$caseCount})</a>
+							</div>
+							<div class='col-xs-3 padding'>
+								<a href="javascript:void(0);">评价({$lawyerViewsCount})</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='switch'>
+					<div class='introduction-hide switch-hide'>
+						<div class='row'>
+							<div class='col-xs-12'>
+								<h4 class="bolder">律师简介：</h4>
+								<p>
+									{$lawyerDetails.result.bio}
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class='service-hide switch-hide' style="display: none;">
+					<volist name="goodsList.result" id="v">
+						<div class='row cont'>
+							<div class='col-xs-12'>
+								<div class="cont-title">
+									<a href="__APP__/Mobile/GoodsDetails/index/id/{$v.id}">{$v.goods_title}</a>
+								</div>
+								<div class='cont-title-icon col-xs-6 padding'>
+								<if condition="$v['is_hot']==1">
+									<a href="#"><img src="__ROOT__/Public/web/img/lawyer_re.png"/></a>
+								</if>	
+								<if condition="$v['is_reputation']==1">
+									<a href="#"><img src="__ROOT__/Public/web/img/lawyer_zan.png"/></a>
+								</if>
+								<if condition="$v['is_overflow']==1">	
+									<a href="#"><img src="__ROOT__/Public/web/img/lawyer_zhi.png"/></a>
+								</if>
+								<if condition="$v['is_new']==1">	
+									<a href="#"><img src="__ROOT__/Public/web/img/lawyer_xin.png"/></a>
+								</if>
+								</div>
+								<div class='cont-money col-xs-6 padding'>
+									<span>￥<span>{$v.sell_price}</span>元</span>
+								</div>
+								<div class='col-xs-12 padding consultation'>
+									服务方式：<span>{$v.service_way_name}</span>
+								</div>
+							</div>
+							<div class='col-xs-12'>
+								<div class="cont-cont">
+									<img src="__ROOT__/Public/web/img/anan_red.png" />
+									<span>{$v.remark}</span>
+								</div>
+							</div>
+							<div class='col-xs-12'>
+								<div class="cont-order">
+									<div class='pull-left'>
+										<span class='num'>{$v.lawyer_num}</span>位律师，<span class='num'>{$v.un_lawyer_num}</span>位神秘勇士
+									</div>
+									<div class='pull-right'>
+										成交<span class='num'>{$v.turnover}</span>单
+									</div>
+									<div style="clear: both;"></div>
+								</div>
+							</div>
+						</div>
+					</volist>
+
+					</div>
+					<div class='case-hide switch-hide'style="display: none;">
+						<div class='row'>
+
+						<volist name="caseList.result" id="v">
+							<div class='col-xs-12 case'>
+								<div class='top'>
+									<div class='case-title'>
+										<a href="__APP__/Mobile/caseDetails/index/id/{$v.lawyer_id}">
+											<img src="__ROOT__/Public/web/img/case_title_icon.png" />
+											<span>{$v.title}</span>
+										</a>
+									</div>
+									<div class='case-cont'>
+										{$v.description}
+									</div>
+									<div class='case-lable'>
+									<volist name="v.tag" id="vv">
+										<span>{$vv}</span>
+									</volist>		
+									</div>
+									<div style="clear: both;"></div>
+									<div class='case-foot'>
+										<img src="__ROOT__/Public/web/img/case_foot_icon.png" />
+										<span>{$v.remark}</span>
+									</div>
+								</div>
+								<div class='btm'>
+									<div class='icon'>
+										<img src="__ROOT__/Public/web/img/good_icon.png" />
+										<span>{$v.up}</span>
+									</div>
+									<div class='icon'>
+										<img src="__ROOT__/Public/web/img/Message_icon.png" />
+										<span>{$v.comments}</span>
+									</div>
+								</div>
+							</div>
+							
+						</volist>
+
+						</div>
+					</div>
+					<div class='evaluate-hide switch-hide'style="display: none;">
+					<volist name="lawyerComment.result" id="v">
+						<div class='row'>
+							<div class='col-xs-12 padding head'>
+								<div class='col-xs-2'>
+									<img src="__ROOT__/Public/web/img/head.jpg" />
+								</div>
+								<div class='col-xs-10 padding align-left'>
+									{$v.member_nickname}
+								</div>
+							</div>
+							<div class='col-xs-12'>
+								{$v.content}
+							</div>
+							<div class='col-xs-12 time'>
+								{$v.create}
+							</div>
+						</div>
+					</volist>
+
+					</div>
+				</div>
+			</div>
+		</main>
+		<script type="text/javascript">
+			$(function(){
+				$('.lawyer-details .sort a').click(function(){
+					$('.lawyer-details .sort .col-xs-3 a').eq($(this).parent().index()).addClass('active').parent().siblings().find('a').removeClass('active');
+					$('.switch-hide').hide().eq($(this).parent().index()).show();
+				})
+			})
+		</script>
+	</body>
+</html>

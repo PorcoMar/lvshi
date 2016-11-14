@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__ROOT__/Public/mobile/css/base.css" />
+    <link rel="stylesheet" href="__ROOT__/Public/mobile/css/service.css" />
+    <link rel="stylesheet" href="__ROOT__/Public/mobile/css/iconfont.css" />
+    <script src="__ROOT__/Public/mobile/js/jquery_min_1.9.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <title>文书列表</title>
+</head>
+<body>
+<if condition="$from eq app">
+<else/>
+<header>
+    <div class='container padding'>
+        <div class="row details-title">
+            <div class='col-xs-1'>
+                <span class='iconfont icon-zuojiantou'></span>
+            </div>
+            <div class='col-xs-10 padding'>
+                我的文书
+            </div>
+        </div>
+    </div>
+</header>
+</if>
+<main>
+    <div class='container padding'>
+        <if condition="$docsList['code'] eq 1000">
+            <volist name="docsList.result" id="doc">
+                <div class='row cont'>
+                    <div class='col-xs-12'>
+                        <div class="cont-title">
+                            <a href='{:U("Mobile/Doc/editDetail",array("id"=>$doc["doc_demo_id"],"token"=>"$token","from"=>"$from"))}' style="display:block;width：100%" >{$doc.title}</a>
+                        </div>
+                    </div>
+                    <div class='col-xs-12'>
+                        <div class="cont-cont">
+                            <span><a href='{:U("Mobile/Doc/editDetail",array("id"=>$doc["doc_demo_id"],"token"=>"$token","from"=>"$from"))}'>{$doc.description|html_entity_decode|htmlspecialchars_decode}</a></span>
+                        </div>
+                    </div>
+                    <div class='col-xs-12'>
+                        <div class="cont-order">
+                            <div class='pull-left'>
+                                <span class='num'>{$doc.views}</span>浏览，<span class='num'>{$doc.uses}</span>使用
+                            </div>
+                            <div class='pull-right'>
+                                <span class='num'>{$doc.dowland_num}</span>下载
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                    </div>
+                </div>          
+            </volist>
+        <else />
+        </if>
+    </div>
+    <div>
+        <input type="hidden" id= "pageCount"   name="page_count" value="{$pageCount}">
+        <input type="hidden" id= "page"   name="page_index" value="{$page}">
+        <if condition ="$pageCount eq 1">    
+        <elseif condition="$page eq $pageCount" />
+            <a id="up" onclick="up()" href="javascript:void(0);" style="color:red;display:block; font-size:20px; text-align:center;" >上一页</a>
+         <elseif condition = "($page eq 1) AND ($pageCount gt 1) " />
+            <a id="up" onclick="down()" href="javascript:void(0);" style="color:red;display:block; font-size:20px; text-align:center;" >下一页</a>
+        <else />
+            <a  id="down" onclick="down()" href="javascript:void(0);" style="width:70px;color:red;display:block; font-size:20px;margin-right:25%;float:right;">下一页</a>
+            <a  id="up" onclick="up()" href="javascript:void(0);" style="width:70px; color:red;display:block; font-size:20px;margin-left:25%; float:left;">上一页</a>
+        </if>
+    </div>
+</main>
+<script type="text/javascript">
+    function doc(id){
+
+        var names=$("#names").val();
+        window.location.href="__APP__/Mobile/doc/index/catId/"+id;
+        //alert(names);
+    }
+
+    function down(){
+                var catId = $("#catId").val();
+                var page  = $("#page").val();
+                var token = "{$token}"
+                var from  = "{$from}"
+                var pageCount = $("#pageCount").val();
+                var type = 1;
+                var url = "{:U('Doc/myDoc')}";
+                url += '/page/'  + page ;
+                url += '/type/'  + type; 
+                url += '/token/' + token
+                location.href = url;
+                        
+            }
+
+    function up(){
+        var catId = $("#catId").val();
+        var page  = $("#page").val();
+        var token = "{$token}"
+        var from  = "{$from}"
+        var type = 2;
+        var url = "{:U('Doc/myDoc')}";
+        url += '/page/'  + page ;
+        url += '/type/'  + type ;
+        url += '/token/' + token
+        location.href = url;
+    }
+</script>
+</body>
+</html>

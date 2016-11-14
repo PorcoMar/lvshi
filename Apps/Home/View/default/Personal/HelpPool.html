@@ -1,0 +1,39 @@
+<include file="Public/personalHeader" />
+<div class="mess_right">
+	<div class="mess_tag"><span>我的求助</span></div>
+	<div class="hf_box">
+		<div class="qzc_title">
+			<dl>
+				<dd style="width:330px;" class="p1">求助内容</dd>
+				<dd style="width:155px;">发布时间</dd>
+				<dd style="width:155px;">应答人数</dd>
+				<dd style="width:155px;">紧急程度</dd>
+			</dl>
+		</div>
+		<!--列表循环-->
+		<div class="qzc_list">
+			<volist name="help.result" id="v">
+				<dl>
+					<dt>
+						<span><a href="{:U('helpList/detail/id/'.$v['id'])}">{$v.title}</a>
+							<if condition="$v.is_hot eq 1">
+								<img src="__ROOT__/Public/web/images/icon_de01.png" alt="" align="absmiddle" />
+							</if>
+						</span>
+					</dt>
+					<dd class="time" style="width: 175px">{$v.create_time|date="Y-m-d",###}</dd>
+					<dd class="rs" style="width: 140px">{$v.help_no}人应答</dd>
+					<dd class="cd" style="width: 155px"><span class="yb">一般</span></dd>
+				</dl>
+			</volist>
+		</div>
+	</div>
+	<!--分页-->
+	<assign name="current_page" value="$help.page_Index" />
+	<php>$total_page = ceil($help['page_sum']/$help['page_size']);</php>
+	<assign name="page_size" value="$help.page_size" />
+	<assign name="page_show" value="10" />
+	<include file="Public/pagination" />
+</div>
+<!--底部开始-->
+<include file="Public/footer" />

@@ -1,0 +1,212 @@
+<div class="serviceBox">
+    <div class="mainBox">
+        <div class="service_title">
+            <div class="Twotitle">金牌律师</div>
+            <div class="main_rmcity">
+                <dl>
+
+                    <dd>
+                        <volist name="provinces" id='two'>
+                            <a onClick='search_show_city("CITY2","{$two.id}",this)' href="javascript:void(0)">{$two.name}</a>
+                        </volist>
+                    </dd>
+                </dl>
+            </div>
+            <div class="main_szcity">
+                <dl>
+                    <dt>所在城市：</dt>
+                    <dd>
+                        <div class="selectbg wt200">
+                            <input type="hidden" name="CITY2" id="CITY2" value="" />
+                            <div class="options_curr" id="CITY2_Selected">请选择城市</div>
+                            <ul class="options" id="CITY2_Sel">
+                                <volist name='provinces' id='province'>
+                                    <li onClick='search_show_city("CITY2","{$province.id}",this)'>{$province.name}</li>
+                                </volist>
+                            </ul>
+                        </div>
+                    </dd>
+                    <dd>
+                        <div class="selectbg wt160">
+                            <input type="hidden" name="ACOUTNY1" id="ACOUTNY1" value="" />
+                            <div class="options_curr" id="ACOUTNY1_Selected">选择县区</div>
+                            <ul class="options" id="ACOUTNY1_Sel">
+                            </ul>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="qz_list">
+            <volist name="lawyerGold.result" id="lawyerList">
+                <dl>
+                    <dt><span></span><img src="{$lawyerList.avatar}" alt="" /></dt>
+                    <dd class="text">
+                        <div class="zname">
+                            <ul>
+                                <li class="name"><em>{$lawyerList.real_name}</em><foreach name="lawyerList.tag_name" item="tag" ><label>{$tag}</label></foreach></li>
+                                <li class="star"><span class="star{$lawyerList.style}">
+                            </ul>
+                        </div>
+                        <span class="jian">{$lawyerList.bio}</span>
+                    </dd>
+                    <dd class="view"><a href="javascript:void(0)" onClick="jump({$lawyerList.member_id})" class="gybtn btn80red">就选TA</a></dd>
+                </dl>
+            </volist>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    /**
+    * 金牌律师查询
+    * @param pos
+    * @param searchType
+    * @param href
+    */
+/*    function gold(province){
+    var province=province;
+    $.ajax({
+    type: "POST",
+    url: "{:U('Help/province')}",
+    dataType: "json",
+    data: {"province":province},
+    success: function(res){
+    var prairies = '';
+    if(res.code!='999'){
+       // console.log(res.result)
+    $.each(res.result, function(k,v){
+        var tmp=Math.ceil(Math.floor(v.star)+v.star) ;
+        //alert(tmp);
+        prairies+='<dl>';
+        prairies+='<dt><span></span><img src="'+v.avatar+'" alt="" /></dt>';
+        prairies+='<dd class="text">';
+            prairies+='<div class="zname">';
+                prairies+='<ul>';
+                    prairies+='<li class="name"><em>'+ v.real_name+'</em>';
+                        $.each(v.tag_name, function(kk,vv){
+                        prairies+='<label>'+ vv+'</label>';
+                        });
+                        prairies+='</li>';
+                    prairies+='<li class="star"><span class="star'+tmp+'"></span></li>';
+                    prairies+='</ul>';
+                prairies+='</div>';
+            prairies+='<span class="jian">'+ v.bio+"</span>";
+            prairies+='</dd>';
+        prairies+='<dd class="view"><a href="javascript:void" class="gybtn btn80red">就选TA</a></dd>';
+        prairies+='</dl>';
+    });
+    }else{
+    var prairies='<li><em>暂无数据</em></li>';
+    }
+    $('.qz_list').html(prairies);
+    }
+    });
+    }*/
+
+
+    function search_show_city(pos,searchType,href){
+    $("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+    $("#"+pos+"_Sel").hide();
+    document.getElementById(pos+"_Selected").innerHTML=href.innerHTML;
+    $("#"+pos).focus();
+    $("#"+pos).blur();
+    $("#ACOUTNY1_Sel").children("li").remove();
+    var pId=searchType;
+    $.ajax({
+    type:"post",
+    dataType:"json",
+    url:"{:U('Help/province')}",
+    data:'pId='+pId,
+    success:function(result){
+    var city = '';
+    for(var i=0;i<result.openCitys.length;i++){
+        city += '<li onClick="search_city1(\'ACOUTNY1\','+result.openCitys[i].id+',this)">'
+        city += result.openCitys[i].name;
+        city +='</li>';
+    }
+    var prairies = '';
+    if(result.lawyer!=null){
+    // console.log(res.result)
+    $.each(result.lawyer, function(k,v){
+        var tmp=Math.ceil(Math.floor(v.star*1)+v.star*1);
+        prairies+='<dl>';
+        prairies+='<dt><span></span><img src="'+v.avatar+'" alt="" /></dt>';
+        prairies+='<dd class="text">';
+        prairies+='<div class="zname">';
+        prairies+='<ul>';
+        prairies+='<li class="name"><em>'+ v.real_name+'</em>';
+        $.each(v.tag_name, function(kk,vv){
+            prairies+='<label>'+ vv+'</label>';
+        });
+        prairies+='</li>';
+        prairies+='<li class="star"><span class="star'+tmp+'"></span></li>';
+        prairies+='</ul>';
+        prairies+='</div>';
+        prairies+='<span class="jian">'+ v.bio+"</span>";
+        prairies+='</dd>';
+        prairies+='<dd class="view"><a href="{:U('LawyerDetail/index')}'+'/member_id/'+ v.member_id+'"  class="gybtn btn80red">就选TA</a></dd>';
+        prairies+='</dl>';
+    });
+    }else{
+        var prairies='<li><em>暂无数据</em></li>';
+    }
+        $('.qz_list').html(prairies);
+        $('#ACOUTNY1_Sel').append(city);
+        }
+    })
+}
+    function search_city1(pos,searchType,href){
+        $("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+        $("#"+pos+"_Sel").hide();
+        document.getElementById(pos+"_Selected").innerHTML=href.innerHTML;
+        $("#"+pos).focus();
+        $("#"+pos).blur();
+        $("#ACOUTNY_Sel").children("li").remove();
+
+        var city = searchType;
+        $.ajax({
+        type:"post",
+        dataType:"json",
+        url:"{:U('Help/findCity')}",
+        data: {"city":city},
+        success:function(res){
+        //console.log(res.result)
+        var prairies1 = '';
+        if(res['code']!='999'){
+        $.each(res.result, function(k,v){
+            var tmp=Math.ceil(Math.floor(v.star*1)+v.star*1);
+            prairies1+='<dl>';
+                prairies1+='<dt><span></span><img src="'+v.avatar+'" alt="" /></dt>';
+                prairies1+='<dd class="text">';
+                    prairies1+='<div class="zname">';
+                        prairies1+='<ul>';
+                            prairies1+='<li class="name"><em>'+ v.real_name+'</em>';
+                                $.each(v.tag_name, function(kk,vv){
+                                prairies1+='<label>'+ vv+'</label>';
+                                });
+                                prairies1+='</li>';
+                            prairies1+='<li class="star"><span class="star'+tmp+'"></span></li>';
+                            prairies1+='</ul>';
+                        prairies1+='</div>';
+                    prairies1+='<span class="jian">'+ v.bio+"</span>";
+                    prairies1+='</dd>';
+                prairies1+='<dd class="view"><a href="{:U('LawyerDetail/index')}'+'/member_id/'+ v.member_id+'" class="gybtn btn80red">就选TA</a></dd>';
+                prairies1+='</dl>';
+            });
+            }else{
+                prairies1='<li><em>暂无数据</em></li>';
+            }
+            $('.qz_list').html(prairies1);
+        }
+    })
+    }
+
+     function jump(id){
+        var url = "{:U('LawyerDetail/index')}";
+            url += '/member_id/' + id;
+            location.href = url;
+
+     }
+
+
+</script>

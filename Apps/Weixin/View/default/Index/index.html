@@ -1,0 +1,89 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>俺的律师</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/style.css">
+<!-- Slider Plugin -->
+<script src="__ROOT__/Public/Weixin/js/jquery-1.9.1.min.js"></script>
+<script src="__ROOT__/Public/Weixin/js/jquery.glide.min.js"></script>
+<style>
+/**
+			 * Demo styles
+			 * Only for example purposes
+			 * Remove in production
+			 */
+			
+			/* Bad and ugly reset */
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+li{ list-style:none;}
+.box {
+	width: 100%;
+	height: 100%;
+	line-height: 5;
+	text-align: center;
+	font-size: 5em;
+	color: #fff;
+	text-transform: capitalize;
+	vertical-align: middle;
+}
+#submit{
+	 font-size:28px;
+	 position:absolute;
+	 bottom:0;
+	 margin-left:-10%
+	 }
+</style>
+</head>
+<body>
+<div class="slider">
+	<ul class="slides">
+		<li class="slide" style=" height:100%">
+			<div class="box" style="background: url(__ROOT__/Public/Weixin/images/4.jpg) no-repeat;background-size:100% 100%;"></div>
+		</li>
+		<li class="slide">
+			<div class="box" style="background-color: #16a085;"></div>
+		</li>
+		<li class="slide">
+			<div class="box" style="background-color: #f1c40f;"></div>
+		</li>
+		<li class="slide">
+			<div class="box" style="background-color: #c0392b;">
+            
+            <span id="submit"  class="photosBy rsAbsoluteEl" 
+            data-fade-effect="fa;se" data-move-offset="40" 
+            data-move-effect="bottom" data-speed="200">进入</span>
+            </div>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript">
+			var glide = $('.slider').glide({
+					//autoplay:true,//是否自动播放 默认值 true如果不需要就设置此值
+					animationTime:500, //动画过度效果，只有当浏览器支持CSS3的时候生效
+					arrows:true, //是否显示左右导航器
+					arrowsWrapperClass: "arrowsWrapper",//滑块箭头导航器外部DIV类名
+					arrowMainClass: "slider-arrow",//滑块箭头公共类名
+					arrowRightClass:"slider-arrow--right",//滑块右箭头类名
+					arrowLeftClass:"slider-arrow--left",//滑块左箭头类名
+					arrowRightText:">",//定义左右导航器文字或者符号也可以是类
+					arrowLeftText:"<",
+
+					nav:true, //主导航器也就是本例中显示的小方块
+					navCenter:true, //主导航器位置是否居中
+					navClass:"slider-nav",//主导航器外部div类名
+					navItemClass:"slider-nav__item", //本例中小方块的样式
+					navCurrentItemClass:"slider-nav__item--current" //被选中后的样式
+				});	
+				$('#submit').click(function(){
+            window.location.href="{:U('Login/index')}";
+        });
+				
+		</script>
+</body>
+</html>

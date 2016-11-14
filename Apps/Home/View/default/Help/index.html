@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+
+<!--菜单结束-->
+<div class="MainCenter">
+	<div class="mainBox">		
+		<div class="detail_left">
+			<div class="detail_left_top"></div>
+			<div class="detail_left_center">
+				
+				<div class="qz_add">
+					<dl>
+						<dt><span>*</span>所在城市：</dt>
+						<dd>
+							<div class="selectbg wt160">
+							  <input type="hidden" name="CITY" id="CITY" value="" />
+							  <div class="options_curr" id="CITY_Slected">请选择</div>
+								 <ul class="options" id="CITY_Sel">
+									 <foreach name="prairies" item="v">
+										 <li onClick='search_show("CITY","{$v.id}",this)'>{$v.name}</li>
+									 </foreach>
+								</ul>
+							</div>
+						</dd>
+						<dd>
+							<div class="selectbg wt160">
+							  <input type="hidden" name="ACOUTNY" id="ACOUTNY" value="" />
+							  <div class="options_curr" id="ACOUTNY_Slected">选择县区</div>
+								 <ul class="options" id="ACOUTNY_Sel">
+								</ul>
+							</div>
+						</dd>
+					</dl>
+					<dl>
+						<dt><span>*</span>求助类型：</dt>
+						<dd>
+							<div class="selectbg wt160">
+							  <input type="hidden" name="QZLX1" id="QZLX1" value="" />
+							  <div class="options_curr" id="QZLX1_Slected">请选择</div>
+								 <ul class="options" id="QZLX1_Sel">
+								<foreach  name="sign" item="v">
+									<li onClick="search_show('QZLX1',{$v.id},this)">{$v.cat_name}</li>
+								</foreach>
+								</ul>
+							</div>
+						</dd>
+						<!--<dd>
+							<div class="selectbg wt160">
+							  <input type="hidden" name="QZLX2" id="QZLX2" value="" />
+							  <div class="options_curr" id="QZLX2_Slected">合同纠纷</div>
+								 <ul class="options" id="QZLX2_Sel">
+									<li onClick="search_show('QZLX2','1',this)">合同纠纷2</li>
+									<li onClick="search_show('QZLX2','2',this)">合同纠纷1</li>
+								</ul>
+							</div>
+						</dd>-->
+					</dl>
+					<dl>
+						<dt><span>*</span>求助意向：</dt>
+						<dd>
+						<div class="selectbg wt160">
+							<input type="hidden" name="QZYX" id="QZYX" value="" />
+							<div class="options_curr" id="QZYX_Slected">请选择</div>
+							<ul class="options" id="QZYX_Sel">
+								<foreach name="navCates" item="v">
+									<li onClick="search_show('QZYX',{$v.id},this)">{$v.cat_name}</li>
+								</foreach>
+
+							</ul>
+						</div>
+						</dd>
+					</dl>
+					<dl>
+						<dt><span>*</span>服务时间：</dt>
+						<dd class="inbg">
+							<input id="start" name="start" type="date" class="sinput" value="<php>echo date('Y-m-d',time());</php>" />
+						</dd>
+						<dd><img src="__ROOT__/Public/web/images/icon_data.gif" alt="" /></dd>
+						<dd class="inbg">
+							<input id="over" name="over" type="date" class="sinput" value="<php>echo date('Y-m-d',time());</php>" />
+						</dd>
+						<dd><img onclick="" src="__ROOT__/Public/web/images/icon_data.gif" alt="" /></dd>
+					</dl>
+					<dl>
+						<dt><span>*</span>联系电话：</dt>
+						<dd class="inbg"><input id="mobile" name="" type="text" class="sinput" value="请输入您的联系电话" onfocus='if(this.value=="请输入您的联系电话"){this.value="";}' onblur='if(this.value==""){this.value="请输入您的联系电话";}' /></dd>
+					</dl>
+					<dl>
+						<dt><span>*</span>说明：</dt>
+						<br/>
+						<dd>
+							<br/>
+							<input type="checkbox" name="is_only_response" value="1"/>只找律师应答<br/>
+							<input type="checkbox" name="is_phone" value="1"/>可打电话联系<br/>
+							<input type="checkbox" name="is_benefit_lawyer" value="1"/>我希望公益律师为我服务
+						</dd>
+						
+					</dl>
+					<!-- <dl>
+						<dt><span>*</span>短信验证：</dt>
+						<dd class="inbg"><input name="" type="text" class="sinput" value="请输入您收到的验证码" onfocus='if(this.value=="请输入您收到的验证码"){this.value="";}' onblur='if(this.value==""){this.value="请输入您收到的验证码";}' /></dd>
+						<dd class="hq"><a href="javascript:void(0)">获取验证码</a></dd>
+					</dl>
+					<dl class="none">
+						<dt></dt>
+						<dd>如果您在2分钟内没有收到短信，可重新获取。多次获取验证码，以最后一次短信为准。</dd>
+					</dl> -->
+					<!-- <dl class="jl">
+						<em>0</em><span>我希望贴身律师提供上门服务</span>
+					</dl> -->
+					<dl class="btn">
+						<div class="sub" align="center"></div>
+						<dd><input id="register" type="button" value="同意用户协议并提交" /></dd>
+						<dd><a href="{:U('Public/register')}" target="_blank" class="red">查看协议</a></dd>
+					</dl>
+				</div>				
+			</div>
+			<div class="detail_left_bottom">
+			</div>
+		</div>
+		<!--右侧菜单-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--金盘律师-->
+{:W('Web/lawyerMenu')}
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>x
+</html>
+<script type="text/javascript">
+	$('#register').click(function(){
+		var pId=$('#CITY').val();
+		var cId=$('#ACOUTNY').val();
+		var turnType=$('#QZLX1').val();
+		var turnIntention=$('#QZYX').val();
+		var start=$('#start').val();
+		var over=$('#over').val();
+		var mobile = $("#mobile").val();
+		var response = $("[name=is_only_response]").val();
+		var phone = $("[name=is_phone]").val();
+		var lawyer = $("[name=is_benefit_lawyer]").val();
+		/*开始时间转换成时间戳*/
+			var f = start.split(' ', 2);
+			var d = (f[0] ? f[0] : '').split('-', 3);
+			var t = (f[1] ? f[1] : '').split(':', 3);
+			var start= (new Date(
+							parseInt(d[0], 10) || null,
+							(parseInt(d[1], 10) || 1) - 1,
+							parseInt(d[2], 10) || null,
+							parseInt(t[0], 10) || null,
+							parseInt(t[1], 10) || null,
+							parseInt(t[2], 10) || null
+					)).getTime() / 1000;
+		/*结束时间转换成时间戳*/
+		var f = over.split(' ', 2);
+		var d = (f[0] ? f[0] : '').split('-', 3);
+		var t = (f[1] ? f[1] : '').split(':', 3);
+		var over= (new Date(
+						parseInt(d[0], 10) || null,
+						(parseInt(d[1], 10) || 1) - 1,
+						parseInt(d[2], 10) || null,
+						parseInt(t[0], 10) || null,
+						parseInt(t[1], 10) || null,
+						parseInt(t[2], 10) || null
+				)).getTime() / 1000;
+		//alert(start);die;
+		$("#msg").remove();
+		if(pId=='' || cId=='')
+		{
+			$('<div id="msg" />').html("请选择所在城市！").appendTo('.sub').fadeOut(2000);
+			return false;
+		}
+		if(turnType==''){
+			$('<div id="msg" />').html("请选择求助类型！").appendTo('.sub').fadeOut(2000);
+			return false;
+		}
+		if(turnIntention=='') {
+			$('<div id="msg" />').html("请选择求助意向！").appendTo('.sub').fadeOut(2000);
+			return false;
+		}
+		if(start==''){
+			$('<div id="msg" />').html("请选择服务开始时间！").appendTo('.sub').fadeOut(2000);
+			$("#start").focus()
+			return false;
+		}
+		if(over==''){
+			$('<div id="msg" />').html("请选择服务结束时间！").appendTo('.sub').fadeOut(2000);
+			$("#over").focus()
+			return false;
+		}
+		if(start >= over ){
+			$('<div id="msg" />').html("请选择正确的服务时间！").appendTo('.sub').fadeOut(2000);
+			return false;
+		}
+		if(mobile.length!=11)
+		{
+			$('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+			$("#mobile").focus();
+			return false;
+		}
+		var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+		if(!myreg.test(mobile))
+		{
+			$('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+			$("#mobile").focus();
+			return false;
+		}
+		$.ajax({
+			type: "POST",
+			url: "{:U('Help/adopt')}",
+			dataType: "json",
+			data: {"pId":pId,"cId":cId,"turnType":turnType,"turnIntention":turnIntention,
+				"start":start,"over":over,"mobile":mobile,"response":response,"phone":phone,"lawyer":lawyer},
+			/*beforeSend: function(){
+				$('<div id="msg" />').addClass("loading").html("求助发送中...").css("color","#999")
+						.appendTo('.sub');
+			},*/
+			success: function(json){
+				switch (json.status)
+				{
+					case 0:
+						$("#msg").remove();
+						$('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+								.fadeOut(2000);
+						break;
+					case 1:
+						alert('求助已发送');
+						window.location.href="{:U('Help/index')}";
+						break;
+					case 2:
+						/*$('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+								.fadeOut(2000);*/
+						alert('请先登入');
+						window.location.href="{:U('Passport/index')}";
+						break;
+				}
+			}
+		});
+	});
+	function search_show(pos,searchType,href){
+		$("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+		$("#"+pos+"_Sel").hide();
+		document.getElementById(pos+"_Slected").innerHTML=href.innerHTML;
+		$("#"+pos).focus();
+		$("#"+pos).blur();
+		var pId=searchType;
+
+
+		$.ajax({
+			type:"post",
+			dataType:"json",
+			url:'{:U("Case/getCity")}',
+			data:'pId='+pId,
+			success:function(result){
+				var city = '';
+				for(var i=0;i<result.openCitys.length;i++){
+					city += '<li onClick="search(\'ACOUTNY\','+result.openCitys[i].id+',this)">';
+					city += result.openCitys[i].name;
+					city +='</li>';
+				}
+				$('#ACOUTNY_Sel').html(city);
+			}
+		})
+	}
+	/*城市*/
+	function search(pos,searchType,href){
+		$("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+		$("#"+pos+"_Sel").hide();
+		document.getElementById(pos+"_Slected").innerHTML=href.innerHTML;
+		$("#"+pos).focus();
+		$("#"+pos).blur();
+	}
+</script>

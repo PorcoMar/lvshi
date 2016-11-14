@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/service.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/iconfont.css" />
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<title>服务列表</title>
+	</head>
+	<body>
+		<header>
+			<div class='container padding'>
+				<div class="row details-title">
+					<div class='col-xs-1'>
+						<span class='iconfont icon-zuojiantou'></span>
+					</div>
+					<div class='col-xs-10 padding'>
+						<!--<div class='search'>
+							<a href='#'><span class='iconfont icon-sousuo'></span></a>
+							<input type="text" placeholder="输入关键字" />
+						</div>-->
+						服务列表
+					</div>
+					<div class='col-xs-1'>
+						<span class="iconfont icon-gengduo"></span>
+						<div class="menu-hide">
+							<ul>
+								<li><a href="__APP__/Mobile/Case/index">案例列表</a></li>
+								<li><a href="__APP__/Mobile/Goods/index">服务列表</a></li>
+								<!-- <li><a href="__APP__/Mobile/Lawyer/index">律师列表</a></li> -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class='container padding'>
+				<div class='row service'>
+					<div class='service-title'>
+						<div class='col-xs-6 padding service-class' val="show">
+							<span>{$category|default="权利分明"}</span>
+							<span class='iconfont icon-xiasanjiao-copy'></span>
+						</div>
+						<div class='col-xs-6 padding sort' val='show'>
+							<span>{$nameOrder}</span>
+							<span class='iconfont icon-xiasanjiao-copy'></span>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div class='class'>
+					
+						<div style="width:100%" class='col-xs-4 padding'>
+							<ul>
+							<volist name="goodsCategoryList.result" id="v">
+								<li>
+									<a href="{:U('Mobile/Goods/index/signsId/'.$v['id'])}" class="class-active">{$v.cat_name}</a>
+								</li>
+							</volist>
+							
+							</ul>
+						</div>
+						<!-- <div class='col-xs-8 padding'>
+						<volist name="goodsCategoryList.result" id="v">
+							<ul class="class-hide">
+							<volist name="v.subCat" id="vv">
+								<li><a href="#" onclick="goods({$vv.id})">{$vv.cat_name}</a></li>
+							</volist>	
+							</ul>
+						</volist>	
+						</div> -->
+						<input id=catId type="hidden" name="catId" value="{$catId}"/>
+						<input id=names type="hidden" name="names" value="{$name}"/>
+					</div>
+					<div class='sort-hide'>
+						<ul>
+						
+							<li><a onclick="categoryGoods(1)" href="#">智能排序</a></li>
+							<li><a onclick="categoryGoods(3)" href="#">按成交量</a></li>
+							<li><a onclick="categoryGoods(5)" href="#">按价格</a></li>
+							<li><a onclick="categoryGoods(2)" href="#">按评价</a></li>
+
+						</ul>
+					</div>
+					<div class='class-mask'></div>
+				</div>
+				<volist name="goodsList.result" id="v">
+				<div class='row cont'>
+					<div class='col-xs-12'>
+						<div class="cont-title">
+							<a href="__APP__/Mobile/GoodsDetails/index/id/{$v.id}">{$v.goods_title}</a>
+						</div>
+						<div class='cont-title-icon col-xs-6 padding'>
+							<if condition="$v['is_hot']==1">
+							<a href="#"><img src="__ROOT__/Public/web/img/lawyer_re.png"/></a>
+							</if>
+							<if condition="$v['is_reputation']==1">
+							<a href="#"><img src="__ROOT__/Public/web/img/lawyer_zan.png"/></a>
+							</if>
+							<if condition="$v['is_overflow']==1">
+							<a href="#"><img src="__ROOT__/Public/web/img/lawyer_zhi.png"/></a>
+							</if>
+							<if condition="$v['is_new']==1">
+							<a href="#"><img src="__ROOT__/Public/web/img/lawyer_xin.png"/></a>
+							</if>
+						</div>
+						<div class='cont-money col-xs-6 padding'>
+							<span>￥<span>{$v.sell_price}</span>元</span>
+						</div>
+						<div class='col-xs-12 padding consultation'>
+							服务方式：<span>{$v.service_way_name}</span>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-cont">
+							<img src="__ROOT__/Public/web/img/anan_red.png" />
+							<span>{$v.remark}</span>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-order">
+							<div class='pull-left'>
+								<span class='num'>{$v.lawyer_num}</span>位律师，<span class='num'>{$v.un_lawyer_num}</span>位神秘勇士
+							</div>
+							<div class='pull-right'>
+								成交<span class='num'>{$v.turnover}</span>单
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+				</div>
+				</volist>
+			</div>
+		</main>
+		<script type="text/javascript">
+			$(function(){
+				$('.class .col-xs-4 ul li a').click(function(){
+					$('.class .col-xs-4 ul li a').eq($(this).parent().index()).addClass('class-active').parent().siblings().find('a').removeClass('class-active');
+					$('.class-hide').hide().eq($(this).parent().index()).show();
+				})
+				$('.service-class').click(function(){
+					if($(this).attr('val') == 'show'){
+						$(this).attr('val','hide');
+						$('.sort').attr('val','show');
+						$(this).find('span:last-child').addClass('.iconfont icon-shangsanjiao').removeClass('.iconfont icon-xiasanjiao-copy')
+						$(this).css('color','red');
+						$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+						$('.sort').css('color','#333333');
+						$('.class').show();
+						$('.class-mask').show();
+						$(document).on('touchmove',function(e){
+						    e.preventDefault();
+						})
+						$('.sort-hide').hide();
+					}else if($(this).attr('val') == 'hide'){
+						$(this).attr('val','show');
+						$(this).find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+						$(this).css('color','#333333');
+						$('.class').hide();
+						$('.class-mask').hide();
+						$(document).unbind('touchmove');
+						$('.sort-hide').hide();
+					}
+				})
+				
+				$('.class-hide a').click(function(){
+					var cont = $(this).html();
+					$('.service-class span:first-child').html(cont)
+					$('.service-class').attr('val','show');
+					$('.class').hide();
+					$('.class-mask').hide();
+					$('.service-class').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.service-class').css('color','#333333');
+					$(document).unbind('touchmove');
+				})
+				$('.class-mask').click(function(){
+					$('.service-class').attr('val','show');
+					$('.sort').attr('val','show');
+					$('.class').hide();
+					$('.sort-hide').hide();
+					$('.class-mask').hide();
+					$('.service-class').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.service-class').css('color','#333333');
+					$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.sort').css('color','#333333');
+					$(document).unbind('touchmove');
+				})
+				
+				$('.sort').click(function(){
+					if($(this).attr('val') == 'show'){
+						$(this).attr('val','hide');
+						$('.service-class').attr('val','show');
+						$('.service-class').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+						$('.service-class').css('color','#333333');
+						$('.sort-hide').show();
+						$('.class-mask').show();
+						$('.sort').find('span:last-child').addClass('.iconfont icon-shangsanjiao').removeClass('.iconfont icon-xiasanjiao-copy')
+						$(this).css('color','red');
+						$(document).on('touchmove',function(e){
+						    e.preventDefault();
+						})
+						$('.class').hide();
+						
+					}else if($(this).attr('val') == 'hide'){
+						$(this).attr('val','show');
+						$('.sort-hide').hide();
+						$('.class-mask').hide();
+						$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+						$(this).css('color','#333333');
+						$(document).unbind('touchmove');
+						$('.class').hide();
+					}
+				})
+				$('.sort-hide a').click(function(){
+					var cont = $(this).html();
+					$('.sort span:first-child').html(cont)
+					$('.sort').attr('val','show');
+					$('.sort-hide').hide();
+					$('.class-mask').hide();
+					$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.sort').css('color','#333333');
+					$(document).unbind('touchmove');
+				})
+				$('header div.details-title div.col-xs-1:last-child').click(function(e){
+					$('.menu-hide').show();
+					e.stopPropagation();
+				})
+				$('body').click(function(){
+					$('.menu-hide').hide();
+				})
+			})
+
+				/*function goods(id){
+				var names=$("#names").val();
+				alert(names);die;
+				window.location.href="__APP__/Mobile/Goods/index/catId/"+id+"/name/"+names;
+				
+				}*/
+				function categoryGoods(name){
+				var catId=$("#catId").val();
+				//alert(catId);die;
+				window.location.href="__APP__/Mobile/Goods/index/signsId/"+catId+"/name/"+name;
+				//alert(names);
+				}
+		</script>
+	</body>
+</html>

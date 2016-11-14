@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>俺的律师-权威媒体光明网旗下法律服务平台</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,minimal-ui">
+      <link rel="stylesheet" href="__ROOT__/Public/APP/css/style.min.css">
+
+</head>
+
+<body style=" background-color:#e90f00;">
+
+	<div class="swiper-container">
+					<div class="pagination"></div>
+	  <div class="swiper-wrapper">
+	      <div class="swiper-slide gra_1 play">
+	      	<img src="__ROOT__/Public/APP/images/publicity1.png">
+	        <div class="btn-down">
+	            <div class="btn-down-arraw"><img src="__ROOT__/Public/APP/images/btn-up.png"></div>
+	        </div>
+	      </div>
+	      
+	      <div class="swiper-slide gra_2">
+	      	<img src="__ROOT__/Public/APP/images/publicity2.png" alt="">
+	        <div class="btn-down" >
+	            <div class="btn-down-arraw"><img src="__ROOT__/Public/APP/images/btn-up.png"></div>
+	        </div>
+
+	      </div>
+	      
+	      <div class="swiper-slide gra_3">
+	      	<img onclick="register()" src="__ROOT__/Public/APP/images/publicity3.png" alt="">
+			  <div  class="btn-down">
+				  <a type="javascript:void(0);" onclick="register()">
+					  <img style="width: 220px;" src="__ROOT__/Public/APP/images/button.png">
+				  </a>
+			  </div>
+	      </div>
+
+	  </div>
+
+	</div>
+<script src="__ROOT__/Public/APP/js/libs.min.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+	function register(){
+		var url='{$REGISTER_URL}'+"/from/{$from}";
+		location.href= url;
+	}
+</script>
+<!--<script type="text/javascript">
+	var phoneWidth =  parseInt(window.screen.width);
+
+	var phoneScale = phoneWidth/740;
+	var ua = navigator.userAgent;
+//	alert(phoneWidth );die;
+	if (/Android (\d+\.\d+)/.test(ua)){
+		var version = parseFloat(RegExp.$1);
+		if(version>2.3){
+			document.write('<meta name="viewport" content="width=640, minimum-scale ='+phoneScale+', maximum-scale ='+phoneScale+', target-densitydpi=device-dpi">');
+		}else{
+			document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+		}
+	} else {
+		document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+	}
+</script>-->

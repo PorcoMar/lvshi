@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+    <title>登录-俺的律师网</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+
+</head>
+
+
+<body>
+
+<div class="denglu_bg">
+    <div class="wrap rela">
+        <p class="logo03">
+            <span><a href="{:U('Index/index')}"><img src="__ROOT__/Public/web/images/index03.png" /></a></span>
+            <span class="none"><a href="{:U('Index/index')}"><img src="__ROOT__/Public/web/images/index031.png" /></a></span>
+        </p>
+        <div class="denglu">
+            <div class="denglu_tab">
+                <span class="select">验证码</span><span>密码登录</span>
+            </div>
+            <div class="denglu_nr01" style="display:block">
+                <p class="inp_bg"><input id="mobile1" type="text" class="inp01" value="请输入手机号" onfocus="this.value='';" onblur="if(this.value==''){this.value='请输入手机号'}" /></p>
+                <p class="inp_bg clearfix"><span class="left01"><input type="text" id="code"  class="inp02" value="验证码" onfocus="this.value='';" onblur="if(this.value==''){this.value='验证码'}" /></span><span class="left01"><input id="miao60" value="获取验证码"  onclick="sendMessage(this)" type="button"  /></span></p>
+                <p class="inp_bg02"><span class="t01">验证码</span><input class="inp03" name="vcode" type="text" /><img id="vcode_img" class="img01" onclick="changeImg()" src="{:U('Passport/image')}" /></p>
+                <p><a href="#"><img id="send1" src="__ROOT__/Public/web/images/denglv01.jpg" /></a></p>
+            </div>
+            <div class="denglu_nr01">
+                <p class="inp_bg"><input id="mobile2" type="text" class="inp01"  value="手机号" onfocus="this.value='';" onblur="if(this.value==''){this.value='手机号'}" /></p>
+                <p class="inp_bg"><input id="pass" type="password" class="inp02" value="" onfocus="this.value='';" onblur="if(this.value==''){this.value=''}" /></p>
+                <p class="inp04"><span class="check01" id="check01"></span><span class="left01">十天内免登录</span><a href="{:U('Passport/reset')}" class="forget">忘记密码</a></p>
+                <p><a href="#"><img id="send2" src="__ROOT__/Public/web/images/denglv01.jpg" /></a></p>
+                <p class="new01"><a href="{:U('Passport/enroll')}">注册新用户</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+<script>
+    function changeImg(){
+        document.getElementById("vcode_img").src = "{:U('Passport/image/id/')}"+new Date();
+    }
+    //切换面板
+    $(function(){
+        $('.denglu_tab span').each(function(index, element) {
+            $(this).click(function(){
+                $('.denglu_nr01').eq(index).show().siblings('.denglu_nr01').hide();
+                $(this).addClass('select').siblings().removeClass('select');
+            })
+        });
+    })
+    //验证码倒计时
+    var countdown=60;//间隔函数，1秒执行
+    function sendMessage(obj) {
+        var mobile = $("#mobile1").val();
+        if(mobile.length!=11)
+        {
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+            $("#mobile1").focus();
+            return false;
+        }
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if(!myreg.test(mobile))
+        {
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+            $("#mobile1").focus();
+            return false;
+        }
+        //60秒倒计时
+        settime(obj);
+        //向后台发送处理数据
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: "{:U('Passport/code')}", //目标地址
+            data:{"mobile":mobile},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                    case 1:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                }
+            }
+        });
+    }
+    function settime(obj) {
+        if (countdown == 0) {
+            obj.removeAttribute("disabled");
+            $('#miao60').removeClass('btn02');
+            obj.value="获取验证码";
+            countdown = 60;
+            return;
+        } else {
+            obj.setAttribute("disabled", true);
+            $('#miao60').addClass('btn02');
+            obj.value="(" + countdown + ")秒";
+            countdown--;
+        }
+        setTimeout(function() {
+                    settime(obj) }
+                ,1000)
+    }
+    //选中项
+    $('#check01').click(function(){
+        $(this).toggleClass('check02');
+    })
+
+    //登录
+    $('#send1').click(function(){
+        var mobile = $("#mobile1").val();
+        var code = $("#code").val();
+        var vcode = $("*[name='vcode']").val();
+        $("#msg").remove();
+        if(mobile==""){
+            $('<div id="msg" />').html("用户名不能为空！").appendTo('.sub').fadeOut(2000);
+            $("#mobile1").focus();
+            return false;
+            die;
+        }
+        if(code==""){
+            $('<div id="msg" />').html("手机验证码不能为空！").appendTo('.sub').fadeOut(2000);
+            $("#code").focus();
+            return false;
+            die;
+        }
+        if(vcode==""){
+            $('<div id="msg" />').html("验证码不能为空！").appendTo('.sub').fadeOut(2000);
+            $("#vcode").focus();
+            return false;
+            die;
+        }
+        $.ajax({
+            type: "POST",
+            url: "{:U('Passport/login')}",
+            dataType: "json",
+            data: {"mobile":mobile,"vcode":vcode,"code":code},
+            beforeSend: function(){
+                $('<div id="msg" />').addClass("loading").html("正在登录...").css("color","#999")
+                        .appendTo('.sub');
+            },
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                    case 1:
+                        window.location.href="{:U('Index/index')}";
+                        break;
+                    case 2:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                }
+            }
+        });
+    });
+    //登录
+    $('#send2').click(function(){
+        var mobile = $("#mobile2").val();
+        var pass = $("#pass").val();
+        $("#msg").remove();
+        if(mobile==""){
+            $('<div id="msg" />').html("用户名不能为空！").appendTo('.sub').fadeOut(2000);
+            $("#mobile2").focus();
+            return false;
+            die;
+        }
+        if(pass==""){
+            $('<div id="msg" />').html("密码不能为空！").appendTo('.sub').fadeOut(2000);
+            $("#pass").focus();
+            return false;
+            die;
+        }
+        $.ajax({
+            type: "POST",
+            url: "{:U('Passport/loginP')}",
+            dataType: "json",
+            data: {"mobile":mobile,"pass":pass,},
+            beforeSend: function(){
+                $('<div id="msg" />').addClass("loading").html("正在登录...").css("color","#999")
+                        .appendTo('.sub');
+            },
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                    case 1:
+                        window.location.href="{:U('Index/index')}";
+                        break;
+                    case 2:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

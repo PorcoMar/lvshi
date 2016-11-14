@@ -1,0 +1,206 @@
+.wy-znx-list {
+    width: 90%;
+    margin: 60px auto 20px;
+}
+.wy-center-wbg {
+    width: auto;
+}
+.link-dx a {
+    padding: 3px 10px;
+    margin: 0 2px;
+    text-decoration: none;
+}
+.wy-znx-bt {
+    font-size: 18px;
+    padding: 5px 10px;
+}
+.wy-lxr-div-link .blue-xx {
+    padding: 10px 20px;
+}
+.wy-center-line {
+    width: auto;
+    border: 1px solid #e1e6ed;
+    background: #fff;
+    overflow: hidden;
+}
+.wy-znx-list-dl {
+    overflow: hidden;
+}
+.wy-table-all {
+    width: auto;
+    overflow: hidden;
+}
+.wy-table-all li.link-dx {
+    width: 14%;
+    border-right: none;
+}
+.wy-table-all ol li {
+    color: #333;
+    border: 1px solid #dcdcdc;
+    border-left: none;
+    font-weight: bold;
+    margin-left: -1px;
+}
+.wy-table-all li {
+    float: left;
+    width: 18%;
+    padding: 16px 1%;
+    text-align: center;
+}
+all ul {
+    border-bottom: 1px dashed #dcdcdc;
+}
+.wy-table-all ol, .wy-table-all ul {
+    overflow: hidden;
+    width: auto;
+}
+
+.wy-table-all li.wy-table-5 {
+    width: 5%;
+}
+
+.wy-table-all li.wy-table-35 {
+    width: 35%;
+}
+
+ul, dl, ol {
+    list-style-type: none;
+}
+div.sabrosus {
+    text-align: center;
+}
+.wy-znx-list-dl dl {
+    padding: 10px 20px;
+    overflow: hidden;
+}
+
+.wy-znx-list-dl dd {
+    float: left;
+    padding-top: 4px;
+}
+
+.wy-znx-list-dl dd span {
+    color: #999;
+    padding-right: 5px;
+}
+.wy-znx-list-dl dd a, .wy-znx-list-dl dd span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.wy-znx-list-dl dd a {
+    padding: 2px 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    color: #666;
+    text-decoration: none;
+}
+
+.wy-znx-list-dl dt {
+    float: right;
+}
+
+.wy-znx-list-dl dt a {
+    padding: 3px 20px;
+    display: inline-block;
+}
+.blue-xx {
+    border: 1px solid #51BCE4;
+    background: #51BCE4;
+    color: #fff;
+    border-radius: 5px;
+}
+a {
+    text-decoration: none;
+}
+
+.upload {
+    border: 1px solid #ffa228;
+    background: #ffa228;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.blue-qx {
+    border: 1px solid #ed6c44;
+    background: #ed6c44;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.wy-lxr-div {
+    width: 800px;
+    display: block;
+    position: absolute;
+    z-index: 900;
+    border: 1px solid #dcdcdc;
+    top: 100px;
+    left: -400px;
+    background-color: white;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 1px #ccc;
+}
+
+.wy-lxr-div-top {
+    font-size: 18px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #dcdcdc;
+    position: relative;
+}
+
+.wy-lxr-div-top a {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    width: 16px;
+    height: 16px;
+    text-indent: -9999px;
+    background: url("../images/icon01.png") no-repeat 0 -384px;
+}
+
+.wy-pd-10 {
+    padding: 10px;
+}
+.wy-inp-text {
+    display: inline-block;
+    vertical-align: middle;
+    width: 90px;
+    padding-right: 10px;
+    text-align: right;
+}
+.wy-int-text {
+    padding: 12px 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.wy-lxr-div-link {
+    border-top: 1px solid #dcdcdc;
+    background: #fff;
+    text-align: center;
+    padding: 20px 0;
+    /*position: absolute;*/
+    left: 0;
+    width: 100%;
+}
+
+.my-modal{
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.vertical-line{
+    width: 1px;
+    position: absolute;
+    left: 50%;
+}

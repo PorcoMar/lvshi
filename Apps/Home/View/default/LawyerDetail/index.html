@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+<link href="__ROOT__/Public/web/css/common2016.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Public/web/css/two.css" rel="stylesheet" type="text/css" /><!--二级-->
+﻿<script type="text/javascript" src="__ROOT__/Public/web/js/jquery-1.5.2.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__ROOT__/Public/web/js/common2016.js" charset="utf-8"></script><!--网站共用-->
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--菜单结束-->
+<div class="MainCenter">
+	<div class="mainBox">		
+		<div class="lvs_detail">
+			<div class="lvs_detail_left">
+				<dl>
+					<dt><span></span><img src="{$lawyer.avatar}" alt="" /></dt>
+					<dd class="qian">
+						<foreach name="lawyer['lawyer_tag_name']" item="v">
+						<label>{$v}</label>
+
+						</foreach>
+					</dd>
+					<dd class="star"><span class="star{$lawyer.style}"></span></dd>
+				</dl>
+			</div>
+			<div class="lvs_detail_right">
+				<dl>
+					<dt><span><b>{$lawyer.realname}</b>大律师</span>
+						<eq name="lawyer['online']" value="1">
+							<label class="zhuangtai online"></label>
+							<else/>
+							<label class="zhuangtai outline"></label>
+						</eq>
+					</dt>
+					<dd class="zheng"><span class="yi">已认证</span>执业<b>{$lawyer.operation_year}</b>年&#12288;&#12288;{$lawyer['law_office_name'][0]}&#12288;&#12288;律师证号：{$lawyer.lawyer_num}</dd>
+					<dd class="time">
+						接单：<b>{$lawyer.order_num}</b>&#12288;&#12288;评价：<b>{$lawyer.comments}</b><br />
+						所在地：{$lawyer.city}  {$lawyer.district}<br />
+						服务时间：{$lawyer.working_time}
+					</dd>
+					<dd class="text">{$lawyer.bio}</dd>
+					<dd class="btn">
+						<a href="javascript:void(0)" class="gybtn online">在线咨询</a>
+						<a href="javascript:void(0)" class="gybtn tel">电话俺</a>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="con_left">
+			<div class="fuwu_tag" id="lvsDetail">
+				<ul>
+					<li class="curr">服务项目({$serverNum})</li>
+					<li>案例({$caseNum})</li>
+					<li>律师问答({$answerNum})</li>
+					<li>用户评价({$commentNum})</li>
+					<li>自我介绍</li>
+				</ul>
+			</div>
+			<!--服务项目-->
+			<div class="fuwu_list" id="lvsXiangQing0">
+				<volist  name="lawyerService.result" id="lawyerService">
+					<dl>
+						<dt>
+						<span class="name">
+							<em>{$lawyerService.goods_title}</em>
+							<if condition="$lawyerService['is_hot'] eq 1">
+								<img src="__ROOT__/Public/web/images/icon_de01.png" alt="" />
+							</if>
+							<if condition="$lawyerService['is_reputation'] eq 1">
+								<img src="__ROOT__/Public/web/images/icon_de02.png" alt="" />
+							</if>
+							<if condition="$lawyerService['is_overflow'] eq 1">
+								<img src="__ROOT__/Public/web/images/icon_de03.png" alt="" />
+							</if>
+							<if condition="$lawyerService['is_new'] eq 1">
+								<img src="__ROOT__/Public/web/images/icon_de04.png" alt="" />
+							</if>
+						</span>
+						<span class="text">
+							<p><b>服务方式：</b>{$lawyerService.service_way_name}</p>
+							<!--<p><b>服务标准：</b>不少于30分钟电话咨询，会面约谈2次，代写财产分配协议。</p>-->
+							<p><b>小鹰点评：</b>{$lawyerService.remark}</p>
+						</span>
+						</dt>
+						<dd class="price">￥{$lawyerService.sell_price}</dd>
+						<dd class="btn">
+							<a href="{:U('buy/index/id/'.$lawyer['member_id'].'/goods_id/'.$lawyerService['id'])}" class="gybtn btn80red">购买</a>
+							<label>接单量<span>{$lawyerService.turnover}</span></label>
+							<label>评价数<span>{$lawyerService.comments}</span></label>
+						</dd>
+					</dl>
+				</volist>
+			</div>
+			<!--服务项目-->
+			<!--案例-->
+			<div class="case_list" id="lvsXiangQing1" style="display:none">
+				<volist name="lawyerCase.result" id="lawyerCase">
+					<dl>
+						<dt><em class="s1"></em><span>{$lawyerCase.title}</span><label>{$lawyerCase.create_time|date=('Y-m-d'),###}</label></dt>
+						<dd><span>案情描述：</span>{$lawyerCase.description}</dd>
+						<dd class="aadd"><span></span>{$lawyerCase.content}</dd>
+					</dl>
+				</volist>
+			</div>
+			<!--案例-->
+			<!--律师问答-->
+			<div class="wenda_list" id="lvsXiangQing2" style="display:none">
+				<volist name="lawyerAnswer.result" id="lawyerAnswer">
+					<dl>
+						<dt><em></em><span>{$lawyerAnswer.description}</span></dt>
+						<dd>
+							<em></em>
+						<span>
+							<b>律师：</b>{$lawyerAnswer.content}<a href="javascript:void(0)" onclick="detail({$lawyerAnswer.question_id})" class="blue">查看详情>></a>
+						</span>
+						</dd>
+					</dl>
+				</volist>
+			</div>
+			<!--律师问答-->
+			<!--用户评价-->
+			<div class="pingjia_list" id="lvsXiangQing3" style="display:none">
+				<volist name="lawyerComment.result" id="lawyerComment">
+					<dl>
+						<dt><span class="nan"></span></dt>
+						<dd>
+							<span class="name">{$lawyerComment.member_nickname}<em>{$lawyerComment.create_time}</em></span>
+							<span class="text">{$lawyerComment.content}</span>
+						<span class="bq">
+							<label>热情</label><label>务实</label><label>服务态度好</label>
+						</span>
+						</dd>
+					</dl>
+				</volist>
+			</div>
+			<!--用户评价-->
+			<!--自我介绍-->
+			<div class="lvsJieShao" id="lvsXiangQing4" style="display:none">	
+				<dl>
+					<dt>律师简介：</dt>
+					<dd>
+						{$lawyer.bio}
+					</dd>
+				</dl>
+			</div>
+			<!--自我介绍-->
+		</div>
+		<!--右侧菜单-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--底部开始-->
+<include file="Public/footer"/>
+<!--底部结束-->
+<script type="application/javascript">
+	function detail(id){
+			var url = "{:U('Consult/askdetail')}";
+				url += '/id/' + id;
+			location.href = url;
+		}
+	
+</script>
+</body>
+</html>

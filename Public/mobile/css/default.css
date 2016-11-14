@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* ----------------------------
+2015.07.19 create y
+---------------------------- */
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, hr, pre, code, form, fieldset, legend, input, textarea, button,  p, blockquote, th, td {margin:0; padding:0; }
+html, body { width:100%; height:100%;}
+body { font-family:Microsoft YaHei,Helvetica, sans-serif; font-size:0.875em; background:#f4f4f4;}
+li {list-style:none;}
+img, fieldset {border:0 none;}
+img {vertical-align:middle;}
+legend, hr {display:none;}
+legend {position:absolute; top:0; left:0; width:0; height:0; display:block; overflow:hidden; visibility:hidden; font-size:0; line-height:0;}
+input, select, textarea {font-size:100%; color:#747474; background:#fff; border:1px solid #e5e6e7;}
+button {border:0 none;background:transparent;}
+em, address {font-style:normal;}
+table {border-spacing:0;}
+caption {font-size: 0; line-height: 0; width:0; height:0; text-indent:-1000px; overflow: hidden;}
+a, a:link, a:visited {text-decoration:none; color:#000;}
+a:hover, a:active {text-decoration:none;}
+a:focus {text-decoration:none;}
+
+* {font-weight:normal;}
+body {-webkit-text-size-adjust:100%;}
+.wrap{ width:90%; margin:0 auto;}
+.wrap02{ padding:0 10px;}
+
+.rela{ position:relative;}
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.menu{ box-shadow:1px 2px 1px #ebebeb; width:100%; background:#fff;}
+.menu .menu01{ width:25%; float:left; text-align:center; padding:8px 0; background:url(../images/line01.jpg) no-repeat right center;}
+.menu .menu01 .wrap01{ width:80%; margin:0 auto;}
+.border01{ border-bottom:1px solid #e9ddc1;}
+
+.tree{ margin-top:1px; background:#fff; padding-bottom:10px;}
+.tree .wrap01{ width:80%; margin:0 auto;}
+.link01{ position:absolute; z-index:100; top:0; left:0; width:100%; height:100%;}
+.link01 a{ width:50%; height:100%; float:left;}
+.ad01{ margin-top:15px; width:100%; background:#fff; padding:5px 0 15px 0;}
+.ad01 .wrap01{ width:90%; margin:0 auto;}
+
+
+.city01{ margin-top:15px; width:100%; background:#fff; padding:15px 0;}
+.city01 a{ color:#eb5050; display:inline-block; margin-right:6px;}
+.city01 .select01{ padding:10px 0;}
+.city01 .select01 select{ width:34%; margin-right:5px;}
+.city01 .p01{ float:left; width:25%;}
+
+.rukou{ text-align:center; background:#fff; margin-top:15px; padding:10px 0;}
+.rukou span{ display:inline-block; width:32%; border-right:1px solid #e3e3e3;}
+
+.case{ background:#fff; margin-top:15px; margin-bottom:80px;}
+.title01{ border-bottom:1px solid #ebebeb; padding-left:10px; font-size:1.125em; height:50px; line-height:50px;}
+.case img{ vertical-align:top;}
+.case .title02{ line-height:34px; padding-top:10px; font-size:1em;}
+.case ul li{ border-bottom:1px solid #ebebeb;}
+.case .action{ text-align:right; padding:10px 0;}
+.case .action a{ display:inline-block; margin-left:15px;}
+
+.nav{ position:fixed; z-index:10000; bottom:0;left:0; width:100%; background:#fff; padding:7px 0 5px 0; box-shadow:2px 2px 2px #ebebeb inset;}
+.nav .nav01{ float:left; width:20%; text-align:center;}
+.nav .selected{ color:#f55555;}
+
+
+
+
+
+
+
+

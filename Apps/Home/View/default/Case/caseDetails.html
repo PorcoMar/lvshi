@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--KV开始-->
+<form name="frm" method="post" action="{:U('Case/sutraCase')}">
+	<div class="kv casebg">
+		<!--<div class="mainBox">
+			<div class="jd_select">
+				<div class="selectbg wt200">
+					<input type="hidden" name="goodsCategoryId" id="CASESORT" value="" />
+					<div  class="options_curr" id="CASESORT_Slected">案例类型</div>
+					<ul class="options" id="CASESORT_Sel">
+						<foreach name="nameplate" item="v">
+							<li onClick="search_show2('CASESORT',{$v.id},this)">{$v.cat_name}</li>
+						</foreach>
+					</ul>
+				</div>
+				<div class="selectbg wt160">
+					<input type="hidden" name="cId" id="CITY" value="" />
+					<div class="options_curr" id="CITY_Slected">地区</div>
+					<ul class="options" id="CITY_Sel">
+						<foreach name="getcity" item="v">
+							<li onClick="search_show2('CITY',{$v.id},this)">{$v.name}</li>
+						</foreach>
+					</ul>
+				</div>
+			</div>
+			<div class="gy_search">
+				<dl>
+					<dt>案例搜索：</dt>
+					<dd class="in"><input name="keywords"  type="text" class="sinput" value="" placeholder="输入您想找的案例"/></dd>
+					<dd class="btn"><input  onclick="seek()" type="button" value="搜索"/></dd>
+					<dd class="rc">
+						<foreach name="category" item="v">
+							<a id="vlue" onclick="Category('{$v.keywords}')" href="javascript:void(0)" value="{$v.keywords}">{$v.keywords}</a>
+						</foreach>
+					</dd>
+				</dl>
+			</div>
+		</div>-->
+		<div class="mainBox">
+			<div class="prod_select2">
+				<div style="margin-top:14px" class="main_rmcity">
+					<dl>
+						<dt>所在城市：</dt>
+						<dd>
+							<foreach name="getcity" item="v">
+								<a  href="{:U('Case/index/cId/'.$v['id'])}" class="<php>if($v['id']==$cId) echo 'curr';</php>">{$v.name}</a>
+							</foreach>
+						</dd>
+					</dl>
+				</div>
+				<div class="gy_search1">
+					<dl>
+						<dt>案例搜索：</dt>
+						<dd class="in"><input name="keywords"  type="text" class="sinput" value="" placeholder="输入您想找的案例"/></dd>
+						<dd class="btn"><input  onclick="seek()" type="button" value="搜索"/></dd>
+						<dd class="rc">
+							<foreach name="category" item="v">
+								<a id="vlue" onclick="Category('{$v.keywords}')" href="javascript:void(0)" value="{$v.keywords}">{$v.keywords}</a>
+							</foreach>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ws_sort2">
+				<div class="ws_sortlist">
+					<dl>
+						<dt>案例类型：</dt>
+						<dd>
+							<foreach name="nameplate" item="v">
+								<a href="{:U('Case/index/goodsCategoryId/'.$v['id'])}" class="<php>if($v['id']==$goodsCategoryId) echo 'curr';</php>" >{$v.cat_name}</a>
+							</foreach>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">
+		<div class="detail_left">
+			<div class="detail_left_top"><span></span></div>
+			<div class="detail_left_center">
+				<div class="case_detail ">
+					<dl>
+						<dt><em <if condition="$caseDetails.is_hot eq 1 ">class="s1"
+							<elseif condition="$caseDetails.is_new eq 1 "/>
+							class="s2"
+							<else/>
+							class="s3"
+						</if>></em><span>{$caseDetails.title}</span><label>{$caseDetails.create_time|date='Y-m-d',###}</label></dt>
+						<dd class="aadd"><em></em><span>{$caseDetails.remark}</span></dd>
+					</dl>
+				</div>
+				<div id="qq" class="case_detail_text">
+					{$caseDetails.content}
+				</div>
+			</div>
+			<div class="detail_left_bottom"></div>
+		</div>
+		<!--右边-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--优选服务开始-->
+{:W('Web/serveMenu')}
+<!--优先服务结束-->
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+	function search_show2(pos,searchType,href){
+		$("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+		$("#"+pos+"_Sel").hide();
+		document.getElementById(pos+"_Slected").innerHTML=href.innerHTML;
+		$("#"+pos).focus();
+		$("#"+pos).blur();
+		$("#ACOUTNY_Sel").children("li").remove();
+	}
+	function seek(){
+		document.frm.submit();
+	}
+
+	/*
+	 * 关键字
+	 * */
+	function Category(searchType){
+		var search_key = searchType;
+		if(search_key!=''){
+			var url = '{:U("Case/sutraCase")}';
+			url += '/keywords/' + search_key;
+			location.href = url;
+		}
+	}
+</script>

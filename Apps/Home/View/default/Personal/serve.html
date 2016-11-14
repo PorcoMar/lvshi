@@ -1,0 +1,140 @@
+<include file="Public/personalHeader" />
+<link href="__ROOT__/Public/web/css/instrument.css" rel="stylesheet" type="text/css"/>
+<link href="__ROOT__/Public/web/css/umeditor.min.css" rel="stylesheet" type="text/css"/>
+        <div class="mess_right">
+            <div class="mess_tag">
+                <ul>
+                    <li class="curr"><a href="javascript:void(0)">服务</a></li>
+                </ul>
+            </div>
+
+            <div class="wy-center-wbg wy-znx-list">
+
+                <div class="wy-znx-bt">我的服务</div>
+                <div class="wy-center-line">
+                    <div class="wy-znx-list-dl">
+                        <dl>
+                            <dd>
+                                <span>选择类型</span>
+                                <a href="javascript:void(0)" id="selectAll">全选</a>
+                                <a href="javascript:void(0)" id="disSelectAll">反选</a>
+                            </dd>
+                            <dt>
+                                <a href="{:U('personal/newlyServe')}"  class="upload">新增服务</a>
+                                <a onclick="delserve()" href="javascript:void(0)"  class="blue-qx">删除服务</a>
+                            </dt>
+                        </dl>
+                    </div>
+                    <div class="wy-table-all">
+                        <ol>
+                            <li class="wy-table-5">选择</li>
+                            <li class="wy-table-35">服务标题</li>
+                            <li style="width: 8%">服务方式</li>
+                            <li >服务报价</li>
+                            <li style="width: 8%" >服务期限</li>
+                            <li class="link-dx" style="width: 14%">操作</li>
+                        </ol>
+                        <div id="contractList">
+                            <eq name="serve.code" value="1000">
+                                <volist name="serve.result" id="vo">
+                                    <ul class="templateview">
+                                        <li class="wy-table-5">
+                                            <eq name="editor" value="$vo.id">
+                                                <input type="checkbox" checked data-id="{$vo.id}" data-title="{$vo.goods_title}" data-content="{$vo.service_way_name}"/>
+                                            <else/>
+                                                <input type="checkbox" data-id="{$vo.id}" data-title="{$vo.goods_title}"/>
+                                                <div style="display: none;" id="content-{$vo.id}">{$vo.service_way_name}</div>
+                                            </eq>
+                                        </li>
+                                        <li style="text-align: left" class="wy-table-35"><a href="javascript:void(0)" class="text-666">{$vo.goods_title}</a></li>
+                                        <li  style="width: 8%">{$vo.service_way_name}</li>
+                                        <li>￥{$vo.price}</li>
+                                        <li style="width: 8%" >{$vo.serviceExTime}</li>
+                                        <li class="link-dx" style="width: 14%">
+                                            <a href="javascript:compile('{$vo['id']}','{$vo['price']}','{$vo['serviceExTime']}','{$vo['remark']}')"   class="blue-xx">编辑</a>
+                                            <a href="javascript:void(0)" onclick="singleDelserve('{$vo['id']}')" class="templateSend upload">删除</a>
+
+                                        </li>
+                                    </ul>
+                                </volist>
+                                <assign name="current_page" value="$serve.page_Index" />
+                                <php>$total_page = ceil($serve['page_sum']/$serve['page_size']);</php>
+                                <assign name="page_size" value="$serve.page_size" />
+                                <assign name="page_show" value="10" />
+                                <include file="Public/pagination" />
+                            </eq>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="__ROOT__/Public/web/js/umeditor.config.js" charset="utf-8"></script><!--个人中心-->
+<script type="text/javascript" src="__ROOT__/Public/web/js/umeditor.min.js" charset="utf-8"></script><!--个人中心-->
+<script type="text/javascript" src="__ROOT__/Public/web/js/zh-cn.js" charset="utf-8"></script><!--个人中心-->
+<script type="application/javascript">
+
+    $('#selectAll').click(function () {
+        changeCheckbox(true);
+    });
+
+    $('#disSelectAll').click(function () {
+        changeCheckbox(false);
+    });
+    /*多选删除服务*/
+    function delserve(){
+        var doc = [];
+
+        $('#contractList').find('input[type="checkbox"]:checked').each(function () {
+            var id = parseInt($(this).attr('data-id'));
+            if(!isNaN(id) && id>0){
+                doc.push(id);
+            }
+        });
+        if(doc.length){
+            $.post('{:U("/Personal/omitServe")}',
+                    {id:doc.join(',')},
+                    function(data,status){
+                if(data.code == 1000 && status == 'success'){
+                    alert('删除成功');
+                    location.reload();
+                }else{
+                    alert(data.msg);
+                }
+            });
+        }
+    }
+    /*单个删除服务*/
+    function singleDelserve(id){
+       //alert(id);die;
+            $.post('{:U("/Personal/omitServe")}',
+                    {id:id},
+                    function(data,status){
+                        if(data.code == 1000 && status == 'success'){
+                            alert('删除成功');
+                            location.reload();
+                        }else{
+                            alert(data.msg);
+                        }
+                    });
+    }
+   function changeCheckbox(val) {
+       $('#contractList').find('input[type="checkbox"]').each(function () {
+           $(this).attr('checked', val);
+       });
+   }
+/*编辑服务*/
+    function compile(id,sell_prict,service_ex_time,remark){
+        var url="{:U('Personal/redactServe')}";
+            url+='/id/'+id+'/sell_prict/'+sell_prict+'/service_ex_time/'+service_ex_time+'/remark/'+remark;
+        location.href=url;
+        /*{:U('Personal/redactServe/id/'.$vo['id'])}*/
+    }
+</script>
+
+<include file="Public/footer"/>

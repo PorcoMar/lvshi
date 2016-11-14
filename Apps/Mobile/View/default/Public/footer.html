@@ -1,0 +1,44 @@
+<!-- 导航 <div class="nav">
+    <a class="nav01 selected" href="#"><img src="__ROOT__/Public/mobile/images/nav001.png" width="26" /><br>找律师</a>
+    <a class="nav01" href="#"><img src="__ROOT__/Public/mobile/images/nav02.png" width="26" /><br>发现</a>
+    <a class="nav01" style="margin-top:-35px" href="#"><img src="__ROOT__/Public/mobile/images/nav0.png" width="62" /><br>求助</a>
+    <a class="nav01" href="#"><img src="__ROOT__/Public/mobile/images/nav03.png" width="26" /><br>消息</a>
+    <a class="nav01" href="#"><img src="__ROOT__/Public/mobile/images/nav04.png" width="26" /><br>我的</a>
+</div> -->
+
+<div>
+    <a href="http://www.andlvshi.com/app.html" style="color:red;text-align:center;display:block; font-size:20px;">下载俺的律师APP</a>
+</div>
+<script type="text/javascript" src="__ROOT__/Public/mobile/js/jquery_min_1.9.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/mobile/js/base.js"></script>
+<script>
+    $(function(){
+        //切换面板
+        $('.tab a').click(function(){
+            var index = $(this).index();
+            $(this).addClass('select').siblings('a').removeClass('select');
+            $('.tab01').eq(index).show().siblings('.tab01').hide();
+        });
+        
+        $(".select01").change(function(){
+
+            if($(this).val() == '5'){
+                $('#peizhi').text("配置：梅林、派西维尔、懵逼蓝*1 VS 莫甘娜、刺客")
+            }else if($(this).val() == '6'){
+                $('#peizhi').text("配置：梅林、派西维尔、懵逼蓝*2 VS 莫甘娜、刺客") 
+            }else if($(this).val() == '7'){
+                $('#peizhi').text("配置：梅林、派西维尔、懵逼蓝*2 VS 莫甘娜、奥伯伦、刺客") 
+            }else if($(this).val() == '8'){
+                $('#peizhi').text("配置：梅林、派西维尔、懵逼蓝*3 VS 莫甘娜、刺客、懵逼红") 
+            }else if($(this).val() == '9'){
+                $('#peizhi').text("配置：梅林、派西维尔、懵逼蓝*4 VS 莫德雷德、莫甘娜、刺客")    
+            }else if($(this).val() == '10'){
+                $('#peizhi').text("配置：梅林、派西维尔、懵逼蓝*4 VS 莫德雷德、莫甘娜、奥伯伦、刺客")    
+            }
+              
+        
+        });
+        
+            
+    })
+</script>

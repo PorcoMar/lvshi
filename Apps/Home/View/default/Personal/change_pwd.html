@@ -1,0 +1,82 @@
+<include file="Public/personalHeader" />
+		<div class="mess_right">
+			<div class="mess_tag">
+				<ul>
+					<li class="curr"><a href="javascript:void(0)">修改密码</a></li>
+					<!--<li><a href="__APP__/Personal/verifyPhoneCode">验证短信</a></li>-->
+				</ul>
+			</div>
+			<div class="modify_password">
+				<dl>
+					<dt><span class="t_red">*</span>旧密码：</dt>
+					<dd class="inbg"><input name="old_pwd" class="sinput" type="password" /></dd>
+				</dl>
+				<dl>
+					<dt><span class="t_red">*</span>新密码：</dt>
+					<dd class="inbg"><input name="new_pwd" class="sinput" type="password" /></dd>
+				</dl>
+				<dl>
+					<dt><span class="t_red">*</span>确认新密码：</dt>
+					<dd class="inbg"><input name="repeat_pwd" class="sinput" type="password" /></dd>
+				</dl>
+				<dl>
+					<dt>&#12288;</dt>
+					<dd>
+						<div class="sub" align="center"></div>
+						<a href="javascript:void(0)" onclick="changePwd()" class="gybtn btn90red">保 存</a></dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+<!--底部开始-->
+<script>
+	function changePwd(){
+		var oldPwd = $('input[name="old_pwd"]').val();
+        var newPwd = $('input[name="new_pwd"]').val();
+        var repeatPwd = $('input[name="repeat_pwd"]').val();
+		$("#msg").remove();
+		if(oldPwd==""){
+			$('<div id="msg" />').html("旧密码不能为空！").appendTo('.sub').fadeOut(2000);
+			$('[name="old_pwd"]').focus();
+			return false;
+			die;
+		}
+		if(newPwd==""){
+			$('<div id="msg" />').html("新密码不能为空！").appendTo('.sub').fadeOut(2000);
+			$('[name="new_pwd"]').focus();
+			return false;
+			die;
+		}
+		if(newPwd.length<6 && newPwd.length<=14){
+			$('<div id="msg" />').html("密码长度为6~14个字符！").appendTo('.sub').fadeOut(2000);
+			$('[name="new_pwd"]').focus();
+			return false;
+			die;
+		}
+		if(newPwd!=repeatPwd){
+			$('<div id="msg" />').html("密码不一致,请重新输入！").appendTo('.sub').fadeOut(2000);
+			$('[name="repeat_pwd"]').focus();
+			return false;
+			die;
+		}
+        if(oldPwd == '' || newPwd == '' || newPwd != repeatPwd){
+            console.log('请检测输入的值');
+            return false;
+        }else{
+            $.post('{:U("/Personal/changePwd")}',{data:{'oldCode':oldPwd,'newCode':newPwd}},function(data,status){
+                if(data.code == 1000 && status == 'success'){
+                    alert('修改成功!');
+                    location.href = '{:U("/Passport/index")}';
+                }else{
+                    alert('修改失败!');
+                }
+            });
+        }
+	}
+</script>
+<include file="Public/footer" />
+
+
+
+

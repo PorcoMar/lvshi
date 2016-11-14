@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="律师咨询、法律咨询、律师助手、人民律师、掌上律师、法律法规、律师事务所、北京律师、深圳律师、广州律师、上海律师、北京律师事务所、深圳律师事务所、广州律师事务所、上海律师事务所、离婚律师、侵权律师、房产律师、劳动争议、劳动仲裁、债务纠纷、合同纠纷、消费维权、人身损害、交通事故、房产纠纷、知识产权、遗产继承、医患纠纷、民事案件、刑事案件" />
+    <meta name="description" content="『俺的律师』是由国家权威媒体光明日报、光明网、法制日报、法制文萃报倾力打造法律服务平台为百姓享受律师服务提供解决方案，聚合国内海量实名认证律师，为您提供离婚纠纷、侵权赔偿、债权债务、房产纠纷、劳动仲裁、知识产权、交通事故、遗产继承、医患纠纷、民事刑事、公司事务等各类案件的免费咨询和法律服务。"/>
+<!--加入某省某市-->
+<title>xx省xx市律师排名-俺的律师网</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg03">
+	<div class="wrap rela">
+		<include file="Public/header"/>
+        <!--头部结束--> 
+    </div>
+
+</div>
+<!--二级菜单开始-->
+<div class="sub_navbg">
+	<div class="wrap">
+    	<div class="bread">首页 - 律师排行榜</div>
+    </div>
+</div>
+<!--二级菜单结束-->
+<!--内容开始-->
+<div class="wrap">
+    
+	<div class="zidong mt40 clearfix">
+        <div class="zidong_left">
+            <div class="title01 clearfix"><span class="t01">律师排行榜</span></div>
+            <div class="paihang_new">
+				<if condition="$size gt 1">
+					<volist name="lawyerTop.result.lawyerList" id="top">
+						<dl>
+							<dd class="line">
+							<div class="tx"><em></em><img width="112px" height="112px" src="{$top.avatar}" /></div>
+							<div class="text">
+								<span class="t000"><a href="#" class="t01">{$top.nick_name}</a></span>
+								<span class="t001">[认证信息]</span>
+								<span class="t002">{$top.law_office_name}</span>
+								<span class="t003">执业{$top.operation_year}年</span>
+							</div>
+							</dd>
+						</dl>
+						</volist>
+					<else />
+					<volist name="lawyerTop.result.lawyerList" id="top">
+						<if condition="$key+1 eq 3">
+							<dl class="line">
+								<if condition="$key+1 gt 3"><dt class="tb01"><img src="__ROOT__/Public/web/images/num_{$key+1}.gif" /></dt><else /><dt class="tb01"><img src="__ROOT__/Public/web/images/paihang0{$key+1}.jpg" /></dt> </if>
+								<dd>
+									<div class="tx"><em></em><img width="112px" height="112px" src="{$top.avatar}" /></div>
+									<div class="text">
+										<span class="t000"><a href="#" class="t01">{$top.nick_name}</a></span>
+										<span class="t001">[认证信息]</span>
+										<span class="t002">{$top.law_office_name}</span>
+										<span class="t003">执业{$top.operation_year}年</span>
+									</div>
+								</dd>
+							</dl>
+							<else />
+							<dl>
+								<if condition="$key+1 gt 3"><dt class="tb01"><img style="margin-top:30px;margin-left: 30px;" src="__ROOT__/Public/web/images/num_{$key+1}.gif" /></dt><else /><dt class="tb01"><img src="__ROOT__/Public/web/images/paihang0{$key+1}.jpg" /></dt> </if>
+								<if condition="$key+1 gt 3"><dd class="line"><else /><dd class="line"></if>
+								<div class="tx"><em></em><img width="112px" height="112px" src="{$top.avatar}" /></div>
+								<div class="text">
+									<span class="t000"><a href="#" class="t01">{$top.nick_name}</a></span>
+									<span class="t001">[认证信息]</span>
+									<span class="t002">{$top.law_office_name}</span>
+									<span class="t003">执业{$top.operation_year}年</span>
+								</div>
+								</dd>
+							</dl>
+						</if>
+					</volist>
+					</if>
+				<assign name="current_page" value="$lawyerTop.page_Index" />
+				<php>$total_page = ceil($lawyerTop['page_sum']/$lawyerTop['page_size']);</php>
+				<assign name="page_size" value="$lawyerTop.page_size" />
+				<assign name="page_show" value="10" />
+			</div>
+            
+            <!--page-->
+			<div class="page">
+				<table width="100%" border="0" cellspacing="5" cellpadding="0">
+					<tr>
+						<td align="center">
+							<table border="0" cellspacing="5" cellpadding="0">
+								<tr>
+									<td>
+										<include file="Public/pagination" />
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+            <!--page end-->
+            
+            
+        </div>
+        
+        <div class="zidong_right">
+            <!--热点热评-->
+            <div class="title03 clearfix"><span>名律专访</span></div>
+			<div class="minglv_list">
+				<ul>
+					<volist name="lawyerList.result" id="lawyer">
+						<li class="clearfix">
+							<div class="num_mid"><a href="{:U('LawyerList/detail/id/'.$lawyer['id'])}" class="a01"><span></span><img width="66px" height="66px" src="{$lawyer.thumb}" /></a></div>
+							<div class="num_right">
+								<p class="t01"><a href="{:U('LawyerList/detail/id/'.$lawyer['id'])}">{$lawyer.title}</a></p>
+								<p class="t02"><a class="displayPart" displayLength="30" href="{:U('LawyerList/detail/id/'.$lawyer['id'])}">{$lawyer.description}</a></p>
+							</div>
+						</li>
+					</volist>
+				</ul>
+			</div>
+            
+            <div class="erweima">
+                <img src="__ROOT__/Public/web/images/erweima.jpg" />
+            </div>
+            
+        </div>
+        
+        
+    </div>
+</div>
+    <!--内容结束-->
+
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+
+
+
+</body>
+</html>

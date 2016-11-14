@@ -1,0 +1,196 @@
+<include file="Public/personalHeader" />
+		<div class="mess_right">
+			<div class="mess_zy">
+				<div class="mess_jiben">
+					<dl>
+						<dt><img src="__ROOT__/Public/web/images/big_photo.png" alt="" /></dt>
+						<dd>
+							<label><em>真实姓名：</em><input type="text" name="real_name" style="width:180px" /><span>*</span></label>
+							<label><em>从业资格证：</em><input type="text" name="practitioner_num" /><span>*</span></label>
+							<label><em>律师证：</em><input type="text" name="lawyer_num" /></label>
+							<label><em>身份证号：</em><input type="text" name="identity_card" /><span>*</span></label>
+						</dd>
+					</dl>
+				</div>
+				<div class="mess_miaoshu">
+					<span>我的一句话描述：</span>
+					<input name="bio" type="text" class="sinput" placeholder="请用一句话描述自己" />
+				</div>
+				<div class="mess_box">
+					<h2>认证照片</h2>
+					<div class="mess_rzphoto">
+						<dl>
+							<dd>请手持从证件照，并上传到平台...</dd>
+                            <input type="hidden" id="currentimage">
+							<dt><span></span><img src="__ROOT__/Public/web/images/photo01.png" alt="" name="picture"/><a href="javascript:ShowImage()">查看示例</a></dt>
+                            <dt><img style="width: 122px;height: 122px" class="nopic" id="card_img" title="证件照" /></dt>
+                        <!--    <dt><img style="width: 122px;height: 122px" class="nopic" id="identity_card_img_2" title="身份证反面照" /></dt>
+                            <dt><img style="width: 122px;height: 122px" class="nopic" id="practitioner_img_1" title="从业者图片1" /></dt>
+                            <dt><img style="width: 122px;height: 122px" class="nopic" id="practitioner_img_2" title="从业者图片2" /></dt>
+                            <dt><img style="width: 122px;height: 122px" class="nopic" id="lawyer_img_1" title="律师照片1" /></dt>
+                            <dt><img style="width: 122px;height: 122px" class="nopic" id="lawyer_img_2" title="律师照片2" /></dt>-->
+							<dt class="none"><a href="javascript:void(0)" onclick="uploadImg()">上传照片</a></dt>
+                            <input name="image" onchange="uploadImage(this)" data-photo="card_img" type="file" style="display: none;" />
+						</dl>
+					</div>
+				</div>
+				<div class="mess_box">
+					<h2>我擅长的领域</h2>
+					<div class="mess_lingyi">
+						<dl>
+							<dd>请选择自己擅长的领域，最多可勾选<span>4</span>项<a href="javascript:void(0)" class="red">隐私政策</a></dd>
+							<dt id="good_fields">
+                                <volist name="nameplate" id="nv">
+                                    <label><em data-id="{$nv.id}">0</em><span>{$nv.cat_name}</span></label>
+                                </volist>
+							</dt>
+						</dl>
+					</div>
+				</div>
+				<div class="mess_tongyi">
+					<ul>
+						<li><em id="personal_lawyer">0</em><span>我要成为贴身律师</span><a href="javascript:void(0)" class="red">阅读贴身律师说明</a></li>
+						<li><em id="agreement">0</em><span>我同意“俺的律师”律师认证协议</span><a href="{:U('Public/register')}" class="red">查看协议</a></li>
+					</ul>
+				</div>
+				<div class="mess_button">
+					<div>
+						<a href="javascript:void(0)" onclick="lawyerVerify()" class="red1">现在就认证</a>
+						<a href="javascript:void(0)" onclick="memberVerify()" class="yellow1">还没想好，先试试普通用户吧</a>
+						<a href="javascript:void(0)" onclick="cancelOpt()" class="gray1">取消</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--底部开始-->
+<script>
+
+    $(function(){
+        $('.nopic').on('click',function(){
+            var img = $('input[name="image"]');
+            img.attr('data-photo',$(this).attr('id'));
+            img.click();
+        });
+    });
+
+    function uploadImg(){
+        $('input[name="image"]').click();
+    }
+
+    function uploadImage(t){
+        var formData = new FormData();
+        formData.append('file', $('input[name="image"]')[0].files[0]);
+        formData.append('type', 2);
+        $.ajax({
+            url: '{:U("/Personal/upload")}',
+            type: 'POST',
+            cache: false,
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function(res) {
+            if(res){
+                $('#'+$(t).attr('data-photo')).attr('src',res.result);
+            }
+        }).fail(function(res) {
+            alert('上传失败!');
+        });
+    }
+
+    function lawyerVerify(){
+        var val = {
+            'type':1,
+            'realname':$('input[name="real_name"]').val(),
+            'identity_card':$('input[name="identity_card"]').val(),
+            'good_fields':getGoodFields(),
+            'bio':$('input[name="bio"]').val(),
+            'personal_lawyer':getPersonalLawyer(),
+            'card_img':$('#card_img').attr('src'),
+            //'identity_card_img_2':$('#identity_card_img_2').attr('src'),
+            'lawyer_num':$('input[name="lawyer_num"]').val(),
+            'agreement':getAgreement(),
+            //'lawyer_img_1':$('#lawyer_img_1').attr('src'),
+            //'lawyer_img_2':$('#lawyer_img_2').attr('src')
+        };
+        console.log(val);
+        if(filterFields(val) === true){
+            verify(val);
+        }else{
+            alert('请完善相应信息!');
+        }
+    }
+
+    function memberVerify(){
+        var val = {
+            'type':-1,
+            'real_name':$('input[name="real_name"]').val(),
+            'identity_card':$('input[name="identity_card"]').val(),
+            'card_img':$('#card_img').attr('src'),
+            //'identity_card_img_2':$('#identity_card_img_2').attr('src')
+        };
+        console.log(val);
+        if(filterFields(val) === true){
+            verify(val);
+        }else{
+            alert('请完善相应信息!');
+        }
+    }
+
+    function cancelOpt(){
+        location.href = '{:U("/Personal/index")}';
+    }
+
+    function getGoodFields(){
+        var fields = [];
+        $('#good_fields').find('.curr').each(function(){
+            var id = $(this).attr('data-id');
+            if(!isNaN(id) && id > 0){
+                fields.push(id);
+            }
+        });
+        return fields.length ? fields.join(',') : null;
+    }
+
+    function getPersonalLawyer(){
+        return $('#personal_lawyer').hasClass('curr') ? 1 : 0;
+    }
+
+    function getAgreement(){
+        return $('#agreement').hasClass('curr') ? 1 : null;
+    }
+
+    //检测不合格字段
+    function filterFields(obj){
+        for (var i in obj){
+            if(obj[i] === null || obj[i] === undefined || obj[i] === ''){
+                return i;
+            }
+        }
+        return true;
+    }
+
+    function verify(val){
+        $.post('{:U("/Personal/lawyerVerify")}',{'val':val},function(data,status){
+            if(status == 'success' && data.code == 1000){
+                alert('申请成功!');
+                location.reload();
+            }else{
+                alert(data.msg);
+            }
+        });
+    }
+
+    function ShowImage()
+    {var imageindex=0,PicNums=0;
+        var Url=document.getElementsByName("picture")[imageindex].getAttribute('src');
+        document.getElementById("currentimage").value=Url;
+        var Width=850;
+        var Height=550;
+        var Left=(window.screen.availWidth-10-Width)/2;
+        var Top=(window.screen.availHeight-30-Height)/2;
+        var v=window.open("__APP__/Public/showimage","imagesview","width="+Width+",height="+Height+",top="+Top+",left="+Left+",toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no,status=no");
+    }
+</script>
+<include file="Public/footer" />

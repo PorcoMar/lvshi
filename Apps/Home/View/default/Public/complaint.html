@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+<style  type="text/css">
+textarea{
+	width:800px; 
+	padding:14px; 
+	font-size:15px; 
+	line-height:25px; 
+	height:183px; 
+	overflow:auto;
+	margin-left:60px;
+	border:1px solid #dddddd;
+}
+dl.btn a{
+	float:right; 
+	border:0px; 
+	width:20%;
+	height:50px; 
+	text-align:center; 
+	font-size:22px;
+	line-height:50px;
+	background:url(__ROOT__/Public/web//images/login_bg04.gif) 
+	repeat-x left top
+}
+</style>
+</head>red
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<div class="l_s174m740">
+	<include file="Public/left" />
+
+			<div class="detail_left">
+				<div class="qz_add">
+					<dl>
+						<dt><span>*</span>问题类型：</dt>
+						<dd>
+							<div class="selectbg wt160">
+							  <input type="hidden" name="CITY" id="CITY" value="" />
+							  <div class="options_curr" id="CITY_Slected">请选择</div>
+								 <ul class="options" id="CITY_Sel">
+									<li onClick='search_show("CITY","1",this)'>意见类</li>
+									<li onClick='search_show("CITY","2",this)'>反馈类</li>
+									<li onClick='search_show("CITY","3",this)'>bug类</li>
+								</ul>
+							</div>
+						</dd>	
+					</dl>
+					<dl>
+						<dt><span>*</span>问题描述：</dt>
+						<dd>
+						<textarea name="description" cols="" id="myarea" rows="" onKeyUp="keypress1()"></textarea>
+						</dd>
+					</dl>
+					<dl class="btn">
+                		<a href="javascript:void(0)" id="register" onclick="commit()"  class="white">提交问题</a>
+            		</dl>
+				</div>
+			</div>
+		</div>
+	<div class="mainBox"><include file="Public/bottom" /></div>
+	</div>
+<script type="text/javascript">
+
+   function commit(){
+   	 var type = $("#CITY").val();
+   	 var content = $("#myarea").val();
+   	 if(!type){
+   	 	alert("请选择问题类型")
+   	 }else{
+   	 	if(!content){
+   	 		alert("请填写问题描述")
+   	 	}else{
+   	 		var url = "{:U('Public/complain')}";
+					url += '/type/'  + type ;
+					url += '/content/' + content;
+			location.href = url;
+   	 	}
+   	 }
+
+   }
+</script>
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>

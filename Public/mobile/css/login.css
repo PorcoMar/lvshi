@@ -1,0 +1,72 @@
+@charset "utf-8";
+.logbg{height:600px; background:url(../images/login_bg01.jpg) no-repeat center top}
+
+.log_box{ position:absolute; right:15px; top:70px; width:398px; height:458px; background:#fff url(../images/login_bg02.gif) no-repeat right top}
+.log_box h2{float:left; width:318px; height:31px; margin:28px 0 0 40px; position:relative; background:url(../images/login_pic01.gif) no-repeat left center}
+.log_box h2 a{ position:absolute; right:0px; top:0px; line-height:31px; font-weight:normal; font-size:16px}
+.log_box dl{float:left; width:358px; height:31px; margin:20px 0 0 40px; display:inline}
+.log_box dl dt{float:left; width:60px; height:40px; line-height:40px; color:#000; font-size:16px; font-weight:bold}
+.log_box dl dd{float:left; display:inline}
+.log_box dl dd.inbg{height:38px}
+.log_box dl dd.inbg input{height:38px; line-height:38px}
+.log_box dl dd.yzm{border:1px solid #ebe5de; width:115px; height:38px; overflow:hidden; margin-left:10px}
+.log_box dl dd a.sx{float:left; width:23px; height:24px; margin:7px 0 0 5px; display:inline; background:url(../images/icon_sx.png) no-repeat left top}
+.log_box dl dd a.sx:hover{background:url(../images/icon_sx_over.png) no-repeat left top}
+.log_box dl.auto{width:320px; position:relative; margin-top:33px}
+.log_box dl.auto em{float:left; width:16px; height:16px; cursor:pointer; text-indent:-9999px; background:url(../images/login_bg03.gif) no-repeat left top}
+.log_box dl.auto em.curr{background:url(../images/login_bg03.gif) no-repeat -16px top}
+.log_box dl.auto span{float:left; margin-left:5px; height:16px; color:#999; line-height:16px; font-size:14px}
+.log_box dl.auto a{ position:absolute; right:0px; font-size:14px}
+.log_box dl.btn{width:320px; height:50px}
+.log_box dl.btn a{float:left; width:100%; height:50px; text-align:center; font-size:22px; line-height:50px; background:url(../images/login_bg04.gif) repeat-x left top}
+.log_box dl.btn a:hover{background:url(../images/login_bg04.gif) repeat-x left -50px}
+.log_box dl.btn input{float:left; border:0px; width:100%; height:50px; text-align:center; font-size:22px; line-height:50px; background:url(../images/login_bg04.gif) repeat-x left top}
+.log_box dl.btn input:hover{background:url(../images/login_bg04.gif) repeat-x left -50px}
+.log_box dl.three{width:320px; height:36px;}
+.log_box dl.three dt{height:36px; width:105px; margin-left:2px; color:#999; font-weight:normal}
+.log_box dl.three dd{margin-right:24px}
+
+
+.register{float:left; width:370px; margin-left:415px; padding-bottom:50px}
+.register h2{float:left; width:100%; height:47px; margin:50px 0 0 0; position:relative; background:url(../images/login_pic02.gif) no-repeat left center}
+.register h2 a{ position:absolute; right:22px; top:10px; line-height:31px; font-weight:normal; font-size:18px}
+.register dl{float:left; width:100%; margin:20px 0 0 0; display:inline}
+.register dl dt{float:left; width:82px; height:40px; line-height:40px; color:#3f3f3f; font-size:15px; font-weight:bold}
+.register dl dd{float:left; display:inline; margin-right:10px}
+.register dl dd.inbg{height:38px}
+.register dl dd.inbg input{font-size:16px; padding-left:7px; height:38px; line-height:38px; color:#999}
+.register dl dd a.gybtn{margin-top:2px}
+.register dl.auto{width:100%; margin-top:60px}
+.register dl.auto em{float:left; margin-left:80px; width:24px; height:24px; cursor:pointer; text-indent:-9999px; background:url(../images/icon_checkbox01.gif) no-repeat left top}
+.register dl.auto em.curr{background:url(../images/icon_checkbox01.gif) no-repeat -24px top}
+.register dl.auto span{float:left; margin-left:5px; height:24px; color:#f55555; line-height:24px; font-size:14px}
+.register dl.btn a{float:left; border:0px; width:100%; height:50px; text-align:center; font-size:22px; line-height:50px; background:url(../images/login_bg04.gif) repeat-x left top}
+.register dl.btn a:hover{background:url(../images/login_bg04.gif) repeat-x left -50px}
+.register dl.btn input{float:left; border:0px; width:320px; margin-left:25px; height:50px; text-align:center; font-size:22px; line-height:50px; background:url(../images/login_bg04.gif) repeat-x left top}
+.register dl.btn input:hover{background:url(../images/login_bg04.gif) repeat-x left -50px}
+
+.registe{float:left; width:370px; margin-left:415px; padding-bottom:50px}
+.registe h2{float:left; width:100%; height:47px; margin:50px 0 0 0; position:relative; background:url(../images/login_pic03.jpg) no-repeat left center}
+.registe h2 a{ position:absolute; right:22px; top:10px; line-height:31px; font-weight:normal; font-size:18px}
+.registe dl{float:left; width:100%; margin:20px 0 0 0; display:inline}
+.registe dl dt{float:left; width:82px; height:40px; line-height:40px; color:#3f3f3f; font-size:15px; font-weight:bold}
+.registe dl dd{float:left; display:inline; margin-right:10px}
+.registe dl dd.inbg{height:38px}
+.registe dl dd.inbg input{font-size:16px; padding-left:7px; height:38px; line-height:38px; color:#999}
+.registe dl dd a.gybtn{margin-top:2px}
+.registe dl.auto{width:100%; margin-top:60px}
+.registe dl.auto em{float:left; margin-left:80px; width:24px; height:24px; cursor:pointer; text-indent:-9999px; background:url(../images/icon_checkbox01.gif) no-repeat left top}
+.registe dl.auto em.curr{background:url(../images/icon_checkbox01.gif) no-repeat -24px top}
+.registe dl.auto span{float:left; margin-left:5px; height:24px; color:#f55555; line-height:24px; font-size:14px}
+.registe dl.btn a{float:left; border:0px; width:100%; height:50px; text-align:center; font-size:22px; line-height:50px; background:url(../images/login_bg04.gif) repeat-x left top}
+.registe dl.btn a:hover{background:url(../images/login_bg04.gif) repeat-x left -50px}
+.registe dl.btn input{float:left; border:0px; width:320px; margin-left:25px; height:50px; text-align:center; font-size:22px; line-height:50px; background:url(../images/login_bg04.gif) repeat-x left top}
+.registe dl.btn input:hover{background:url(../images/login_bg04.gif) repeat-x left -50px}
+
+
+
+
+
+
+
+

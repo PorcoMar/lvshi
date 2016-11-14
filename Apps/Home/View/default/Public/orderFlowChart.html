@@ -1,0 +1,54 @@
+
+    <div class="mess_tag"><span>订单详情</span></div>
+
+    <div class="order_state">
+        <dl>
+            <dd class="name">购买服务</dd>
+        </dl>
+        <dl>
+            <dd class="name">律师接单</dd>
+        </dl>
+        <dl>
+            <dd class="name">付款</dd>
+        </dl>
+        <dl>
+            <dd class="name">律师提供服务</dd>
+        </dl>
+        <dl>
+            <dd class="name">确认完成服务</dd>
+            <!--<dd class="time">2016-04-23 12:12</dd>-->
+        </dl>
+        <dl class="last">
+            <dd class="name">
+                <if condition="$order.order_status eq '3'">
+                    订单已取消
+                    <elseif condition="$order.order_status eq '4'"/>
+                    订单已作废
+                    <elseif condition="$order.order_status eq '5'"/>
+                    订单已完成
+                    <elseif condition="$order.order_status eq '6'"/>
+                    订单已退款
+                    <elseif condition="$order.order_status eq '7'"/>
+                    订单部分退款
+                    <elseif condition="$order.order_status eq '8'"/>
+                    律师取消
+                   <else/>
+                    等待完成
+                </if>
+
+            </dd>
+            <dd style="height: 10px"></dd>
+        </dl>
+        <!--<div class="state sta1"></div>-->
+        <if condition="($order.order_status eq '1') AND ($order.service_status eq '0') AND ($order.pay_status eq '0')">
+            <div class="state sta2"></div>
+            <elseif condition="($order.pay_status eq '0') AND ($order.order_status eq '1')"/>
+            <div class="state sta3"></div>
+            <elseif condition="($order.pay_status eq '1') AND ($order.service_status eq '1')"/>
+            <div class="state sta4"></div>
+            <elseif condition="($order.order_status eq '5') AND($order.pay_status eq '1') AND ($order.service_status eq '2')"/>
+            <div class="state sta6"></div>
+            <else/>
+            <div class="state sta6"></div>
+        </if>
+    </div>

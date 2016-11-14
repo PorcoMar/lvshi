@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+
+<!--KV开始-->
+<div class="kv kv021">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">		
+		<div class="con_left">
+			<div class="hf_box">
+				<div class="my_hf_title">
+					<dl>
+						<input type="hidden" name="id" id="answer" value="{$askDetail.id}">
+						<dt><em></em><span>{$askDetail.description}</span></dt>
+						<dd>{$askDetail['nick_name']}&nbsp&nbsp|&nbsp&nbsp提问时间：{$askDetail['create_time']|date='Y-m-d h:i:s',###}</dd>
+					</dl>
+				</div>
+			</div>
+			<if condition="$askDetail.adopt eq 1">
+				<div class="hf_box"  >
+					<div class="my_hf_list" >
+						<h2><span>提问者采纳的答案</span></h2>
+						<dl>
+							<dt><em>{$adopt['nick_name']}</em><span></span><img src="{$adopt['avatar']}" alt="" /></dt>
+							<dd>
+								<span class="text">{$adopt.content}</span>
+								<span class="time">{$adopt['create_time']|date='Y-m-d h:i:s',###}</span>
+								<input type="hidden" name="id" id="answer" value="{$askDetail.id}">
+									<if condition="$adopt['status'] eq 1">
+										<volist name="adopt['comment']" id='answer' key = 'k'>
+										<if condition=" $k % 2 eq 1 ">
+											<span class="text"><em style="color:red"> 追问：</em>{$answer.content}</span>
+										<else/>
+											<span class="text"><em style="color:blue">追答：</em>{$answer.content}</span>
+										</if>
+										</volist>
+									</if>
+							</dd>
+						</dl>
+					</div>
+				</div>
+				<div class="hf_box">
+					<div class="my_hf_list">
+						<h2><em></em><span>其他共{$askDetail.answers}条回答</span></h2>
+						<volist name="otheranswers" id="v2">
+							<dl>
+								<dt><em>{$v2['nick_name']}</em><span></span><img src="{$v2.avatar}" alt="" /></dt>
+								<dd>
+									<span class="text">{$v2.content}</span>
+									<span class="time">{$v2['create_time']|date='Y-m-d h:i:s',###}</span>
+									<input type="hidden" name="id" id="answer" value="{$askDetail.id}">
+									<if condition="$v2['status'] eq 1">
+										<volist name="v2['comment']" id='answer' key = 'k'>
+										<if condition=" $k % 2 eq 1 ">
+											<span class="text"><em style="color:red"> 追问：</em>{$answer.content}
+											<if condition="$v2['member_id'] == $userId AND ($k==$v2.num)">
+												<button style="float:right; width:80px; margin-right:20px;line-height:30px; text-align:center; font-size:18px; color:#fff;background:url(__ROOT__/Public/web/images/btn_bg12.gif) no-repeat left top; display:inline;" onclick="reply({$v2.id})">回复追问</button>
+											</if></span>
+										<else/>
+											<span class="text"><em style="color:blue">追答：</em>{$answer.content}</span>
+										</if>
+										</volist>
+									</if>
+								</dd>
+							</dl>
+							<if condition="$askDetail['member_id'] == $userId">
+								<button style="float:right; width:80px; margin-right:20px;line-height:30px; text-align:center; font-size:18px; color:#fff;background:url(__ROOT__/Public/web/images/btn_bg12.gif) no-repeat left top; display:inline;" onclick="see({$v2.id},{$v2.num})">继续追问</button>
+							</if>
+						</volist>
+					</div>			
+				</div>
+			<else/>
+				<div class="hf_box">
+					<div class="my_hf_list">
+						<h2><em></em><span>共{$askDetail.answers}条回答</span></h2>
+						<volist name="answers" id="v1">
+						<dl>
+							<dt><em>{$v1['nick_name']}</em><span></span><img src="{$v1.avatar}" alt="" /></dt>
+							<dd>
+								<span class="text">{$v1.content}</span>
+								<span class="time">{$v1['create_time']|date='Y-m-d h:i:s',###}</span>
+								<input type="hidden" name="id" id="answer" value="{$askDetail.id}">
+									<if condition="$v1['status'] eq 1">
+										<volist name="v1['comment']" id='answer' key = 'k'>
+										<if condition=" $k % 2 eq 1 ">
+											<span class="text"><em style="color:red"> 追问：</em>{$answer.content}
+											<if condition="($v1['member_id'] == $userId) AND ($k==$v1['num'])">
+												<button style="float:right; width:80px; margin-right:20px;line-height:30px; text-align:center; font-size:18px; color:#fff;background:url(__ROOT__/Public/web/images/btn_bg12.gif) no-repeat left top; display:inline;" onclick="reply({$v1.id})">回复追问</button>
+											</if></span>
+										<else/>
+											<span class="text"><em style="color:blue">追答：</em>{$answer.content}</span>
+											</if>
+										</volist>
+									</if>
+							</dd>
+						</dl>
+						<if condition="$askDetail['member_id'] == $userId">
+							<button style="float:right; width:80px; margin-right:20px;line-height:30px; text-align:center; font-size:18px; color:#fff;background:url(__ROOT__/Public/web/images/btn_bg12.gif) no-repeat left top; display:inline;" onclick="see({$v1.id},{$v1.num})">继续追问</button>
+						
+							<button style="float:right; width:80px; margin-right:20px;line-height:30px; text-align:center; font-size:18px; color:#fff;background:url(__ROOT__/Public/web/images/btn_bg12.gif) no-repeat left top; display:inline;" onclick="adopt({$v1.id})">采纳回答</button>
+						</if>
+						</volist>
+					</div>				
+				</div>
+			</if>
+
+			<if condition="($style eq 1 ) AND  ($askDetail['adopt'] neq 1) AND ($askDetail['status'] neq 2) AND ($askDetail['mid'] neq $userId) AND ($askDetail['member_id'] neq $userId ) AND ($state neq 1)">
+				<div class="hf_add">
+					<dl>
+						<dd>
+							<textarea  name="" cols="" id="myarea" rows="" onKeyUp="keypress1()" onfocus="if (value=='我有更好答案'){value=''}"
+									   onblur="if (value ==''){value='我有更好答案'}" >我有更好答案</textarea>
+							<span>
+								<div>
+									<em>还可以输入<b id="zhishu">255</b>字</em>
+									<a href="javascript:void(0)" onclick="send()">发送</a></div>
+
+								<div  class="sub"></div>
+							</span>
+						</dd>
+					</dl>
+				</div>
+			</if>
+			<div class="hf_add" id="goOn">
+				<dl>
+					<dd >
+						<input name="answer_id" id= "go" type="hidden">
+						<textarea name="" cols="" id="myarea" rows="" onKeyUp="keypress1()" onfocus="if (value=='追问内容'){value=''}"
+								  onblur="if (value ==''){value='追问内容'}">追问内容</textarea>
+						<span>
+							<div>
+								<em>还可以输入<b id="zhishu">255</b>字</em>
+								<a href="javascript:void(0)" onclick="sends()">发送</a>
+							</div>
+							<div  class="sub"></div>
+						</span>
+					</dd>
+				</dl>
+			</div>
+			<div class="hf_add" id="reply">
+				<dl>
+					<dd>
+						<input name="answer_id" id= "replys" type="hidden">
+						<textarea name="" cols="" id="myreply" rows="" onKeyUp="keypress()" onfocus="if (value=='回复追问'){value=''}"
+								  onblur="if (value ==''){value='回复追问'}">回复追问</textarea>
+						<span>
+							<div>
+								<em>还可以输入<b id="zhishu1" style="color: red">255</b>字</em>
+								<a href="javascript:void(0)" onclick="replymsg()">发送</a>
+							</div>
+							<div  class="sub"></div>
+						</span>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<!--右侧菜单-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--金牌律师-->
+{:W('Web/lawyerMenu')}
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+<script type="application/javascript">
+	//发送回答问题的内容
+	function send(){
+	    var id = $("#answer").val();
+	    var answer = $("#myarea").val();
+	    if( answer !='我有更好答案' ){
+			$.ajax({
+				type: "POST",
+				url: "{:U('Consult/answer')}",
+				dataType: "json",
+				data: {"id":id,"content":answer},
+
+				success: function(json){
+					switch (json.status)
+					{
+						case 0:
+							alert('发送失败，请重新填写');
+							break;
+						case 1:
+							alert('发送成功');
+							var url = "{:U('Consult/askdetail')}";
+							url += '/id/' + id ;
+							window.location.href=url;
+							break;
+					}
+				}
+			});
+			}else{
+				alert("请填写内容再发送")
+			}
+
+	}
+
+	//采用回答
+	function adopt(id){
+		var qid = $("#answer").val();
+			$.ajax({
+				type: "POST",
+				url: "{:U('Consult/adoptProblem')}",
+				dataType: "json",
+				data: {"id":id},
+				success: function(json){
+					switch (json.status)
+					{
+						case 0:
+							alert('采纳失败，请重新采纳');
+							break;
+						case 1:
+							alert('采纳成功');
+							var url = "{:U('Consult/askdetail')}";
+							url += '/id/' + qid ;
+							window.location.href=url;
+							break;
+					}
+				}
+			});
+	}
+
+	//页面引入控制追问和追答框的隐藏
+	$(function () {
+		$("#goOn").hide()
+		$("#reply").hide()
+	})
+
+
+	//控制追问显示
+	function see(id,num){
+		Aid= id ;
+		//alert(num)
+		if(num%2==0){
+			$("#goOn").show();
+			$("#go").val(Aid);
+		}else{
+			alert("上次您的追问还没回答，请等待回答")
+		}
+
+
+	}
+
+	//发送追问问题的内容
+	function sends(){
+		var id = $("#answer").val();
+		var answerId = $("#go").val();
+		var content  = $("#myarea").val();
+		if( answer !='追问内容' ){
+			$.ajax({
+				type: "POST",
+				url: "{:U('Consult/asked')}",
+				dataType: "json",
+				data: {"answerId":answerId,"content":content},
+				success: function(json){
+					switch (json.status)
+					{
+						case 0:
+							alert('发送失败，请重新填写');
+							break;
+						case 1:
+							alert('发送成功');
+							var url = "{:U('Consult/askdetail')}";
+							url += '/id/' + id ;
+							window.location.href=url;
+							break;
+					}
+				}
+			});
+		}else{
+			alert("请填写内容再发送")
+		}
+	}
+
+	//控制追答显示
+	function reply(id){
+		$("#reply").show()
+		$("#replys").val(id);
+	}
+
+
+	/*回复追问*/
+	function replymsg(){
+		var id = $("#answer").val();
+		var answerId = $("#replys").val();
+		var content  = $("#myreply").val();
+		if( answer !='追问内容' ){
+			$.ajax({
+				type: "POST",
+				url: "{:U('Consult/reply')}",
+				dataType: "json",
+				data: {"answerId":answerId,"content":content},
+				success: function(json){
+					switch (json.status)
+					{
+						case 0:
+							alert('发送失败，请重新填写');
+							break;
+						case 1:
+							alert('发送成功');
+							var url = "{:U('Consult/askdetail')}";
+							url += '/id/' + id ;
+							window.location.href=url;
+							break;
+					}
+				}
+			});
+		}else{
+			alert("请填写内容再发送")
+		}
+	}
+
+
+</script>
+</body>
+</html>

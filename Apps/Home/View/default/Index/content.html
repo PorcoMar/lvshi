@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+<meta name="description" content="『俺的律师』是由国家权威媒体光明日报、光明网、法制日报、法制文萃报倾力打造法律服务平台为百姓享受律师服务提供解决方案，聚合国内海量实名认证律师，为您提供离婚纠纷、侵权赔偿、债权债务、房产纠纷、劳动仲裁、知识产权、交通事故、遗产继承、医患纠纷、民事刑事、公司事务等各类案件的免费咨询和法律服务。"/>
+<!--此处填页面名称-->
+<title>{$contentDetail.result.name}-俺的律师网</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg">
+	<div class="wrap rela">
+		<include file="Public/header" />
+    </div>
+</div>
+<!--头部结束-->
+<!--二级菜单开始-->
+<div class="sub_navbg">
+	<div class="wrap">
+		<div class="sub_nav" id="CastSort">
+			<a <if condition="$code eq 'about_mysite'">class="select"</if> href="{:U('Index/content/code/about_mysite')}">关于我们</a><a <if condition="$code eq 'lianxius'">class="select"</if>  href="{:U('Index/other/code/lianxius')}">联系我们</a><a <if condition="$code eq 'falvshengming'">class="select"</if> href="{:U('Index/other/code/falvshengming')}">法律声明</a><a <if condition="$code eq 'huanyinghezuo'">class="select"</if> href="{:U('Index/other/code/huanyinghezuo')}">欢迎合作</a><a <if condition="$code eq 'youqinglianjie'">class="select"</if> href="{:U('Index/other/code/youqinglianjie')}">友情链接</a><a <if condition="$code eq 'agree'">class="select"</if> href="{:U('Index/agree')}">反馈留言</a>
+		</div>
+    </div>
+
+</div>
+<!--二级菜单结束-->
+
+<!--关于我们内容开始-->
+<div class="wrap">
+    <div class="aboutus">
+        <div class="bread">首页 - {$contentDetail.result.name} - 中国领先的一站式创业法律服务机构</div>
+    	<div class="pic01">
+        	<img src="__ROOT__/Public/web/images/aboutus04.jpg" />
+        </div>
+    </div>
+	<div class="aboutusNew">
+		<div class="title01"><span class="t01">{$contentDetail.result.name}</span></div>
+		<div class="text01">
+			{$contentDetail.result.content}
+		</div>
+		<div class="datu">
+			<!--1025-->
+			<div class="datuBox">
+				<a href="{:U('Index/content/code/about_mysite')}" <if condition="$code eq 'about_mysite'">class="a1 curr"<else/>class="a1"</if>></a>
+				<a href="{:U('Index/content/code/hexintuandui')}" <if condition="$code eq 'hexintuandui'">class="a2 curr"<else/>class="a2"</if>></a>
+				<a href="{:U('Index/content/code/hexinyoushi')}" <if condition="$code eq 'hexinyoushi'">class="a3 curr"<else/>class="a3"</if>></a>
+				<a href="{:U('Index/content/code/yuanjingshiming')}" <if condition="$code eq 'yuanjingshiming'">class="a4 curr"<else/>class="a4"</if>></a>
+				<a href="{:U('Index/content/code/andehuoban')}" <if condition="$code eq 'andehuoban'">class="a5 curr"<else/>class="a5"</if>></a>
+			</div>
+			<!--1025-->
+		</div>
+		<include file="Public/footer"/>
+	</div>
+</div>
+
+
+<div class="aboutus_bottom">
+    <div class="wrap">
+
+        <!--底部开始-->
+
+   		<!--底部结束-->
+    </div>
+</div>
+<!--关于我们内容结束-->
+</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		$(".datuBox a").each(function(){
+			$(this).click(function(){
+				$(this).parent().find("a.curr").removeClass("curr");
+				$(this).addClass("curr");
+			});
+		});
+	});
+	$(function(){
+		$("#CastSort a").width(parseInt($("#CastSort").width()/$("#CastSort a").length) - $("#CastSort a").length);
+	})
+</script>

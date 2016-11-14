@@ -1,0 +1,87 @@
+@charset "utf-8";
+.mainVideo{ position:absolute; top:59px; right:5px; width:320px; height:180px; background:url(../images/001.jpg) no-repeat left top}
+.mainVideo dl{float:left; width:320px; height:180px; position:relative}
+.mainVideo dl span{ position:absolute; background:url(../images/video_play.png) no-repeat left top; cursor:pointer; width:80px; height:80px; top:50px; left:120px}
+
+.mainSlogin{ position:absolute; left:50px; top:-10px; width:807px; height:310px; background:url(../images/index_bg01.png) no-repeat left top}
+
+.mainNine{float:left; width:100%; height:90px; background:#fff}
+.mainNine ul{ position:absolute; left:0px; top:0px; width:100%; background:#fff; height:107px; overflow:hidden; border-bottom:1px solid #ddd; }
+.mainNine ul li{float:left; width:149px; padding-right:1px; background:url(../images/con_line04.gif) no-repeat right center; height:107px}
+.mainNine ul li.none{background:none}
+.mainNine ul li a{float:left; width:100%; height:100%; line-height:170px; font-size:16px; font-weight:bold; text-align:center}
+.mainNine ul li:hover{ background-color:#f4f4f4}
+.mainNine ul li.n1 a{ background:url(../images/main_lvs01.png) no-repeat center 6px}
+.mainNine ul li.n2 a{ background:url(../images/main_lvs02.png) no-repeat center 6px}
+.mainNine ul li.n3 a{ background:url(../images/main_lvs03.png) no-repeat center 6px}
+.mainNine ul li.n4 a{ background:url(../images/main_lvs04.png) no-repeat center 6px}
+.mainNine ul li.n5 a{ background:url(../images/main_lvs05.png) no-repeat center 6px}
+.mainNine ul li.n6 a{ background:url(../images/main_lvs06.png) no-repeat center 6px}
+.mainNine ul li.n7 a{ background:url(../images/main_lvs07.png) no-repeat center 6px}
+.mainNine ul li.n8 a{ background:url(../images/main_lvs08.png) no-repeat center 6px}
+
+.main_tree{float:left; width:530px; height:442px; margin:5px 0 0 35px; display:inline;
+background:url(../images/tree.jpg) no-repeat left top}
+.main_tree ul{float:left}
+.main_tree ul li{float:left; width:100%; height:56px; line-height:56px; font-size:18px; font-weight:bold; margin-top:13px}
+.main_tree ul li a{float:left; width:100%; color:#fff}
+.main_tree ul li a:hover{color:#000; text-decoration:none}
+.main_tree ul.left{width:135px; margin:108px 0 0 70px; display:inline}
+.main_tree ul.right{width:100px; margin:125px 0 0 27px; display:inline}
+.main_tree ul.right li{ text-align:right}
+
+.main_right{float:left; width:624px; height:442px; margin-top:40px}
+.main_right dl{float:left; width:312px; height:124px; position:relative; margin-top:50px}
+.main_right dl.bg1{ background:#ef9394}
+.main_right dl.bg2{ background:#9cbbd8}
+.main_right dl.bg3{ background:#83b988; height:140px}
+.main_right dl.bg4{ background:#ecc26c; height:140px}
+.main_right dl span{ position:absolute}
+.main_right dl.bg1 span{ width:142px; height:128px; right:16px; top:-39px; background:url(../images/con_bg041.png) no-repeat left top}
+.main_right dl.bg2 span{ width:151px; height:129px; right:16px; top:-39px; background:url(../images/con_bg042.png) no-repeat left top}
+.main_right dl.bg3 span{ width:134px; height:137px; right:10px; top:-39px; background:url(../images/con_bg043.png) no-repeat left top}
+.main_right dl.bg4 span{ width:133px; height:136px; right:10px; top:-39px; background:url(../images/con_bg044.png) no-repeat left top}
+.main_right dl em{ position:absolute; top:50%; width:12px; height:18px; margin-top:-9px}
+.main_right dl em.left{left:0px; background:url(../images/main_arrow01.png) no-repeat left top}
+.main_right dl em.right{right:0px; background:url(../images/main_arrow02.png) no-repeat left top}
+.main_right dl dt{float:left; width:100%; height:50px; line-height:30px; margin-top:35px; text-indent:32px; color:#fff; font-size:24px; font-weight:bold}
+.main_right dl dt a{color:#fff}
+.main_right dl dt a:hover{color:#000; text-decoration:none}
+.main_right dl dd{float:left; width:100%; text-indent:32px; height:30px; line-height:30px; color:#fff; font-size:14px}
+
+
+.main_bottom{float:left; width:100%}
+.main_bottom dl{float:left; margin:0 15px; width:366px; height:108px; border:1px solid #f3e6dd}
+.main_bottom dl dt{float:left; width:124px; height:104px; background-repeat:no-repeat; background-position:center center}
+.main_bottom dl dt.b1{ background-image:url(../images/con_bg01.png)}
+.main_bottom dl dt.b2{ background-image:url(../images/con_bg02.png)}
+.main_bottom dl dt.b3{ background-image:url(../images/con_bg03.png)}
+.main_bottom dl dd{float:left; line-height:104px; font-size:30px; color:#666}
+
+.main_news{float:left; width:550px; margin:0 25px; padding-bottom:20px; display:inline}
+.main_news ul{float:left; width:100%; height:200px; margin-top:15px}
+.main_news ul li{float:left; width:100%; height:36px; position:relative; font-size:14px}
+.main_news ul li em{float:left; width:470px; margin-left:5px; display:inline; line-height:36px; height:36px;
+text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.main_news ul li span{ position:absolute; right:5px; height:36px; line-height:36px}
+
+.main_city{float:left; width:630px; height:180px; position:relative}
+.main_city ul{ position:absolute; width:100%; height:152px; left:0px; top:-14px; z-index:10}
+.main_city ul li{float:left; width:25%; height:152px; background-repeat:no-repeat; background-position:center center}
+.main_city ul li.bj{ background-image:url(../images/hot_bj.png)}
+.main_city ul li.sh{ background-image:url(../images/hot_sh.png)}
+.main_city ul li.gz{ background-image:url(../images/hot_gz.png)}
+.main_city ul li.sz{ background-image:url(../images/hot_sz.png)}
+
+.main_citySelect{float:left; width:540px; margin-left:25px; margin-top:30px; height:150px; position:relative}
+.main_citySelect .main_szcity{left:20px; top:50px}
+.main_citySelect .main_szcity dd{margin-right:20px; margin-left:0px}
+
+
+
+
+
+
+
+
+

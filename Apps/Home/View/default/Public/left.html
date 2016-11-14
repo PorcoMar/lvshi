@@ -1,0 +1,43 @@
+<script>
+    $(document).ready(function () {
+        $('.l_s174 li a').each(function () {
+            if ($($(this))[0].href == String(window.location))
+                $(this).addClass('active').attr('href', window.location);
+        });
+    })
+</script>
+<div class="l_s174">
+    <ul class="b_sidenav">
+       <foreach name="cmsList" item="v">
+
+
+        <li class="last{$v.id} ">
+            <a  href="{:U('Public/'.$v['code'])}" >{$v.name}</a>
+        </li>
+       </foreach>
+       <!-- <li>
+            <a href="{:U('Public/contactUs')}">联系我们</a>
+        </li>
+        <li>
+            <a href="{:U('Public/aboutTheAns')}">关于俺的律师</a>
+        </li>
+        <li>
+            <a href="{:U('Public/careers')}">招贤纳士</a>
+        </li>
+        <li>
+            <a href="{:U('Public/business')}">业务合作</a>
+        </li>
+        <li class="last">
+            <a href="{:U('Public/complaint')}">我要投诉</a>
+        </li>-->
+    </ul>
+</div>
+<div class="l_m740">
+    <div class="about_tag">
+        <ul>
+            <li class="<if condition='$secMenu eq "about"'>curr</if>"><a href="{:U('Public/about_us')}">关于我们</a></li>
+            <li class="<if condition='$secMenu eq "business"'>curr</if>"><a href="{:U('Public/cooperate_entrance')}">业务合作</a></li>
+            <li class="<if condition='$secMenu eq "careers"'>curr</if>"><a href="{:U('Public/recruit')}">招贤纳士</a></li>
+            <li class="<if condition='$secMenu eq "contactUs"'>curr</if>"><a href="{:U('Public/contact_us')}">联系我们</a></li>
+        </ul>
+    </div>

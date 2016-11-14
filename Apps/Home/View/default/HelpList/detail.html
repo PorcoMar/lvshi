@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--菜单结束-->
+<div class="MainCenter">
+    <div class="mainBox">
+            <div class="detail_left">
+                <div class="detail_left_top"></div>
+                <div class="detail_left_center">
+                    <div class="qz_add">
+                        <dl>
+                            <dt><span>*</span>求助单号：</dt>
+                            <dd class="inbg">
+                               <input readonly="readonly" style="width: 120px" name="help_no" type="text" value="{$helpDetail['result']['help_no']}"/>
+                            </dd>
+                            <dt>求助状态：</dt>
+                            <dd class="inbg">
+                                <input readonly="readonly" style="width: 80px" name="status" type="text" value="{$helpDetail['result']['status']}"/>
+                            </dd>
+                            <dd class="btn" style="margin-left: 80px;">
+                                <div class="user_status">
+                                    <if condition="$helpDetail['result']['user_status'] eq 0">
+                                        <if condition="$helpDetail['result']['is_close'] eq 0">
+                                            <a onclick="change_status({$helpDetail.result.id})" href="javascript:void(0)" class="gybtn btn80red">中止</a>
+                                            <else/>
+                                            <a  href="javascript:void(0)" class="gybtn btn80red">已关闭</a>
+                                        </if>
+                                        <else />
+                                        <if condition="$helpDetail['result']['is_close'] eq 0">
+                                            <a href="javascript:void(0)" class="gybtn btn80red">聊天</a>
+                                            <else/>
+                                            <a  href="javascript:void(0)" class="gybtn btn80red">已关闭</a>
+                                        </if>
+                                    </if>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><span>*</span>所在城市：</dt>
+                            <dd>
+                                <div class="selectbg wt160">
+                                    <div class="options_curr" id="CITY_Selected">{$helpDetail['result']['province_name']}</div>
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="selectbg wt160">
+                                    <div class="options_curr" id="ACOUTNY_Selected">{$helpDetail['result']['city_name']}</div>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><span>*</span>求助类型：</dt>
+                            <dd>
+                                <div class="selectbg wt160">
+                                    <div class="options_curr" id="QZLX1_Selected">{$helpDetail['result']['first_cate_name']}</div>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><span>*</span>求助意向：</dt>
+                            <dd>
+                                <div class="selectbg wt160">
+                                    <div class="options_curr" id="QZYX_Selected">{$helpDetail['result']['member_cat_name']}</div>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><span>*</span>服务时间：</dt>
+                            <dd class="inbg"><input id="service_start_date" name="service_start_date" readonly="readonly" type="date" class="sinput" value="{$helpDetail['result']['service_start_date']}" /></dd>
+                            <dd><img src="__ROOT__/Public/web/images/icon_data.gif" alt="" /></dd>
+                            <dd class="inbg"><input id="service_end_date" name="service_end_date" readonly="readonly" type="date" class="sinput" value="{$helpDetail['result']['service_end_date']}" /></dd>
+                            <dd><img src="__ROOT__/Public/web/images/icon_data.gif" alt="" /></dd>
+                        </dl>
+                        <dl>
+                            <dt><span>*</span>联系电话：</dt>
+                            <dd class="inbg"><input readonly="readonly" id="phone" name="phone" type="text" class="sinput" value="{$helpDetail['result']['mobile']}"/></dd>
+                        </dl>
+                        <dl>
+                            <dt><span>*</span>说明：</dt>
+                            <br/>
+                            <dd>
+                                <br/>
+                                <input type="checkbox" disabled="disabled"  id="is_only_response" name="is_only_response"  <if condition="$helpDetail['result']['is_only_response'] eq 1">checked="checked"</if> />只找律师应答<br/>
+                                <input type="checkbox" disabled="disabled"  id="is_phone" name="is_phone" <if condition="$helpDetail['result']['is_phone'] eq 1">checked="checked"</if> />可打电话联系<br/>
+                                <input type="checkbox" disabled="disabled"  id="is_benefit_lawyer" name="is_benefit_lawyer" <if condition="$helpDetail['result']['is_benefit_lawyer'] eq 1">checked="checked"</if> />我希望公益律师为我服务
+                            </dd>
+
+                        </dl>
+                    </div>
+                </div>
+                <div class="detail_left_bottom">
+                </div>
+                    <div class="prod_list_more" style="border: solid 1px #999;width: 838px;margin-top: 20px;height: auto;">
+                        <empty name="lawyerArr">
+                            <dl style="font-size: 16px;text-align: left;height: 50px">
+                                没有对应的律师
+                            </dl>
+                            <else />
+                           <volist name="lawyerArr" id="lawyer">
+                                <dl>
+                                    <dt><span></span><em class="a1"></em><img src="{$lawyer.avatar}" alt="" />
+                                    <div class="aa">
+
+                                        <volist name="lawyer.lawyer_tag_name" id="tag">
+                                            <label>{$tag}</label>
+                                        </volist>
+
+                                    </div>
+                                    </dt>
+                                    <dd class="jiben">
+                                        <div class="name"><em>{$lawyer.real_name}</em><a href="javascript:void(0)" class="tel" title="打电话"></a><a href="javascript:void(0)" class="mess" title="发消息"></a></div>
+                                        <div class="suo"><em>{$lawyer['law_office_name'][0]}</em><span class="star{$lawyer.style}"></span></div>
+                                        <div class="jian">{$lawyer.bio}</div>
+
+                                        <div class="bq">
+                                            <label>热情</label>
+                                            <label>很务实</label>
+                                            <label>打赢了</label>
+                                        </div>
+
+                                    </dd>
+                                    <dd class="btn">
+                                        <a href="{:U('buy/index/id/'.$lawyer[lawyer_id].'/help_id/'.$lawyer[help_id])}" class="gybtn btn80red">购买</a>
+                                        <label>接单量<span>{$lawyer.order_num}</span></label>
+                                    </dd>
+                                </dl>
+                           </volist>
+                        </empty>
+                </div>
+            </div>
+        {:W('Web/rightMenu')}
+    </div>
+</div>
+<!--底部开始-->
+<include file="Public/footer"/>
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+    function change_status(id){
+        var res = confirm('确定要中止求助吗？');
+        if(res){
+            $.ajax({
+                type:"post",
+                dataType:"json",
+                url:'{:U("helpList/closeHelp")}',
+                data:'id='+id,
+                success:function(result){
+                    if(result.code=='1000'){
+                        var prairies='';
+                        $('.user_status').html();
+                        prairies+=' <a href="javascript:void(0)" class="gybtn btn80red">已中止</a>';
+                        $('.user_status').html(prairies);
+                    }else{
+                        alert('关闭失败，请稍后再操作!');
+                    }
+                }
+            })
+        }
+    }
+</script>

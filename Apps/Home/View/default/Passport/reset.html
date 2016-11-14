@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+    <title>找回密码-俺的律师网</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg">
+    <div class="wrap rela">
+        <include file="Public/header"/>
+    </div>
+
+</div>
+<!--结束开始-->
+
+
+<!--注册内容开始-->
+<div class="zhuce">
+    <div class="wrap rela">
+        <div class="zc_title01 clearfix"><span class="t01">找回密码</span></div>
+
+        <p class="jindu"><img src="__ROOT__/Public/web/images/jindu02.jpg" /></p>
+        <div class="zhuce_nr">
+            <table>
+                <tr><td align="right">输入密码：</td><td><input type="text" class="inp02" value="请输入您的密码" onfocus="this.value='';" onblur="if(this.value==''){this.value='请输入您的密码'}" /></td></tr>
+                <tr><td align="right">确认密码：</td><td><input type="text" class="inp02" value="请再次确认密码" onfocus="this.value='';" onblur="if(this.value==''){this.value='请再次确认密码'}" /></td></tr>
+                <tr><td></td><td><a class="zhaohui_btn" href="#">确定</a></td></tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!--注册内容结束-->
+<!--底部开始-->
+<include file="Public/footer"/>
+<!--底部结束-->
+<script>
+
+    //60秒倒计时
+    var countdown=6;
+    function settime(obj) {
+        if (countdown == 0) {
+            obj.removeAttribute("disabled");
+            $('#miao60').removeClass('btn02');
+            obj.value="获取验证码";
+            countdown = 6;
+            return;
+        } else {
+            obj.setAttribute("disabled", true);
+            $('#miao60').addClass('btn02');
+            obj.value="(" + countdown + ")秒";
+            countdown--;
+        }
+        setTimeout(function() {
+                    settime(obj) }
+                ,1000)
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

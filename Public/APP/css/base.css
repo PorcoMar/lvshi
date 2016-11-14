@@ -1,0 +1,172 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	color: #333333;
+	font-family: "微软雅黑";
+}
+div.row,ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+/*a*/
+a,a:hover,a:link,a:visited{
+	color: #333333;
+	text-decoration: none;
+}
+/*align*/
+.align{
+	text-align: center;
+}
+.align-right{
+	text-align: right;
+}
+.align-left{
+	text-align: left;
+}
+/*size*/
+.size12{
+	font-size: 12px;
+}
+.size14{
+	font-size: 14px;
+}
+.size16{
+	font-size: 16px;
+}
+.size18{
+	font-size: 18px;
+}
+/*padding*/
+.padding{
+	padding: 0;
+}
+.padding-left{
+	padding-left: 0;
+}
+.padding-right{
+	padding-right: 0;
+}
+/*bold*/
+.bolder{
+	font-weight: bolder;
+}
+/*input*/
+input{
+	outline: none;
+	outline-style: none;
+	resize: none;
+	border: none;
+}
+/*border*/
+.border-rdddddd{
+	border-right: solid 1px #dddddd;
+}
+.border-bdddddd{
+	border-bottom: solid 1px #dddddd;
+}
+/*title*/
+header div.details-title{
+	padding: 2% 0%;
+	background: -webkit-linear-gradient(left,#d92643,#ff7e38); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(left,#d92643,#ff7e38); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(left,#d92643,#ff7e38); /* Firefox 3.6 - 15 */
+	background: linear-gradient(left,#d92643,#ff7e38); /* 标准的语法 */
+}
+header div.details-title div.col-xs-1{
+	width: 12%;
+}
+header div.details-title div.col-xs-10{
+	width: 76%;
+	text-align: center;
+	font-size:20px;
+	color: #ffffff;
+	margin-top: 1%;
+}
+header div.details-title div.col-xs-1 span{
+	text-align: center;
+	color: #ffffff;
+	font-size: 22px;
+	line-height: 38px;
+}
+header div.details-title div.col-xs-1:last-child span{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+header div.details-title div.menu-hide{
+	position: absolute;
+	right: 0px;
+	top:45px;
+	z-index: 300;
+	border: solid 1px #dddddd;
+	background: #ffffff;
+	width: 150px;
+	display: none;
+}
+header div.details-title div.menu-hide ul li a{
+	display: block;
+	text-align: center;
+	padding: 10% 0%;
+	border-bottom: dashed 1px #dddddd;
+}
+header div.details-title div.menu-hide ul li:last-child a{
+	border: none;
+}
+@media (min-width:410px) and (max-width:768px) {
+	header div.details-title div.menu-hide{
+		position: absolute;
+		right: 0px;
+		top:47px;
+		z-index: 300;
+		border: solid 1px #dddddd;
+		background: #ffffff;
+		width: 150px;
+		display: none;
+	}
+}
+/*title*/
+header div.title{
+	padding: 2% 0%;
+	background: -webkit-linear-gradient(left,#d92643,#ff7e38); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(left,#d92643,#ff7e38); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(left,#d92643,#ff7e38); /* Firefox 3.6 - 15 */
+	background: linear-gradient(left,#d92643,#ff7e38); /* 标准的语法 */
+}
+header div.title div.col-xs-1{
+	width: 12%;
+}
+header div.title div.col-xs-10{
+	width: 76%;
+}
+header div.title div.col-xs-1 span{
+	text-align: center;
+	color: #ffffff;
+	font-size: 22px;
+	line-height: 38px;
+}
+header div.title div.col-xs-10 span{
+	display: inline-block;
+	font-size: 18px;
+	position: absolute;
+	top: 12%;
+	left: 3%;
+}
+header div.title div.col-xs-10 input{
+	padding:3% 0%;
+	width: 100%;
+	border-radius: 20px;
+	padding-left: 10%;
+}
+
+
+
+
+
+
+
+
+
+
+
+

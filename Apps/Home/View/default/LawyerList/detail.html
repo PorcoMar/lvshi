@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+    <meta name="description" content="『俺的律师』是由国家权威媒体光明日报、光明网、法制日报、法制文萃报倾力打造法律服务平台为百姓享受律师服务提供解决方案，聚合国内海量实名认证律师，为您提供离婚纠纷、侵权赔偿、债权债务、房产纠纷、劳动仲裁、知识产权、交通事故、遗产继承、医患纠纷、民事刑事、公司事务等各类案件的免费咨询和法律服务。"/>
+   <!--此处加入律师事务所名-->
+<title>xx律师事务所_{$detailList.result.title}律师专访-俺的律师网</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg">
+	<div class="wrap rela"> 
+    	<include file="Public/header" />
+    </div>
+
+</div>
+<!--头部结束-->
+<!--内容开始-->
+<div class="wrap">
+    <div class="zidong clearfix">
+    	<div class="bread">首页 - 名律专访 - {$detailList.result.title}律师</div>
+        <div class="minglv_detail">
+        	<p class="img01"><img width="800px" height="450px" src="{$detailList.result.big_thumb}" /></p>
+            <div class="intro">
+        		<p class="title02"><span class="t01">名律专访—{$detailList.result.title}</span></p>
+            	<div class="intro_nr">{$detailList.result.description}</div>
+            </div>
+            <p class="t03">{$detailList.result.content}</p>
+        </div>
+        
+    </div>
+</div>
+<!--内容结束-->
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+
+</body>
+</html>

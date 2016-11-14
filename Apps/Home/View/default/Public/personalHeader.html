@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>俺的律师</title>
+    <link href="__ROOT__/Public/web/css/common2016.css" rel="stylesheet" type="text/css"/>
+    <link href="__ROOT__/Public/web/css/message.css" rel="stylesheet" type="text/css"/><!--个人中心-->
+    <script type="text/javascript" src="__ROOT__/Public/web/js/jquery.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__ROOT__/Public/web/js/common2016.js" charset="utf-8"></script><!--网站共用-->
+    <script type="text/javascript" src="__ROOT__/Public/web/js/message.js" charset="utf-8"></script><!--个人中心-->
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--菜单结束-->
+<div class="MainCenter">
+    <div class="mainBox">
+        <div class="mess_left">
+            <dl>
+                <dt><em class="curr">1</em><span>设置</span></dt>
+                <dd>
+                    <a href="{:U('Personal/index')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && ACTION_NAME == 'index') echo 'curr';</php>">个人资料</a>
+                    <a href="{:U('Personal/ChangeThePhone')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && ACTION_NAME == 'ChangeThePhone') echo 'curr';</php>">更改手机</a>
+                    <a href="{:U('Personal/changePwd')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && ACTION_NAME == 'changePwd') echo 'curr';</php>">更改密码</a>
+                    <a href="{:U('Personal/lawyerVerify')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && ACTION_NAME == 'lawyerVerify') echo 'curr';</php>">律师认证</a>
+                    <a href="{:U('Personal/brokerVerify')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && ACTION_NAME == 'brokerVerify') echo 'curr';</php>">经纪人认证</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt><em class="curr">1</em><span>消息</span></dt>
+                <dd>
+                    <a href="{:U('Personal/notice')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && ACTION_NAME == 'notice') echo 'curr';</php>">通知</a>
+                    <a href="{:U('Personal/question')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && (ACTION_NAME == 'question' || ACTION_NAME == 'questionDetail')) echo 'curr';</php>">我的问题</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt><em class="curr">1</em><span>文书</span></dt>
+                <dd>
+                    <a href="{:U('Personal/instrument')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && ACTION_NAME == 'instrument') echo 'curr';</php>">我的文书</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt><em class="curr">1</em><span>订单</span></dt>
+                <dd>
+                    <a href="{:U('Personal/orders')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && (ACTION_NAME == 'orders' || ACTION_NAME == 'orderDetail')) echo 'curr';</php>">我的订单</a>
+                    <a href="{:U('Personal/myHelpList')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && (ACTION_NAME == 'myHelpList')) echo 'curr';</php>" >我的求助</a>
+                </dd>
+            </dl>
+
+            <if condition="$lawyer eq 1">
+                <dl>
+                    <dt><em class="curr">1</em><span>我是律师</span></dt>
+                    <dd>
+                        <a href="{:U('Personal/HelpPool')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && ACTION_NAME == 'HelpPool') echo 'curr';</php>">求助池</a>
+                        <a href="{:U('Personal/reply')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && ACTION_NAME == 'reply') echo 'curr';</php>">我的回复</a>
+                        <a href="{:U('personal/serve')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && (ACTION_NAME == 'serve' || ACTION_NAME == 'newlyServe' || ACTION_NAME == 'redactServe')) echo 'curr';</php>">我的服务</a>
+                        <a href="{:U('Personal/lawyerOrders')}" class="<php>if(strtolower(CONTROLLER_NAME) == 'personal' && (ACTION_NAME == 'lawyerOrders' || ACTION_NAME == 'lawyerDetail')) echo 'curr';</php>">我的接单</a>
+                    </dd>
+                </dl>
+            </if>
+        </div>

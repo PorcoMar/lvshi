@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+
+<!--KV开始-->
+<div class="kv kv023">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">	
+		<div class="prod_select">
+			<div class="main_rmcity">
+				<dl>
+					<dt>所在城市：</dt>
+					<dd>
+						<volist name="openCitys" id='two'>
+							<a href="{:U('goodsList/index/city_id/'.$two[id])}">{$two.name}</a>
+						</volist>
+					</dd>
+				</dl>
+			</div>
+			<div class="main_szcity">
+				<dl>
+					<dt>所在城市：</dt>
+					<dd>
+						<div class="selectbg wt200">
+						  <input type="hidden" name="CITY" id="CITY" value="" />
+						  <div class="options_curr" id="CITY_Selected" >请选择</div>
+							 <ul class="options" id="CITY_Sel">
+								 <volist name='provinces' id='province'>
+									 <li onClick='search_show_province("CITY","{$province.id}",this)'>{$province.name}</li>
+								 </volist>
+							</ul>
+						</div>
+					</dd>
+					<dd>
+						<div class="selectbg wt160">
+						  <input type="hidden" name="ACOUTNY" id="ACOUTNY" value="" />
+						  <div class="options_curr" id="ACOUTNY_Selected">请选择</div>
+							<ul class="options" id="ACOUTNY_Sel">
+							</ul>
+						</div>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="ws_sort">
+			<div class="ws_sortlist">
+				<dl>
+					<dt>服务项目：</dt>
+					<dd>
+						<volist name="signList" id="sign">
+							<a href="{:U('goodsList/index/id/'.$sign[id])}" <if condition="$sign.id eq $cat">class="curr"</if>>{$sign.cat_name}</a>
+						</volist>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="con_left">
+			<div class="prod_title">
+				<dl>
+					<dd class="p1">服务</dd>
+					<dd class="p2">服务报价</dd>
+					<dd>
+						<div class="selectbg wt100">
+						  <input type="hidden" name="PINGJIA" id="PINGJIA" value="" />
+						  <div class="options_curr" id="PINGJIA_Slected">评价</div>
+							 <ul class="options" id="PINGJIA_Sel">
+								<li onClick="search_show('PINGJIA','1',this)">评价1</li>
+								<li onClick="search_show('PINGJIA','2',this)">评价2</li>
+							</ul>
+						</div>
+					</dd>
+				</dl>
+			</div>
+			<!--列表循环-->
+					<div class="prod_list_box">
+						<volist name='goods' id='goodsList'>
+						<div class="prod_list" id="ProductList{$goodsList.id}" onclick='ShowProductMore("{$goodsList.id}")'>
+							<dl>
+								<dt>
+							<span class="name">
+								<em>{$goodsList.goods_name}</em>
+								<if condition="$goodsList['is_hot'] eq 1">
+									<img src="__ROOT__/Public/web/images/icon_de01.png" alt="" />
+									<if condition="$goodsList['is_reputation'] eq 1">
+										<img src="__ROOT__/Public/web/images/icon_de02.png" alt="" />
+									</if>
+									<if condition="$goodsList['is_overflow'] eq 1">
+										<img src="__ROOT__/Public/web/images/icon_de03.png" alt="" />
+									</if>
+									<if condition="$goodsList['is_new'] eq 1">
+										<img src="__ROOT__/Public/web/images/icon_de04.png" alt="" />
+									</if>
+								</if>
+							</span>
+							<span class="text">
+								<p><b>服务方式：</b>{$goodsList.service_way_name}</p>
+								<!-- <p><b>服务标准：</b>{$goodsList.service_effect|html_entity_decode=###}</p> -->
+								<p><b>安安点评：</b>{$goodsList.remark}</p>
+							</span>
+								</dt>
+								<dd class="price">￥{$goodsList.sell_price}</dd>
+								<dd class="btn">
+									<div class="selectbg wt100_A">
+										<input type="hidden" name="GOUMAI" id="GOUMAI" value="{$goodsList.service_type}" />
+										<div class="options_curr" id="GOUMAI_Slected">
+											<if condition="$goodsList.service_type eq 1 ">
+												建议咨询
+											<else />
+												购买服务
+											</if>
+										</div>
+										<ul class="options" id="GOUMAI_Sel">
+											<li onClick="search_show('GOUMAI','1',this)">建议咨询</li>
+											<li onClick="search_show('GOUMAI','2',this)">购买服务</li>
+										</ul>
+									</div>
+									<label >
+										<!-- <span>{$goodsList.un_lawyer_num}</span>位神秘勇士 -->
+									<span>{$goodsList.lawyer_num}</span>位律师</label>
+									<label>接单量<span>{$goodsList.turnover}</span></label>
+									<label>评价数<span>{$goodsList.comments}</span></label>
+								</dd>
+							</dl>
+						</div>
+
+						<div class="prod_list_more" id="ProductListMore{$goodsList.id}" style="display:none">
+							<volist name="goodsList.lawyer" id="lawyer">
+								<dl>
+									<dt>
+										<span></span><em class="a1"></em><img src="{$lawyer.avatar}" alt="" />
+									<div class="aa">
+									<empty name="lawyer.tag">
+									<label>无数据</label>
+									<else />
+									<volist name="lawyer.tag.result" id="tag"><label>{$tag.tag_name}</label></volist>
+								    </empty>
+								</div>
+									</dt>
+									<dd class="jiben">
+										<div class="name"><em>{$lawyer.real_name}</em><a href="javascript:void(0)" class="tel" title="打电话"></a><a href="javascript:void(0)" class="mess" title="发消息"></a></div>
+										<div class="suo"><em>{$lawyer.law_office_name}</em><span class="star{$lawyer.star|substr=0,1}"></span></div>
+										<div class="jian">{$lawyer.bio}</div>
+										<div class="bq">
+											<label>热情</label>
+											<label>很务实</label>
+											<label>打赢了</label>
+										</div>
+									</dd>
+									<dd class="price">￥{$lawyer.sell_price}</dd>
+									<dd class="btn">
+										<a href="javascript:void(0)" class="gybtn btn80red">购买</a>
+										<label>接单量<span>{$lawyer.order_num}</span></label>
+									</dd>
+								</dl>
+							</volist>
+							<div class="xc_total">
+								<span class="total">为您筛选出<b>{$goodsList.total}</b>位符合条件的律师</span>
+								<if condition="$goodsList.total neq 0 "><a href="{:U('goodsList/detail/id/'.$goodsList[id])}">查看更多</a></if>
+							</div>
+						</div>
+						<div class="xc_show" id="xcshow{$goodsList.id}" style="display:none"><span onclick='HideProductMore("{$goodsList.id}")'></span></div>
+						</volist>
+					</div>
+				<!--列表循环-->
+				<div class="page_box">
+					<div class="page_num" align="center">
+					<if condition="$page_Index eq ''">
+						<li style="width:900px"><em >暂无数据</em></li>
+						<else/>
+						<if condition="$page_Index-1 lt 1">
+							<a href="{:U('goodsList/index/pageIndex/'.$page_Index)}">首页</a>
+							<else />
+
+							<a href="{:U('goodsList/index/pageIndex/'.($page_Index-1))}" class="prev">前一页</a>
+						</if>
+						<for start="1" end="$page_num" step="1">
+							<a href="{:U('goodsList/index/pageIndex/'.$i)}" <if condition="$page_Index eq $i"> class="curr"</if>>{$i}</a>
+						</for>
+						<if condition="($page_Index+1) gt ($page_num-1)">
+							<a href="{:U('goodsList/index/pageIndex/'.($page_num-1))}" class="next">下一页</a>
+							<a href="{:U('goodsList/index/pageIndex/'.($page_num-1))}">尾页</a>
+							<else />
+							<a href="{:U('goodsList/index/pageIndex/'.($page_Index+1))}" class="next">下一页</a>
+						</if>
+					</if>
+
+					</div>
+				</div>
+		</div>
+		<!--右侧路牌-->
+		{:W('Web/guideBoardMenu')}
+	</div>
+</div>
+<!--金牌律师-->
+{:W('Web/lawyerMenu')}
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+
+</body>
+</html>
+<script type="text/javascript">
+	//下拉选项
+	function search_show_province(pos,searchType,href){
+		$("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+		$("#"+pos+"_Sel").hide();
+		document.getElementById(pos+"_Selected").innerHTML=href.innerHTML;
+		$("#"+pos).focus();
+		$("#"+pos).blur();
+		//$("#ACOUTNY_Sel").children("li").remove();
+		var pId=searchType;
+		$.ajax({
+			type:"post",
+			dataType:"json",
+			url:'{:U("index/getCity")}',
+			data:'pId='+pId,
+			success:function(result){
+				var city = '';
+				for(var i=0;i<result.data.length;i++){
+					city += '<li onClick="search_show_row(\'ACOUTNY\','+result.data[i].id+',this)">'
+					city += result.data[i].name;
+					city +='</li>';
+				}
+				$('#ACOUTNY_Sel').append(city);
+			}
+		})
+	}
+	//获取区县
+	function search_show_row(pos,searchType,href){
+		$("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+		$("#"+pos+"_Sel").hide();
+		document.getElementById(pos+"_Selected").innerHTML=href.innerHTML;
+		$("#"+pos).focus();
+		$("#"+pos).blur();
+		var province=$("#CITY").val();//获取省id
+		var city=$("#ACOUTNY").val();//获取省id
+
+
+
+		$.ajax({
+			type:"post",
+			dataType:"json",
+			url:'{:U('GoodsList/findCity')}',
+			data: {"province":province,"city":city},
+			success:function(res){
+				var prairies1 = '';
+				if(res.code!='999'){
+					$.each(res.result, function(k,v){
+						//alert(v.sell_price);
+						prairies1+='<div class="prod_list" id="ProductList'+ v.id+'"  onclick="'+"ShowProductMore("+v.id+')">';
+						prairies1+='<dl>';
+						prairies1+='<dt>';
+						prairies1+='<span class="name">';
+						prairies1+='<em>'+ v.goods_name+'</em>';
+
+						if(v.is_hot==1){
+							prairies1+='<img src="__ROOT__/Public/web/images/icon_de01.png" alt="" />';
+						}else if(v.is_reputation==1){
+							prairies1+='<img src="__ROOT__/Public/web/images/icon_de02.png" alt="" />';
+						}else if(v.is_overflow==1){
+							prairies1+='<img src="__ROOT__/Public/web/images/icon_de03.png" alt="" />';
+						}else if(v.is_new==1){
+							prairies1+='<img src="__ROOT__/Public/web/images/icon_de04.png" alt="" />';
+						}
+
+						prairies1+='</span>';
+						prairies1+='<span class="text">';
+						prairies1+='<p><b>服务方式：</b>'+ v.service_way_name+'</p>';
+					/*	prairies1+='<p><b>服务标准：</b>'+ v.service_effect+'</p>';*/
+						prairies1+='<p><b>安安点评：</b>'+ v.remark+'</p>';
+						prairies1+='</span>';
+						prairies1+='</dt>';
+						prairies1+='<dd class="price">￥'+ v.sell_price+'</dd>';
+						prairies1+='<dd class="btn">';
+						prairies1+='<div class="selectbg wt100_A">';
+						prairies1+='<input type="hidden" name="GOUMAI" id="GOUMAI" value="'+ v.service_type+'" />';
+										if(v.service_type==1){
+						prairies1+='<div class="options_curr" id="GOUMAI_Slected">建议咨询</div>';
+										}else{
+						prairies1+='<div class="options_curr" id="GOUMAI_Slected">购买服务</div>';
+
+										}
+						prairies1+='<ul class="options" id="GOUMAI_Sel">';
+						prairies1+='<li onClick="search_show(\'GOUMAI\',1,this)">建议咨询</li>';
+						prairies1+='<li onClick="search_show(\'GOUMAI\',2,this)">购买服务</li>';
+						prairies1+='</ul>';
+						prairies1+='</div>';
+						prairies1+='<label class="first"><span>'+ v.lawyer_num+'</span>位律师</label>';
+						prairies1+='<label>接单量<span>'+ v.turnover+'</span></label>';
+						prairies1+='<label>评价数<span>'+ v.comments+'</span></label>';
+						prairies1+='</dd>';
+						prairies1+='</dl>';
+						prairies1+='<div class="prod_list_more" id="ProductListMore'+ v.id+'" style="display:none">';
+						$.each(v.lawyer, function(kk,vv){
+							prairies1+='<dl>';
+							prairies1+='<dt>';
+							prairies1+='<span></span><em class="a1"></em><img src="'+ vv.avatar+'" alt="" />';
+							prairies1+='<div class="aa">';
+							/*$.each(vv.tag_name, function(ks,vs){
+								prairies1+='<label>'+vs+'</label>';
+							});*/
+							prairies1+='</div>';
+							prairies1+='</dt>';
+							prairies1+='<dd class="jiben">';
+							prairies1+='<div class="name"><em>'+vv.real_name+'</em><a href="javascript:void(0)" class="tel" title="打电话"></a><a href="javascript:void(0)" class="mess" title="发消息"></a></div>';
+							prairies1+='<div class="suo"><em>'+vv.law_office_name+'</em><span class="star'+vv.star+'"></span></div>';
+							prairies1+='<div class="jian">'+vv.bio+'</div>';
+							prairies1+='<div class="bq"> <label>热情</label> <label>很务实</label> <label>打赢了</label></div>';
+							prairies1+='</dd>';
+							prairies1+='<dd class="price">￥'+vv.sell_price+'</dd>';
+							prairies1+='<dd class="btn">';
+							prairies1+='<a href="javascript:void(0)" class="gybtn btn80red">购买</a>';
+							prairies1+='<label>接单量<span>'+vv.order_num+'</span></label>';
+							prairies1+='</dd>';
+							prairies1+='</dl>';
+						});
+						prairies1+='<div class="xc_total">';
+						prairies1+='<span class="total">为您筛选出<b>'+ v.total+'</b>位符合条件的律师</span>';
+						prairies1+='<a href="{:U('goodsList/detail')}'+'id/'+v.id+'">查看更多</a>';
+						prairies1+='</div>';
+						prairies1+='</div>';
+						prairies1+='<div class="xc_show" id="xcshow'+v.id+'" style="display:none">';
+						prairies1+='<sapn onclick="'+"HideProductMore("+v.id+')"></span></div>';
+					});
+				}else{
+					prairies1='<li><em>暂无数据</em></li>';
+				}
+				$('.prod_list_box').html(prairies1);
+			}
+		})
+	}
+</script>

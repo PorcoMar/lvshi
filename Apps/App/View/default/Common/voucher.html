@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>使用说明</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/APP/css/global.css"><!--全局样式表-->
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/APP/css/font-awesome.min.css"><!--字体样式表-->
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/APP/css/grid.css"><!--栅格化样式表-->
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/APP/css/owl.carousel.css"><!--滑屏控件样式表-->
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/APP/css/owl.theme.css"><!--滑屏控件主题样式表-->
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/APP/css/layout.css"><!--自定义样式表-->
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/APP/css/media.css"><!--媒体查询样式表-->
+    <script src="__ROOT__/Public/APP/js/jquery_min_1.9.js"></script><!--JQ库-->
+<script src="__ROOT__/Public/APP/js/owl.carousel.min.js"></script><!--滑屏控件-->
+</head>
+<style>
+    html {background-color:transparent;}
+</style>
+<body>
+<div class="home">
+    <div class="rules-top"></div>
+    <!--正文模块-->
+    <div class="rules-bg">
+     <div class="use">
+                     <span>Q：红包如何使用？</span>
+                     <i>A：</i><p>您在使用俺的律师App下单时，如果拥有符合使用
+                         条件的红包，系统会自动为您使用一张最大面值的红包，您也可根据自己的需要更换其他面值的红包，
+                         红包可用来抵扣服务的部分或全部费用。</p>
+                     <span>Q：红包如何兑换？</span>
+                     <i>A：</i><p>进入App，点击“我的”，选择账户，选择我的红包，点击兑换，输入正确的兑换码后，即可得到红包。</p>
+                     <span>Q：一个订单最多使用几个红包？</span>
+                     <i>A：</i><p>一个订单最多只能使用一个红包。</p>
+                     <span>Q：红包可以找零或提现吗？</span>
+                     <i>A：</i><p>红包不支持找零、不支持提现。</p>
+                     <span>Q：取消订单后，红包会返还吗？</span>
+                     <i>A：</i><p>所有取消的订单中已使用的红包都会重新发入“我的红包”中，在红包有效期内您可以继续使用。</p>
+                     <span>Q：不能使用红包的原因有哪些？</span>
+                     <i>A：</i><p>部分红包的使用有限定条件，如限定某些商品，限定某一支付方式等；已过期的红包无法使用，请在使用前仔细查看红包使用说明。</p> 
+                     <span>Q：如何才能获得俺的律师红包？</span>
+                     <i>A：</i><p>满足某些特定条件系统会自动发放红包到您的账户中，或通过红包兑换码兑换红包；您可以关注官方微信公众号“光明安安”和官方微博“俺的律师”，留意参与相关活动。</p>   
+         </div>
+         <div class="use-copy">
+                      俺的律师对于恶意刷单作弊等行为保留最终解释权。如有疑问可拨打客服电话010-84200811进行咨询。
+         </div>
+    </div>
+<script>
+      /*滑屏控件--移动端*/
+  $('#owl-demo').owlCarousel({
+        singleItem: true,
+    autoPlay:true,
+    });
+  /*滑屏控件--PC端*/
+  $('#owl-demo2').owlCarousel({
+        singleItem: true,
+    autoPlay:true,
+    });
+</script>
+
+<script>
+!function(win) {
+ function resize() {
+  var domWidth = domEle.getBoundingClientRect().width;
+  if(domWidth / v > 540){
+   domWidth = 540 * v;
+  }
+  win.rem = domWidth / 16;
+  domEle.style.fontSize = win.rem + "px";
+ }
+ var v, initial_scale, timeCode, dom = win.document, domEle = dom.documentElement, viewport = dom.querySelector('meta[name="viewport"]'), flexible = dom.querySelector('meta[name="flexible"]');
+ if (viewport) {
+  //viewport：<meta name="viewport"content="initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5,user-scalable=no,minimal-ui"/>
+  var o = viewport.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/);
+  if(o){
+   initial_scale = parseFloat(o[2]);
+   v = parseInt(1 / initial_scale);
+  }
+ } else {
+  if (flexible) {
+   var o = flexible.getAttribute("content").match(/initial\-dpr=(["']?)([\d\.]+)\1?/);
+   if(o){
+    v = parseFloat(o[2]);
+    initial_scale = parseFloat((1 / v).toFixed(2))
+   }
+  }
+ }
+ if (!v && !initial_scale) {
+  var n = (win.navigator.appVersion.match(/android/gi), win.navigator.appVersion.match(/iphone/gi));
+  v = win.devicePixelRatio;
+  v = n ? v >= 3 ? 3 : v >= 2 ? 2 : 1 : 1, initial_scale = 1 / v
+ }
+ //没有viewport标签的情况下
+ if (domEle.setAttribute("data-dpr", v), !viewport) {
+  if (viewport = dom.createElement("meta"), viewport.setAttribute("name", "viewport"), viewport.setAttribute("content", "initial-scale=" + initial_scale + ", maximum-scale=" + initial_scale + ", minimum-scale=" + initial_scale + ", user-scalable=no"), domEle.firstElementChild) {
+   domEle.firstElementChild.appendChild(viewport)
+  } else {
+   var m = dom.createElement("div");
+   m.appendChild(viewport), dom.write(m.innerHTML)
+  }
+ }
+ win.dpr = v;
+ win.addEventListener("resize", function() {
+  clearTimeout(timeCode), timeCode = setTimeout(resize, 300)
+ }, false);
+ win.addEventListener("pageshow", function(b) {
+  b.persisted && (clearTimeout(timeCode), timeCode = setTimeout(resize, 300))
+ }, false);
+ 
+ resize();
+}(window);
+
+
+
+
+</script>
+
+</body>
+</html>

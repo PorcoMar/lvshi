@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=0.5, user-scalable=yes">
+<title>俺的律师</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/mobile/css/default.css" />
+</head>
+<body>
+<div class="kv">
+    <div class="visimg"><img src="__ROOT__/Public/mobile/images/banner.png" /></div>
+</div>
+<div class="menu clearfix">
+    <volist name='navCates' id='nav'>
+        <div class="menu01 border01">
+            <p class="visimg02">
+            <a href="{:U('Mobile/Goods/index/member_cat_id/'.$nav[id])}">
+                <img src="__ROOT__/Public/mobile/images/main_lvs0{$nav['sort']}.png" /></a>
+            </p>
+            {$nav.cat_name}
+        </div>
+    </volist>
+</div>
+<div class="tree">
+    <div class="wrap01">
+        <div class="visimg03"><img src="__ROOT__/Public/mobile/images/tree01.jpg" /></div>
+        <volist name="nameplate" id="vo">
+            <div class="visimg03 rela">
+                <img src="__ROOT__/Public/mobile/images/tree0{$vo.code}.jpg" />
+                <div class="link01">
+                    <a href="{:U('Mobile/Goods/index',array('signsId'=>$vo['left']['id']))}"></a>
+                    <a href="{:U('Mobile/Goods/index',array('signsId'=>$vo['right']['id']))}"></a>
+                </div>
+            </div>
+        </volist>
+        <div class="visimg03"><img src="__ROOT__/Public/mobile/images/tree06.jpg" /></div>
+    </div>
+</div>
+
+<!--引入尾部-->
+<include file="Public:footer" />
+
+</body>
+</html>

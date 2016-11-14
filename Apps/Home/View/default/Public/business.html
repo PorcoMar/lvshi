@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+
+</head>
+
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+
+<div class="l_s174m740">
+	<!--左侧-->
+	<include file="Public/left" />
+		<div class="other_title">{$cooperateEntrance.name}</div>
+		<div class="about_text">
+			<dl>
+				<dt>{$cooperateEntrance.description}</dt>
+				<dd>
+					<p>{$cooperateEntrance.content|html_entity_decode}</p>
+				</dd>
+			</dl>
+
+		</div>
+
+	</div>
+	<div class="mainBox"><include file="Public/bottom" /></div>
+
+</div>
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>

@@ -1,0 +1,49 @@
+<include file="Public/personalHeader" />
+		<div class="mess_right">
+            <div class="mess_tag">
+                <ul>
+                    <li class="curr"><a href="javascript:void(0)">消息通知</a></li>
+                </ul>
+            </div>
+			<div class="notice_list">
+                <php>$code = $msgList['code'];</php>
+                <eq name="code" value="999">
+                    <p style="text-align: center;">{$msgList.msg}</p>
+                <else/>
+                    <volist name="msgList.data" id="vo">
+                        <dl>
+                            <dt><span class="n1"></span></dt>
+                            <dd>
+                                <span>
+                                    <switch name="vo.type">
+                                        <case value="Question">问答信息</case>
+                                        <case value="Help">求助信息</case>
+                                        <case value="Order">订单信息</case>
+                                        <case value="Goods">服务信息</case>
+                                        <case value="Comment">服务</case>
+                                        <case value="New">资讯</case>
+                                        <default />
+                                    </switch>
+                                </span>
+                                {$vo.content}
+                                <em>{$vo.send_time}</em>
+                            </dd>
+                        </dl>
+                    </volist>
+                    <assign name="current_page" value="$msgList.page_index" />
+                    <php>$total_page = ceil($msgList['page_sum']/$msgList['page_size']);</php>
+                    <assign name="page_size" value="$msgList.page_size" />
+                    <assign name="page_show" value="10" />
+                    <include file="Public/pagination" />
+                </eq>
+			</div>
+		</div>
+	</div>
+</div>
+<!--底部开始-->
+<include file="Public/footer" />
+
+
+
+
+

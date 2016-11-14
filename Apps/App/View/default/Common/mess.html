@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>系统消息</title>
+<link rel="stylesheet"  href="__ROOT__/Public/APP/css/global.css"><!--全局样式表-->
+<!--<link rel="stylesheet"  href="__ROOT__/Public/APP/css/font-awesome.min.css">&lt;!&ndash;字体样式表&ndash;&gt;-->
+<!--<link rel="stylesheet"  href="__ROOT__/Public/APP/css/grid.css">&lt;!&ndash;栅格化样式表&ndash;&gt;-->
+<!--<link rel="stylesheet"  href="__ROOT__/Public/APP/css/owl.carousel.css">&lt;!&ndash;滑屏控件样式表&ndash;&gt;-->
+<!--<link rel="stylesheet"  href="__ROOT__/Public/APP/css/owl.theme.css">&lt;!&ndash;滑屏控件主题样式表&ndash;&gt;-->
+<link rel="stylesheet"  href="__ROOT__/Public/APP/css/layout.css"><!--自定义样式表-->
+<!--<link rel="stylesheet"  href="__ROOT__/Public/APP/css/media.css">&lt;!&ndash;媒体查询样式表&ndash;&gt;-->
+<script src="__ROOT__/Public/APP/js/jquery.min.js"></script><!--JQ库-->
+<script src="__ROOT__/Public/APP/js/owl.carousel.min.js"></script><!--滑屏控件-->
+</head>
+<style>
+    html {background-color:transparent;}
+</style>
+<body>
+<div class="home" style="background:none;">
+    <!--正文模块-->
+                <!--<div class="mess-top"></div>-->
+                
+                <div class="mess-yes">
+                                    <p>{$content}</p>
+                </div>
+              <!--<div class="mess-but">
+                <button>确定</button>
+              </div>-->
+<script>
+      /*滑屏控件--移动端*/
+	$('#owl-demo').owlCarousel({
+        singleItem: true,
+		autoPlay:true,
+    });
+	/*滑屏控件--PC端*/
+	$('#owl-demo2').owlCarousel({
+        singleItem: true,
+		autoPlay:true,
+    });
+</script>
+
+<script>
+!function(win) {
+ function resize() {
+  var domWidth = domEle.getBoundingClientRect().width;
+  if(domWidth / v > 540){
+   domWidth = 540 * v;
+  }
+  win.rem = domWidth / 16;
+  domEle.style.fontSize = win.rem + "px";
+ }
+ var v, initial_scale, timeCode, dom = win.document, domEle = dom.documentElement, viewport = dom.querySelector('meta[name="viewport"]'), flexible = dom.querySelector('meta[name="flexible"]');
+ if (viewport) {
+  //viewport：<meta name="viewport"content="initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5,user-scalable=no,minimal-ui"/>
+  var o = viewport.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/);
+  if(o){
+   initial_scale = parseFloat(o[2]);
+   v = parseInt(1 / initial_scale);
+  }
+ } else {
+  if (flexible) {
+   var o = flexible.getAttribute("content").match(/initial\-dpr=(["']?)([\d\.]+)\1?/);
+   if(o){
+    v = parseFloat(o[2]);
+    initial_scale = parseFloat((1 / v).toFixed(2))
+   }
+  }
+ }
+ if (!v && !initial_scale) {
+  var n = (win.navigator.appVersion.match(/android/gi), win.navigator.appVersion.match(/iphone/gi));
+  v = win.devicePixelRatio;
+  v = n ? v >= 3 ? 3 : v >= 2 ? 2 : 1 : 1, initial_scale = 1 / v
+ }
+ //没有viewport标签的情况下
+ if (domEle.setAttribute("data-dpr", v), !viewport) {
+  if (viewport = dom.createElement("meta"), viewport.setAttribute("name", "viewport"), viewport.setAttribute("content", "initial-scale=" + initial_scale + ", maximum-scale=" + initial_scale + ", minimum-scale=" + initial_scale + ", user-scalable=no"), domEle.firstElementChild) {
+   domEle.firstElementChild.appendChild(viewport)
+  } else {
+   var m = dom.createElement("div");
+   m.appendChild(viewport), dom.write(m.innerHTML)
+  }
+ }
+ win.dpr = v;
+ win.addEventListener("resize", function() {
+  clearTimeout(timeCode), timeCode = setTimeout(resize, 300)
+ }, false);
+ win.addEventListener("pageshow", function(b) {
+  b.persisted && (clearTimeout(timeCode), timeCode = setTimeout(resize, 300))
+ }, false);
+ 
+ resize();
+}(window);
+
+
+</script>
+</div>
+</body>
+</html>

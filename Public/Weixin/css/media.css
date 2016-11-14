@@ -1,0 +1,35 @@
+@media screen and (max-width:768px)
+{
+.head h1{
+	     padding-top:15%;
+		 font-size:48px;
+}
+.head span{
+	font-size:36px;
+}
+
+.register dl dt{ font-size:20px; margin-right:10px;}
+}
+@media screen and (max-width:480px)
+{
+h1{
+	padding-top:30% !important;
+	padding-bottom:15%;
+    text-align:center ;
+    font-size: 36px !important;
+    color: #fffff3;
+	
+}
+.head span{
+	font-size:26px;
+}
+.register{ margin-bottom:15%;}
+}
+@media screen and (max-width:320px)
+{
+.register{ width:100%;}
+#mobile{ width:200px !important;}
+#code{ width:100px !important;}
+.register{ margin-bottom:15%;}
+
+}

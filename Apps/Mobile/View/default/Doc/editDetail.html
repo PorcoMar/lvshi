@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/service.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/mobile/css/iconfont.css" />
+		<script src="__ROOT__/Public/mobile/js/jquery_min_1.9.js"></script>
+		<script src="__ROOT__/Public/mobile/js/bootstrap.min.js"></script>
+        <script src="__ROOT__/Public/mobile/js/artEditor.min.js"></script>
+        <title>{$data.title}</title>
+	</head>
+	<body>
+    <if condition="$from eq app">
+    <else/>
+		<header>
+			<div class='container padding'>
+				<div class="row details-title">
+					<div class='col-xs-1'>
+						<a href="__APP__/Mobile/Goods/index">
+							<span class='iconfont icon-zuojiantou'></span>
+						</a>
+					</div>
+					<div class='col-xs-10 padding'>
+						{$data.title}
+					</div>
+					<div class='col-xs-1'>
+						<span class="iconfont icon-fenxiang "></span> 
+					</div>
+				</div>
+			</div>
+		</header>
+    </if>
+		<main>
+			<div class='container padding'>
+				<div class='row details-cont'>
+					<div class='col-xs-12'>
+                        <input type="hidden" id="doc-id" value="{$data.id}" />
+                        <input type="text" id="model-title" class="form-control cont-title" placeholder="请输入文书标题" value="{$data.title}">
+                        <div  id="content">{$data.content}</div>
+						<div class='col-xs-12 padding screen'>
+							<div class='row'>
+								<div class='col-xs-4 padding m'>
+									<span class='num'>{$data.views}</span>浏览
+								</div>
+                                <div style="float: right;" class='col-xs-4 padding m' >
+                                    <span class='num'>{$data.uses}</span>使用
+                                </div>
+						</div>
+
+					</div>
+				</div>
+				
+				<div class='row service-flow'>
+					<div class='col-xs-12 padding'>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+                            <input type="hidden" name="id" id="DocId" value="{$data.id}">
+                            <if condition="$from eq app">
+                                    <a href="javascript:void(0)" onclick="saveMyDoc()" class="btn btn-default" role="button">保存</a>
+                                <else/>
+                                    <a href="javascript:void(0)" onclick="downloadDoc()" class="btn btn-default" role="button">下载</a>
+                            </if>
+                        </div>
+					</div>
+				</div>	
+			</div>
+		</main>
+
+		<script type="text/javascript">
+    //n表示后台获取的星数
+    <foreach name="lawyerList.result" item="v">
+    window.onload=showStar({$v.star},{$v.id});
+    </foreach>
+    function showStar(num,id){
+        var con_wid=document.getElementById("star_con_"+id).offsetWidth;        
+        var del_star=document.getElementById("del_star_"+id);
+        console.log(con_wid);
+        
+        //透明星星移动的像素
+        var del_move=(num*con_wid)/5;
+        
+        del_star.style.backgroundPosition= - del_move+"px 0px";
+        del_star.style.left=del_move+"px";
+    }
+</script>
+
+<style>
+    .star-vote{
+        width:60px;
+        height:10px;
+        position:relative;
+        overflow:hidden;
+    }
+    .star-vote>span{
+        position:absolute;
+        width:60px;
+        height:10px;
+    	background-size:cover;
+        background-repeat:no-repeat;
+        left:0px;
+        top:0px;
+    }
+    .star-vote>.add-star{
+        background-image:url("__ROOT__/Public/mobile/img/star2.png");
+    }
+    .star-vote>.del-star{
+        background-image:url("__ROOT__/Public/mobile/img/star1.png");
+        background-color:white;
+    }
+</style>
+
+
+		<script type="text/javascript">
+			$(function(){
+				$('.service-top').click(function(){
+	                $('body,html').animate({
+	                    scrollTop: 0
+	                },
+	                100);
+	                return false;
+				});
+
+                $('#content').artEditor();
+
+			});
+
+			function lawyer(id,goodsId){
+				window.location.href = "__APP__/Mobile/LawyerDetails/index/id/"+id+"/goodsId/"+goodsId;
+			}
+
+			function lawyergood(goodsId){
+				window.location.href = "__APP__/Mobile/lawyer/index/goodsId/"+goodsId;
+			}
+
+            function saveMyDoc() {
+                var val = {
+                    'id':$('#doc-id').val(),
+                    'content':$('#content').html(),
+                    'title':$('#model-title').val()
+                };
+                if(parseInt(val.id) > 0 && !isNaN(parseInt(val.id)) && val.content != '' && val.title != ''){
+                    updateInstrument(val);
+                } else {
+                    alert('请完善信息');
+                }
+            }
+
+            function updateInstrument(val) {
+                var id='{$id}';
+                var token='{$token}';
+                var from='{$from}';
+                $.post('{:U("/Mobile/Doc/updateInstrument")}',{val:val},function(data,status){
+                    if(status == 'success' && data.code == 1000){
+//                        location.reload();
+                        location.replace('{:U('Doc/demoDetail')}'+'/id/'+id+'/token/'+token+'/from/'+from);
+
+                    }else{
+                        alert(data.msg);
+                    }
+                });
+            }
+
+            function downloadDoc(){
+                self.location = "http://m.andlvshi.com/App";
+            }
+           /* function downloadDoc(){
+                standardPost('{:U("Mobile/Doc/download")}',{'content':$('#content').html(),'title':$('#model-title').val(),'id':$("#DocId").val()});
+            }
+*/
+            function editDoc(){
+                standardPost('{:U("Mobile/Doc/editDetail")}',{'id':$("#DocId").val()})
+            }
+            function standardPost (url,args)
+            {
+                var form = $("<form method='post'></form>");
+                form.attr({"action":url});
+                for (var arg in args)
+                {
+                    var input = $("<input type='hidden'>");
+                    input.attr({"name":arg});
+                    input.val(args[arg]);
+                    form.append(input);
+                }
+                form.submit();
+            }
+		</script>
+	</body>
+</html>

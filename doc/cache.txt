@@ -1,0 +1,5 @@
+#缓存目录
+变量名         类型      生存周期        备注
+session       array     默认20分钟      存储登入者信息
+$session      array     默认20分钟      获取用户昵称
+$tooken       array     默认20分钟      获取用户token

@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--菜单结束-->
+<div class="MainCenter">
+    <div class="mainBox">
+        <!--<form method='post' action="__ROOT__/index.php/Buy/add">-->
+            <div class="detail_left" style="text-align: center">
+                <div class="detail_left_top"></div>
+                <div class="detail_left_center">
+                    <div class="qz_add">
+                        <input type="hidden" name="goods_id" value="{$goodsDetail['result']['id']}"/>
+                        <input type="hidden" name="lawyer_id" value="{$lawyer['result']['lawyer_id']}"/>
+                         <dl>
+                            <dt><span>*</span>联系人</dt>
+                            <dd class="inbg"><input id="user" name="user" type="text" class="sinput" value="" placeholder="请输入联系人"/></dd>
+                         </dl>
+                         <dl>
+                             <dt><span>*</span>电话：</dt>
+                             <dd class="inbg"><input id="phone" name="phone" type="text" class="sinput" value="" placeholder="请输入联系方式" /></dd>
+                         </dl>
+                         <dl>
+                            <dt><span>*</span>地址：</dt>
+                            <dd class="inbg"><input id="address" name="address" type="text" class="sinput" value="" placeholder="请输入联系地址" /></dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="detail_left_center">
+                    <div class="qz_add1">
+                        <dl style="height: 50px;background-color: #d3d6da">
+                            <dt style="text-align:right;width: 135px">购买服务</dt>
+                        </dl>
+                        <div class="prod_list" style="border: solid 1px #d3d6da;width: 825px;margin-top: 20px;height: auto;">
+                            <dl style="width: 825px;">
+                                <dt>
+							<span class="name">
+								<em><a href="{:U('Product/detail/id/'.$goodsDetail['result']['id'])}">{$goodsDetail['result']['goods_title']}</a></em>
+                                <if condition="$goodsDetail['result']['is_hot'] eq 1">
+                                    <img src="__ROOT__/Public/web/images/icon_de01.png" alt="" />
+                                </if>
+								<if condition="$goodsDetail['result']['is_reputation'] eq 1">
+                                    <img src="__ROOT__/Public/web/images/icon_de02.png" alt="" />
+                                </if>
+								<if condition="$goodsDetail['result']['is_overflow'] eq 1">
+                                    <img src="__ROOT__/Public/web/images/icon_de03.png" alt="" />
+                                </if>
+								<if condition="$goodsDetail['result']['is_new'] eq 1">
+                                    <img src="__ROOT__/Public/web/images/icon_de04.png" alt="" />
+                                </if>
+							</span>
+							<span class="text">
+								<p><b>服务方式：</b>{$goodsDetail['result']['service_way_name']}</p>
+								<p><b>安安点评：</b>{$goodsDetail['result']['remark']}</p>
+							</span>
+                                </dt>
+                                <dd class="price">￥{$goodsDetail['result']['sell_price']}</dd>
+                                <dd class="btn1">
+                                    <label >
+                                        <br/><span>{$goodsDetail['result']['lawyer_num']}</span>位律师
+                                        <span>{$goodsDetail['result']['un_lawyer_num']}</span>位勇士
+                                        <br/><label>接单量<span>{$goodsDetail['result'].turnover}</span></label>
+                                    </label>
+                                </dd>
+
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail_left_center">
+                    <div class="qz_add">
+                        <dl style="height: 50px;background-color: #d3d6da">
+                            <dt>受理律师</dt>
+                        </dl>
+                        <div class="prod_list_more" style="border: solid 1px #d3d6da;width: 805px;margin-top: 20px;height: auto;">
+                        <dl style="height: 150px;" >
+                            <dt><span></span><em class="a1"></em><img src="{$lawyer['result']['avatar']}" alt="" />
+                            <div class="aa">
+
+                                <volist name="lawyer.result.lawyer_tag_name" id="tag">
+                                    <label>{$tag}</label>
+                                </volist>
+
+                            </div>
+                            </dt>
+                            <dd class="jiben">
+                                <div class="name"><em>{$lawyer['result']['realname']}</em><a href="javascript:void(0)" class="tel" title="打电话"></a><a href="javascript:void(0)" class="mess" title="发消息"></a></div>
+                                <div class="jian" style="text-align: left">执业{$lawyer['result']['operation_year']}年</div>
+
+                                <div class="suo" style="text-align: left">
+                                    <em>
+                                        <foreach name="lawyer['result']['law_office_name']" item="law_office_name">
+                                            {$law_office_name}&nbsp;&nbsp;
+                                        </foreach>
+                                    </em>
+                                    <span class="star{$lawyer.result.style}"></span>
+                                </div>
+
+                                <div class="jian" style="text-align: left">{$lawyer['result']['bio']}</div>
+                                <div class="bq">
+                                    <label>热情</label>
+                                    <label>很务实</label>
+                                    <label>打赢了</label>
+                                </div>
+                            </dd>
+                            <dd class="price">￥{$lawyer['result']['sell_price']}</dd>
+                            <dd class="btn">
+                                <label>接单量<span>{$lawyer['result']['order_num']}</span></label>
+                                <label>评价<span>{$lawyer['result']['comments']}</span></label>
+                            </dd>
+                        </dl>
+                            </div>
+                        <div class="sub" align="center"></div>
+                        <dl class="btn">
+                            <dd><input id="send"  type="submit" value="确认订单" /></dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="detail_left_bottom">
+                </div>
+            </div>
+        <!--</form>-->
+    </div>
+</div>
+<!--底部开始-->
+<include file="Public/footer"/>
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+    $('#send').click(function(){
+
+        var user = $("#user").val();
+        var phone = $("#phone").val();
+        var address = $("#address").val();
+        var lawyer_id=$("[name='lawyer_id']").val();
+        var goods_id=$("[name='goods_id']").val();
+        $("#msg").remove();
+        if(user==""){
+            alert("联系人不能为空！");
+            $('<div id="msg" />').html("联系人不能为空！").appendTo('.sub').fadeOut(2000);
+            $("#user").focus();
+            return false;
+            die;
+        }
+        if(phone.length!=11)
+        {
+            alert("请输入有效手机号！");
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+            $("#phone").focus();
+            return false;
+        }
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if(!myreg.test(phone))
+        {
+            alert("请输入有效手机号！");
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').fadeOut(2000);
+            $("#phone").focus();
+            return false;
+        }
+        if(address==""){
+            alert("地址不能为空！");
+            $('<div id="msg" />').html("地址不能为空！").appendTo('.sub').fadeOut(2000);
+            $("#address").focus();
+            return false;
+            die;
+        }
+        $.ajax({
+            type: "POST",
+            url: "{:U('Buy/add')}",
+            dataType: "json",
+            data: {"user":user,"phone":phone,"address":address,"lawyer_id":lawyer_id,"goods_id":goods_id},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                    case 1:
+                        alert('下单成功');
+                        window.location.href="{:U('Personal/orders')}";
+                        break;
+                    case 2:
+                        alert('请先登入');
+                        window.location.href="{:U('Passport/index')}";
+                        break;
+                }
+            }
+        });
+    });
+</script>

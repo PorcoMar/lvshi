@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/service.css" />
+		<link rel="stylesheet" href="css/iconfont.css" />
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<title>服务列表</title>
+	</head>
+	<body>
+		<header>
+			<div class='container padding'>
+				<div class="row details-title">
+					<div class='col-xs-1'>
+						<span class='iconfont icon-zuojiantou'></span>
+					</div>
+					<div class='col-xs-10 padding'>
+						<!--<div class='search'>
+							<a href='#'><span class='iconfont icon-sousuo'></span></a>
+							<input type="text" placeholder="输入关键字" />
+						</div>-->
+						服务列表
+					</div>
+					<div class='col-xs-1'>
+						<span class="iconfont icon-gengduo"></span>
+						<div class="menu-hide">
+							<ul>
+								<li><a href="case.html">案例列表</a></li>
+								<li><a href="service.html">服务列表</a></li>
+								<li><a href="lawyer.html">律师列表</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class='container padding'>
+				<div class='row service'>
+					<div class='service-title'>
+						<div class='col-xs-6 padding service-class' val="show">
+							<span>服务分类</span>
+							<span class='iconfont icon-xiasanjiao-copy'></span>
+						</div>
+						<div class='col-xs-6 padding sort' val='show'>
+							<span>智能排序</span>
+							<span class='iconfont icon-xiasanjiao-copy'></span>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div class='class'>
+						<div class='col-xs-4 padding'>
+							<ul>
+								<li><a href="#" class="class-active">婚姻家庭</a></li>
+								<li><a href="#">讨债</a></li>
+								<li><a href="#">遗产继承</a></li>
+								<li><a href="#">名告官</a></li>
+								<li><a href="#">维权</a></li>
+								<li><a href="#">劳动争议</a></li>
+								<li><a href="#">医患纠纷</a></li>
+								<li><a href="#">刑事案件</a></li>
+							</ul>
+						</div>
+						<div class='col-xs-8 padding'>
+							<ul class="class-hide">
+								<li><a href="#">婚姻家庭</a></li>
+								<li><a href="#">讨债</a></li>
+								<li><a href="#">遗产继承</a></li>
+								<li><a href="#">名告官</a></li>
+								<li><a href="#">维权</a></li>
+								<li><a href="#">劳动争议</a></li>
+								<li><a href="#">医患纠纷</a></li>
+								<li><a href="#">刑事案件</a></li>
+							</ul>
+							<ul class="class-hide" style="display: none;">
+								<li><a href="#">1</a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">1</a></li>
+							</ul>
+							<ul class="class-hide" style="display: none;">
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+							</ul>
+							<ul class="class-hide" style="display: none;">
+								<li><a href="#">3</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">3</a></li>
+							</ul>
+							<ul class="class-hide" style="display: none;">
+								<li><a href="#">4</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">4</a></li>
+							</ul>
+							<ul class="class-hide" style="display: none;">
+								<li><a href="#">5</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">5</a></li>
+							</ul>
+							<ul class="class-hide" style="display: none;">
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+							</ul>
+							<ul class="class-hide" style="display: none;">
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">2</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class='sort-hide'>
+						<ul>
+							<li><a href="#">智能排序</a></li>
+							<li><a href="#">按成交量</a></li>
+							<li><a href="#">按价格</a></li>
+							<li><a href="#">按评价</a></li>
+						</ul>
+					</div>
+					<div class='class-mask'></div>
+				</div>
+				<div class='row cont'>
+					<div class='col-xs-12'>
+						<div class="cont-title">
+							<a href="service_details.html">劳动合同违约问题电话来帮您</a>
+						</div>
+						<div class='cont-title-icon col-xs-6 padding'>
+							<a href="#"><img src="img/lawyer_re.png"/></a>
+							<a href="#"><img src="img/lawyer_zan.png"/></a>
+							<a href="#"><img src="img/lawyer_zhi.png"/></a>
+							<a href="#"><img src="img/lawyer_xin.png"/></a>
+						</div>
+						<div class='cont-money col-xs-6 padding'>
+							<span>￥<span>2000</span>元</span>
+						</div>
+						<div class='col-xs-12 padding consultation'>
+							服务方式：<span>电话咨询</span>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-cont">
+							<img src="img/anan_red.png" />
+							<span>万能的安安已经确认是这是个超级赞的服务哦，超高性价比，不解决不罢休...</span>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-order">
+							<div class='pull-left'>
+								<span class='num'>109</span>位律师，<span class='num'>33</span>位神秘勇士
+							</div>
+							<div class='pull-right'>
+								成交<span class='num'>406</span>单
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+				</div>
+				<div class='row cont'>
+					<div class='col-xs-12'>
+						<div class="cont-title">
+							<a href="#">劳动合同违约问题电话来帮您</a>
+						</div>
+						<div class='cont-title-icon col-xs-6 padding'>
+							<a href="#"><img src="img/lawyer_re.png"/></a>
+							<a href="#"><img src="img/lawyer_zan.png"/></a>
+							<a href="#"><img src="img/lawyer_zhi.png"/></a>
+							<a href="#"><img src="img/lawyer_xin.png"/></a>
+						</div>
+						<div class='cont-money col-xs-6 padding'>
+							<span>￥<span>2000</span>元</span>
+						</div>
+						<div class='col-xs-12 padding consultation'>
+							服务方式：<span>电话咨询</span>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-cont">
+							<img src="img/anan_red.png" />
+							<span>万能的安安已经确认是这是个超级赞的服务哦，超高性价比，不解决不罢休...</span>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-order">
+							<div class='pull-left'>
+								<span class='num'>109</span>位律师，<span class='num'>33</span>位神秘勇士
+							</div>
+							<div class='pull-right'>
+								成交<span class='num'>406</span>单
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+				</div>
+				<div class='row cont'>
+					<div class='col-xs-12'>
+						<div class="cont-title">
+							<a href="#">劳动合同违约问题电话来帮您</a>
+						</div>
+						<div class='cont-title-icon col-xs-6 padding'>
+							<a href="#"><img src="img/lawyer_re.png"/></a>
+							<a href="#"><img src="img/lawyer_zan.png"/></a>
+							<a href="#"><img src="img/lawyer_zhi.png"/></a>
+							<a href="#"><img src="img/lawyer_xin.png"/></a>
+						</div>
+						<div class='cont-money col-xs-6 padding'>
+							<span>￥<span>2000</span>元</span>
+						</div>
+						<div class='col-xs-12 padding consultation'>
+							服务方式：<span>电话咨询</span>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-cont">
+							<img src="img/anan_red.png" />
+							<span>万能的安安已经确认是这是个超级赞的服务哦，超高性价比，不解决不罢休...</span>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="cont-order">
+							<div class='pull-left'>
+								<span class='num'>109</span>位律师，<span class='num'>33</span>位神秘勇士
+							</div>
+							<div class='pull-right'>
+								成交<span class='num'>406</span>单
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<script type="text/javascript">
+			$(function(){
+				$('.class .col-xs-4 ul li a').click(function(){
+					$('.class .col-xs-4 ul li a').eq($(this).parent().index()).addClass('class-active').parent().siblings().find('a').removeClass('class-active');
+					$('.class-hide').hide().eq($(this).parent().index()).show();
+				})
+				$('.service-class').click(function(){
+					if($(this).attr('val') == 'show'){
+						$(this).attr('val','hide');
+						$('.sort').attr('val','show');
+						$(this).find('span:last-child').addClass('.iconfont icon-shangsanjiao').removeClass('.iconfont icon-xiasanjiao-copy')
+						$(this).css('color','red');
+						$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+						$('.sort').css('color','#333333');
+						$('.class').show();
+						$('.class-mask').show();
+						$(document).on('touchmove',function(e){
+						    e.preventDefault();
+						})
+						$('.sort-hide').hide();
+					}else if($(this).attr('val') == 'hide'){
+						$(this).attr('val','show');
+						$(this).find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+						$(this).css('color','#333333');
+						$('.class').hide();
+						$('.class-mask').hide();
+						$(document).unbind('touchmove');
+						$('.sort-hide').hide();
+					}
+				})
+				
+				$('.class-hide a').click(function(){
+					var cont = $(this).html();
+					$('.service-class span:first-child').html(cont)
+					$('.service-class').attr('val','show');
+					$('.class').hide();
+					$('.class-mask').hide();
+					$('.service-class').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.service-class').css('color','#333333');
+					$(document).unbind('touchmove');
+				})
+				$('.class-mask').click(function(){
+					$('.service-class').attr('val','show');
+					$('.sort').attr('val','show');
+					$('.class').hide();
+					$('.sort-hide').hide();
+					$('.class-mask').hide();
+					$('.service-class').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.service-class').css('color','#333333');
+					$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.sort').css('color','#333333');
+					$(document).unbind('touchmove');
+				})
+				
+				$('.sort').click(function(){
+					if($(this).attr('val') == 'show'){
+						$(this).attr('val','hide');
+						$('.service-class').attr('val','show');
+						$('.service-class').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+						$('.service-class').css('color','#333333');
+						$('.sort-hide').show();
+						$('.class-mask').show();
+						$('.sort').find('span:last-child').addClass('.iconfont icon-shangsanjiao').removeClass('.iconfont icon-xiasanjiao-copy')
+						$(this).css('color','red');
+						$(document).on('touchmove',function(e){
+						    e.preventDefault();
+						})
+						$('.class').hide();
+						
+					}else if($(this).attr('val') == 'hide'){
+						$(this).attr('val','show');
+						$('.sort-hide').hide();
+						$('.class-mask').hide();
+						$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+						$(this).css('color','#333333');
+						$(document).unbind('touchmove');
+						$('.class').hide();
+					}
+				})
+				$('.sort-hide a').click(function(){
+					var cont = $(this).html();
+					$('.sort span:first-child').html(cont)
+					$('.sort').attr('val','show');
+					$('.sort-hide').hide();
+					$('.class-mask').hide();
+					$('.sort').find('span:last-child').addClass('.iconfont icon-xiasanjiao-copy').removeClass('.iconfont icon-shangsanjiao')
+					$('.sort').css('color','#333333');
+					$(document).unbind('touchmove');
+				})
+				$('header div.details-title div.col-xs-1:last-child').click(function(e){
+					$('.menu-hide').show();
+					e.stopPropagation();
+				})
+				$('body').click(function(){
+					$('.menu-hide').hide();
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<style type="text/css">
+	/*h2.service-list-title {
+		/!*font-size: 14px;*!/
+		height: 16px;
+		line-height: 16px;
+		text-align: center;
+	/!*	background: url(__ROOT__/Public/web/images/65-8.png) 0 4px repeat-x;
+		margin: 20px 0 30px;*!/
+	}*/
+</style>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+
+<!--KV开始-->
+<div class="kv kv023">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">
+		<div class="prod_detail">
+			<dl>
+				<dt>
+					<em>{$goodsDetail.goods_title}</em>
+						<if condition="$goodsDetail['is_hot'] eq 1">
+							<img src="__ROOT__/Public/web/images/icon_de01.png" alt="" />
+						</if>
+						<if condition="$goodsDetail['is_reputation'] eq 1">
+							<img src="__ROOT__/Public/web/images/icon_de02.png" alt="" />
+						</if>
+						<if condition="$goodsDetail['is_overflow'] eq 1">
+							<img src="__ROOT__/Public/web/images/icon_de03.png" alt="" />
+						</if>
+						<if condition="$goodsDetail['is_new'] eq 1">
+							<img src="__ROOT__/Public/web/images/icon_de04.png" alt="" />
+						</if>
+					<span>￥{$goodsDetail.sell_price}</span>
+				</dt>
+				<dd class="tj">
+					<label class="first"><span>{$goodsDetail.lawyer_num}</span>位律师<!--&nbsp;&nbsp;<span>{$goodsDetail.un_lawyer_num}</span>位未认证律师--></label>
+					<label>接单量<b>{$goodsDetail.turnover}</b></label>
+					<label class="none">评价数<b>{$goodsDetail.comments}</b></label>
+				</dd>
+				<dd class="neirong">
+					<p><span>服务方式：</span>{$goodsDetail.service_way_name}</p>
+					<p><span>服务标准：</span>{$goodsDetail.description}</p>
+					<p><span>需要您配合的：</span>{$goodsDetail.member_supply}</p>
+				</dd>
+				<dd class="dp">
+					<em></em>
+					<span>{$goodsDetail.remark}</span>
+				</dd>
+			</dl>
+		</div>
+		<div class="service_guide"></div>
+		<div class="con_left">
+			<div class="fuwu_tag" id="Right">
+				<ul>
+					<li class="curr">选律师</li>
+					<li>服务标准</li>
+					<li>用户评价(133)</li>
+				</ul>
+			</div>
+			<div class="prod_list_more" style="background:#fff">
+
+				<dl>
+				<if condition="$goodsLawyer['code'] neq '999'">
+					<foreach name="goodsLawyer.result" item="v">
+							<dt><span></span><em class="a1"></em><img src="{$v.avatar}" alt="" />
+							<div class="aa">
+								<foreach name="v.tag_name" item="tag" >
+									<label>{$tag}</label>
+								</foreach>
+							</div>
+							</dt>
+							<dd class="jiben">
+								<div class="name"><em>{$v.real_name}</em><a href="javascript:void(0)" class="tel" title="打电话"></a><a href="javascript:void(0)" class="mess" title="发消息"></a></div>
+								<div class="suo">
+									<em>{$v.law_office_name}</em>
+									<span class="star{$v.style}"></span>
+								</div>
+								<div class="jian">{$v.bio}</div>
+								<div class="bq">
+									<label>热情</label>
+									<label>很务实</label>
+									<label>打赢了</label>
+								</div>
+							</dd>
+							<dd class="price">￥{$v.sell_price}</dd>
+							<dd class="btn">
+								<a href="{:U('buy/index/id/'.$v['lawyer_id'].'/goods_id/'.$goodsDetail['id'])}"  class="gybtn btn80red">购买</a>
+								<label>接单量<span>{$v.order_num}</span></label>
+							</dd>
+					</foreach>
+					<!--分页-->
+					<assign name="current_page" value="$goodsLawyer.page_Index" />
+					<php>$total_page = ceil($goodsLawyer['page_sum']/$goodsLawyer['page_size']);</php>
+					<assign name="page_size" value="$goodsLawyer.page_size" />
+					<assign name="page_show" value="10" />
+					<include file="Public/pagination" />
+					<else/>
+					<dd>暂无律师</dd>
+				</if>
+				</dl>
+
+				<dl style="display:none">
+					<if condition="$goodsDetail.service_effect neq ''">
+						<dd>{$goodsDetail.service_effect|html_entity_decode}</dd>
+						<else/>
+						<dd>暂无服务标准</dd>
+					</if>
+
+				</dl>
+
+				<dl style="display:none">
+						暂无评价
+				</dl>
+			</div>
+
+		</div>
+		<!--右侧菜单栏-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>
+
+<script type="text/javascript">
+	//产品下的服务流程示意图
+	$("#Right li").each(function(i){
+		$(this).click(function(){
+			$(this).parent().find("li.curr").removeClass("curr");
+			$(this).addClass("curr");
+			$(".prod_list_more dl").hide();
+			$(".prod_list_more dl").eq(i).show();
+		});
+	});
+</script>

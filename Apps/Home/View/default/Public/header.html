@@ -1,0 +1,22 @@
+<p class="logo03">
+    <span><a href="{:U('Index/index')}"><img src="__ROOT__/Public/web/images/index03.png" /></a></span>
+    <span class="none"><a href="{:U('Index/index')}"><img src="__ROOT__/Public/web/images/index031.png" /></a></span>
+</p>
+<div class="head01">
+    <ul class="clearfix">
+            <empty name="session">
+             <li class="mt30 ml30"><a style="color: white;font-size: 18px" href="{:U('Passport/index')}">登录</a>&nbsp;|&nbsp;<a style="color: white;font-size: 18px" href="{:U('Passport/enroll')}">注册</a></li>
+            <else />
+            <li class="mt30 ml30"><a href="{:U('Passport/quit')}">安全退出</a></li>
+            <li class="mt30 ml30"><img src="__ROOT__/Public/web/images/head02.png" /></li>
+            <li class="ml30 tx"><span class="tx01"><img src="__ROOT__/Public/web/images/paihang01.jpg" /></span></li>
+            <li class="mt30 welcome">欢迎您，<a href="{:U('Personal/index')}">{$session}</a></li>
+        </empty>
+    </ul>
+</div>
+<div class="nav01">
+    <ul>
+        <li><a <if condition='$index eq select'>class="select"</if> href="{:U('Index/index')}">首页</a></li><li><a <if condition='$lawyerCase eq select'>class="select"</if> href="{:U('CaseLawyer/index')}">律政新闻</a></li><li><a <if condition='$hot eq select'>class="select"</if> href="{:U('CaseHot/index')}">热点热评</a></li><li><a <if condition='$lawyer eq select'>class="select"</if> href="{:U('LawyerList/index')}">名律专访</a></li><li><a <if condition='$case eq select'>class="select"</if> href="{:U('CaseList/index')}">精编案例</a></li><li><a <if condition='$active eq select'>class="select"</if> href="{:U('CaseActive/index')}">活动公告</a></li><li class="last"><a <if condition='$top eq select'>class="select"</if> href="{:U('LawyerTop/index')}">律师排行榜</a></li>
+    </ul>
+
+</div>

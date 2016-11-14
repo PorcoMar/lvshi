@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>俺的律师</title>
+    <link href="__ROOT__/Public/web/css/common2016.css" rel="stylesheet" type="text/css" />
+    <link href="__ROOT__/Public/web/css/two.css" rel="stylesheet" type="text/css" /><!--二级-->
+    <link href="__ROOT__/Public/web/css/instrument.css" rel="stylesheet" type="text/css"/>
+    <link href="__ROOT__/Public/web/css/umeditor.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!--顶部开始-->
+<include file="Public/header" />
+<!--顶部结束-->
+<!--KV开始-->
+<div class="kv kv022">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">
+		<div class="detail_left">
+			<div class="detail_left_top"><span></span></div>
+			<div class="detail_left_center">
+				<span class="download">{$detail_info['dowland_num']}&nbsp;次</span>
+				<div class="detail_info">
+					<h2 id="model-title">{$detail_info['title']}</h2>
+					<input id="key" type="hidden" value="{$detail_info['id']}" />
+					<div id="content">{$detail_info.content|html_entity_decode|htmlspecialchars_decode}</div>
+				</div>
+				<div class="detail_ts">
+					<span>风险提示：</span><br />
+					借条形式比较简单，目前法院关于民间借贷的的立案条件中，借条必须配合转账凭证或现金收据使用，一并证明借款事实。
+				</div>
+			</div>
+			<div class="detail_left_bottom"></div>
+			<div class="ws_btn">
+				<div>
+					<a href="javascript:void(0)" onclick="downloadDoc()" class="down01">免费下载</a>
+					<a href="javascript:void(0)" id="editModel" class="down02">编辑文书</a>
+                    <a href="{:U('/Personal/instrument')}" class="down03">我的文书</a>
+				</div>
+			</div>
+		</div>
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+{:W('Web/serveMenu')}
+<!-- 模态框开始 -->
+<div class="my-modal">
+    <div class="vertical-line">
+        <div class="wy-lxr-div rightBox">
+
+            <div class="wy-lxr-div-top">
+                <span style="border:3px solid #FFA228;;width:10px;height:20px;"></span>&nbsp;在线编辑<a
+                    href="javascript:void(0);" class="rightBoxClose">关闭</a>
+            </div>
+            <div class="wy-center-wbg" id="contractDetail" style="">
+                <form id="tempForm" name="tempForm" style="">
+                    <div class="wy-pd-10">
+                        <input id="doc-id" type="hidden" />
+                        <span class="wy-inp-text">文书名称</span><input id="title" type="text" placeholder="请输入文书名称"
+                                                                    class="wy-int-text" style="width:400px;">
+                    </div>
+                    <textarea name="editorValue" id="ueditor_textarea_editorValue"></textarea>
+                    <div class="wy-lxr-div-link">
+                        <a class="blue-xx" href="javascript:void(0);" id="tempSave">保存</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模态框结束 -->
+<!--底部开始-->
+<script type="text/javascript" src="__ROOT__/Public/web/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__ROOT__/Public/web/js/common2016.js" charset="utf-8"></script><!--网站共用-->
+<script type="text/javascript" src="__ROOT__/Public/web/js/umeditor.config.js" charset="utf-8"></script>
+<script type="text/javascript" src="__ROOT__/Public/web/js/umeditor.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__ROOT__/Public/web/js/zh-cn.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+    $(function(){
+
+        var myModal = $('.my-modal');
+
+        myModal.height(function () {
+            return $(document).height();
+        });
+
+        var editor = UM.getEditor('ueditor_textarea_editorValue');
+
+        $('.rightBoxClose').click(function () {
+            myModal.fadeOut();
+        });
+
+        $('.rightBox').click(function(e) {
+            e.stopPropagation();
+            return false;
+        });
+
+        myModal.click(function (e) {
+            e.stopPropagation();
+            myModal.fadeOut();
+        });
+
+        $('#editModel').click(function(){
+            editDoc();
+        });
+
+        /*
+        * 在线编辑
+        * parseInt      解析字符串并返回整数
+        * isNaN         检测其参数是否非数字值
+        * */
+        function editDoc() {
+            var id = parseInt($('#doc-id').val());
+            if(!isNaN(id) && id > 0){
+                $(window).scrollTop(0);
+                myModal.fadeIn();
+                return false;
+            }
+            $.post('{:U("Doc/docToInstrument")}',
+                {id:parseInt($('#key').val())},
+                function(data,status){
+                console.log(data);
+                if(data.code == 1000 && status == 'success'){
+                    $('#doc-id').val(data.data.id);
+                    $('#title').val(data.data.title);
+                    editor.setContent(data.data.content);
+                    $(window).scrollTop(0);
+                    myModal.fadeIn();
+                }else{
+                    alert(data.msg);
+                }
+            });
+        }
+
+        $('#tempSave').click(function () {
+            updateInstrument({
+                'id':$('#doc-id').val(),
+                'content':$('#ueditor_textarea_editorValue').val(),
+                'title':$('#title').val()
+            });
+        });
+
+    });
+
+    function updateInstrument(val) {
+        $.post('{:U("/Personal/updateInstrument")}',{val:val},function(data,status){
+            if(status == 'success' && data.code == 1000){
+                $('.my-modal').fadeOut();
+            }else{
+                alert(data.msg);
+            }
+        });
+    }
+
+    /*
+    * 下载文书
+    * 说明：把url与文书内容、标题、ID、传给standardpost方法
+    * */
+	function downloadDoc(){
+        standardPost(
+                '{:U("/Personal/download")}',
+                {
+                    'content':$('#content').html(),
+                    'title':$('#model-title').text(),
+                    'id':$('#key').val()
+                });
+	}
+
+    /*
+    * 文书下载
+    *  URL  [string] 调用方法地址
+    *  args [array] 下载的文书内容
+    *  form [string] form表单
+    * */
+    function standardPost (url,args)
+    {
+        //console.log(args);
+        var form = $("<form method='post'></form>");
+        console.log(form);
+        form.attr({"action":url});
+        for (arg in args)
+        {
+            var input = $("<input type='hidden'>");
+            input.attr({"name":arg});
+            input.val(args[arg]);
+            form.append(input);
+        }
+        form.submit();
+    }
+</script>
+<include file="Public/footer" />
+<!--底部结束-->

@@ -1,0 +1,257 @@
+<include file="Public/personalHeader" />
+<link href="__ROOT__/Public/web/css/instrument.css" rel="stylesheet" type="text/css"/>
+<link href="__ROOT__/Public/web/css/umeditor.min.css" rel="stylesheet" type="text/css"/>
+        <div class="mess_right">
+            <div class="mess_tag">
+                <ul>
+                    <li class="curr"><a href="javascript:void(0)">文书</a></li>
+                </ul>
+            </div>
+
+            <div class="wy-center-wbg wy-znx-list">
+
+                <div class="wy-znx-bt">我的文书</div>
+                <div class="wy-center-line">
+                    <div class="wy-znx-list-dl">
+                        <dl>
+                            <dd>
+                                <span>选择类型</span>
+                                <a href="javascript:void(0)" id="selectAll">全选</a>
+                                <a href="javascript:void(0)" id="disSelectAll">反选</a>
+                            </dd>
+                            <dt>
+                              <!--  <a href="javascript:void(0)" id="editTemp" class="upload">编辑文书</a>-->
+                                <a href="javascript:void(0)" id="delTemp" class="blue-qx">删除文书</a>
+                            </dt>
+                        </dl>
+                    </div>
+                    <div class="wy-table-all">
+                        <ol>
+                            <li class="wy-table-5">选择</li>
+                            <li class="wy-table-35">文书标题</li>
+                            <li>所属人</li>
+                            <li>创建时间</li>
+                            <li class="link-dx">操作</li>
+                        </ol>
+                        <div id="contractList">
+                            <eq name="docsList.code" value="1000">
+                                <volist name="docsList.result" id="vo">
+                                    <ul class="templateview" >
+                                        <li class="wy-table-5">
+                                            <eq name="editor" value="$vo.id">
+                                                
+                                                <input  type="checkbox" checked data-id="{$vo.id}" data-title="{$vo.title}" data-content="{$vo.content}"/>
+                                            <else/>
+                                           
+                                                <input type="checkbox" data-id="{$vo.id}" data-title="{$vo.title}"/>
+                                                <div style="display: none;" id="content-{$vo.id}">{$vo.content|html_entity_decode|htmlspecialchars_decode}</div>
+                                            </eq>
+                                        </li>
+                                        <li class="wy-table-35"><a href="javascript:editDoc({$vo['id']})" class="text-666">{$vo.title}</a></li>
+                                        <li>{$session}</li>
+                                        <li><php>echo date('Y-m-d H:i:s',$vo['create_time']);</php></li>
+                                        <li class="link-dx">
+
+                                            <a href="javascript:editDoc({$vo['id']})" id="editTemp" target="_blank" class="blue-xx">查看</a>
+
+                                            <a href="javascript:void(0)" onclick="downloadDoc(this)" class="templateSend upload">生成</a>
+                                        </li>
+                                    </ul>
+                                </volist>
+                                <assign name="current_page" value="$docsList.page_Index" />
+                                <php>$total_page = ceil($docsList['page_sum']/$docsList['page_size']);</php>
+                                <assign name="page_size" value="$docsList.page_size" />
+                                <assign name="page_show" value="10" />
+                                <include file="Public/pagination" />
+                            </eq>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="my-modal">
+    <div class="vertical-line">
+        <div class="wy-lxr-div rightBox">
+
+            <div class="wy-lxr-div-top">
+                <span style="border:3px solid #FFA228;;width:10px;height:20px;"></span>&nbsp;在线编辑<a
+                    href="javascript:void(0);" class="rightBoxClose">关闭</a>
+            </div>
+            <div class="wy-center-wbg" id="contractDetail" style="">
+                <form id="tempForm" name="tempForm" style="">
+                    <div class="wy-pd-10">
+                        <input id="doc-id" type="hidden" />
+                        <span class="wy-inp-text">文书名称</span><input id="title" type="text" placeholder="请输入文书名称"
+                                                                    class="wy-int-text" style="width:400px;">
+                    </div>
+                    <textarea name="editorValue" id="ueditor_textarea_editorValue"></textarea>
+                    <div class="wy-lxr-div-link">
+                        <a class="blue-xx" href="javascript:void(0);" id="tempSave">保存</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="__ROOT__/Public/web/js/umeditor.config.js" charset="utf-8"></script><!--个人中心-->
+<script type="text/javascript" src="__ROOT__/Public/web/js/umeditor.min.js" charset="utf-8"></script><!--个人中心-->
+<script type="text/javascript" src="__ROOT__/Public/web/js/zh-cn.js" charset="utf-8"></script><!--个人中心-->
+<script type="application/javascript">
+    $(function () {
+
+        var myModal = $('.my-modal');
+
+        myModal.height(function () {
+            return $(document).height();
+        });
+
+        var editor = UM.getEditor('ueditor_textarea_editorValue');
+
+        $('#selectAll').click(function () {
+            changeCheckbox(true);
+        });
+
+        $('#disSelectAll').click(function () {
+            changeCheckbox(false);
+        });
+
+        /*$('#editTemp').click(function () {
+            editDoc();
+        });*/
+
+        $('#delTemp').click(function() {
+
+            delDoc();
+        });
+
+        $('.rightBoxClose').click(function () {
+            myModal.fadeOut();
+        });
+
+        $('.rightBox').click(function(e) {
+            e.stopPropagation();
+            return false;
+        });
+
+        myModal.click(function (e) {
+            e.stopPropagation();
+            myModal.fadeOut();
+        });
+
+        $('#tempSave').click(function () {
+            updateInstrument({
+                'id':$('#doc-id').val(),
+                'content':$('#ueditor_textarea_editorValue').val(),
+                'title':$('#title').val()
+            });
+        });
+
+
+
+        function delDoc(){
+            var doc = [];
+            $('#contractList').find('input[type="checkbox"]:checked').each(function () {
+                var id = parseInt($(this).attr('data-id'));
+                if(!isNaN(id) && id>0){
+                    doc.push(id);
+                }
+            });
+            if(doc.length){
+                $.post('{:U("/Personal/delInstrument")}',{id:doc.join(',')},function(data,status){
+                    if(data.code == 1000 && status == 'success'){
+                        alert('删除成功');
+                        location.reload();
+                    }else{
+                        alert(data.msg);
+                    }
+                });
+            }else{
+                alert('请选择要删除的文书');
+            }
+        }
+    });
+
+/*    function editDoc(){
+        var myModal = $('.my-modal');
+        myModal.height(function () {
+            return $(document).height();
+        });
+        var editor = UM.getEditor('ueditor_textarea_editorValue');
+        var doc = [];
+        $('#contractList').find('input[type="checkbox"]:checked').each(function () {
+            var aa=  doc.push([$(this).attr('data-id'),$(this).attr('data-title'),$('#content-'+$(this).attr('data-id')).html()]);
+        });
+        if(doc.length == 1){
+            $('#doc-id').val(doc[0][0]);
+            $('#title').val(doc[0][1]);
+            editor.setContent(doc[0][2]);
+            $(window).scrollTop(0);
+            myModal.fadeIn();
+        }else(
+                alert('请选择要编辑的单个文书')
+        )
+    }*/
+    function editDoc(id){
+        var myModal = $('.my-modal');
+        myModal.height(function () {
+            return $(document).height();
+        });
+        var editor = UM.getEditor('ueditor_textarea_editorValue');
+        $.post('{:U("Personal/docToInstrument")}',{id:id},function(data,status){
+            console.log(data);
+            if(data.code == 1000 && status == 'success'){
+                $('#doc-id').val(data.data.id);
+                $('#title').val(data.data.title);
+                editor.setContent(data.data.content);
+                $(window).scrollTop(0);
+                myModal.fadeIn();
+            }else{
+                alert(data.msg);
+            }
+        });
+    }
+
+    function downloadDoc(t) {
+        var args = $(t).parent().parent().find('input[type="checkbox"]');
+        standardPost('{:U("Personal/download")}',{'content':$('#content-'+args.attr('data-id')).html(),'title':args.attr('data-title')});
+    }
+
+    function changeCheckbox(val) {
+        $('#contractList').find('input[type="checkbox"]').each(function () {
+            $(this).attr('checked', val);
+        });
+    }
+    
+    function updateInstrument(val) {
+        $.post('{:U("/Personal/updateInstrument")}',{val:val},function(data,status){
+            if(status == 'success' && data.code == 1000){
+                $('.my-modal').fadeOut();
+                location.reload();
+            }else{
+                alert(data.msg);
+            }
+        });
+    }
+
+    function standardPost (url,args)
+    {
+        var form = $("<form method='post'></form>");
+        form.attr({"action":url});
+        for (arg in args)
+        {
+            var input = $("<input type='hidden'>");
+            input.attr({"name":arg});
+            input.val(args[arg]);
+            form.append(input);
+        }
+        form.submit();
+    }
+</script>
+
+<include file="Public/footer"/>

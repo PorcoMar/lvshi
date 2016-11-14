@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="『俺的律师』是由国家权威媒体光明日报、光明网、法制日报、法制文萃报倾力打造法律服务平台为百姓享受律师服务提供解决方案，聚合国内海量实名认证律师，为您提供离婚纠纷、侵权赔偿、债权债务、房产纠纷、劳动仲裁、知识产权、交通事故、遗产继承、医患纠纷、民事刑事、公司事务等各类案件的免费咨询和法律服务。"/>
+<!--此处填案件所属分类-->
+<title>{$title}法律案例-俺的律师网</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/article.css">
+</head>
+
+<body>
+
+<!--头部开始-->
+<div class="head_bg">
+	<div class="wrap rela"> 
+    	<include file="Public/header" />
+    </div>
+
+</div>
+<!--头部结束-->
+<!--二级菜单开始-->
+<div class="sub_navbg">
+	<div class="wrap">
+    	<div class="sub_nav" id="CastSort">
+        	<a class="zidong <if condition='$catId eq 18'>select</if>" href="{:U('CaseList/index/catId/18')}">全部</a><volist name="caseType.result" id="type">
+                <a class="zidong <if condition='$type.id eq $catId'>select</if>" href="{:U('CaseList/index/catId/'.$type['id'])}">{$type.name}</a>
+            </volist>
+        </div>
+    </div>
+
+</div>
+<!--二级菜单结束-->
+<!--内容开始-->
+<div class="wrap">
+    <div class="zidong clearfix">
+    	<div class="bread">首页 - 精编案例</div>
+        <div class="zidong_left">
+        	<div class="title01 clearfix"><span class="t01">精编案例</span></div>
+        	<div class="gonggao_nr">
+                <if condition="$caseList.code eq 999">
+                      {$caseList.msg}
+                    <else />
+                    <volist name="caseList.result" id="case">
+                        <div class="article01">
+                            <p class="t01"><a class="displayPart" displayLength="50" href="{:U('CaseList/detail/id/'.$case['id'])}">{$case.title}</a></p>
+                            <div class="p04"><a class="displayPart" displayLength="200" href="{:U('CaseList/detail/id/'.$case['id'])}">{$case.description}</a></div>
+                            <div class="p03 clearfix"><p class="time01">{$case.create_time|date="Y-m-d H:i:s",###}</p><p class="guanzhu"><a href="#" class="icon01">{$case.views}</a>&nbsp;&nbsp;<a  href="#" class="icon02">{$case.comments}</a></p></div>
+                        </div>
+                    </volist>
+                    <assign name="current_page" value="$caseList.page_Index" />
+                    <php>$total_page = ceil($caseList['page_sum']/$caseList['page_size']);</php>
+                    <assign name="page_size" value="$caseList.page_size" />
+                    <assign name="page_show" value="10" />
+                </if>
+            </div>
+            
+             <!--page-->
+            <div class="page">
+                <table width="100%" border="0" cellspacing="5" cellpadding="0">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="5" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <include file="Public/pagination" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--page end-->
+            
+            
+        </div>
+        
+        <div class="zidong_right">
+        	<!--热点热评-->
+        	<div class="title03 clearfix"><span>热点热评</span></div>
+        	<div class="qiuzhu">
+            	<ul>
+                    <volist name="caseHot.result" id="hot">
+                    <li><a href="{:U('CaseHot/detail/id/'.$hot['id'])}">{$hot.title}</a></li>
+                    </volist>
+                </ul>
+            </div>
+            
+        	<div class="erweima">
+            	<img src="__ROOT__/Public/web/images/erweima.jpg" />
+            </div>
+            
+        </div>
+        
+        
+    </div>
+</div>
+<!--内容结束-->
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $("#CastSort a").width(parseInt($("#CastSort").width()/$("#CastSort a").length) - $("#CastSort a").length);
+    })
+</script>

@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/personalHeader" />
+<!--头部结束-->
+		<div class="prod_select1">
+			<div class="main_rmcity1" style="font-size:16px;line-height:70px">
+				<dl>
+					<dt>所在城市：</dt>
+					<dd>
+						<foreach name="openCitys" item="city">
+							<a href="{:U('Personal/newlyServe/city/'.$city['id'])}" class="<php>if($city['id']==$cid) echo 'curr';</php>">{$city['name']}</a>
+						</foreach>
+					</dd>
+				</dl>
+			</div>
+		</div>
+
+		<div class="ws_sort1">
+			<div class="ws_sortlist1">
+				<dl>
+					<dt>服务项目：</dt>
+					<dd>
+						<foreach name="signList" item="v">
+							<!--onclick="search_show({$v['id']})"-->
+							<a  href="{:U('Personal/newlyServe/signsId/'.$v['id'])}" class="<php>if($v['id']==$signsId) echo 'curr';</php>" >{$v.cat_name}</a>
+						</foreach>
+					</dd>
+				</dl>
+			</div>
+		</div>
+
+		<div class="con_left">
+			<div class="prod_title">
+				<dl>
+					<dd style="width: 495px" class="p1">服务</dd>
+					<dd style="width: 200px" >我的报价</dd>
+					<dd >操作</dd>
+				</dl>
+			</div>
+
+			<!--列表循环-->
+			<if condition="$goods.code neq '999'">
+				<foreach name="goods.result" item="v">
+					<div class="prod_list_box">
+						<div class="prod_list">
+							<dl>
+								<dt style="width: 550px;">
+									<span class="name">
+										<em>{$v.goods_title}</em>
+										<if condition="$v['is_hot'] eq 1">
+										<img src="__ROOT__/Public/web/images/icon_de01.png" alt="" />
+										</if>
+										<if condition="$v['is_reputation'] eq 1">
+											<img src="__ROOT__/Public/web/images/icon_de02.png" alt="" />
+										</if>
+										<if condition="$v['is_overflow'] eq 1">
+											<img src="__ROOT__/Public/web/images/icon_de03.png" alt="" />
+										</if>
+										<if condition="$v['is_new'] eq 1">
+											<img src="__ROOT__/Public/web/images/icon_de04.png" alt="" />
+										</if>
+
+									</span>
+									<span class="text">
+										<p><b>服务方式：</b>{$v.service_way_name}</p>
+										<p><b>安安点评：</b>{$v.remark}</p>
+										<p><b>有效时间：</b>{$v.servicingTime}</p>
+									</span>
+								</dt>
+								<dd class="price">￥<eq name="v.sell_price" value="">0<else/>{$v.sell_price}</eq></dd>
+								<!--<dd class="btn">
+
+									<div class="selectbg wt100_A">
+										<a href="{:U('Personal/redactServe/id/'.$v['id'])}" style="padding-left: 20px" class="options_curr" id="GOUMAI_Slected">编辑</a>
+									</div>
+
+								</dd>-->
+								<dd class="btn">
+									<input type="hidden" id="quote" value="{$v.sell_price}"/>
+									<div class="selectbg wt100_A"  style="margin-left:82px">
+										<a href="javascript:register('{$v['id']}','{$v['sell_price']}')"  style="padding-left: 20px" class="options_curr" id="GOUMAI_Slected">新增</a>
+									</div>
+
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</foreach>
+				<!--列表循环-->
+				<assign name="current_page" value="$goods.page_Index" />
+				<php>$total_page = ceil($goods['page_sum']/$goods['page_size']);</php>
+				<assign name="page_size" value="$goods.page_size" />
+				<assign name="page_show" value="10" />
+				<include file="Public/pagination" />
+				<else/>
+				暂无数据
+			</if>
+
+		</div>
+
+
+<!--底部开始-->
+<include file="Public/footer" />
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+	/*function search_show(searchType){
+		var signsId = searchType;
+		if(signsId != ''){
+			var url = "{:U('Personal/newlyServe')}";
+			var city='{$cid}';
+			alert(city);die;
+			if(city != ''){
+				url += '/city/{$cid}'+'/signsId/'+signsId;
+			}else{
+				url += '/signsId/' + signsId;
+			}
+			location.href = url;
+		}
+	}*/
+	/*新增报价*/
+	function register(id,quote){
+		if(quote==''){
+			quote=0;
+		}else{
+			quote=quote;
+		}
+		$("#msg").remove();
+		$.ajax({
+			type: "POST",
+			url: "{:U('Personal/redactServes')}",
+			dataType: "json",
+			data: {"id":id,"quote":quote},
+			success: function(json){
+				switch (json.status)
+				{
+					case 0:
+						alert('新增失败');
+						break;
+					case 1:
+						alert('新增成功');
+						window.location.href="{:U('Personal/serve')}";
+						break;
+					case 2:
+						alert('该商品已报价');
+						break;
+				}
+			}
+		});
+	}
+
+</script>

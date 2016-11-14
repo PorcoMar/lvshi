@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/base.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/service.css" />
+		<link rel="stylesheet" href="__ROOT__/Public/web/css/iconfont.css" />
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<title>服务详情</title>
+	</head>
+	<body>
+		<header>
+			<div class='container padding'>
+				<div class="row details-title">
+					<div class='col-xs-1'>
+						<a href="__APP__/Mobile/Goods/index">
+							<span class='iconfont icon-zuojiantou'></span>
+						</a>
+					</div>
+					<div class='col-xs-10 padding'>
+						服务详情
+					</div>
+					<div class='col-xs-1'>
+						<span class="iconfont icon-fenxiang "></span> 
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class='container padding'>
+				<div class='row details-cont'>
+					<div class='col-xs-12'>
+						<div class="cont-title">
+							<a href="__APP__/Mobile/GoodsDetails/index/id/{$one.result.id}">{$one.result.goods_title}</a>
+						</div>
+						<div class='cont-title-icon col-xs-6 padding'>
+						<if condition="$one['result']['is_hot']==1">
+							<a href="#"><img src="__ROOT__/Public/web/img/lawyer_re.png"/></a>
+						</if>	
+						<if condition="$one['result']['is_reputation']==1">
+							<a href="#"><img src="__ROOT__/Public/web/img/lawyer_zan.png"/></a>
+						</if>
+						<if condition="$one['result']['is_overflow']==1">		
+							<a href="#"><img src="__ROOT__/Public/web/img/lawyer_zhi.png"/></a>
+						</if>
+						<if condition="$one['result']['is_new']==1">	
+							<a href="#"><img src="__ROOT__/Public/web/img/lawyer_xin.png"/></a>
+						</if>	
+						</div>
+						<div class='cont-money col-xs-6 padding'>
+							<span class='size12'>指导价</span>
+							<span class='size16'>
+								<span class="size14">￥</span><span>{$one.result.sell_price}</span>元
+							</span>
+						</div>
+						<div class='col-xs-12 padding align-right select-btn'>
+							<input onclick="lawyergood({$goodsId})" type="button" value="选律师" />
+						</div>
+						<div class='col-xs-12 padding screen'>
+							<div class='row'>
+								<div class='col-xs-4 padding'>
+									<span class='num'>{$one.result.un_lawyer_num}</span> 位神秘勇士<br/>
+									<span class='num'>{$one.result.lawyer_num}</span> 位律师
+								</div>
+								<div class='col-xs-4 padding m' >
+									成交单量 <span class='num'>{$one.result.turnover}</span>
+								</div>
+								<div class='col-xs-4 padding r'>
+									评价数<span class='num'>{$one.result.comments}</span>
+								</div>
+							</div>
+						</div>
+						<div class='col-xs-12 padding service-mode'>
+							服务方式：<span>{$one.result.service_way_name}</span>
+						</div>
+						<div class='col-xs-12 padding service-standards'>
+							服务标准：<span>{$one.result.service_effect|html_entity_decode}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class='row service-flow'>
+					<div class='col-xs-12 padding'>
+						<div class='row'>
+						<img width="315" src="{$one.result.service_flow_pic}"/>
+							<!-- <div class='col-xs-2 padding'>
+								<span class="iconfont icon-tianxie size18"></span>
+								<span>填写信息</span>
+							</div>
+							<div class='col-xs-1 padding'>
+								<span class="iconfont icon-iconfontxiangyou"></span>
+							</div>
+							<div class='col-xs-2 padding'>
+								<span class="iconfont icon-z105 size18"></span>
+								<span>选定律师</span>
+							</div>
+							<div class='col-xs-1 padding'>
+								<span class="iconfont icon-iconfontxiangyou"></span>
+							</div>
+							<div class='col-xs-2 padding'>
+								<span class="iconfont icon-0049weifudingdan size18"></span>
+								<span>支付</span>
+							</div>
+							<div class='col-xs-1 padding'>
+								<span class="iconfont icon-iconfontxiangyou size12"></span>
+							</div>
+							<div class='col-xs-2 padding'>
+								<span class="iconfont icon-xiaolvdashitubiao33 size18"></span>
+								<span>律师见面</span>
+							</div> -->
+						</div>
+					</div>
+				</div>
+				
+				<div class='row service-details'>
+					<div class='col-xs-12'>
+						<div class="row">
+							<div class='col-xs-12 padding service-explain'>
+								{$one.result.member_supply}
+							</div>
+							<div class='col-xs-12 padding'>
+								<div class="cont-cont">
+									<img src="__ROOT__/Public/web/img/anan_red.png" />
+									<span>{$one.result.remark}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 padding sort">
+						<div class='row'>
+							<div class='col-xs-3 padding border-rdddddd'>
+								<a onclick="orders('',{$goodsId})" href="javascript:void(0);" class='active'>默认</a>
+							</div>
+							<div class='col-xs-3 padding border-rdddddd'>
+								<a onclick="orders('',{$goodsId})" href="javascript:void(0);">价格</a>
+							</div>
+							<div class='col-xs-3 padding border-rdddddd'>
+								<a onclick="orders('',{$goodsId})" href="javascript:void(0);">接单量</a>
+							</div>
+							<div class='col-xs-3 padding'>
+								<a onclick="orders('',{$goodsId})" href="javascript:void(0);">评价</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<volist name="lawyerList.result" id="v">
+				<div class='row lawyer-list'>
+					<div class='col-xs-12'>
+						<div class='row border-bdddddd'>
+							<div class='col-xs-3 padding info'>
+								<div class='head align'>
+									<img src="__ROOT__/Public/web/img/head.jpg" />
+									<img src="__ROOT__/Public/web/img/lawyer_head_icon1.png"/>
+								</div>
+							
+								<div class='size12 align lable'>
+								<volist name="v.tag_name" id="vv">
+									<span>{$vv}</span>
+								</volist>
+								</div>
+							
+								<div class="stars align">
+									<!-- <img id="star_con_{$v.id}" src="__ROOT__/Public/web/img/lawyer_stars.png" /> -->
+
+									<td><div id="star_con_{$v['id']}" class="star-vote">
+						            <span id="add_star_{$v['id']}" class="add-star"></span>
+						        	<span id="del_star_{$v['id']}" class="del-star"></span>
+						            </div>               
+						            <input type="text" style="display:none;" value="{$v['star']}" class=" start-{$v['id']}" name="starName"/>
+						        	</td>  
+
+								</div>
+
+							</div>
+							<div class='col-xs-9 padding-right'>
+								<div class='row title'>
+									<div class="col-xs-4 padding">
+										{$v.real_name}
+									</div>
+								<if condition="$v['online']==1">
+									<div class="col-xs-4 padding">
+										<img src="__ROOT__/Public/web/img/on-line.png" />
+									</div>
+								</if>
+									<div class="col-xs-4 padding align-right">
+										<span class='size14'><span class='size12'>￥</span><span>{$v.sell_price}</span>元</span>
+									</div>
+								</div>
+								<div class='row the'>
+									<div class='col-xs-4 padding'>
+										执业{$v.operation_year}年
+									</div>
+									<div class='col-xs-8 padding'>
+										{$v.law_office_name}
+									</div>
+								</div>
+								<div class='row cont'>
+									<div class='col-xs-12 padding'>
+										{$v.bio}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="row sel">
+							<div class='col-xs-3 padding'>
+								接单 <span class='num'> {$v.order_num}</span>      
+							</div>
+							<div class='col-xs-3 padding'>
+								评价  <span class='num'> {$v.comments}</span> 
+							</div>
+							<div class='col-xs-6 padding align-right'>
+								<input type="button" onclick="lawyer({$v.member_id},{$goodsId})" value="就选俺" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</volist>
+
+				<!-- <div class='row lawyer-list'>
+					<div class='col-xs-12'>
+						<div class='row border-bdddddd'>
+							<div class='col-xs-3 padding info'>
+								<div class='head align'>
+									<img src="__ROOT__/Public/web/img/head.jpg" />
+									<img src="__ROOT__/Public/web/img/lawyer_head_icon1.png"/>
+								</div>
+								<div class='size12 align lable'>
+									<span>80后</span>
+									<span>前法官</span>
+								</div>
+								<div class="stars align">
+									<img src="__ROOT__/Public/web/img/lawyer_stars.png" />
+								</div>
+							</div>
+							<div class='col-xs-9 padding-right'>
+								<div class='row title'>
+									<div class="col-xs-4 padding">
+										区成文
+									</div>
+									<div class="col-xs-4 padding">
+										<img src="__ROOT__/Public/web/img/rest.png" />
+									</div>
+									<div class="col-xs-4 padding align-right">
+										<span class='size14'><span class='size12'>￥</span><span>2000</span>元</span>
+									</div>
+								</div>
+								<div class='row the'>
+									<div class='col-xs-4 padding'>
+										执业13年
+									</div>
+									<div class='col-xs-8 padding'>
+										京师律师事务所
+									</div>
+								</div>
+								<div class='row cont'>
+									<div class='col-xs-12 padding'>
+										熟悉知识产权法，在律师界内具非常丰富的人脉资源。具有多年的律师执业经验...
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="row sel">
+							<div class='col-xs-3 padding'>
+								接单 <span class='num'> 126</span>      
+							</div>
+							<div class='col-xs-3 padding'>
+								评价  <span class='num'> 83</span> 
+							</div>
+							<div class='col-xs-6 padding align-right'>
+								<input type="button" value="就选俺" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='row lawyer-list'>
+					<div class='col-xs-12'>
+						<div class='row border-bdddddd'>
+							<div class='col-xs-3 padding info'>
+								<div class='head align'>
+									<img src="__ROOT__/Public/web/img/head.jpg" />
+									<img src="__ROOT__/Public/web/img/lawyer_head_icon1.png"/>
+								</div>
+								<div class='size12 align lable'>
+									<span>80后</span>
+									<span>前法官</span>
+								</div>
+								<div class="stars align">
+									<img src="__ROOT__/Public/web/img/lawyer_stars.png" />
+								</div>
+							</div>
+							<div class='col-xs-9 padding-right'>
+								<div class='row title'>
+									<div class="col-xs-4 padding">
+										区成文
+									</div>
+									<div class="col-xs-4 padding">
+										<img src="__ROOT__/Public/web/img/on-line.png" />
+									</div>
+									<div class="col-xs-4 padding align-right">
+										<span class='size14'><span class='size12'>￥</span><span>2000</span>元</span>
+									</div>
+								</div>
+								<div class='row the'>
+									<div class='col-xs-4 padding'>
+										执业13年
+									</div>
+									<div class='col-xs-8 padding'>
+										京师律师事务所
+									</div>
+								</div>
+								<div class='row cont'>
+									<div class='col-xs-12 padding'>
+										熟悉知识产权法，在律师界内具非常丰富的人脉资源。具有多年的律师执业经验...
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class='col-xs-12'>
+						<div class="row sel">
+							<div class='col-xs-3 padding'>
+								接单 <span class='num'> 126</span>      
+							</div>
+							<div class='col-xs-3 padding'>
+								评价  <span class='num'> 83</span> 
+							</div>
+							<div class='col-xs-6 padding align-right'>
+								<input type="button" value="就选俺" />
+							</div>
+						</div>
+					</div>
+				</div> -->
+				<div class='service-top'>
+					<span class='iconfont icon-xiangshang'></span>
+				</div>
+			</div>
+		</main>
+
+		<script type="text/javascript">
+    //n表示后台获取的星数
+    <foreach name="lawyerList.result" item="v">
+    window.onload=showStar({$v.star},{$v.id});
+    </foreach>
+    function showStar(num,id){
+        var con_wid=document.getElementById("star_con_"+id).offsetWidth;        
+        var del_star=document.getElementById("del_star_"+id);
+        console.log(con_wid);
+        
+        //透明星星移动的像素
+        var del_move=(num*con_wid)/5;
+        
+        del_star.style.backgroundPosition= - del_move+"px 0px";
+        del_star.style.left=del_move+"px";
+    }
+</script>
+
+<style>
+    .star-vote{
+        width:60px;
+        height:10px;
+        position:relative;
+        overflow:hidden;
+    }
+    .star-vote>span{
+        position:absolute;
+        width:60px;
+        height:10px;
+    	background-size:cover;
+        background-repeat:no-repeat;
+        left:0px;
+        top:0px;
+    }
+    .star-vote>.add-star{
+        background-image:url("__ROOT__/Public/web/img/star2.png");
+    }
+    .star-vote>.del-star{
+        background-image:url("__ROOT__/Public/web/img/star1.png");
+        background-color:white;
+    }
+</style>
+
+
+		<script type="text/javascript">
+			$(function(){
+				$('.service-top').click(function(){
+	                $('body,html').animate({
+	                    scrollTop: 0
+	                },
+	                100);
+	                return false;
+				})
+			})
+			function lawyer(id,goodsId){
+				window.location.href = "__APP__/Mobile/LawyerDetails/index/id/"+id+"/goodsId/"+goodsId;
+			}
+			function lawyergood(goodsId){
+				window.location.href = "__APP__/Mobile/lawyer/index/goodsId/"+goodsId;
+			}
+		</script>
+	</body>
+</html>

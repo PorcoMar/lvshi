@@ -1,0 +1,407 @@
+.head-login{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background-color:#f0f0f0;
+}
+.head-login div.phone{
+	color: #d8ae88;
+}
+/*顶部结束*/
+header div.nav{
+	width: 100%;
+	height: 75px;
+	line-height: 70px;
+	font-size:16px;
+	background: url(../img/nav_bg.png);
+	border-bottom: solid 1px #d1d1d1;
+}
+header div.nav ul li{
+	float: left;
+	width: 108px;
+	line-height: 75px;
+	text-align: center;
+}
+header div.nav ul li a{
+	display: block;
+}
+.index-active{
+	height: 75px;
+	line-height: 75px;
+	border-bottom: solid 5px #eb5050;
+}
+header div.nav div.col-xs-1{
+	width: 100px;
+}
+header div.nav div.col-xs-1 div{
+	float: left;
+	width: 50px;
+	text-align: right;
+}
+.load-code-hide{
+	position: absolute;
+	top: 92px;
+	right: 60px;;
+	width: 300px;
+	height: 170px;
+	line-height: 50px;
+	text-align: center;
+	background: #ffffff;
+	border: solid 1px #c0c0c0;
+	z-index: 400;
+	cursor: pointer;
+	display: none;
+}
+.load-code-hide span.frists{
+	position: absolute;
+	top: -29px;
+	right: 145px;
+	display: none;
+}
+.load-code-hide span.lasts{
+	position: absolute;
+	top: -28px;
+	right: 145px;
+	color: #ffffff;
+	display: none;
+}
+.load-code-hide span{
+	font-size: 14px;
+	color: #8a8f95;
+}
+.load-code-hide span.frist{
+	font-size: 24px;
+}
+.load-code-hide img{
+	width: 100px;
+	height: 100px;
+	margin-top: 20px;
+}
+/*导航结束*/
+.personal-center-nav{
+	min-height: 1200px;
+	padding: 0px 40px;
+	background: #eeeeee;
+	border: solid 1px #ebe5de;
+	margin-top: 30px;
+}
+.personal-center-nav p.title{
+	color:#ff644b;
+	font-size: 15px;
+	margin-top: 35px;
+}
+.personal-center-nav ul{
+	padding: 0;
+	margin: 0;
+}
+.personal-center-nav ul li{
+	line-height: 25px;
+}
+/*个人中心导航结束*/
+.personal-center{
+	border: solid 1px #ebe5de;
+	border-left: none;
+	margin-top: 30px;
+	min-height: 1200px;
+	padding-left: 90px;
+}
+.personal-center div.lawyer-icon{
+	height: 300px;
+	line-height: 300px;
+	margin: 20px 0px;
+}
+.personal-center div.lawyer-info{
+	height: 300px;
+	margin: 20px 0px;
+	padding: 0px 25px;
+}
+.personal-center div.lawyer-info div.row{
+	margin: 15px 0px;
+}
+.personal-center div.lawyer-info div.col-xs-3{
+	text-align: left;
+	padding-left: 50px;
+	height: 40px;
+	line-height: 40px;
+}
+.personal-center div.lawyer-info div.col-xs-9 input{
+	width: 390px;
+	height: 40px;
+	padding-left: 20px;
+	border: solid 1px #ebe5de;
+}
+.personal-center div.lawyer-info div.name input{
+	width: 200px;
+	padding-left: 20px;
+	border: solid 1px #ebe5de;
+}
+.personal-center div.lawyer-info div.name{
+	margin-top: 50px;
+}
+.personal-center div.lawyer-info div.col-xs-9:after{
+	content: "*";
+	color: red;
+}
+.personal-center div.lawyer-info div.lawyer-certificate div.col-xs-9:after{
+	content: '';
+}
+.personal-center div.lawyer-describe input{
+	width: 794px;
+	height:40px;
+	line-height: 40px;
+	padding-left: 20px;
+	border: solid 1px #ebe5de;
+}
+/*律师信息结束*/
+.personal-center div.certified-photos,
+.personal-center div.good-field{
+	border: solid 1px #ebe5de;
+	margin-top: 25px;
+	width: 794px;
+}
+.personal-center div.certified-photos div,
+.personal-center div.good-field div{
+	width: 794px;
+}
+.personal-center div.certified-photos div.title,
+.personal-center div.good-field div.title{
+	background: url(../img/personal_photo_icon.png) no-repeat;
+	height: 35px;
+	line-height: 35px;
+	background-size:100% 100%;
+}
+.personal-center div.certified-photos div.title span,
+.personal-center div.good-field div.title span{
+	display: block;
+	width: 170px;
+	color: #ffffff;
+	font-size: 18px;
+	text-align: center;
+}
+.personal-center div.certified-photos div.cont{
+	padding: 20px 30px;
+}
+.personal-center div.certified-photos div.cont p.title,
+.personal-center div.good-field div.cont p.title{
+	display: block;
+	width: 600px;
+	float: left;
+	padding-left: 20px;
+	font-size: 18px;
+}
+.personal-center div.certified-photos div.cont p.prompt{
+	display: block;
+	width: 120px;
+	text-align: right;
+	float: left;
+	color: #ff644b;
+}
+.personal-center div.certified-photos div.cont div.lawyer-photo{
+	width: 120px;
+	height: 120px;
+	float: left;
+	border: solid 1px #ebe5de;
+	margin: 10px 10px;
+	position: relative;
+}
+.personal-center div.certified-photos div.cont div.lawyer-photo img{
+	height: 118px;
+	width: 118px;
+	cursor: pointer;
+}
+.personal-center div.certified-photos div.cont div.lawyer-photo a{
+	display: none;
+	width: 118px;
+	height: 30px;
+	line-height: 30px;
+	color: #ffffff;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	background: #000000;
+	opacity: 0.8;
+	z-index: 300;
+	text-align: center;
+	cursor: pointer;
+}
+.personal-center div.certified-photos div.cont div.lawyer-photo a span{
+	padding-left: 10px;
+}
+.personal-center div.certified-photos div.cont div.select-btn{
+	background: url(../img/select_btn.png) no-repeat;
+	width: 120px;
+	height: 40px;
+	line-height:40px;
+	color: #ffffff;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	margin-top: 90px;
+	margin-left: 10px;
+}
+/*图片认证结束*/
+.personal-center div.good-field div.cont{
+	padding: 20px 30px;
+	min-height: 170px;
+}
+.personal-center div.good-field div.cont p.title span.num{
+	font-weight: bolder;
+	color: #ff644b;
+}
+.personal-center div.good-field div.cont div.checkbox{
+	width: 650px;
+}
+.personal-center div.good-field div.cont div.checkbox ul{
+	padding: 0;
+	margin: 0;
+}
+.personal-center div.good-field div.cont div.checkbox ul li{
+	float: left;
+	width: 155px;
+	line-height: 36px;
+}
+.personal-center div.good-field div.cont label span{
+	float: left;
+	background: url(../img/personal_checkbox_no.png) left center no-repeat;
+	background-size: 20px 20px;
+	padding-left: 30px;
+	cursor: pointer;
+	font-size: 15px;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+.personal-center div.good-field div.cont label input:checked+span {
+	background: url(../img/personal_checkbox_yes.png) left center no-repeat;
+	background-size: 20px 20px;
+	padding-left: 30px;
+	cursor: pointer;
+	font-size: 15px;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+/*擅长领域结束*/
+.personal-center div.agreement{
+	margin-top: 30px;
+	width: 794px;
+	padding: 30px;
+}
+.personal-center div.agreement label{
+	float:left;
+}
+.personal-center div.agreement label span{
+	float: left;
+	background: url(../img/personal_checkbox_yes.png) left center no-repeat;
+	background-size: 20px 20px;
+	padding-left: 30px;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: 400;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+.personal-center div.agreement label input:checked+span {
+	background: url(../img/personal_checkbox_no.png) left center no-repeat;
+	background-size: 20px 20px;
+	padding-left: 30px;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: 400;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+.personal-center div.agreement a{
+	display:block;
+	width: 200px;
+	float: left;
+	margin-left: 100px;
+	font-size: 13px;
+	color: #ff644b;
+}
+/*协议结束*/
+.personal-center div.personal-btn{
+	padding:10px 30px;
+}
+.personal-center div.personal-btn .authentication-btn{
+	background: url(../img/personal_btn1.png) no-repeat;
+	width:160px;
+	height: 50px;
+	line-height: 50px;
+	color: #ffffff;
+	font-size: 15px;
+	cursor: pointer;
+	text-align: center;
+	float: left;
+}
+.personal-center div.personal-btn .other-btn{
+	background: url(../img/personal_btn2.png) no-repeat;
+	width:270px;
+	height: 50px;
+	line-height: 50px;
+	color: #ffffff;
+	font-size: 15px;
+	cursor: pointer;
+	text-align: center;
+	float: left;
+	margin: 0px 25px;
+}
+.personal-center div.personal-btn .cancel-btn{
+	background: url(../img/personal_btn3.png) no-repeat;
+	width:120px;
+	height: 50px;
+	line-height: 50px;
+	color: #ffffff;
+	font-size: 15px;
+	cursor: pointer;
+	text-align: center;
+	float: left;
+}
+/*按钮结束*/
+footer div.nav{
+	background: #ffffff;		
+	height: 70px;
+	font-size: 18px;
+	line-height: 100px;
+}
+footer div.nav div.col-xs-4{
+	width: 600px;
+}
+footer div.nav ul{
+	margin-left: 50px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+footer div.nav ul li{
+	float: left;
+	height: 25px;
+	width:140px;
+}
+footer div.nav ul li a{
+	color:#8c8c8c;
+}
+footer div.foot{
+	margin-top: 20px;
+}
+.foot div.col-xs-3,.foot div.col-xs-3 span{
+	color: #d8ae88;
+	font-size: 26px;
+}
+.foot div.col-xs-4{
+	color: #666666;
+	font-family: arial;
+	padding-top: 5px;
+}
+.foot div.col-xs-3,.foot div.col-xs-4,.foot div.col-xs-5{
+	height: 110px;
+	line-height: 110px;
+}
+/*底部结束*/
+
+
+
+

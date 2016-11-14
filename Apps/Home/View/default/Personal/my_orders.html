@@ -1,0 +1,225 @@
+<include file="Public/personalHeader" />
+		<div class="mess_right">
+			<div class="mess_tag">
+				<ul>
+                    <!-- 订单分类:1全部==2待接单(O1P0S0)==>3待付款(O2P0S0)==>4待服务(O2P1S0)==>5待确认(O2P1S1)==>6待评价(O2P1S2)->7已完成(O5P1S2) -->
+					<li class="<php>if($step == 0) echo 'curr';</php>"><a href="{:U('/Personal/orders')}">全部</a></li>
+					<li class="<php>if($step == 1) echo 'curr';</php>"><a href="{:U('/Personal/orders', 'con=1&pay=0&sev=0&wcm=0')}">待接单</a></li>
+					<li class="<php>if($step == 2) echo 'curr';</php>"><a href="{:U('/Personal/orders', 'con=0&pay=1&sev=0&wcm=0')}">待付款</a></li>
+                    <li class="<php>if($step == 3) echo 'curr';</php>"><a href="{:U('/Personal/orders', 'con=0&pay=0&sev=1&wcm=0')}">待服务</a></li>
+                    <li class="<php>if($step == 4) echo 'curr';</php>"><a href="{:U('/Personal/orders', 'con=0&pay=0&sev=0&wcm=1')}">待评价</a></li>
+                    <!--<eq name="isLawyer" value="0">-->
+				    <!--</eq>-->
+                </ul>
+			</div>
+                <div class="mess_title">
+                    <ul>
+                        <li class="m1">产品</li>
+                        <li class="m2">服务律师</li>
+                        <li class="m3">价格</li>
+                        <li class="m4">状态</li>
+                        <li class="m5">操作</li>
+
+
+                    </ul>
+                </div>
+
+            <eq name="order_list.code" value="999">
+                <p style="text-align: center;">{$order_list.msg}</p>
+            <else/>
+                <volist name="order_list.result" id="vo">
+                    <div class="mess_list" id="messList1">
+                        <table border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td colspan="5" class="none">
+                                <div class="mess_big">
+                                    <span>&nbsp;&nbsp;&nbsp;{$vo.create_time|date=('Y-m-d'),###}</span><span>订单号：{$vo.order_no}</span>
+                                    <a href="javascript:void(0)" class="lx">和律师联系</a>
+                                    <a onclick="omit({$vo.order_id})" href="javascript:void(0)"  class="del" title="删除"></a>
+                                </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="m1" valign="top" >
+                                <volist name="vo['goods_list']"  id="goods">
+                                    <div class="mess_zt">
+                                        <span>{$goods.goods_name}</span>
+                                        服务方式：{$goods.service_way_name}<br />
+                                        服务时间：{$vo.create_time|date=('Y-m-d H:i:s'),###}
+                                    </div>
+                                </volist>
+                            </td>
+
+                            <td class="m2" valign="top">
+                                <div class="mess_lvs">
+                                    <dl>
+                                        <dt><span></span><img src="{$vo.lawyer_avatar}" alt="" /></dt>
+                                        <dd class="name">
+                                            <span>{$vo.lawyer_realname}</span>
+                                            {$vo.bio}<br />{$vo.primary_law_office}
+                                            <img src="__ROOT__/Public/web/images/icon_online.png" alt="" />
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </td>
+
+                            <td class="m3">￥{$vo.real_amount}</td>
+                            <td class="m4">
+                                <if condition="$vo.order_status eq '3'">
+                                    订单已取消
+                                    <else/>
+                                    <if condition="($vo.order_status eq '1') AND ($vo.service_status eq '0') AND ($vo.pay_status eq '0')">
+                                        等待律师接单
+                                        <elseif condition="($vo.pay_status eq '0') AND ($vo.order_status eq '1')"/>
+                                        等待支付
+                                        <elseif condition="($vo.service_status eq '1') AND ($vo.pay_status eq '1')"/>
+                                        等待服务
+                                        <elseif condition="($vo.order_status eq '5') AND($vo.pay_status eq '1') AND ($vo.service_status eq '2')"/>
+                                        等待评价
+                                    </if>
+                                </if>
+                                <eq name="vo['order_status']" value="4">订单已作废</eq>
+                                <eq name="vo['order_status']" value="6">订单已退款</eq>
+                                <eq name="vo['order_status']" value="7">订单部分退款</eq>
+                                <eq name="vo['order_status']" value="8">律师取消</eq>
+                                <br />
+                                <a href="<php>echo U('Personal/orderDetail', 'key='.$vo['order_id'].'&type='.$vo['order_type']);</php>">订单详情</a>
+                            </td>
+
+                              <if condition="$step eq '1'">
+                                  <td class="m5">
+                                      <span style="margin-left: 30px;" class="gybtn btn80red">等待确认</span>
+                                      <a href="javascript:void(0)" onclick="ShowLayerYes({$vo['order_id']})" class="sq">取消订单</a>
+                                  </td>
+                                <elseif condition="$step eq '2'"/>
+                                  <td class="m5">
+                                      <a href="{:U('pay/index/id/'.$vo['order_id'])}" class="gybtn btn80red" target="_blank">立即付款</a>
+                                      <a href="javascript:void(0)" onclick="ShowLayerYes({$vo['order_id']})" class="sq">取消订单</a>
+                                  </td>
+                                <elseif condition="$step eq '3'"/>
+                                  <td class="m5">
+                                      <span style="margin-left: 30px;" class="gybtn btn80red">等待服务</span>
+                                  </td>
+                                <elseif condition="$step eq '4'"/>
+                                  <td class="m5">
+                                      <a href="<php>echo U('Personal/orderDetail', 'key='.$vo['order_id'].'&type='.$vo['order_type'].'&list='.'discuss');</php>" class="gybtn btn80red">服务完成</a>
+                                      <a href="javascript:void(0)" class="sq">申请售后</a>
+                                  </td>
+                                <elseif condition="$step eq '0'"/>
+                                  <td class="m5">
+                                      <if condition="$vo.order_status eq '3'">
+                                                <span style="margin-left: 30px;" class="gybtn btn80red">订单已取消</span>
+                                          <else/>
+                                          <if condition="($vo.order_status eq '1') AND ($vo.service_status eq '0') AND ($vo.pay_status eq '0')">
+                                                  <span style="margin-left: 30px;" class="gybtn btn80red">等待确认</span>
+                                                  <a href="javascript:void(0)" onclick="ShowLayerYes({$vo['order_id']})" class="sq">取消订单</a>
+                                              <elseif condition="($vo.pay_status eq '0') AND ($vo.order_status eq '1')"/>
+                                                  <a href="{:U('pay/index/id/'.$vo['order_id'])}" class="gybtn btn80red" target="_blank">立即付款</a>
+                                                  <a href="javascript:void(0)" onclick="ShowLayerYes({$vo['order_id']})" class="sq">取消订单</a>
+                                              <elseif condition="($vo.service_status eq '1') AND ($vo.pay_status eq '1')"/>
+                                                  <span style="margin-left: 30px;" class="gybtn btn80red">等待服务</span>
+                                              <elseif condition="($vo.order_status eq '5') AND($vo.pay_status eq '1') AND ($vo.service_status eq '2')"/>
+                                                  <a href="<php>echo U('Personal/orderDetail', 'key='.$vo['order_id'].'&type='.$vo['order_type'].'&list='.'discuss');</php>" class="gybtn btn80red">服务完成</a>
+                                                  <a href="javascript:void(0)" class="sq">申请售后</a>    </if>
+                                      </if>
+
+                                      <eq name="vo['order_status']" value="4">
+                                          <span style="margin-left: 30px;" class="gybtn btn80red">订单已作废</span>
+                                      </eq>
+                                      <eq name="vo['order_status']" value="6">
+                                          <span style="margin-left: 30px;" class="gybtn btn80red">订单已退款</span>
+                                      </eq>
+                                      <eq name="vo['order_status']" value="7">
+                                          <span style="margin-left: 30px;" class="gybtn btn80red">订单部分退款</span>
+                                      </eq>
+                                      <eq name="vo['order_status']" value="8">
+                                          <span style="margin-left: 30px;" class="gybtn btn80red">律师已取消</span>
+                                      </eq>
+                                  </td>
+                              </if>
+                          </tr>
+                        </table>
+                    </div>
+                </volist>
+
+                <assign name="current_page" value="$order_list.page_Index" />
+                <php>$total_page = ceil($order_list['page_sum']/$order_list['page_size']);</php>
+                <assign name="page_size" value="$order_list.page_size" />
+                <assign name="page_show" value="10" />
+                <include file="Public/pagination" />
+            </eq>
+		</div>
+	</div>
+</div>
+<!--底部开始-->
+<include file="Public/footer" />
+<script>
+    function omit(id){
+        var step="{$step}";
+        $.ajax({
+            type: "POST",
+            url: "{:U('Personal/delete')}",
+            dataType: "json",
+            data: {"id":id},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 1:
+                        alert('删除成功');
+                        if(step==1){
+                            window.location.href="{:U('Personal/orders/con/1/pay/0/sev/0/wcm/0')}";
+                        }else if(step==2){
+                            window.location.href="{:U('Personal/orders/con/0/pay/1/sev/0/wcm/0')}";
+                        }else if(step==3){
+                            window.location.href="{:U('Personal/orders/con/0/pay/0/sev/1/wcm/0')}";
+                        }else if(step==4){
+                            window.location.href="{:U('Personal/orders/con/0/pay/0/sev/0/wcm/1')}";
+                        }else {
+                            window.location.href="{:U('Personal/orders')}";
+                        }
+                        break;
+                    case 0:
+                        alert('该订单无法删除');
+                        if(step==1){
+                            window.location.href="{:U('Personal/orders/con/1/pay/0/sev/0/wcm/0')}";
+                        }else if(step==2){
+                            window.location.href="{:U('Personal/orders/con/0/pay/1/sev/0/wcm/0')}";
+                        }else if(step==3){
+                            window.location.href="{:U('Personal/orders/con/0/pay/0/sev/1/wcm/0')}";
+                        }else if(step==4){
+                            window.location.href="{:U('Personal/orders/con/0/pay/0/sev/0/wcm/1')}";
+                        }else {
+                            window.location.href="{:U('Personal/orders')}";
+                        }
+                        break;
+                }
+            }
+        });
+    }
+    function ShowLayerYes(id){
+        //alert({$step});die;
+        var step="{$step}";
+        $.ajax({
+            type: "POST",
+            url: "{:U('Personal/cancelOrder')}",
+            dataType: "json",
+            data: {"id":id},
+            success: function(json){
+                switch (json.status)
+                {
+                    case 1:
+                        alert('订单已取消');
+                            if(step==1){
+                                window.location.href="{:U('Personal/orders/con/1/pay/0/sev/0/wcm/0')}";
+                            }else if(step==2){
+                                window.location.href="{:U('Personal/orders/con/0/pay/1/sev/0/wcm/0')}";
+                            }else{
+                                window.location.href="{:U('Personal/orders')}";
+                            }
+                        break;
+                }
+            }
+        });
+    }
+</script>

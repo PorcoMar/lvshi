@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>俺的律师</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="__ROOT__/Public/Weixin/css/login.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/font-awesome.min.css"><!--字体样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/grid.css"><!--栅格化样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/owl.carousel.css"><!--滑屏控件样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/owl.theme.css"><!--滑屏控件主题样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/layout.css"><!--自定义样式表-->
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Weixin/css/media.css"><!--媒体查询样式表-->
+   
+    <script type="text/javascript" src="__ROOT__/Public/Weixin/js/jquery-1.8.3.min.js" charset="utf-8"></script>
+</head>
+<body class="keBody">
+    <div class="head">
+        <h1>俺的律师</h1>
+        <span>你身边的法律专家</span>
+    </div>
+        <div class="mainBox">
+            <div class="register">
+                    <dl>
+                        <dt>手机号码</dt>
+                        <dd class="inbg"><input id="mobile" type="text"  class="sinput"  style="width:258px" placeholder="请输入手机"/></dd>
+                    </dl>
+                    <dl>
+                        <dt>验&nbsp;&nbsp;证&nbsp;&nbsp;码</dt>
+                        <dd class="inbg inp"><input id="code"  type="text" class="sinput" style="width:158px" placeholder="请输验证码" /></dd>
+                        <dd><button id="btnSendCode" href="javascript:void(0)" onclick="sendMessage()" class="gybtn btn90gray">获取验证码</button></dd>
+                    </dl>
+                    <dl>
+                        <span>长时间收不到验证码,可尝试&nbsp;<a class="style" href="javascript:void(0)" target="_blank">语音接听验证码</a></span>
+                    </dl>
+                    <dl class="auto">
+                        <em id="cr">0</em>
+                        <span id="cr">同意<a href="javascript:void(0)" target="_blank" class="red">《俺的律师用户协议》</a></span>
+                    </dl>
+                    <div class="sub" align="center"></div>
+                    <dl class="btn">
+                        <a href="javascript:void(0)" id="register"  class="white">进 入</a>
+                    </dl>
+            </div>
+        </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    /*
+    * 用户协议复选框
+    * */
+    $(function(){
+        $("dl.auto").each(function(i){
+            $(this).click(function(){
+                if($(this).find("em").text()=="0"){
+                    $(this).find("em").addClass("curr");
+                    $(this).find("em").text('1');
+                }else{
+                    $(this).find("em").removeClass("curr");
+                    $(this).find("em").text('0');
+                }
+            })
+        });
+    });
+    /*
+    * 获取验证码
+    * InterValObj   timer变量，控制时间
+    * count         间隔函数，1秒执行
+    * curCount      当前剩余秒数
+    * */
+    //验证码倒计时
+    var InterValObj;
+    var count = 60;
+    var curCount;
+    function sendMessage() {
+        var mobile = $("#mobile").val();
+        if(mobile.length!=11)
+        {
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').css("color","red").fadeOut(2000);
+            $("#mobile").focus();
+            return false;
+        }
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if(!myreg.test(mobile))
+        {
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').css("color","red").fadeOut(2000);
+            $("#mobile").focus();
+            return false;
+
+        }
+        curCount = count;
+        //设置button效果，开始计时
+        $("#btnSendCode").attr("disabled", "true");
+        $("#btnSendCode").text('(' + curCount + ')' + "秒内输入");
+        InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+        //向后台发送处理数据
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: "{:U('Login/code')}", //目标地址
+            data:{"mobile":mobile},
+          /*  success: function(json){
+                switch (json.status)
+                {
+                    case 0:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","red").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                    case 1:
+                        $("#msg").remove();
+                        $('<div id="errmsg" />').html(json.msg).css("color","red").appendTo('.sub')
+                                .fadeOut(2000);
+                        break;
+                }
+            }*/
+        });
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#btnSendCode").removeAttr("disabled");//启用按钮
+            $("#btnSendCode").text("重新发送验证码");
+        }
+        else {
+            curCount--;
+            $("#btnSendCode").text('(' + curCount + ')' + "秒内输入");
+        }
+    }
+
+
+    /*
+    * 进入判断
+    * mobile    手机号
+    * code      验证码
+    * IsCheck   是否授权
+    *
+    * */
+    $('#register').click(function(){
+        var mobile = $("#mobile").val();
+        var code = $("#code").val();
+        var IsCheck=$("#cr").text();
+        $("#msg").remove();
+        if(mobile==""){
+            $('<div id="msg" />').html("手机不能为空！").appendTo('.sub').css("color","red").fadeOut(2000);
+            $("#mobile").focus();
+            return false;
+            die;
+        }
+        if(mobile.length!=11)
+        {
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').css("color","red").fadeOut(2000);
+            $("#mobile").focus();
+            return false;
+        }
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if(!myreg.test(mobile))
+        {
+            $('<div id="msg" />').html("请输入有效手机号！").appendTo('.sub').css("color","red").fadeOut(2000);
+            $("#mobile").focus();
+            return false;
+        }
+        if(code==""){
+            $('<div id="msg" />').html("验证码不能为空！").appendTo('.sub').css("color","red").fadeOut(2000);
+            $("#code").focus();
+            return false;
+            die;
+        }
+        if(IsCheck==0){
+            //alert(code);die;
+            $.ajax({
+                type: "POST",
+                url: "{:U('Login/login')}",
+                dataType: "json",
+                data: {"mobile":mobile,"code":code},
+                success: function(json){
+                    switch (json.status)
+                    {
+                        case 0:
+                            $("#msg").remove();
+                            $('<div id="errmsg" />').html(json.msg).css("color","red").appendTo('.sub')
+                                    .fadeOut(2000);
+                            break;
+                        case 1:
+                            window.location.href="{:U('AdviceAnswer/index')}";
+                            break;
+                    }
+                }
+            });
+        }else{
+            $('<div id="msg" />').html("您还未授权俺的律师用户协议！").css("color","red").appendTo('.sub').fadeOut(2000);
+            return false;
+            die;
+        }
+    });
+</script>

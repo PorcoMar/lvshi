@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--顶部开始-->
+<include file="Public/header" />
+<!--顶部结束-->
+<!--KV开始-->
+<div class="kv kv022">
+	<div class="mainBox"></div>
+</div>
+<!--KV结束-->
+<div class="MainCenter">
+	<div class="mainBox">
+		<div class="ws_select">
+			<div class="gy_search">
+				<dl>
+					<dt>文书搜索：</dt>
+					<dd class="in"><input name="docs_key" type="text" class="sinput" value="<php>if($key) echo $key; else echo '输入您想要的文书';</php>" onfocus='if(this.value=="输入您想要的文书"){this.value="";}' onblur='if(this.value==""){this.value="输入您想要的文书";}' /></dd>
+					<dd class="btn"><input type="button" value="搜索" onclick="searchDocs()" /></dd>
+<!--
+					<dd class="rc"><a href="javascript:void(0)">工伤赔偿</a><a href="javascript:void(0)">车祸</a><a href="javascript:void(0)" class="red">搜热词</a><a href="javascript:void(0)">离婚协议</a><a href="javascript:void(0)">劳务合同</a></dd>
+-->
+				</dl>
+			</div>
+			<div class="ws_download">
+				<dl>
+					<dd>已下载</dd>
+					<dt>
+
+						<foreach name="down" item="v">
+							<img src="__ROOT__/Public/web/images/num_{$v}.gif" alt="" />
+						</foreach>
+					</dt>
+					<dd>份</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="ws_sort">
+			<div class="ws_sortlist">
+				<dl>
+					<dt>文书类型：</dt>
+					<dd>
+                        <volist name="nameplate" id="nv">
+                            <a href="{:U('Doc/index/type/'.$nv['id'])}" class="<php>if($nv['id']==$type) echo 'curr';</php>" >{$nv.cat_name}</a>
+                        </volist>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="con_left">
+            <php>$code = $docsList['code'];</php>
+            <eq name="code" value="999">
+                <p style="text-align: center;">{$docsList.msg}</p>
+            <else/>
+                <div class="ws_list">
+                    <dl>
+                        <volist name="docsList.result" id="vo">
+                            <dt><a href="{:U('Doc/detail/id/'.$vo['id'])}">{$vo.title}</a></dt>
+                            <dd class="w1">{$vo.views}次</dd>
+                            <dd class="w2">{$vo.dowland_num}次</dd>
+                            <dd class="w3">{$vo.uses}次</dd>
+                            <br/>
+                        </volist>
+						<assign name="current_page" value="$docsList.page_Index" />
+						<php>$total_page = ceil($docsList['page_sum']/$docsList['page_size']);</php>
+						<assign name="page_size" value="$docsList.page_size" />
+						<assign name="page_show" value="10" />
+                    </dl>
+                </div>
+                <include file="Public/pagination" />
+            </eq>
+		</div>
+		<!--右侧内容-->
+		{:W('Web/rightMenu')}
+	</div>
+</div>
+<!--优先服务-->
+{:W('Web/serveMenu')}
+<!--底部开始-->
+	<include file="Public/footer" />
+
+<script type="application/javascript">
+	function searchDocs(){
+		var search_key = $("input[name='docs_key']").val();
+
+		if(search_key != ''){
+			var type = '{$type}';
+			var url = "{:U('Doc/index')}";
+			if(type != ''){
+				url += '/type/{$type}' + '/key/' + search_key;
+			}else{
+				url += '/key/' + search_key;
+			}
+			location.href = url;
+		}
+	}
+
+	$(function(){
+		document.onkeydown = function(e){
+			if(!e) e = window.event;//火狐中是 window.event
+			if((e.keyCode || e.which) == 13){
+				searchDocs();
+			}
+		}
+	});
+</script>

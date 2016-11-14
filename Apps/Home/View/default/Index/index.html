@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="我的律师,找律师,律师咨询,法律咨询,律师助手,人民律师,掌上律师,法律法规,律师事务所,北京律师,深圳律师,广州律师,上海律师,北京律师事务所,深圳律师事务所,广州律师事务所,上海律师事务所,离婚律师,侵权律师,房产律师,劳动争议,劳动仲裁,债务纠纷,合同纠纷,消费维权,人身损害,交通事故,房产纠纷,知识产权,遗产继承,医患纠纷,民事案件,刑事案件" />
+<meta name="description" content="『俺的律师』是由国家权威媒体光明日报、光明网、法制日报、法制文萃报倾力打造法律服务平台为百姓享受律师服务提供解决方案，聚合国内海量实名认证律师，为您提供离婚纠纷、侵权赔偿、债权债务、房产纠纷、劳动仲裁、知识产权、交通事故、遗产继承、医患纠纷、民事刑事、公司事务等各类案件的免费咨询和法律服务。"/>
+<title>俺的律师网专业的法律服务平台-免费律师咨询/律师在线咨询/法律咨询</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Public/web/css/default.css">
+
+</head>
+
+<body>
+
+<div class="index_bg01">
+	<div class="bg02 clearfix">
+        <div style="float:left; width:100%">
+	<div class="wrap">
+        <div class="index_bg02 rela">
+        	<p class="logo03">
+			<span><a href="{:U('Index/index')}"><img src="__ROOT__/Public/web/images/index03_main.png" /></a></span>
+			<span class="none"><a href="{:U('Index/index')}"><img src="__ROOT__/Public/web/images/index031_main.png" /></a></span>
+		</p>
+			<div class="index_banner">
+				<img src="__ROOT__/Public/web/images/index_banner01.png" alt="" />
+				<img src="__ROOT__/Public/web/images/index_banner02.png" alt="" />
+			</div>
+			<div class="index_ewm">
+				<dl>
+					<dt><img src="__ROOT__/Public/web/images/index_ewm.gif" alt="" /></dt>
+					<dd>
+						<img src="__ROOT__/Public/web/images/index_ewm01.gif" alt="" />
+						<img src="__ROOT__/Public/web/images/index_ewm02.gif" alt="" />
+					</dd>
+				</dl>
+			</div>
+            <!--1019-->
+            <!--1025-->
+            <div class="yuan00">
+                <div class="yuan00Box">
+                    <a href="{:U('Index/content/code/about_mysite')}" class="ac0">关于我们</a>
+                    <a href="{:U('AutoCase/index')}" class="ac1">自动合同</a>
+                    <a href="{:U('Index/lawyer/code/zuimeilvshi')}" class="ac2">最美律师</a>
+                    <a href="{:U('Index/lawyer/code/lvshifasheng')}" class="ac3">律师发声</a>
+                    <a href="{:U('Index/lawyer/code/lvshiquan')}" class="ac4">律师圈</a>
+                </div>
+            </div>
+            <!--1025-->
+            <div class="denglu01"><empty name="session"><a href="{:U('Passport/index')}">登录</a>&nbsp;|&nbsp;<a href="{:U('Passport/enroll')}">注册</a><else /><a href="{:U('Personal/index')}">{$session}</a></empty></div>
+            <div class="search01"><input type="text" /><a class="btn01" href="#"></a></div>
+
+            <div class="nav02 clearfix">
+                <ul class="clearfix">
+                    <li><a class="select" href="{:U('Index/index')}">首页</a></li>
+                    <li><a href="{:U('CaseLawyer/index')}">律政新闻</a></li>
+                    <li><a href="{:U('CaseHot/index')}">热点热评</a></li>
+                    <li><a href="{:U('LawyerList/index')}">名律专访</a></li>
+                    <li><a href="{:U('CaseList/index')}">精编案例</a></li>
+                    <li><a href="{:U('CaseActive/index')}">活动公告</a></li>
+                    <li class="last"><a href="{:U('LawyerTop/index')}">律师排行榜</a></li>
+                </ul>
+            </div>
+            
+            <div class="clearfix mt20">
+                <div class="article01">
+                    <div class="p01 mtitle"><span class="t01">律政新闻</span><a class="more01" href="{:U('CaseLawyer/index')}">更多》</a></div>
+                    <div class="text01 clearfix">
+                            <div class="img01"><a href="{:U('CaseLawyer/detail/id/'.$caseLawyerHot[0]['id'])}"><img width="120px" height="95px" src="{$caseLawyerHot[0]['thumb']}"/></a></div>
+                        <div class="t02" style="width:260px">
+                                <a href="{:U('CaseLawyer/detail/id/'.$caseLawyerHot[0]['id'])}"><p style="font-weight:bold; line-height:24px;font-size:14px;" class="displayPart" displayLength="30">{$caseLawyerHot[0]['title']}</p></a>
+                            <ul>
+                                <volist name="caseLawyerHot" id="case">
+                                    <if condition="$key gt 0 AND $key lt 6">
+                                    <li><a class="displayPart" displayLength="30" href="{:U('CaseLawyer/detail/id/'.$case['id'])}">{$case.title}</a></li>
+                                    </if>
+                                </volist>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="article01 ml35">
+                    <div class="p01 mtitle"><span class="t01">热点热评</span><a class="more01" href="{:U('CaseHot/index')}">更多》</a></div>
+                    <div class="text01 clearfix">
+                            <div class="img01"><a href="{:U('CaseHot/detail/id/'.$caseHotHot[0]['id'])}"><img width="120px" height="95px" src="{$caseHotHot[0]['thumb']}"/></a></div>
+                        <div class="t02" style="width:260px">
+                                <a href="{:U('CaseHot/detail/id/'.$caseHotHot[0]['id'])}"><p style="font-weight:bold; line-height:24px;font-size:14px;" class="displayPart" displayLength="30">{$caseHotHot[0]['title']}</p></a>
+                            <ul>
+                                <volist name="caseHotHot" id="hot">
+                                    <if condition="$key gt 0 AND $key lt 6">
+                                    <li><a class="displayPart" displayLength="30" href="{:U('CaseHot/detail/id/'.$hot['id'])}">{$hot.title}</a></li>
+                                    </if>
+                                </volist>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            
+            
+            <!--播放列表-->
+            
+            <div class="zf_title01 mtitle"><span class="t01">名律专访</span><a class="more01" href="{:U('LawyerList/index')}">更多》</a></div>
+            <div class="zf_nr">
+                <div class="picScroll-left">
+                    <div class="hd">
+                        <a class="prev" href="javascript:void(0)"><img src="__ROOT__/Public/web/images/zf_left.png" /></a>
+                        <a class="next" href="javascript:void(0)"><img src="__ROOT__/Public/web/images/zf_right.png"/></a>
+                    </div>
+                    <div class="bd">
+                        <ul class="picList">
+                            <volist name="lawyerList.result" id="lawyer">
+                                <li>
+                                    <div class="pic"><a href="{:U('LawyerList/detail/id/'.$lawyer['id'])}"><img width="114px" height="152px" src="{$lawyer.thumb}"/></a></div>
+                                    <div class="title"><a href="{:U('LawyerList/detail/id/'.$lawyer['id'])}">{$lawyer.title}</a></div>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="clearfix">
+                <div class="article02">
+                    <div class="t01 mtitle"><span class="t02">精编案例</span><a class="more01" href="{:U('CaseList/index')}">更多》</a></div>
+                    <div class="text01">
+                        <a href="{:U('CaseList/detail/id/'.$caseList['result'][0]['id'])}"><p style="font-weight:bold; line-height:24px;font-size:14px;" class="displayPart" displayLength="30">{$caseList['result'][0]['title']}</p> </a>
+                        <ul>
+                            <volist name="caseList.result" id="list">
+                                <if condition="$key gt 0">
+                                    <li><a class="displayPart01" displayLength="40" href="{:U('CaseList/detail/id/'.$list['id'])}">{$list.title}</a></li>
+                                </if>
+                            </volist>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="article02 ml30">
+                    <div class="t01 mtitle"><span class="t02">活动公告</span><a class="more01" href="{:U('CaseActive/index')}">更多》</a></div>
+                    <div class="text01">
+                            <a href="{:U('CaseActive/detail/id/'.$caseActiveHot[0]['id'])}"><p style="font-weight:bold; line-height:24px;font-size:14px;" class="displayPart" displayLength="30">{$caseActiveHot[0]['title']}</p> </a>
+                        <ul>
+                            <volist name="caseActiveHot" id="active">
+                                <if condition="$key gt 0 AND $key lt 6">
+                                <li><a class="displayPart01" displayLength="40" href="{:U('CaseActive/detail/id/'.$active['id'])}">{$active.title}</a></li>
+                                </if>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+                <div class="article03 ml30">
+                    <div class="t01 mtitle"><span class="t02">律师排行榜</span><a class="more01" href="{:U('LawyerTop/index')}">更多》</a></div>
+                    <div class="text01">
+                        <ul>
+                            <volist name="lawyerTop.result.lawyerList" id="top">
+                                <if condition="$key lt 3">
+                            <li class="clearfix">
+                            	<p class="img02"><img src="__ROOT__/Public/web/images/index09{$key+1}.gif" /></p><p class="img03 rela indexy"><span></span><img width="38px" height="38px" src="{$top.avatar}" /></p>
+                                <div class="t03">
+									<p><em class="bold">{$top.nick_name}</em><span>执业{$top.operation_year}年</span></p>
+									<p><em>[认证信息]</em><span>{$top.law_office_name}</span></p>
+								</div>
+                            </li>
+                                </if>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        
+        
+    </div>
+        </div><!--wxd20161107-->
+    <!--底部开始-->
+        <div class="foot" style="margin-top: 80px;"><!--wxd20161107-->
+            <p><a href="{:U('Index/content/code/about_mysite')}">关于俺的律师</a>|<a href="{:U('Index/other/code/lianxius')}">联系我们</a>|<a href="{:U('Index/other/code/falvshengming')}">法律声明</a>|<a href="{:U('Index/other/code/huanyinghezuo')}">欢迎合作</a>|<a href="{:U('Index/other/code/youqinglianjie')}">友情链接</a>|<a href="{:U('Index/agree')}">反馈留言</a></p>
+            <p>Copyright ©2015-2017 andlvshi.com 版权所有|京ICP备16015322号|京公网安备11010802013176号</p>
+        </div>
+<!--底部结束-->
+    
+    
+    </div>
+</div>
+
+
+<script type="text/javascript" src="__ROOT__/Public/web/js/jquery_min_1.9.js"></script>
+</script><script type="text/javascript" src="__ROOT__/Public/web/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript">
+		jQuery(".picScroll-left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:7,trigger:"click"});
+        $('.news_list li').hover(function(){
+            $(this).find('.count01').show();
+        },function(){
+            $(this).find('.count01').hide();
+        })
+        $(function () {
+            $(".article03 li:last").addClass("none");
+            $(".displayPart").each(function () {
+                var displayLength = 100;
+                displayLength = $(this).attr("displayLength") || displayLength;
+                var result = SetString($(this).text(), displayLength);
+                $(this).text(result);
+            });
+            $(".displayPart01").each(function () {
+                var displayLength = 100;
+                displayLength = $(this).attr("displayLength") || displayLength;
+                var result = SetString($(this).text(), displayLength);
+                $(this).text(result);
+            });
+        });
+        function SetString(str, len) {
+            var strlen = 0;
+            var s = "";
+            if(str.length>0){
+                for (var i = 0; i < str.length; i++) {
+                    if (str.charCodeAt(i) > 128) {
+                        strlen += 2;
+                    } else {
+                        strlen++;
+                    }
+                    s += str.charAt(i);
+                    if (strlen >= len) {
+                        return s + "...";
+                    }
+                }
+            }else{
+                s ="";
+            }
+            return s;
+        }
+</script>
+
+<!--<script type="text/javascript" src="__ROOT__/Public/web/js/base.js"></script>-->
+<script name="baidu-koubei-verification" src="//ikoubei.baidu.com/embed/006ca0ab50c2bb7fb5fc9ae3a354f442"></script>
+<script src="http://s95.cnzz.com/z_stat.php?id=1260657137&web_id=1260657137" language="JavaScript"></script>
+</body>
+</html>

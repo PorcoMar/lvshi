@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俺的律师</title>
+</head>
+<body>
+<!--头部开始-->
+<include file="Public/header" />
+<!--头部结束-->
+<!--菜单结束-->
+<div class="MainCenter">
+	<div class="mainBox">
+	<if condition="$lawyer eq 1">
+		<div class="qz_select">
+			<div class="main_rmcity">
+				<dl>
+					<dt>所在省份：</dt>
+					<dd>
+						<volist name="provinces" id='two'>
+							<a href="{:U('HelpList/index/pid/'.$two['id'])}" class="<php>if($two['id']==$pid) echo 'curr';</php>" >{$two.name}</a>
+						</volist>
+					</dd>
+				</dl>
+			</div>
+			<div class="main_szcity">
+				<dl>
+					<dt>所在城市：</dt>
+					<!--<dd>
+						<div class="selectbg wt200">
+						  <input type="hidden" name="CITY" id="CITY" value="" />
+						  <div class="options_curr" id="CITY_Selected">请选择省份</div>
+							 <ul class="options" id="CITY_Sel">
+								 <volist name='provinces' id='province'>
+									 <li  onClick='search_show_city("CITY","{$province.id}",this)'>{$province.name}</li>
+								 </volist>
+							</ul>
+						</div>
+					</dd>-->
+					<dd>
+						<div class="selectbg wt160">
+						  <input type="hidden" name="ACOUTNY" id="ACOUTNY" value="" />
+						  <div class="options_curr" id="ACOUTNY_Selected">{$cityName|default="选择城市"}</div>
+							 <ul class="options" id="ACOUTNY_Sel">
+								 <volist name='openCitys' id='city'>
+									 <li  onClick='search_show("ACOUTNY","{$city.id}",this)'>{$city.name}</li>
+								 </volist>
+							</ul>
+						</div>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="qz_sort">
+			<div class="main_szcity">
+				<dl>
+					<dt>求助类型：</dt>
+					<dd>
+						<div class="selectbg wt200">
+						  <input type="hidden" name="QZSORT" id="QZSORT" value="{$category}" />
+						  <div class="options_curr" id="QZSORT_Selected">{$catName|default="请选择求助类型"}</div>
+							 <ul class="options" id="QZSORT_Sel">
+								 <volist name="sign" id='signList'>
+									 <li onClick="search_show('QZSORT','{$signList.id}',this)">{$signList.cat_name}</li>
+								 </volist>
+							</ul>
+						</div>
+					</dd>
+
+				</dl>
+			</div>
+		</div>
+	</if>
+		<div class="con_left">
+			<div class="qzc_title">
+				<dl>
+					<dd class="p1">求助内容</dd>
+					<dd class="p2">发布时间</dd>
+					<dd class="p3">应答人数</dd>
+					<dd class="p4">紧急程度</dd>
+					<dd class="p6"></dd>
+				</dl>
+			</div>			
+			<!--列表循环-->
+			<div class="qzc_list">
+				<volist name="helpList.result" id="help">
+					<dl>
+						<dt>
+							<!--href="{:U('helpList/detail/id/'.$help['id'])}"-->
+						<span><a href="{:U('helpList/detail/id/'.$help['id'])}" >{$help.title}</a>
+							<if condition="$help.is_hot eq 1">
+								<img src="__ROOT__/Public/web/images/icon_de01.png" alt="" align="absmiddle" />
+							</if>
+						</span>
+							<p><!--{$help.content}--></p>
+						</dt>
+						<dd class="time">{$help.create_time|date="Y-m-d",###}</dd>
+						<dd class="rs">{$help.talk_lawyer_num}人应答</dd>
+						<dd class="cd"><span class="yb">一般</span></dd>
+						<dd class="btnC"><a href="javascript:void(0)">在线咨询</a></dd>
+					</dl>
+				</volist>
+			</div>
+			<!--列表循环-->
+			<assign name="current_page" value="$helpList.page_Index" />
+			<php>$total_page = ceil($helpList['page_sum']/$helpList['page_size']);</php>
+			<assign name="page_size" value="$helpList.page_size" />
+			<assign name="page_show" value="10" />
+			<include file="Public/pagination" />
+
+		</div>
+		<!--右侧路牌-->
+		{:W('Web/guideBoardMenu')}
+	</div>
+</div>
+<!--底部开始-->
+<include file="Public/footer"/>
+<!--底部结束-->
+</body>
+</html>
+<script type="text/javascript">
+
+	/*城市与类型搜索*/
+	function search_show(pos,searchType,href){
+		var categoryId = searchType;
+		$("#"+pos).val(searchType);//把选择的值保存到id=pos标签的value中
+		$("#"+pos+"_Sel").hide();
+		document.getElementById(pos+"_Selected").innerHTML=href.innerHTML;
+		$("#"+pos).focus();
+		$("#"+pos).blur();
+		if(categoryId != ''){
+			var url = '{:U("HelpList/index")}';
+			var pid='{$pid}';
+			var cid=$('#ACOUTNY').val();
+			if(cid!=''){
+				url += '/cid/'+cid;
+			}
+			else if(pid != ''){
+				url += '/pid/{$pid}'+'/category/'+categoryId;
+			}else{
+				url += '/category/' + categoryId;
+			}
+			location.href = url;
+		}
+	}
+
+
+
+
+</script>
